@@ -1,50 +1,93 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import Navigation from './sections/Navigation';
-import Hero from './sections/Hero';
-import LogoShowcase from './sections/LogoShowcase';
-import Features from './sections/Features';
-import Solutions from './sections/Solutions';
-import Integrations from './sections/Integrations';
-import Testimonials from './sections/Testimonials';
-import Pricing from './sections/Pricing';
-import FAQ from './sections/FAQ';
-import CTA from './sections/CTA';
-import Footer from './sections/Footer';
+import { Header } from '@/sections/Header';
+import { Footer } from '@/sections/Footer';
+import { Home } from '@/pages/Home';
+import { Pricing, Contact, About, Products } from '@/pages';
+import { SEOHead } from '@/components/SEOHead';
+import { Terms } from '@/pages/Terms';
+import { Privacy } from '@/pages/Privacy';
+import {
+  BulkSMS,
+  BulkEmail,
+  BulkWhatsApp,
+  USSDCodes,
+  Shortcodes,
+  MPesaIntegration,
+  SMSSurveys,
+  AirtimeRewards,
+  ServiceDesk
+} from '@/pages/services';
 import './App.css';
 
+// Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger);
 
-function App() {
-  const mainRef = useRef<HTMLDivElement>(null);
-
+function HomeSectionRoute({ sectionId }: { sectionId: string }) {
   useEffect(() => {
-    // Initialize scroll-triggered animations
-    const ctx = gsap.context(() => {
-      // Refresh ScrollTrigger after all content loads
-      ScrollTrigger.refresh();
-    }, mainRef);
+    const scrollToSection = () => {
+      const section = document.getElementById(sectionId);
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    };
 
-    return () => ctx.revert();
+    const timeout = window.setTimeout(scrollToSection, 0);
+    return () => window.clearTimeout(timeout);
+  }, [sectionId]);
+
+  return <Home />;
+}
+
+function App() {
+  useEffect(() => {
+    // Configure ScrollTrigger defaults
+    ScrollTrigger.defaults({
+      toggleActions: 'play none none reverse',
+    });
+
+    // Refresh ScrollTrigger on load
+    ScrollTrigger.refresh();
+
+    return () => {
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    };
   }, []);
 
   return (
-    <div ref={mainRef} className="relative min-h-screen bg-background overflow-x-hidden">
-      <Navigation />
-      <main>
-        <Hero />
-        <LogoShowcase />
-        <Features />
-        <Solutions />
-        <Integrations />
-        <Testimonials />
-        <Pricing />
-        <FAQ />
-        <CTA />
-      </main>
-      <Footer />
-    </div>
+    <BrowserRouter>
+      <SEOHead />
+      <div className="min-h-screen bg-white">
+        <Header />
+        <main>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/pricing" element={<Pricing />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/innovations" element={<Products />} />
+            <Route path="/terms" element={<Terms />} />
+            <Route path="/privacy" element={<Privacy />} />
+            <Route path="/products" element={<Navigate to="/innovations" replace />} />
+            <Route path="/services" element={<HomeSectionRoute sectionId="services" />} />
+            <Route path="/testimonials" element={<HomeSectionRoute sectionId="testimonials" />} />
+            <Route path="/services/bulk-sms" element={<BulkSMS />} />
+            <Route path="/services/bulk-email" element={<BulkEmail />} />
+            <Route path="/services/bulk-whatsapp" element={<BulkWhatsApp />} />
+            <Route path="/services/ussd-codes" element={<USSDCodes />} />
+            <Route path="/services/shortcodes" element={<Shortcodes />} />
+            <Route path="/services/mpesa-integration" element={<MPesaIntegration />} />
+            <Route path="/services/sms-surveys" element={<SMSSurveys />} />
+            <Route path="/services/airtime-rewards" element={<AirtimeRewards />} />
+            <Route path="/services/service-desk" element={<ServiceDesk />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
+    </BrowserRouter>
   );
 }
 

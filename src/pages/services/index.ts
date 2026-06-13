@@ -1,0 +1,9 @@
+export { BulkSMS } from './BulkSMS';
+export { BulkEmail } from './BulkEmail';
+export { BulkWhatsApp } from './BulkWhatsApp';
+export { USSDCodes } from './USSDCodes';
+export { Shortcodes } from './Shortcodes';
+export { MPesaIntegration } from './MPesaIntegration';
+export { SMSSurveys } from './SMSSurveys';
+export { AirtimeRewards } from './AirtimeRewards';
+export { ServiceDesk } from './ServiceDesk';

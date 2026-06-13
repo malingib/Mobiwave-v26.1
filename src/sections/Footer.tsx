@@ -1,165 +1,173 @@
-import { Cloud, Mail, Phone, MapPin, Twitter, Linkedin, Facebook, Github } from 'lucide-react';
+import { useEffect, useRef } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { Facebook, Instagram, Linkedin, ArrowRight } from 'lucide-react';
+import { useInView } from '@/hooks/useInView';
 
-const productLinks = [
-  { name: 'Bulk SMS', href: '#features' },
-  { name: 'WhatsApp API', href: '#features' },
-  { name: 'USSD Services', href: '#features' },
-  { name: 'M-Pesa Integration', href: '#features' },
-  { name: 'Voice & IVR', href: '#features' },
-  { name: 'Analytics', href: '#features' },
+gsap.registerPlugin(ScrollTrigger);
+
+const quickLinks = [
+  { label: 'About Us', href: '/about' },
+  { label: 'Innovations', href: '/innovations' },
+  { label: 'Contact Us', href: '/contact' },
+  { label: 'Pricing', href: '/pricing' },
+  { label: 'Testimonials', href: '/testimonials' },
+  { label: 'Our Services', href: '/services' },
 ];
 
-const companyLinks = [
-  { name: 'About Us', href: '#' },
-  { name: 'Careers', href: '#' },
-  { name: 'Blog', href: '#' },
-  { name: 'Case Studies', href: '#testimonials' },
-  { name: 'Partners', href: '#' },
-  { name: 'Contact', href: '#cta' },
+const resources = [
+  { label: 'Bulk SMS', href: '/services/bulk-sms' },
+  { label: 'Bulk Email', href: '/services/bulk-email' },
+  { label: 'USSD Services', href: '/services/ussd-codes' },
+  { label: 'M-Pesa Integration', href: '/services/mpesa-integration' },
+  { label: 'Airtime & Rewards', href: '/services/airtime-rewards' },
 ];
 
-const resourceLinks = [
-  { name: 'API Documentation', href: '#integrations' },
-  { name: 'Help Center', href: '#faq' },
-  { name: 'Status Page', href: '#' },
-  { name: 'Pricing', href: '#pricing' },
-  { name: 'Security', href: '#' },
-  { name: 'Privacy Policy', href: '#' },
+const legal = [
+  { label: 'Terms of Conditions', href: '/terms' },
+  { label: 'Privacy Policy', href: '/privacy' },
 ];
 
-const socialLinks = [
-  { name: 'Twitter', icon: Twitter, href: '#' },
-  { name: 'LinkedIn', icon: Linkedin, href: '#' },
-  { name: 'Facebook', icon: Facebook, href: '#' },
-  { name: 'GitHub', icon: Github, href: '#' },
-];
+export function Footer() {
+  const footerRef = useRef<HTMLElement | null>(null);
+  const [inViewRef, isInView] = useInView<HTMLElement>({ threshold: 0.05 });
+  const location = useLocation();
 
-export default function Footer() {
-  const scrollToSection = (href: string) => {
-    if (href.startsWith('#')) {
-      const element = document.querySelector(href);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
+  useEffect(() => {
+    if (!isInView || !footerRef.current) return;
+
+    const ctx = gsap.context(() => {
+      const items = footerRef.current?.querySelectorAll('.ft-animate');
+      if (items) {
+        gsap.fromTo(items,
+          { y: 20, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.5, stagger: 0.07, ease: 'power3.out', scrollTrigger: { trigger: footerRef.current, start: 'top 90%' } }
+        );
       }
-    }
-  };
+    }, footerRef);
+
+    return () => ctx.revert();
+  }, [isInView]);
+
+  const isActive = (path: string) => location.pathname === path;
+
+  const linkClass = (href: string) =>
+    `text-sm transition-colors duration-200 ${isActive(href) ? 'text-blue-400' : 'text-gray-400 hover:text-white'}`;
 
   return (
-    <footer className="bg-neutral-900 text-white relative overflow-hidden">
-      {/* Top Gradient Line */}
-      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-brand-green via-brand-orange to-brand-blue" />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 lg:gap-12">
-          {/* Brand Column */}
-          <div className="col-span-2 md:col-span-4 lg:col-span-1">
-            <a href="#" className="flex items-center gap-2 mb-6">
-              <div className="w-10 h-10 flex items-center justify-center bg-gradient-brand rounded-xl">
-                <Cloud className="w-6 h-6 text-white" />
-              </div>
-              <span className="text-xl font-bold">
-                Mawingu<span className="text-brand-green"> Connect</span>
-              </span>
-            </a>
-            <p className="text-neutral-400 text-sm mb-6 leading-relaxed">
-              Africa's most reliable cloud communication platform. Empowering businesses 
-              to connect with millions across the continent.
+    <footer
+      ref={(el) => {
+        (footerRef as React.MutableRefObject<HTMLElement | null>).current = el;
+        (inViewRef as React.MutableRefObject<HTMLElement | null>).current = el;
+      }}
+      style={{ background: '#0a1a25' }}
+      className="text-white pt-16 pb-8"
+    >
+      <div className="container-custom">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-white/10">
+          <div className="ft-animate lg:col-span-1">
+            <Link to="/" className="inline-flex items-center gap-3 mb-4 rounded-xl bg-white px-3 py-2">
+              <img
+                src="/branding/mw-logo.svg"
+                alt="MobiWave Innovations"
+                className="h-9 w-auto"
+                loading="lazy"
+                decoding="async"
+              />
+            </Link>
+            <p className="text-gray-400 text-sm leading-relaxed mb-6">
+              MobiWave is a Kenyan technology company helping organizations scale trusted communication
+              through SMS, USSD, WhatsApp, and integrated payment experiences.
             </p>
-
-            {/* Contact Info */}
-            <div className="space-y-3">
-              <a
-                href="mailto:hello@mawinguconnect.co.ke"
-                className="flex items-center gap-3 text-neutral-400 hover:text-brand-green transition-colors text-sm"
-              >
-                <Mail className="w-4 h-4" />
-                hello@mawinguconnect.co.ke
-              </a>
-              <a
-                href="tel:+254700123456"
-                className="flex items-center gap-3 text-neutral-400 hover:text-brand-green transition-colors text-sm"
-              >
-                <Phone className="w-4 h-4" />
-                +254 700 123 456
-              </a>
-              <div className="flex items-center gap-3 text-neutral-400 text-sm">
-                <MapPin className="w-4 h-4" />
-                Nairobi, Kenya
-              </div>
+            <div className="flex gap-3">
+              {[
+                { icon: Facebook, href: 'https://facebook.com' },
+                { icon: Instagram, href: 'https://instagram.com' },
+                { icon: Linkedin, href: 'https://linkedin.com' },
+              ].map(({ icon: Icon, href }, i) => (
+                <a key={i} href={href} target="_blank" rel="noopener noreferrer"
+                  className="w-9 h-9 rounded-full flex items-center justify-center transition-all duration-200"
+                  style={{ background: 'rgba(255,255,255,0.08)' }}
+                  onMouseEnter={e => (e.currentTarget.style.background = '#0084ff')}
+                  onMouseLeave={e => (e.currentTarget.style.background = 'rgba(255,255,255,0.08)')}
+                >
+                  <Icon className="w-4 h-4" />
+                </a>
+              ))}
             </div>
           </div>
 
-          {/* Product Links */}
-          <div>
-            <h3 className="font-semibold text-white mb-4">Product</h3>
+          <div className="ft-animate">
+            <h4 className="font-semibold text-white mb-5 text-base">Quick Links</h4>
             <ul className="space-y-3">
-              {productLinks.map((link) => (
-                <li key={link.name}>
-                  <button
-                    onClick={() => scrollToSection(link.href)}
-                    className="text-neutral-400 hover:text-brand-green transition-colors text-sm"
-                  >
-                    {link.name}
-                  </button>
+              {quickLinks.map((link) => (
+                <li key={link.href}>
+                  <Link to={link.href} className={linkClass(link.href)}>
+                    {link.label}
+                  </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Company Links */}
-          <div>
-            <h3 className="font-semibold text-white mb-4">Company</h3>
+          <div className="ft-animate">
+            <h4 className="font-semibold text-white mb-5 text-base">Resources</h4>
             <ul className="space-y-3">
-              {companyLinks.map((link) => (
-                <li key={link.name}>
-                  <button
-                    onClick={() => scrollToSection(link.href)}
-                    className="text-neutral-400 hover:text-brand-green transition-colors text-sm"
-                  >
-                    {link.name}
-                  </button>
+              {resources.map((link) => (
+                <li key={link.href}>
+                  <Link to={link.href} className={linkClass(link.href)}>
+                    {link.label}
+                  </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Resources Links */}
-          <div>
-            <h3 className="font-semibold text-white mb-4">Resources</h3>
-            <ul className="space-y-3">
-              {resourceLinks.map((link) => (
-                <li key={link.name}>
-                  <button
-                    onClick={() => scrollToSection(link.href)}
-                    className="text-neutral-400 hover:text-brand-green transition-colors text-sm"
-                  >
-                    {link.name}
-                  </button>
+          <div className="ft-animate">
+            <h4 className="font-semibold text-white mb-5 text-base">Legal</h4>
+            <ul className="space-y-3 mb-8">
+              {legal.map((link) => (
+                <li key={link.href}>
+                  <Link to={link.href} className={linkClass(link.href)}>
+                    {link.label}
+                  </Link>
                 </li>
               ))}
             </ul>
+
+            <p className="text-gray-400 text-sm mb-3">
+              Subscribe to our newsletter for the latest updates
+            </p>
+            <form
+              className="flex gap-2"
+              onSubmit={(e) => e.preventDefault()}
+            >
+              <input
+                type="email"
+                placeholder="Email Address"
+                className="flex-1 bg-white/10 border border-white/15 rounded-lg px-4 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors"
+              />
+              <button
+                type="submit"
+                className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 transition-all duration-200"
+                style={{ background: '#0084ff' }}
+                onMouseEnter={e => (e.currentTarget.style.background = '#0068d6')}
+                onMouseLeave={e => (e.currentTarget.style.background = '#0084ff')}
+              >
+                <ArrowRight className="w-4 h-4 text-white" />
+              </button>
+            </form>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="mt-16 pt-8 border-t border-neutral-800 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-neutral-500 text-sm">
-            © 2026 Mawingu Connect. All rights reserved.
+        <div className="ft-animate pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+          <p className="text-gray-500 text-sm">
+            © {new Date().getFullYear()} MobiWave Innovations Ltd. All rights reserved.
           </p>
-
-          {/* Social Links */}
-          <div className="flex items-center gap-4">
-            {socialLinks.map((social) => (
-              <a
-                key={social.name}
-                href={social.href}
-                className="w-10 h-10 flex items-center justify-center rounded-full bg-neutral-800 text-neutral-400 hover:bg-brand-green hover:text-white transition-all duration-300"
-                aria-label={social.name}
-              >
-                <social.icon className="w-5 h-5" />
-              </a>
-            ))}
-          </div>
+          <p className="text-gray-600 text-xs">
+            Nairobi, Kenya · +254 736 427 842 · info@mobiwave.co.ke
+          </p>
         </div>
       </div>
     </footer>

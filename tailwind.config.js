@@ -38,16 +38,32 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        sidebar: {
+          DEFAULT: "hsl(var(--sidebar-background))",
+          foreground: "hsl(var(--sidebar-foreground))",
+          primary: "hsl(var(--sidebar-primary))",
+          "primary-foreground": "hsl(var(--sidebar-primary-foreground))",
+          accent: "hsl(var(--sidebar-accent))",
+          "accent-foreground": "hsl(var(--sidebar-accent-foreground))",
+          border: "hsl(var(--sidebar-border))",
+          ring: "hsl(var(--sidebar-ring))",
+        },
         brand: {
-          green: "#04A777",
-          dark: "#1A1A2E",
-          orange: "#FF6B35",
-          blue: "#004E89",
-          purple: "#9B5DE5",
+          blue: '#0084ff',
+          'blue-dark': '#0068d6',
+          'blue-light': '#36b8ff',
+          dark: '#031522',
+          light: '#f4f7fb',
+          teal: '#1d8c89',
+          cyan: '#1ea6ff',
+          navy: '#0a1a25',
+          gray: '#5b6b78',
         },
       },
       fontFamily: {
-        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+        display: ['Outfit', 'system-ui', 'sans-serif'],
+        heading: ['Outfit', 'system-ui', 'sans-serif'],
       },
       borderRadius: {
         xl: "calc(var(--radius) + 4px)",
@@ -55,15 +71,11 @@ module.exports = {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
         xs: "calc(var(--radius) - 6px)",
-        "2xl": "1rem",
-        "3xl": "1.5rem",
       },
       boxShadow: {
         xs: "0 1px 2px 0 rgb(0 0 0 / 0.05)",
-        glow: "0 0 40px rgba(4, 167, 119, 0.3)",
-        "glow-lg": "0 0 60px rgba(4, 167, 119, 0.5)",
-        card: "0 4px 20px rgba(0, 0, 0, 0.1)",
-        "card-hover": "0 20px 60px rgba(0, 0, 0, 0.15)",
+        glow: "0 0 20px rgba(0, 132, 255, 0.3)",
+        "glow-lg": "0 0 40px rgba(0, 132, 255, 0.4)",
       },
       keyframes: {
         "accordion-down": {
@@ -79,28 +91,26 @@ module.exports = {
           "20%,50%": { opacity: "0" },
         },
         float: {
-          "0%, 100%": { transform: "translateY(0)" },
+          "0%, 100%": { transform: "translateY(0px)" },
           "50%": { transform: "translateY(-15px)" },
         },
-        "float-slow": {
-          "0%, 100%": { transform: "translateY(0)" },
-          "50%": { transform: "translateY(-10px)" },
+        "float-delayed": {
+          "0%, 100%": { transform: "translateY(0px)" },
+          "50%": { transform: "translateY(-15px)" },
         },
         "pulse-glow": {
-          "0%, 100%": { boxShadow: "0 0 40px rgba(4, 167, 119, 0.3)" },
-          "50%": { boxShadow: "0 0 60px rgba(4, 167, 119, 0.5)" },
+          "0%, 100%": { 
+            boxShadow: "0 0 20px rgba(0, 132, 255, 0.3)",
+            transform: "scale(1)"
+          },
+          "50%": { 
+            boxShadow: "0 0 40px rgba(0, 132, 255, 0.5)",
+            transform: "scale(1.02)"
+          },
         },
-        "scroll-left": {
+        wave: {
           "0%": { transform: "translateX(0)" },
           "100%": { transform: "translateX(-50%)" },
-        },
-        "scroll-right": {
-          "0%": { transform: "translateX(-50%)" },
-          "100%": { transform: "translateX(0)" },
-        },
-        shimmer: {
-          "0%": { backgroundPosition: "-200% 0" },
-          "100%": { backgroundPosition: "200% 0" },
         },
       },
       animation: {
@@ -108,16 +118,9 @@ module.exports = {
         "accordion-up": "accordion-up 0.2s ease-out",
         "caret-blink": "caret-blink 1.25s ease-out infinite",
         float: "float 6s ease-in-out infinite",
-        "float-slow": "float-slow 8s ease-in-out infinite",
+        "float-delayed": "float 8s ease-in-out infinite 2s",
         "pulse-glow": "pulse-glow 3s ease-in-out infinite",
-        "scroll-left": "scroll-left 30s linear infinite",
-        "scroll-right": "scroll-right 25s linear infinite",
-        shimmer: "shimmer 2s linear infinite",
-      },
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic": "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-        "gradient-brand": "linear-gradient(135deg, #04A777 0%, #004E89 100%)",
+        wave: "wave 20s linear infinite",
       },
     },
   },
