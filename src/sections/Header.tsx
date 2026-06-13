@@ -143,6 +143,7 @@ export function Header() {
               )}
             </div>
 
+            {navLink('/isp', 'ISP')}
             {navLink('/pricing', 'Pricing')}
             {navLink('/innovations', 'Innovations')}
             {navLink('/about', 'About Us')}
@@ -227,6 +228,7 @@ export function Header() {
               </div>
             </div>
 
+            <Link to="/isp" className={`py-3 px-4 rounded-xl text-base font-medium transition-colors ${isActive('/isp') ? 'bg-blue-50 text-blue-600' : 'text-gray-700 hover:bg-gray-50'}`}>ISP</Link>
             <Link to="/pricing" className={`py-3 px-4 rounded-xl text-base font-medium transition-colors ${isActive('/pricing') ? 'bg-blue-50 text-blue-600' : 'text-gray-700 hover:bg-gray-50'}`}>Pricing</Link>
             <Link to="/innovations" className={`py-3 px-4 rounded-xl text-base font-medium transition-colors ${isActive('/innovations') ? 'bg-blue-50 text-blue-600' : 'text-gray-700 hover:bg-gray-50'}`}>Innovations</Link>
             <Link to="/about" className={`py-3 px-4 rounded-xl text-base font-medium transition-colors ${isActive('/about') ? 'bg-blue-50 text-blue-600' : 'text-gray-700 hover:bg-gray-50'}`}>About Us</Link>

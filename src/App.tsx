@@ -5,7 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Header } from '@/sections/Header';
 import { Footer } from '@/sections/Footer';
 import { Home } from '@/pages/Home';
-import { Pricing, Contact, About, Products } from '@/pages';
+import { Pricing, Contact, About, Products, ISP } from '@/pages';
 import { SEOHead } from '@/components/SEOHead';
 import { Terms } from '@/pages/Terms';
 import { Privacy } from '@/pages/Privacy';
@@ -68,6 +68,7 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/about" element={<About />} />
             <Route path="/innovations" element={<Products />} />
+            <Route path="/isp" element={<ISP />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/products" element={<Navigate to="/innovations" replace />} />
