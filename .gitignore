@@ -1,2 +1,7 @@
 node_modules
 .kilo/
+ISP-REMOVED/
+dist/isp-images/
+playwright.config.ts
+e2e/
+test-results/

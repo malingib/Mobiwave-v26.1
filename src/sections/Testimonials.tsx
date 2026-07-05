@@ -1,175 +1,92 @@
-import { useState, useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Star, ChevronLeft, ChevronRight, Quote } from 'lucide-react';
-import { useInView } from '@/hooks/useInView';
-
-gsap.registerPlugin(ScrollTrigger);
+import { useState, useRef, useEffect, useCallback } from 'react';
+import { motion, useInView, AnimatePresence } from 'framer-motion';
+import { staggerContainer, EASE_OUT_EXPO } from '@/lib/motion';
+import { MotionItem } from '@/components/MotionSection';
+import { ChevronLeft, ChevronRight, Quote } from 'lucide-react';
 
 const testimonials = [
-  {
-    name: 'Pheddis Mbodze',
-    role: 'Team Lead',
-    company: 'TUAN',
-    initials: 'PM',
-    content:
-      'MobiWave transformed our customer communication strategy. Their bulk SMS platform helped us reach over 100,000 customers instantly with a 99% delivery rate. The analytics dashboard is incredibly insightful.',
-    rating: 5,
-  },
-  {
-    name: 'Herbert Kahindi',
-    role: 'Administrator',
-    company: 'Malanga Welfare',
-    initials: 'HK',
-    content:
-      'The M-Pesa integration API was seamless to implement. Within days, we had automated payment collection running smoothly. Their support team is always responsive and genuinely helpful.',
-    rating: 5,
-  },
-  {
-    name: 'Ibrahim Shehi',
-    role: 'Operations Director',
-    company: 'BID Logistics',
-    initials: 'IS',
-    content:
-      'We switched from another provider to MobiWave and the difference is night and day. Better delivery rates, lower costs, and the USSD service has been a game-changer for our rural customers.',
-    rating: 5,
-  },
-  {
-    name: 'Shumaa Mwangome',
-    role: 'Project Coordinator',
-    company: 'Jawabu Nexus',
-    initials: 'SM',
-    content:
-      'The API documentation is excellent and the developer support is top-notch. We integrated their services into our systems in less than a week. Highly recommend for any tech team.',
-    rating: 5,
-  },
+  { name: 'Pheddis Mbodze', role: 'Team Lead, TUAN', content: 'The SMS platform helped us reach over 100,000 customers. Delivery rate was 99% — we could see exactly who received and who didn\'t.' },
+  { name: 'Herbert Kahindi', role: 'Administrator, Malanga Welfare', content: 'M-Pesa integration took two days to set up. Payment reconciliation used to take a full day — now it\'s automatic.' },
+  { name: 'Ibrahim Shehi', role: 'Operations Director, BID Logistics', content: 'We switched from another provider. Better delivery rates, lower costs, and the USSD service works for our rural customers who don\'t have smartphones.' },
 ];
 
-const avatarColors = ['#0084ff', '#0068d6', '#1d8c89', '#0a1a25'];
-
 export function Testimonials() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const sectionRef = useRef<HTMLElement | null>(null);
-  const headerRef = useRef<HTMLDivElement | null>(null);
-  const cardRef = useRef<HTMLDivElement | null>(null);
-  const [inViewRef, isInView] = useInView<HTMLElement>({ threshold: 0.1 });
+  const [idx, setIdx] = useState(0);
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, amount: 0.2 });
+
+  const next = useCallback(() => setIdx((i) => (i + 1) % testimonials.length), []);
+  const prev = useCallback(() => setIdx((i) => (i - 1 + testimonials.length) % testimonials.length), []);
 
   useEffect(() => {
-    if (!isInView || !sectionRef.current) return;
-    const ctx = gsap.context(() => {
-      gsap.fromTo(headerRef.current,
-        { y: 40, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.7, ease: 'power3.out', scrollTrigger: { trigger: headerRef.current, start: 'top 80%' } }
-      );
-    }, sectionRef);
-    return () => ctx.revert();
-  }, [isInView]);
+    const timer = setInterval(next, 6000);
+    return () => clearInterval(timer);
+  }, [next]);
 
-  // Auto-rotate
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((p) => (p + 1) % testimonials.length);
-    }, 6000);
-    return () => clearInterval(interval);
-  }, []);
-
-  const goNext = () => setCurrentIndex((p) => (p + 1) % testimonials.length);
-  const goPrev = () => setCurrentIndex((p) => (p - 1 + testimonials.length) % testimonials.length);
-
-  const t = testimonials[currentIndex];
+  const t = testimonials[idx];
 
   return (
-    <section
-      ref={(el) => {
-        (sectionRef as React.MutableRefObject<HTMLElement | null>).current = el;
-        (inViewRef as React.MutableRefObject<HTMLElement | null>).current = el;
-      }}
-      id="testimonials"
-      className="py-14 md:py-16 overflow-hidden"
-      style={{ background: '#0a1a25' }}
-    >
+    <section className="py-24 bg-[#0a1a25]">
       <div className="container-custom">
-        {/* Header */}
-        <div ref={headerRef} className="text-center mb-8">
-          <span className="section-label-white text-[11px] px-3 py-1">Testimonials</span>
-          <h2 className="section-heading-white">
-            What They <span style={{ color: '#0084ff' }}>Say</span>
-          </h2>
-          <p className="text-white/60 text-[15px] md:text-base max-w-[640px] mx-auto">
-            Don't just take our word for it — hear from the businesses
-            that rely on MobiWave every day.
-          </p>
-        </div>
+        <motion.div
+          className="max-w-2xl mb-10"
+          initial="hidden"
+          animate={isInView ? 'visible' : 'hidden'}
+          variants={staggerContainer}
+        >
+          <MotionItem>
+            <span className="text-xs font-semibold text-blue-400 uppercase tracking-widest">Clients</span>
+          </MotionItem>
+          <MotionItem>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mt-2 mb-3"
+              style={{ fontFamily: 'Outfit, sans-serif' }}>
+              What clients say
+            </h2>
+          </MotionItem>
+        </motion.div>
 
-        {/* Testimonial Card */}
-        <div ref={cardRef} className="max-w-xl md:max-w-2xl mx-auto">
-          <div
-            className="relative rounded-2xl p-5 md:p-6"
-            style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)' }}
-          >
-            {/* Quote icon */}
-            <div className="absolute -top-3 left-5 w-7 h-7 rounded-full flex items-center justify-center"
-              style={{ background: '#0084ff' }}>
-              <Quote className="w-3.5 h-3.5 text-white" />
-            </div>
-
-            {/* Stars */}
-            <div className="flex gap-1 mb-3">
-              {[...Array(t.rating)].map((_, i) => (
-                <Star key={i} className="w-3.5 h-3.5 fill-yellow-400 text-yellow-400" />
-              ))}
-            </div>
-
-            {/* Quote */}
-            <blockquote className="text-white/85 text-[17px] md:text-[19px] leading-relaxed mb-5 max-w-[75ch]">
-              "{t.content}"
-            </blockquote>
-
-            {/* Author */}
-            <div className="flex items-center gap-2.5">
-              <div
-                className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-xs flex-shrink-0"
-                style={{ background: avatarColors[currentIndex % avatarColors.length] }}
+        <div ref={ref} className="max-w-2xl">
+          <div className="relative">
+            <Quote className="absolute -top-2 -left-2 w-8 h-8 text-blue-500/20" />
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -12 }}
+                transition={{ duration: 0.4, ease: EASE_OUT_EXPO }}
+                className="pl-6"
               >
-                {t.initials}
-              </div>
-              <div>
-                <div className="font-semibold text-white text-sm leading-tight">{t.name}</div>
-                <div className="text-white/55 text-xs md:text-sm">{t.role} · {t.company}</div>
-              </div>
-            </div>
+                <blockquote className="text-base text-white/60 leading-relaxed mb-5 italic">
+                  &ldquo;{t.content}&rdquo;
+                </blockquote>
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-cyan-400 flex items-center justify-center text-white text-sm font-bold">
+                    {t.name.split(' ').map(n => n[0]).join('')}
+                  </div>
+                  <div>
+                    <div className="text-sm font-semibold text-white">{t.name}</div>
+                    <div className="text-xs text-white/40">{t.role}</div>
+                  </div>
+                </div>
+              </motion.div>
+            </AnimatePresence>
           </div>
 
-          {/* Navigation */}
-          <div className="flex items-center justify-between mt-4">
+          {/* Controls */}
+          <div className="flex items-center gap-4 mt-8">
+            <button onClick={prev} className="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center text-white/40 hover:text-white hover:border-white/30 transition-colors">
+              <ChevronLeft className="w-4 h-4" />
+            </button>
             <div className="flex gap-2">
               {testimonials.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => setCurrentIndex(i)}
-                  className={`h-1.5 rounded-full transition-all duration-300 ${i === currentIndex ? 'w-7 bg-blue-500' : 'w-2.5 bg-white/25'}`}
-                />
+                <button key={i} onClick={() => setIdx(i)}
+                  className={`h-1.5 rounded-full transition-all ${i === idx ? 'w-6 bg-blue-500' : 'w-1.5 bg-white/20 hover:bg-white/40'}`} />
               ))}
             </div>
-
-            <div className="flex gap-3">
-              <button onClick={goPrev}
-                className="w-9 h-9 rounded-full flex items-center justify-center transition-all duration-200"
-                style={{ background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.15)' }}
-                onMouseEnter={e => (e.currentTarget.style.background = '#0084ff')}
-                onMouseLeave={e => (e.currentTarget.style.background = 'rgba(255,255,255,0.08)')}
-              >
-                <ChevronLeft className="w-4 h-4 text-white" />
-              </button>
-              <button onClick={goNext}
-                className="w-9 h-9 rounded-full flex items-center justify-center transition-all duration-200"
-                style={{ background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.15)' }}
-                onMouseEnter={e => (e.currentTarget.style.background = '#0084ff')}
-                onMouseLeave={e => (e.currentTarget.style.background = 'rgba(255,255,255,0.08)')}
-              >
-                <ChevronRight className="w-4 h-4 text-white" />
-              </button>
-            </div>
+            <button onClick={next} className="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center text-white/40 hover:text-white hover:border-white/30 transition-colors">
+              <ChevronRight className="w-4 h-4" />
+            </button>
           </div>
         </div>
       </div>

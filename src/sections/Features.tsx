@@ -1,6 +1,5 @@
-import { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 import {
   MessageSquare,
   MessageCircle,
@@ -9,8 +8,9 @@ import {
   Phone,
   BarChart3,
 } from 'lucide-react';
-
-gsap.registerPlugin(ScrollTrigger);
+import { staggerContainer } from '@/lib/motion';
+import { MotionItem } from '@/components/MotionSection';
+import { FloatingPlus, FloatingCircle } from '@/components/Decorations';
 
 const features = [
   {
@@ -18,177 +18,124 @@ const features = [
     title: 'Bulk SMS Messaging',
     description:
       'Send personalized SMS to millions with 99.9% delivery rates. Schedule campaigns, track delivery, and analyze engagement.',
-    color: 'from-brand-green to-emerald-600',
+    gradient: 'from-blue-500 to-cyan-400',
+    shadow: 'shadow-blue-500/20',
   },
   {
     icon: MessageCircle,
     title: 'WhatsApp Business API',
     description:
       'Connect with customers on their favorite app. Rich media support, quick replies, and automated workflows.',
-    color: 'from-brand-blue to-blue-600',
+    gradient: 'from-emerald-500 to-teal-400',
+    shadow: 'shadow-emerald-500/20',
   },
   {
     icon: Smartphone,
     title: 'USSD Solutions',
     description:
       'Create interactive *384# services for surveys, voting, and menu-driven interactions without internet.',
-    color: 'from-brand-orange to-orange-600',
+    gradient: 'from-orange-500 to-amber-400',
+    shadow: 'shadow-orange-500/20',
   },
   {
     icon: CreditCard,
     title: 'M-Pesa Integration',
     description:
       'Seamless STK push payments, transaction notifications, and automated reconciliation.',
-    color: 'from-brand-green to-teal-600',
+    gradient: 'from-teal-500 to-green-400',
+    shadow: 'shadow-teal-500/20',
   },
   {
     icon: Phone,
     title: 'Voice & IVR',
     description:
       'Automated calls, interactive voice responses, and call center integrations.',
-    color: 'from-brand-purple to-purple-600',
+    gradient: 'from-violet-500 to-purple-400',
+    shadow: 'shadow-violet-500/20',
   },
   {
     icon: BarChart3,
     title: 'Analytics Dashboard',
     description:
       'Real-time insights into delivery rates, engagement metrics, and campaign performance.',
-    color: 'from-brand-blue to-indigo-600',
+    gradient: 'from-sky-500 to-indigo-400',
+    shadow: 'shadow-sky-500/20',
   },
 ];
 
-export default function Features() {
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Section header animation
-      gsap.fromTo(
-        '.features-label',
-        { width: 0 },
-        {
-          width: 'auto',
-          duration: 0.4,
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top 80%',
-            toggleActions: 'play none none reverse',
-          },
-        }
-      );
-
-      gsap.fromTo(
-        '.features-title span',
-        { y: 50, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.6,
-          stagger: 0.05,
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top 75%',
-            toggleActions: 'play none none reverse',
-          },
-        }
-      );
-
-      gsap.fromTo(
-        '.features-subtitle',
-        { y: 20, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.5,
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top 70%',
-            toggleActions: 'play none none reverse',
-          },
-        }
-      );
-
-      // Feature cards animation
-      gsap.fromTo(
-        '.feature-card',
-        { rotateY: -90, opacity: 0 },
-        {
-          rotateY: 0,
-          opacity: 1,
-          duration: 0.7,
-          stagger: 0.1,
-          ease: 'expo.out',
-          scrollTrigger: {
-            trigger: '.features-grid',
-            start: 'top 80%',
-            toggleActions: 'play none none reverse',
-          },
-        }
-      );
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
+export function Features() {
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, amount: 0.1 });
 
   return (
-    <section
-      ref={sectionRef}
-      id="features"
-      className="py-24 bg-background"
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="features" className="relative py-24 bg-[#0a1a25] overflow-hidden">
+      <FloatingPlus className="w-6 h-6 top-20 left-[15%]" />
+      <FloatingPlus className="w-4 h-4 top-40 right-[20%]" />
+      <FloatingCircle className="top-32 right-[10%]" size={120} />
+      <FloatingCircle className="bottom-20 left-[8%]" size={80} />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-block overflow-hidden mb-4">
-            <span className="features-label inline-block px-4 py-1.5 bg-brand-green/10 text-brand-green text-sm font-medium rounded-full whitespace-nowrap overflow-hidden">
+        <motion.div
+          ref={ref}
+          className="text-center max-w-3xl mx-auto mb-16"
+          initial="hidden"
+          animate={isInView ? 'visible' : 'hidden'}
+          variants={staggerContainer}
+        >
+          <MotionItem>
+            <span className="inline-block px-4 py-1.5 bg-blue-500/10 text-blue-400 text-sm font-medium rounded-full mb-4 border border-blue-500/20">
               POWERFUL FEATURES
             </span>
-          </div>
-          <h2 className="features-title text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-6">
-            {'Everything You Need to Communicate at Scale'.split(' ').map((word, i) => (
-              <span key={i} className="inline-block mr-2">{word}</span>
-            ))}
-          </h2>
-          <p className="features-subtitle text-lg text-muted-foreground">
-            From bulk messaging to M-Pesa integrations, our platform provides all the tools 
-            you need to reach and engage your audience.
-          </p>
-        </div>
+          </MotionItem>
+          <MotionItem>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6"
+              style={{ fontFamily: 'Outfit, sans-serif' }}>
+              Everything You Need to Communicate at Scale
+            </h2>
+          </MotionItem>
+          <MotionItem>
+            <p className="text-lg text-white/50">
+              From bulk messaging to M-Pesa integrations, our platform provides all the tools
+              you need to reach and engage your audience.
+            </p>
+          </MotionItem>
+        </motion.div>
 
         {/* Features Grid */}
-        <div
-          className="features-grid grid md:grid-cols-2 lg:grid-cols-3 gap-8"
-          style={{ perspective: '1000px' }}
+        <motion.div
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+          initial="hidden"
+          animate={isInView ? 'visible' : 'hidden'}
+          variants={staggerContainer}
         >
           {features.map((feature, index) => (
-            <div
-              key={index}
-              className="feature-card group relative bg-card rounded-2xl p-8 border border-border hover:border-brand-green/30 transition-all duration-300 hover:shadow-card-hover"
-              style={{
-                transformStyle: 'preserve-3d',
-                transformOrigin: 'center center',
-              }}
-            >
-              {/* Icon */}
-              <div
-                className={`w-14 h-14 rounded-xl bg-gradient-to-br ${feature.color} flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shadow-lg`}
+            <MotionItem key={index}>
+              <motion.div
+                className="group relative rounded-2xl p-7 border border-white/5 bg-white/[0.02] backdrop-blur-sm overflow-hidden"
+                whileHover={{ y: -6, borderColor: 'rgba(0,132,255,0.3)' }}
+                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
               >
-                <feature.icon className="w-7 h-7 text-white" />
-              </div>
+                {/* Hover glow */}
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
-              {/* Content */}
-              <h3 className="text-xl font-semibold text-foreground mb-3 group-hover:text-brand-green transition-colors">
-                {feature.title}
-              </h3>
-              <p className="text-muted-foreground leading-relaxed">
-                {feature.description}
-              </p>
+                {/* Icon */}
+                <div className={`relative w-14 h-14 rounded-xl bg-gradient-to-br ${feature.gradient} flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-lg ${feature.shadow}`}>
+                  <feature.icon className="w-7 h-7 text-white" />
+                </div>
 
-              {/* Hover Glow */}
-              <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-brand-green/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-            </div>
+                {/* Content */}
+                <h3 className="text-lg font-semibold text-white mb-3 group-hover:text-blue-300 transition-colors"
+                  style={{ fontFamily: 'Outfit, sans-serif' }}>
+                  {feature.title}
+                </h3>
+                <p className="text-sm text-white/40 leading-relaxed">
+                  {feature.description}
+                </p>
+              </motion.div>
+            </MotionItem>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

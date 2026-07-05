@@ -1,141 +1,153 @@
-import { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { CheckCircle, Clock, Shield, TrendingUp } from 'lucide-react';
-import { useInView } from '@/hooks/useInView';
-
-gsap.registerPlugin(ScrollTrigger);
+import { useRef, useEffect, useState } from 'react';
+import { motion, useInView } from 'framer-motion';
+import { staggerContainer, EASE_OUT_EXPO } from '@/lib/motion';
+import { MotionItem } from '@/components/MotionSection';
 
 const stats = [
-  { value: 500, suffix: '+', label: 'Projects Delivered', desc: 'Proven track record across diverse industries and business sizes' },
-  { value: 99, suffix: '.9%', label: 'Delivery Rate', desc: 'Industry-leading reliability ensuring your messages always arrive' },
-  { value: 10, suffix: 'M+', label: 'Messages Sent', desc: 'Trusted volume that demonstrates our platform\'s scale and capability' },
+  { value: 500, suffix: '+', label: 'Years of', sublabel: 'Experience', context: 'across Kenya since 2019' },
+  { value: 99.9, suffix: '%', label: 'Our best', sublabel: 'total services', context: 'on Safaricom, Airtel & Telkom' },
+  { value: 10, suffix: 'M+', label: 'Award', sublabel: 'Winning', context: 'for Kenyan organisations' },
 ];
 
-const pillars = [
-  { icon: CheckCircle, label: 'Licensed Provider', sub: 'Fully compliant with Kenyan regulations' },
-  { icon: Clock, label: '24/7 Support', sub: 'Round-the-clock expert assistance' },
-  { icon: Shield, label: 'Secure Platform', sub: 'Enterprise-grade encryption & security' },
-  { icon: TrendingUp, label: 'Scalable APIs', sub: 'Grows with your business needs' },
-];
-
-export function About() {
-  const sectionRef = useRef<HTMLElement | null>(null);
-  const headerRef = useRef<HTMLDivElement | null>(null);
-  const statsRef = useRef<HTMLDivElement | null>(null);
-  const pillarsRef = useRef<HTMLDivElement | null>(null);
-  const [inViewRef, isInView] = useInView<HTMLElement>({ threshold: 0.1 });
+function AnimatedCounter({ value, suffix, inView }: { value: number; suffix: string; inView: boolean }) {
+  const [display, setDisplay] = useState('0');
 
   useEffect(() => {
-    if (!isInView || !sectionRef.current) return;
+    if (!inView) return;
+    const duration = 2000;
+    const start = Date.now();
+    const isDecimal = value % 1 !== 0;
 
-    const ctx = gsap.context(() => {
-      // Header
-      gsap.fromTo(headerRef.current,
-        { y: 40, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.7, ease: 'power3.out', scrollTrigger: { trigger: headerRef.current, start: 'top 80%' } }
-      );
-
-      // Animated counters
-      if (statsRef.current) {
-        const counters = statsRef.current.querySelectorAll('.stat-number');
-        gsap.fromTo(
-          counters,
-          { textContent: 0, opacity: 0, y: 30 },
-          {
-            textContent(i: number) {
-              return stats[i].value;
-            },
-            opacity: 1,
-            y: 0,
-            duration: 1.8,
-            stagger: 0.15,
-            ease: 'power2.out',
-            snap: { textContent: 1 },
-            scrollTrigger: { trigger: statsRef.current, start: 'top 80%' },
-          }
-        );
-      }
-
-      // Pillars
-      if (pillarsRef.current) {
-        const cards = pillarsRef.current.querySelectorAll('.pillar-card');
-        gsap.fromTo(cards,
-          { y: 30, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.5, stagger: 0.1, ease: 'power3.out', scrollTrigger: { trigger: pillarsRef.current, start: 'top 80%' } }
-        );
-      }
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, [isInView]);
+    const tick = () => {
+      const elapsed = Date.now() - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const current = eased * value;
+      setDisplay(isDecimal ? current.toFixed(1) : Math.round(current).toString());
+      if (progress < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }, [inView, value]);
 
   return (
-    <section
-      ref={(el) => {
-        (sectionRef as React.MutableRefObject<HTMLElement | null>).current = el;
-        (inViewRef as React.MutableRefObject<HTMLElement | null>).current = el;
-      }}
-      id="about"
-      className="section-padding overflow-hidden"
-      style={{ background: '#f4f7fb' }}
-    >
-      <div className="container-custom">
-        {/* Header */}
-        <div ref={headerRef} className="max-w-3xl mb-16">
-          <span className="section-label">About MobiWave</span>
-          <h2 className="section-heading">
-            Expertise, Integrity, and{' '}
-            <span className="gradient-text">Transformable Solutions</span>
-          </h2>
-          <p className="section-subtext max-w-2xl">
-            MobiWave Innovations is Kenya's premier telecommunications company providing
-            next-generation communication tools to businesses of all sizes. Our mission
-            is to bridge communication gaps using innovative, accessible solutions.
-          </p>
-          <a href="/about" className="read-more-link mt-6 inline-flex">
-            Learn More About Us
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M7 17L17 7M17 7H7M17 7v10" />
-            </svg>
-          </a>
-        </div>
+    <span className="text-4xl sm:text-5xl font-extrabold text-white" style={{ fontFamily: 'Outfit, sans-serif' }}>
+      {display}<span className="text-2xl font-bold text-white/80">{suffix}</span>
+    </span>
+  );
+}
 
-        {/* Animated Stats */}
-        <div ref={statsRef} className="grid md:grid-cols-3 gap-6 mb-16">
-          {stats.map((stat, i) => (
-            <div key={i} className="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-300">
-              <div className="flex items-baseline gap-0.5 mb-3">
-                <span
-                  className="stat-number text-5xl lg:text-6xl font-extrabold"
-                  style={{ fontFamily: 'Outfit, sans-serif', color: '#0084ff' }}
-                >
-                  {stat.value}
-                </span>
-                <span className="text-3xl font-extrabold" style={{ color: '#0084ff', fontFamily: 'Outfit, sans-serif' }}>
-                  {stat.suffix}
-                </span>
-              </div>
-              <div className="font-semibold text-gray-900 text-lg mb-1">{stat.label}</div>
-              <p className="text-gray-500 text-sm leading-relaxed">{stat.desc}</p>
-            </div>
-          ))}
-        </div>
+export function About() {
+  const ref = useRef<HTMLDivElement>(null);
+  const statsRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, amount: 0.2 });
+  const statsInView = useInView(statsRef, { once: true, amount: 0.3 });
 
-        {/* Pillars Grid */}
-        <div ref={pillarsRef} className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {pillars.map((p, i) => (
-            <div key={i} className="pillar-card flex items-start gap-4 p-6 transition-all duration-300">
-              <div className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0"
-                style={{ background: 'rgba(0,132,255,0.08)' }}>
-                <p.icon className="w-5 h-5" style={{ color: '#0084ff' }} />
+  return (
+    <section className="relative py-24 overflow-hidden" style={{ background: 'linear-gradient(180deg, #f8f9ff 0%, #ffffff 100%)' }}>
+      <div className="container-custom relative z-10">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          {/* Left — Staggered Circular Images */}
+          <motion.div
+            ref={ref}
+            initial="hidden"
+            animate={isInView ? 'visible' : 'hidden'}
+            variants={staggerContainer}
+            className="relative"
+          >
+            <div className="relative w-full max-w-lg mx-auto lg:mx-0">
+              {/* Top row: two circles */}
+              <div className="flex gap-5 mb-5">
+                <MotionItem>
+                  <div className="w-40 h-52 rounded-full overflow-hidden border-4 border-white shadow-lg flex-shrink-0"
+                    style={{ background: 'linear-gradient(135deg, #0084ff 0%, #6c5ce7 100%)' }}>
+                  </div>
+                </MotionItem>
+                <MotionItem>
+                  <div className="w-44 h-56 rounded-full overflow-hidden border-4 border-white shadow-xl flex-shrink-0 mt-6"
+                    style={{ background: 'linear-gradient(135deg, #1d8c89 0%, #00b894 100%)' }}>
+                  </div>
+                </MotionItem>
               </div>
-              <div>
-                <div className="font-semibold text-gray-900 text-sm mb-0.5">{p.label}</div>
-                <div className="text-gray-500 text-xs leading-relaxed">{p.sub}</div>
-              </div>
+              {/* Bottom circle — offset right */}
+              <MotionItem>
+                <div className="absolute -bottom-8 left-12 w-52 h-64 rounded-full overflow-hidden border-4 border-white shadow-xl"
+                  style={{ background: 'linear-gradient(135deg, #6c5ce7 0%, #fd79a8 100%)' }}
+                ></div>
+              </MotionItem>
             </div>
-          ))}
+          </motion.div>
+
+          {/* Right — Content */}
+          <motion.div
+            initial="hidden"
+            animate={isInView ? 'visible' : 'hidden'}
+            variants={staggerContainer}
+          >
+            <MotionItem>
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-8 h-0.5 rounded-full" style={{ background: 'linear-gradient(90deg, #1d8c89, #0084ff)' }} />
+                <span className="text-xs font-semibold text-[#0084ff] uppercase tracking-[0.2em]">
+                  About Our Company
+                </span>
+              </div>
+            </MotionItem>
+            <MotionItem>
+              <h2
+                className="text-3xl sm:text-4xl lg:text-[2.6rem] font-extrabold leading-[1.15] mb-5"
+                style={{ fontFamily: 'Outfit, sans-serif', color: '#0a1a25' }}
+              >
+                Built in Nairobi. Used Across East Africa.
+              </h2>
+            </MotionItem>
+            <MotionItem>
+              <p className="text-base text-gray-500 leading-relaxed mb-8">
+                MobiWave started because bulk SMS in Kenya had too many middlemen,
+                unreliable delivery, and no transparency. We route messages smartly
+                across all three Kenyan networks, reconcile M-Pesa payments properly,
+                and answer the phone when something breaks. Our clients are SACCOs,
+                hospitals, logistics firms, government agencies, churches, and schools.
+              </p>
+            </MotionItem>
+
+            {/* Stats Bar */}
+            <div ref={statsRef}>
+              <motion.ul
+                initial={{ opacity: 0, y: 20 }}
+                animate={statsInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, ease: EASE_OUT_EXPO }}
+                className="flex flex-wrap rounded-xl overflow-hidden mb-8"
+                style={{ background: 'linear-gradient(135deg, #0084ff, #6c5ce7)' }}
+              >
+                {stats.map((s, i) => (
+                  <li
+                    key={i}
+                    className={`flex items-center gap-3 px-6 py-5 ${
+                      i < stats.length - 1 ? 'border-r border-white/20' : ''
+                    }`}
+                  >
+                    <div className="flex-shrink-0">
+                      <AnimatedCounter value={s.value} suffix={s.suffix} inView={statsInView} />
+                    </div>
+                    <div>
+                      <p className="text-sm text-white/90 leading-tight font-medium">
+                        {s.label}<br />{s.sublabel}
+                      </p>
+                    </div>
+                  </li>
+                ))}
+              </motion.ul>
+            </div>
+
+            <MotionItem>
+              <a
+                href="#contact"
+                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-lg text-sm font-bold transition-all duration-300 hover:shadow-lg hover:shadow-[#1d8c89]/25 hover:-translate-y-0.5"
+                style={{ background: '#1d8c89', color: '#fff' }}
+              >
+                Discover More
+              </a>
+            </MotionItem>
+          </motion.div>
         </div>
       </div>
     </section>

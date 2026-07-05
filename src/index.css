@@ -258,3 +258,118 @@
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ── Hero Wave Animations (seamless loop) ── */
+.hero-wave {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 200%;
+  line-height: 0;
+}
+
+.hero-wave svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 80px;
+}
+
+.hero-wave-1 {
+  animation: waveScroll 14s linear infinite;
+}
+
+.hero-wave-2 {
+  animation: waveScroll 20s linear infinite reverse;
+}
+
+.hero-wave-3 {
+  animation: waveScroll 28s linear infinite;
+}
+
+/* Seamless horizontal scroll — 200% wide SVG, translateX to -50% */
+@keyframes waveScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ── Material Design Ripple Effect (waves-effect) ── */
+.mw-btn {
+  position: relative;
+  overflow: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.mw-btn::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: width 0.6s ease, height 0.6s ease, opacity 0.6s ease;
+  pointer-events: none;
+}
+
+.mw-btn:active::after {
+  width: 300px;
+  height: 300px;
+  opacity: 0;
+  transition: 0s;
+}
+
+/* Dark variant for light backgrounds */
+.mw-btn-dark::after {
+  background: rgba(0, 0, 0, 0.12);
+}
+
+/* ── Parallax decoration wrapper ── */
+.parallax-deco-wrap {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* ── Wave section divider ── */
+.wave-section-divider {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.wave-section-divider svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ── Floating animation variants ── */
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  33% { transform: translateY(-8px) rotate(1deg); }
+  66% { transform: translateY(4px) rotate(-1deg); }
+}
+
+@keyframes float-medium {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-12px) rotate(2deg); }
+}
+
+.animate-float-slow { animation: float-slow 8s ease-in-out infinite; }
+.animate-float-medium { animation: float-medium 6s ease-in-out infinite; }
+
+/* ── Glow pulse for dark sections ── */
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.04; transform: scale(1); }
+  50% { opacity: 0.08; transform: scale(1.05); }
+}
+
+.glow-pulse {
+  animation: glowPulse 6s ease-in-out infinite;
+}
