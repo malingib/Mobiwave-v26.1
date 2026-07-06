@@ -1,4 +1,4 @@
-import { useEffect, useRef, useCallback } from 'react';
+import { useEffect, useRef, useCallback, useState } from 'react';
 import * as THREE from 'three';
 
 interface City {
@@ -62,6 +62,7 @@ interface ElectronArc {
 
 export function GlobeBackground() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [webglFailed, setWebglFailed] = useState(false);
   const stateRef = useRef<{
     renderer: THREE.WebGLRenderer | null;
     scene: THREE.Scene | null;
@@ -98,8 +99,32 @@ export function GlobeBackground() {
 
     const w = container.clientWidth;
     const h = container.clientHeight;
+    if (w === 0 || h === 0) return;
 
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    let renderer: THREE.WebGLRenderer;
+    try {
+      renderer = new THREE.WebGLRenderer({
+        antialias: true,
+        alpha: true,
+        powerPreference: 'low-power',
+        failIfMajorPerformanceCaveat: false,
+      });
+      if (!renderer.getContext()) {
+        renderer.dispose();
+        setWebglFailed(true);
+        return;
+      }
+    } catch {
+      setWebglFailed(true);
+      return;
+    }
+
+    const handleContextLost = (event: Event) => {
+      event.preventDefault();
+      setWebglFailed(true);
+    };
+    renderer.domElement.addEventListener('webglcontextlost', handleContextLost);
+
     renderer.setSize(w, h);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setClearColor(0x000000, 0);
@@ -386,6 +411,7 @@ export function GlobeBackground() {
 
     return () => {
       cancelAnimationFrame(stateRef.current.rafId);
+      renderer.domElement.removeEventListener('webglcontextlost', handleContextLost);
       window.removeEventListener('resize', handleResize);
       renderer.domElement.removeEventListener('mousedown', handleMouseDown);
       window.removeEventListener('mousemove', handleMouseMove);
@@ -393,10 +419,33 @@ export function GlobeBackground() {
       renderer.domElement.removeEventListener('touchstart', handleTouchStart);
       renderer.domElement.removeEventListener('touchmove', handleTouchMove);
       renderer.domElement.removeEventListener('touchend', handleMouseUp);
+
+      stateRef.current.electronArcs.forEach((ea) => {
+        ea.line.geometry.dispose();
+        (ea.line.material as THREE.Material).dispose();
+        ea.dot.geometry.dispose();
+        (ea.dot.material as THREE.Material).dispose();
+        ea.glow.geometry.dispose();
+        (ea.glow.material as THREE.Material).dispose();
+      });
+      globeGeometry.dispose();
+      globeMaterial.dispose();
+      earthTexture.dispose();
+      atmosphereGeometry.dispose();
+      atmosphereMaterial.dispose();
+      wireframeGeometry.dispose();
+      wireframeMaterial.dispose();
+
       renderer.dispose();
       if (container.contains(renderer.domElement)) {
         container.removeChild(renderer.domElement);
       }
+
+      stateRef.current.renderer = null;
+      stateRef.current.scene = null;
+      stateRef.current.camera = null;
+      stateRef.current.globe = null;
+      stateRef.current.electronArcs = [];
     };
   }, []);
 
@@ -411,14 +460,27 @@ export function GlobeBackground() {
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[80vw] max-w-[800px] max-h-[800px] rounded-full"
         style={{
           background:
-            'radial-gradient(circle, rgba(0,132,255,0.06) 0%, transparent 55%)',
+            'radial-gradient(circle, rgba(0,132,255,0.08) 0%, rgba(0,132,255,0.03) 40%, transparent 65%)',
         }}
       />
-      <div
-        ref={containerRef}
-        className="absolute inset-0 cursor-grab active:cursor-grabbing"
-        style={{ pointerEvents: 'auto' }}
-      />
+      {webglFailed && (
+        <div
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[min(70vw,520px)] h-[min(70vw,520px)] rounded-full opacity-40 animate-pulse"
+          style={{
+            background:
+              'radial-gradient(circle at 35% 35%, rgba(0,132,255,0.15) 0%, rgba(10,26,37,0.4) 50%, transparent 70%)',
+            boxShadow: 'inset 0 0 80px rgba(0,132,255,0.12)',
+          }}
+          aria-hidden
+        />
+      )}
+      {!webglFailed && (
+        <div
+          ref={containerRef}
+          className="absolute inset-0 cursor-grab active:cursor-grabbing"
+          style={{ pointerEvents: 'auto' }}
+        />
+      )}
     </div>
   );
 }

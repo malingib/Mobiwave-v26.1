@@ -83,19 +83,18 @@ export function ServicePageLayout({
           <div className="container-custom">
             <div className="grid lg:grid-cols-2 gap-12 items-center animate-section">
               <div className="animate-item lg:col-span-2 text-center max-w-3xl mx-auto">
-                <span className="inline-block px-4 py-1.5 rounded-full bg-[#0084ff]/10 text-[#0084ff] text-sm font-medium mb-4">
-                  {title}
-                </span>
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                <div className="flex items-center justify-center gap-2.5 mb-5">
+                  <div className="w-7 h-0.5 rounded-full bg-[#1d8c89]" />
+                  <span className="text-xs font-bold text-[#7c3aed] uppercase tracking-[0.18em]">{title}</span>
+                  <div className="w-7 h-0.5 rounded-full bg-[#1d8c89]" />
+                </div>
+                <h2 className="text-3xl md:text-4xl font-extrabold text-[#0a1a25] mb-6" style={{ fontFamily: 'Outfit, sans-serif' }}>
                   {subtitle}
                 </h2>
-                <p className="text-gray-600 text-lg leading-relaxed mb-8">
+                <p className="text-[#5b6b78] text-lg leading-relaxed mb-8">
                   {description}
                 </p>
-                <a
-                  href="/contact"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-[#0084ff] to-[#031522] text-white font-medium hover:shadow-lg transition-shadow"
-                >
+                <a href="/contact" className="mw-btn-primary-solid">
                   Get Started <ArrowRight className="w-5 h-5" />
                 </a>
               </div>
@@ -103,18 +102,23 @@ export function ServicePageLayout({
           </div>
         </section>
 
-        <section className="section-padding bg-[#f4f7fb]">
+        <section className="section-padding mw-section-surface">
           <div className="container-custom">
             <div className="text-center mb-12 animate-section animate-item">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Key Features</h2>
-              <p className="text-gray-600 max-w-2xl mx-auto">
+              <div className="flex items-center justify-center gap-2.5 mb-5">
+                <div className="w-7 h-0.5 rounded-full bg-[#1d8c89]" />
+                <span className="text-xs font-bold text-[#7c3aed] uppercase tracking-[0.18em]">Features</span>
+                <div className="w-7 h-0.5 rounded-full bg-[#1d8c89]" />
+              </div>
+              <h2 className="text-3xl md:text-4xl font-extrabold text-[#0a1a25] mb-4" style={{ fontFamily: 'Outfit, sans-serif' }}>Key Features</h2>
+              <p className="text-[#5b6b78] max-w-2xl mx-auto">
                 Practical capabilities built for delivery, control, and measurable growth.
               </p>
             </div>
 
             <div className="grid md:grid-cols-2 gap-3 md:gap-4 animate-section max-w-5xl mx-auto">
               {features.map((feature, index) => (
-                <div key={index} className="animate-item flex items-start gap-3 rounded-xl bg-white/70 border border-[#dbe6f5] px-4 py-3.5">
+                <div key={index} className="animate-item mw-card flex items-start gap-3 px-4 py-3.5">
                   <div className="w-6 h-6 rounded-full bg-gradient-to-br from-[#0084ff] to-[#1d8c89] flex items-center justify-center flex-shrink-0 mt-0.5">
                     <Check className="w-3.5 h-3.5 text-white" />
                   </div>
@@ -144,21 +148,18 @@ export function ServicePageLayout({
                 </ul>
               </div>
               <div className="animate-item">
-                <div className="bg-gradient-to-br from-[#e9f4ff] to-white rounded-2xl p-8 border border-gray-100">
-                  <h3 className="text-xl font-bold text-gray-900 mb-4">Get Started Today</h3>
-                  <p className="text-gray-600 mb-6">
+                <div className="mw-card p-8">
+                  <h3 className="text-xl font-bold text-[#0a1a25] mb-4" style={{ fontFamily: 'Outfit, sans-serif' }}>Get Started Today</h3>
+                  <p className="text-[#5b6b78] mb-6">
                     Ready to transform your business communication? Contact us today to learn more about our {title} service.
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4">
-                    <a
-                      href="/contact"
-                      className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-[#0084ff] to-[#031522] text-white font-medium hover:shadow-lg transition-shadow"
-                    >
+                    <a href="/contact" className="mw-btn-primary-solid justify-center">
                       Contact Us <ArrowRight className="w-5 h-5" />
                     </a>
                     <a
                       href="/pricing"
-                      className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full border-2 border-[#0084ff] text-[#0084ff] font-medium hover:bg-[#0084ff] hover:text-white transition-colors"
+                      className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full border-2 border-[#0084ff] text-[#0084ff] font-semibold hover:bg-[#0084ff] hover:text-white transition-colors"
                     >
                       View Pricing
                     </a>
@@ -169,23 +170,25 @@ export function ServicePageLayout({
           </div>
         </section>
 
-        <section className="section-padding bg-[#f4f7fb]">
+        <section className="section-padding mw-section-surface">
           <div className="container-custom">
             <div className="text-center mb-12 animate-section">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Use Cases</h2>
-              <p className="text-gray-600 max-w-2xl mx-auto">
+              <div className="flex items-center justify-center gap-2.5 mb-5">
+                <div className="w-7 h-0.5 rounded-full bg-[#1d8c89]" />
+                <span className="text-xs font-bold text-[#7c3aed] uppercase tracking-[0.18em]">Applications</span>
+                <div className="w-7 h-0.5 rounded-full bg-[#1d8c89]" />
+              </div>
+              <h2 className="text-3xl md:text-4xl font-extrabold text-[#0a1a25] mb-4" style={{ fontFamily: 'Outfit, sans-serif' }}>Use Cases</h2>
+              <p className="text-[#5b6b78] max-w-2xl mx-auto">
                 See how businesses like yours are using our {title} service.
               </p>
             </div>
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 animate-section">
               {useCases.map((useCase, index) => (
-                <div
-                  key={index}
-                  className="animate-item bg-white rounded-xl p-5 sm:p-6 shadow-md border border-gray-100 min-h-[180px]"
-                >
-                  <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-2">{useCase.title}</h3>
-                  <p className="text-gray-600 text-sm sm:text-[0.95rem] leading-relaxed">{useCase.description}</p>
+                <div key={index} className="animate-item mw-card p-5 sm:p-6 min-h-[180px]">
+                  <h3 className="text-base sm:text-lg font-bold text-[#0a1a25] mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>{useCase.title}</h3>
+                  <p className="text-[#5b6b78] text-sm sm:text-[0.95rem] leading-relaxed">{useCase.description}</p>
                 </div>
               ))}
             </div>

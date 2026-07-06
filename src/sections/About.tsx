@@ -1,12 +1,21 @@
 import { useRef, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, useInView } from 'framer-motion';
 import { staggerContainer, EASE_OUT_EXPO } from '@/lib/motion';
 import { MotionItem } from '@/components/MotionSection';
+import { SectionHeader } from '@/components/SectionHeader';
+import { PremiumReveal } from '@/components/PremiumReveal';
 
 const stats = [
-  { value: 500, suffix: '+', label: 'Years of', sublabel: 'Experience', context: 'across Kenya since 2019' },
-  { value: 99.9, suffix: '%', label: 'Our best', sublabel: 'total services', context: 'on Safaricom, Airtel & Telkom' },
-  { value: 10, suffix: 'M+', label: 'Award', sublabel: 'Winning', context: 'for Kenyan organisations' },
+  { value: 6, suffix: '+', label: 'Years of Experience' },
+  { value: 12, suffix: '+', label: 'Our best total services' },
+  { value: 500, suffix: '+', label: 'Trusted Clients' },
+];
+
+const aboutImages = [
+  { src: '/about/about-1.jpg', alt: 'Team member using mobile technology' },
+  { src: '/about/about-2.jpg', alt: 'Family enjoying connected services' },
+  { src: '/about/about-3.jpg', alt: 'Professional working on laptop' },
 ];
 
 function AnimatedCounter({ value, suffix, inView }: { value: number; suffix: string; inView: boolean }) {
@@ -30,8 +39,8 @@ function AnimatedCounter({ value, suffix, inView }: { value: number; suffix: str
   }, [inView, value]);
 
   return (
-    <span className="text-4xl sm:text-5xl font-extrabold text-white" style={{ fontFamily: 'Outfit, sans-serif' }}>
-      {display}<span className="text-2xl font-bold text-white/80">{suffix}</span>
+    <span className="text-3xl sm:text-4xl font-extrabold text-white whitespace-nowrap" style={{ fontFamily: 'Outfit, sans-serif' }}>
+      {display}{suffix}
     </span>
   );
 }
@@ -43,10 +52,23 @@ export function About() {
   const statsInView = useInView(statsRef, { once: true, amount: 0.3 });
 
   return (
-    <section className="relative py-24 overflow-hidden" style={{ background: 'linear-gradient(180deg, #f8f9ff 0%, #ffffff 100%)' }}>
+    <section className="relative py-20 lg:py-28 bg-white overflow-hidden mw-mesh-light" aria-labelledby="about-heading">
+      {/* Faint background watermark */}
+      <img
+        src="/about/about-2.jpg"
+        alt=""
+        aria-hidden
+        className="absolute bottom-0 right-0 w-[min(420px,45vw)] h-auto object-cover opacity-[0.07] pointer-events-none select-none"
+      />
+      <div
+        className="absolute -bottom-16 -right-10 w-[520px] h-[220px] opacity-[0.08] blur-[0.5px] pointer-events-none"
+        style={{ background: 'radial-gradient(circle at 30% 40%, rgba(124,58,237,1) 0%, transparent 55%)' }}
+        aria-hidden
+      />
+
       <div className="container-custom relative z-10">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left — Staggered Circular Images */}
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 xl:gap-20 items-center">
+          {/* Left — Oval image collage */}
           <motion.div
             ref={ref}
             initial="hidden"
@@ -54,25 +76,39 @@ export function About() {
             variants={staggerContainer}
             className="relative"
           >
-            <div className="relative w-full max-w-lg mx-auto lg:mx-0">
-              {/* Top row: two circles */}
-              <div className="flex gap-5 mb-5">
+            <div className="flex items-center gap-3 sm:gap-4 max-w-[400px] mx-auto lg:mx-0">
+              <div className="flex flex-col gap-3 sm:gap-4 pt-6 sm:pt-10">
                 <MotionItem>
-                  <div className="w-40 h-52 rounded-full overflow-hidden border-4 border-white shadow-lg flex-shrink-0"
-                    style={{ background: 'linear-gradient(135deg, #0084ff 0%, #6c5ce7 100%)' }}>
+                  <div className="w-[132px] sm:w-[158px] h-[188px] sm:h-[228px] rounded-[100px] overflow-hidden shadow-md">
+                    <img
+                      src={aboutImages[0].src}
+                      alt={aboutImages[0].alt}
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                    />
                   </div>
                 </MotionItem>
                 <MotionItem>
-                  <div className="w-44 h-56 rounded-full overflow-hidden border-4 border-white shadow-xl flex-shrink-0 mt-6"
-                    style={{ background: 'linear-gradient(135deg, #1d8c89 0%, #00b894 100%)' }}>
+                  <div className="w-[132px] sm:w-[158px] h-[188px] sm:h-[228px] rounded-[100px] overflow-hidden shadow-md">
+                    <img
+                      src={aboutImages[1].src}
+                      alt={aboutImages[1].alt}
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                    />
                   </div>
                 </MotionItem>
               </div>
-              {/* Bottom circle — offset right */}
+
               <MotionItem>
-                <div className="absolute -bottom-8 left-12 w-52 h-64 rounded-full overflow-hidden border-4 border-white shadow-xl"
-                  style={{ background: 'linear-gradient(135deg, #6c5ce7 0%, #fd79a8 100%)' }}
-                ></div>
+                <div className="w-[148px] sm:w-[178px] h-[268px] sm:h-[328px] rounded-[100px] overflow-hidden shadow-lg flex-shrink-0">
+                  <img
+                    src={aboutImages[2].src}
+                    alt={aboutImages[2].alt}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
               </MotionItem>
             </div>
           </motion.div>
@@ -82,70 +118,48 @@ export function About() {
             initial="hidden"
             animate={isInView ? 'visible' : 'hidden'}
             variants={staggerContainer}
+            className="relative"
           >
+            <PremiumReveal direction="right">
+              <SectionHeader
+                label="About Our Company"
+                title="Built in Nairobi. Used Across East Africa."
+                description="MobiWave started because bulk SMS in Kenya had too many middlemen, unreliable delivery, and no transparency. We route messages smartly across all three Kenyan networks, reconcile M-Pesa payments properly, and answer the phone when something breaks."
+              />
+            </PremiumReveal>
+
             <MotionItem>
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-8 h-0.5 rounded-full" style={{ background: 'linear-gradient(90deg, #1d8c89, #0084ff)' }} />
-                <span className="text-xs font-semibold text-[#0084ff] uppercase tracking-[0.2em]">
-                  About Our Company
-                </span>
-              </div>
-            </MotionItem>
-            <MotionItem>
-              <h2
-                className="text-3xl sm:text-4xl lg:text-[2.6rem] font-extrabold leading-[1.15] mb-5"
-                style={{ fontFamily: 'Outfit, sans-serif', color: '#0a1a25' }}
-              >
-                Built in Nairobi. Used Across East Africa.
-              </h2>
-            </MotionItem>
-            <MotionItem>
-              <p className="text-base text-gray-500 leading-relaxed mb-8">
-                MobiWave started because bulk SMS in Kenya had too many middlemen,
-                unreliable delivery, and no transparency. We route messages smartly
-                across all three Kenyan networks, reconcile M-Pesa payments properly,
-                and answer the phone when something breaks. Our clients are SACCOs,
-                hospitals, logistics firms, government agencies, churches, and schools.
+              <p className="text-base text-[#5b6b78] leading-relaxed mb-8 max-w-xl -mt-6">
+                Our clients are SACCOs, hospitals, logistics firms, government agencies, churches, and schools.
               </p>
             </MotionItem>
 
-            {/* Stats Bar */}
-            <div ref={statsRef}>
+            {/* Purple stats bar */}
+            <div ref={statsRef} className="mb-8">
               <motion.ul
                 initial={{ opacity: 0, y: 20 }}
                 animate={statsInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, ease: EASE_OUT_EXPO }}
-                className="flex flex-wrap rounded-xl overflow-hidden mb-8"
-                style={{ background: 'linear-gradient(135deg, #0084ff, #6c5ce7)' }}
+                className="grid grid-cols-1 sm:grid-cols-3 rounded-2xl overflow-hidden bg-[#7c3aed]"
               >
                 {stats.map((s, i) => (
                   <li
-                    key={i}
-                    className={`flex items-center gap-3 px-6 py-5 ${
-                      i < stats.length - 1 ? 'border-r border-white/20' : ''
-                    }`}
+                    key={s.label}
+                    className={`flex items-center gap-3 px-5 py-5 sm:py-6 ${
+                      i > 0 ? 'sm:border-l border-white/25' : ''
+                    } ${i > 0 ? 'border-t sm:border-t-0 border-white/25' : ''}`}
                   >
-                    <div className="flex-shrink-0">
-                      <AnimatedCounter value={s.value} suffix={s.suffix} inView={statsInView} />
-                    </div>
-                    <div>
-                      <p className="text-sm text-white/90 leading-tight font-medium">
-                        {s.label}<br />{s.sublabel}
-                      </p>
-                    </div>
+                    <AnimatedCounter value={s.value} suffix={s.suffix} inView={statsInView} />
+                    <p className="text-sm text-white/95 leading-snug font-medium">{s.label}</p>
                   </li>
                 ))}
               </motion.ul>
             </div>
 
             <MotionItem>
-              <a
-                href="#contact"
-                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-lg text-sm font-bold transition-all duration-300 hover:shadow-lg hover:shadow-[#1d8c89]/25 hover:-translate-y-0.5"
-                style={{ background: '#1d8c89', color: '#fff' }}
-              >
+              <Link to="/about" className="mw-btn-teal" id="about-heading">
                 Discover More
-              </a>
+              </Link>
             </MotionItem>
           </motion.div>
         </div>

@@ -36,6 +36,8 @@
     --brand-light: #f4f7fb;
     --brand-teal: #1d8c89;
     --brand-cyan: #1ea6ff;
+    --brand-purple: #7c3aed;
+    --brand-surface: #f4f7fb;
     --brand-gray: #5b6b78;
     --brand-section-dark: #0a1a25;
 
@@ -208,6 +210,78 @@
     min-width: 180px;
   }
   .partner-logo:hover { filter: grayscale(0); opacity: 1; color: white; }
+
+  /* ── Mobiwave design system (header/hero DNA) ── */
+  .mw-section-light {
+    @apply relative overflow-hidden bg-white;
+  }
+
+  .mw-section-surface {
+    @apply relative overflow-hidden;
+    background: var(--brand-surface);
+  }
+
+  .mw-section-dark {
+    @apply relative overflow-hidden text-white;
+    background: var(--brand-navy);
+  }
+
+  .mw-card {
+    @apply rounded-[20px] border bg-white transition-all duration-300;
+    border-color: rgba(10, 26, 37, 0.06);
+    box-shadow: 0 8px 30px rgba(4, 16, 28, 0.06);
+  }
+  .mw-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(0, 132, 255, 0.15);
+    box-shadow: 0 16px 40px rgba(0, 132, 255, 0.1);
+  }
+
+  .mw-card-glass {
+    @apply rounded-[26px] border backdrop-blur-md transition-all duration-300;
+    border-color: rgba(255, 255, 255, 0.1);
+    background: rgba(9, 27, 39, 0.55);
+    box-shadow: 0 16px 40px rgba(4, 16, 28, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+  .mw-card-glass:hover {
+    border-color: rgba(255, 255, 255, 0.16);
+    background: rgba(9, 27, 39, 0.68);
+    transform: translateY(-3px);
+  }
+
+  .mw-glow-blue {
+    background: radial-gradient(circle, rgba(0, 132, 255, 0.14) 0%, transparent 70%);
+  }
+
+  .mw-glow-teal {
+    background: radial-gradient(circle, rgba(29, 140, 137, 0.12) 0%, transparent 70%);
+  }
+
+  .mw-btn-primary-solid {
+    @apply mw-btn inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-white transition-all;
+    background: var(--brand-blue);
+    box-shadow: 0 4px 18px rgba(0, 132, 255, 0.28);
+  }
+  .mw-btn-primary-solid:hover {
+    background: var(--brand-blue-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(0, 132, 255, 0.38);
+  }
+
+  .mw-btn-teal {
+    @apply mw-btn inline-flex items-center gap-2 px-7 py-3.5 rounded-md text-sm font-bold transition-all duration-300;
+    background: var(--brand-teal);
+    color: var(--brand-navy);
+  }
+  .mw-btn-teal:hover {
+    background: #179e9a;
+    box-shadow: 0 8px 25px rgba(29, 140, 137, 0.3);
+    transform: translateY(-2px);
+  }
+
+  .mw-marquee-fade {
+    mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  }
 }
 
 @layer utilities {
@@ -363,6 +437,35 @@
 
 .animate-float-slow { animation: float-slow 8s ease-in-out infinite; }
 .animate-float-medium { animation: float-medium 6s ease-in-out infinite; }
+
+@keyframes mw-marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes mw-marquee-reverse {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+.mw-marquee-fade:hover [style*='mw-marquee'] {
+  animation-play-state: paused;
+}
+
+/* Premium gradient border */
+.mw-gradient-border {
+  position: relative;
+  background: linear-gradient(#fff, #fff) padding-box,
+    linear-gradient(135deg, rgba(0, 132, 255, 0.35), rgba(29, 140, 137, 0.35), rgba(124, 58, 237, 0.25)) border-box;
+  border: 1px solid transparent;
+}
+
+.mw-mesh-light {
+  background-image:
+    radial-gradient(at 20% 20%, rgba(0, 132, 255, 0.06) 0, transparent 50%),
+    radial-gradient(at 80% 0%, rgba(124, 58, 237, 0.05) 0, transparent 45%),
+    radial-gradient(at 50% 100%, rgba(29, 140, 137, 0.05) 0, transparent 50%);
+}
 
 /* ── Glow pulse for dark sections ── */
 @keyframes glowPulse {

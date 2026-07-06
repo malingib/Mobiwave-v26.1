@@ -1,6 +1,8 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { fadeDown } from '@/lib/motion';
+import { Marquee } from '@/components/Marquee';
+import { BentoShell } from '@/components/bento/BentoShell';
 
 const partners = [
   { name: 'Jawabu Nexus LTD', logo: 'https://mobiwave.co.ke/images/clients/JNL.png' },
@@ -12,53 +14,45 @@ const partners = [
   { name: 'Comfort Circle', logo: 'https://comfortcircle.co.ke/assets/images/logo.jpg' },
 ];
 
+function PartnerPill({ name, logo }: { name: string; logo: string }) {
+  return (
+    <div
+      className="flex-shrink-0 flex items-center gap-3 px-5 py-3.5 rounded-[20px] mw-gradient-border bg-white shadow-[0_4px_24px_rgba(4,16,28,0.05)] hover:shadow-[0_12px_40px_rgba(0,132,255,0.1)] transition-all duration-500"
+      style={{ minWidth: 230 }}
+    >
+      <img src={logo} alt={`${name} logo`} className="w-10 h-10 rounded-xl object-contain bg-[#f4f7fb] border border-[rgba(10,26,37,0.06)] p-0.5" loading="lazy" width={40} height={40} />
+      <span className="text-sm font-semibold text-[#0a1a25]/75 whitespace-nowrap">{name}</span>
+    </div>
+  );
+}
+
 export function Clients() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
-  const doubled = [...partners, ...partners];
+  const pills = partners.map((p) => <PartnerPill key={p.name} {...p} />);
 
   return (
-    <section className="py-16 bg-white">
-      <div className="container-custom mb-8">
-        <motion.p
-          ref={ref}
-          className="text-xs font-semibold text-gray-400 uppercase tracking-widest text-center"
-          initial="hidden"
-          animate={isInView ? 'visible' : 'hidden'}
-          variants={fadeDown}
-        >
-          Used by forward-thinking organisations
-        </motion.p>
-      </div>
-
-      <div className="relative overflow-hidden">
-        {/* Fade edges */}
-        <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
-
-        <div className="flex gap-10 animate-scroll-left" style={{ width: 'max-content' }}>
-          {doubled.map((partner, i) => (
-            <motion.div
-              key={`p-${i}`}
-              className="flex-shrink-0 flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors"
-              style={{ minWidth: 180 }}
-              whileHover={{ scale: 1.05 }}
-            >
-              <img src={partner.logo} alt={partner.name} className="w-8 h-8 rounded object-contain bg-white border border-gray-100 p-0.5 flex-shrink-0" loading="lazy" />
-              <span className="text-sm text-gray-500 whitespace-nowrap">{partner.name}</span>
-            </motion.div>
-          ))}
+    <BentoShell variant="surface" className="py-14 lg:py-16 border-y border-[rgba(10,26,37,0.05)]">
+      <motion.div
+        ref={ref}
+        className="flex flex-col items-center text-center mb-10"
+        initial="hidden"
+        animate={isInView ? 'visible' : 'hidden'}
+        variants={fadeDown}
+      >
+        <div className="flex items-center gap-2.5 mb-3">
+          <div className="w-7 h-0.5 rounded-full bg-[#1d8c89]" />
+          <span className="text-xs font-bold text-[#7c3aed] uppercase tracking-[0.18em]">Trusted by</span>
+          <div className="w-7 h-0.5 rounded-full bg-[#1d8c89]" />
         </div>
+        <p className="text-sm sm:text-base text-[#5b6b78] font-medium max-w-md">
+          SACCOs, schools, county governments, and community organisations across Kenya
+        </p>
+      </motion.div>
+      <div className="space-y-4 -mx-4 sm:mx-0">
+        <Marquee speed={48}>{pills}</Marquee>
+        <Marquee reverse speed={52}>{pills}</Marquee>
       </div>
-
-      <style>{`
-        @keyframes scroll-left {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-        .animate-scroll-left { animation: scroll-left 40s linear infinite; }
-        .animate-scroll-left:hover { animation-play-state: paused; }
-      `}</style>
-    </section>
+    </BentoShell>
   );
 }

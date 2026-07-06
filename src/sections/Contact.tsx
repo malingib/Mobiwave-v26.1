@@ -172,6 +172,54 @@ export function Contact({ embedded = false }: ContactProps) {
     setTimeout(() => setIsSubmitted(false), 3000);
   };
 
+  if (embedded) {
+    return (
+      <form ref={formRef} onSubmit={handleSubmit} className="w-full" aria-label="Contact form">
+        {isSubmitted ? (
+          <div className="flex flex-col items-center justify-center py-10">
+            <div className="w-14 h-14 rounded-2xl bg-[#1d8c89]/20 flex items-center justify-center mb-4">
+              <CheckCircle className="w-7 h-7 text-[#1d8c89]" />
+            </div>
+            <h4 className="text-lg font-bold text-white mb-2">Message sent</h4>
+            <p className="text-white/55 text-sm text-center">We&apos;ll get back to you within an hour during business hours.</p>
+          </div>
+        ) : (
+          <div className="space-y-4">
+            <div className="form-field">
+              <Label htmlFor="emb-name" className="text-white/80 text-sm">Name <span className="text-red-400">*</span></Label>
+              <Input id="emb-name" placeholder="Your name" required className="mt-1.5 border-white/15 bg-white/10 text-white placeholder:text-white/40 focus:border-[#0084ff]" />
+            </div>
+            <div className="form-field">
+              <Label htmlFor="emb-email" className="text-white/80 text-sm">Email <span className="text-red-400">*</span></Label>
+              <Input id="emb-email" type="email" placeholder="you@company.co.ke" required className="mt-1.5 border-white/15 bg-white/10 text-white placeholder:text-white/40 focus:border-[#0084ff]" />
+            </div>
+            <div className="form-field">
+              <Label htmlFor="emb-phone" className="text-white/80 text-sm">Phone</Label>
+              <Input id="emb-phone" type="tel" placeholder="+254 7XX XXX XXX" className="mt-1.5 border-white/15 bg-white/10 text-white placeholder:text-white/40 focus:border-[#0084ff]" />
+            </div>
+            <div className="form-field">
+              <Label htmlFor="emb-service" className="text-white/80 text-sm">Service <span className="text-red-400">*</span></Label>
+              <Select required>
+                <SelectTrigger id="emb-service" className="mt-1.5 border-white/15 bg-white/10 text-white">
+                  <SelectValue placeholder="Select a service" />
+                </SelectTrigger>
+                <SelectContent>
+                  {services.map((service) => (
+                    <SelectItem key={service} value={service.toLowerCase().replace(/\s+/g, '-')}>{service}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+            <button type="submit" className="mw-btn-primary-solid w-full justify-center py-3.5">
+              <Send className="w-4 h-4" />
+              Send Message
+            </button>
+          </div>
+        )}
+      </form>
+    );
+  }
+
   return (
     <section
       ref={(el) => {

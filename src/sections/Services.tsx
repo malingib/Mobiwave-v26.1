@@ -1,5 +1,6 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
+import { Link } from 'react-router-dom';
 import {
   MessageSquare,
   Smartphone,
@@ -7,114 +8,151 @@ import {
   MessageCircle,
   Mail,
   Gift,
+  ArrowUpRight,
 } from 'lucide-react';
 import { staggerContainer } from '@/lib/motion';
 import { MotionItem } from '@/components/MotionSection';
+import { SectionHeader } from '@/components/SectionHeader';
+import { TiltCard } from '@/components/TiltCard';
+import { FloatingPlus, ParallaxDecoration } from '@/components/Decorations';
+import { PremiumReveal } from '@/components/PremiumReveal';
 
 const services = [
   {
     id: 'bulk-sms',
     title: 'Bulk SMS',
-    description: 'Send to any Kenyan network — Safaricom, Airtel, Telkom. Real-time delivery reports, smart routing, no middlemen.',
+    description: 'Safaricom, Airtel, Telkom — smart routing, real-time delivery reports, no middlemen.',
     href: '/services/bulk-sms',
     icon: MessageSquare,
-    gradient: 'from-blue-500 to-cyan-400',
+    accent: '#0084ff',
+    featured: true,
+    span: 'lg:col-span-6 lg:row-span-2',
   },
   {
     id: 'ussd',
     title: 'USSD Services',
-    description: 'Interactive menus that work without internet. Used by SACCOs, hospitals, and government agencies across Kenya.',
+    description: 'Interactive menus without internet. SACCOs, hospitals, government.',
     href: '/services/ussd-codes',
     icon: Smartphone,
-    gradient: 'from-orange-500 to-amber-400',
+    accent: '#f59e0b',
+    span: 'lg:col-span-3',
   },
   {
     id: 'mpesa',
     title: 'M-Pesa Integration',
-    description: 'Accept payments, disburse funds, reconcile automatically. Built for Kenyan businesses by people who know the API.',
+    description: 'Payments, disbursements, auto-reconciliation.',
     href: '/services/mpesa-integration',
     icon: CreditCard,
-    gradient: 'from-emerald-500 to-teal-400',
+    accent: '#1d8c89',
+    span: 'lg:col-span-3',
   },
   {
     id: 'whatsapp',
     title: 'Bulk WhatsApp',
-    description: 'Rich media, delivery receipts, template messaging for customer support and broadcast.',
+    description: 'Rich media, templates, delivery receipts.',
     href: '/services/bulk-whatsapp',
     icon: MessageCircle,
-    gradient: 'from-green-500 to-emerald-400',
+    accent: '#22c55e',
+    span: 'lg:col-span-4',
   },
   {
     id: 'email',
     title: 'Bulk Email',
-    description: 'Campaigns, receipts, and notifications. High deliverability, detailed analytics.',
+    description: 'Campaigns with high deliverability and analytics.',
     href: '/services/bulk-email',
     icon: Mail,
-    gradient: 'from-violet-500 to-purple-400',
+    accent: '#7c3aed',
+    span: 'lg:col-span-4',
   },
   {
     id: 'airtime',
     title: 'Airtime & Rewards',
-    description: 'Incentivise customers with instant airtime and data. For promotions, referrals, and loyalty programmes.',
+    description: 'Instant airtime and data for loyalty programmes.',
     href: '/services/airtime-rewards',
     icon: Gift,
-    gradient: 'from-pink-500 to-rose-400',
+    accent: '#ec4899',
+    span: 'lg:col-span-4',
   },
 ];
 
 export function Services() {
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, amount: 0.1 });
+  const isInView = useInView(ref, { once: true, amount: 0.08 });
 
   return (
-    <section id="services" className="relative py-24 bg-white overflow-hidden">
-      <div className="container-custom">
+    <section id="services" className="relative py-20 lg:py-28 bg-white overflow-hidden" aria-labelledby="services-heading">
+      <ParallaxDecoration speed={0.25} className="top-[12%] right-[6%]">
+        <FloatingPlus className="w-12 h-12 !text-[#0084ff]/10" />
+      </ParallaxDecoration>
+
+      <div className="container-custom relative z-10">
         <motion.div
           ref={ref}
-          className="max-w-2xl mb-14"
           initial="hidden"
           animate={isInView ? 'visible' : 'hidden'}
           variants={staggerContainer}
         >
-          <MotionItem>
-            <span className="text-xs font-semibold text-blue-600 uppercase tracking-widest">What we do</span>
-          </MotionItem>
-          <MotionItem>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#0a1a25] mt-2 mb-3"
-              style={{ fontFamily: 'Outfit, sans-serif' }}>
-              Communication tools for Kenyan organisations
-            </h2>
-          </MotionItem>
-          <MotionItem>
-            <p className="text-sm text-gray-500 leading-relaxed">
-              SMS, USSD, M-Pesa, WhatsApp, and email — all on one platform.
-              Built in Nairobi, used across East Africa.
-            </p>
-          </MotionItem>
-        </motion.div>
-
-        <motion.div
-          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4"
-          initial="hidden"
-          animate={isInView ? 'visible' : 'hidden'}
-          variants={staggerContainer}
-        >
-          {services.map((svc) => (
-            <MotionItem key={svc.id}>
-              <motion.a
-                href={svc.href}
-                className="group block p-5 rounded-xl border border-gray-200 bg-white hover:border-blue-200 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/5"
-                whileHover={{ y: -4 }}
-                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
+            <SectionHeader
+              label="What we do"
+              title="Communication tools for Kenyan organisations"
+              description="SMS, USSD, M-Pesa, WhatsApp, and email — all on one platform. Built in Nairobi, used across East Africa."
+            />
+            <PremiumReveal direction="right" delay={0.05}>
+              <Link
+                to="/innovations"
+                className="inline-flex items-center gap-2 text-sm font-bold text-[#0a1a25] bg-[#f4f7fb] border border-[rgba(10,26,37,0.08)] rounded-full px-5 py-3 hover:border-[#0084ff]/25 hover:text-[#0084ff] transition-colors w-fit"
+                aria-label="View all services and innovations"
               >
-                <div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${svc.gradient} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 shadow-md`}>
-                  <svc.icon className="w-5 h-5 text-white" />
-                </div>
-                <h3 className="font-semibold text-[#0a1a25] text-sm mb-2 group-hover:text-blue-600 transition-colors">{svc.title}</h3>
-                <p className="text-xs text-gray-500 leading-relaxed">{svc.description}</p>
-              </motion.a>
-            </MotionItem>
-          ))}
+                View all
+                <ArrowUpRight className="w-4 h-4" />
+              </Link>
+            </PremiumReveal>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-4 lg:gap-5 auto-rows-fr">
+            {services.map((svc) => (
+              <MotionItem key={svc.id} className={svc.span}>
+                <TiltCard maxTilt={6} scale={1.01} className="h-full">
+                  <Link
+                    to={svc.href}
+                    className={`group mw-gradient-border flex flex-col h-full min-h-[180px] p-6 sm:p-7 rounded-[22px] bg-white shadow-[0_8px_30px_rgba(4,16,28,0.05)] hover:shadow-[0_20px_50px_rgba(0,132,255,0.12)] transition-shadow duration-500 ${
+                      svc.featured ? 'lg:min-h-[360px] lg:justify-between' : ''
+                    }`}
+                  >
+                    <div className="flex items-start justify-between mb-5">
+                      <div
+                        className="w-12 h-12 rounded-2xl flex items-center justify-center shadow-sm"
+                        style={{ background: `${svc.accent}14`, border: `1px solid ${svc.accent}22` }}
+                      >
+                        <svc.icon className="w-5 h-5" style={{ color: svc.accent }} />
+                      </div>
+                      <ArrowUpRight className="w-4 h-4 text-[#5b6b78]/30 group-hover:text-[#0084ff] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" />
+                    </div>
+                    <div>
+                      <h3
+                        id={svc.featured ? 'services-heading' : undefined}
+                        className={`font-extrabold text-[#0a1a25] mb-2 group-hover:text-[#0084ff] transition-colors ${
+                          svc.featured ? 'text-xl sm:text-2xl' : 'text-base'
+                        }`}
+                        style={{ fontFamily: 'Outfit, sans-serif' }}
+                      >
+                        {svc.title}
+                      </h3>
+                      <p className={`text-[#5b6b78] leading-relaxed ${svc.featured ? 'text-sm sm:text-base' : 'text-sm'}`}>
+                        {svc.description}
+                      </p>
+                    </div>
+                    {svc.featured && (
+                      <span className="mt-6 inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#0084ff]">
+                        Explore service <ArrowUpRight className="w-3.5 h-3.5" />
+                      </span>
+                    )}
+                  </Link>
+                </TiltCard>
+              </MotionItem>
+            ))}
+          </div>
         </motion.div>
       </div>
     </section>

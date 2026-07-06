@@ -13,9 +13,9 @@ const DEFAULT_IMAGE = `${SITE_URL}/branding/mw-logo.png`;
 
 const ROUTE_SEO: Record<string, SeoConfig> = {
   '/': {
-    title: 'MobiWave Innovations | Business Communication Solutions',
+    title: 'MobiWave | Bulk SMS, M-Pesa & USSD for Kenyan Businesses',
     description:
-      'Scale customer communication with bulk SMS, email campaigns, WhatsApp messaging, USSD services, and M-Pesa integrations.',
+      'Nairobi-based communication platform. Bulk SMS across Safaricom, Airtel & Telkom, M-Pesa integration, USSD menus, and WhatsApp — built for SACCOs, hospitals, schools, and government.',
     path: '/',
   },
   '/about': {
@@ -181,7 +181,12 @@ export function SEOHead() {
           contactType: 'customer support',
           areaServed: 'KE',
         },
-        sameAs: [],
+        sameAs: [
+          'https://x.com/mobiwave_ke',
+          'https://ke.linkedin.com/company/mobiwave',
+          'https://facebook.com/mobiwave',
+          'https://instagram.com/mobiwave_ke',
+        ],
       },
       {
         '@context': 'https://schema.org',
