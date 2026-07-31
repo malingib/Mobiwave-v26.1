@@ -1,167 +1,90 @@
-import { useRef, useEffect, useState } from 'react';
+import { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useInView } from 'framer-motion';
-import { staggerContainer, EASE_OUT_EXPO } from '@/lib/motion';
+import { ArrowUpRight, Check } from 'lucide-react';
+import { staggerContainer } from '@/lib/motion';
 import { MotionItem } from '@/components/MotionSection';
-import { SectionHeader } from '@/components/SectionHeader';
-import { PremiumReveal } from '@/components/PremiumReveal';
+
+const facts = [
+  'Smart routing across Safaricom, Airtel, and Telkom',
+  'A real support team when something needs attention',
+  'Tools made for Kenyan organisations, not adapted later',
+];
 
 const stats = [
-  { value: 6, suffix: '+', label: 'Years of Experience' },
-  { value: 12, suffix: '+', label: 'Our best total services' },
-  { value: 500, suffix: '+', label: 'Trusted Clients' },
+  { value: '6+', label: 'years building locally' },
+  { value: '500+', label: 'organisations reached' },
+  { value: '12+', label: 'services under one roof' },
 ];
-
-const aboutImages = [
-  { src: '/about/about-1.jpg', alt: 'Team member using mobile technology' },
-  { src: '/about/about-2.jpg', alt: 'Family enjoying connected services' },
-  { src: '/about/about-3.jpg', alt: 'Professional working on laptop' },
-];
-
-function AnimatedCounter({ value, suffix, inView }: { value: number; suffix: string; inView: boolean }) {
-  const [display, setDisplay] = useState('0');
-
-  useEffect(() => {
-    if (!inView) return;
-    const duration = 2000;
-    const start = Date.now();
-    const isDecimal = value % 1 !== 0;
-
-    const tick = () => {
-      const elapsed = Date.now() - start;
-      const progress = Math.min(elapsed / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      const current = eased * value;
-      setDisplay(isDecimal ? current.toFixed(1) : Math.round(current).toString());
-      if (progress < 1) requestAnimationFrame(tick);
-    };
-    requestAnimationFrame(tick);
-  }, [inView, value]);
-
-  return (
-    <span className="text-3xl sm:text-4xl font-extrabold text-white whitespace-nowrap" style={{ fontFamily: 'Outfit, sans-serif' }}>
-      {display}{suffix}
-    </span>
-  );
-}
 
 export function About() {
   const ref = useRef<HTMLDivElement>(null);
-  const statsRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
-  const statsInView = useInView(statsRef, { once: true, amount: 0.3 });
 
   return (
-    <section className="relative py-20 lg:py-28 bg-white overflow-hidden mw-mesh-light" aria-labelledby="about-heading">
-      {/* Faint background watermark */}
-      <img
-        src="/about/about-2.jpg"
-        alt=""
-        aria-hidden
-        className="absolute bottom-0 right-0 w-[min(420px,45vw)] h-auto object-cover opacity-[0.07] pointer-events-none select-none"
-      />
-      <div
-        className="absolute -bottom-16 -right-10 w-[520px] h-[220px] opacity-[0.08] blur-[0.5px] pointer-events-none"
-        style={{ background: 'radial-gradient(circle at 30% 40%, rgba(124,58,237,1) 0%, transparent 55%)' }}
-        aria-hidden
-      />
-
-      <div className="container-custom relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 xl:gap-20 items-center">
-          {/* Left — Oval image collage */}
-          <motion.div
-            ref={ref}
-            initial="hidden"
-            animate={isInView ? 'visible' : 'hidden'}
-            variants={staggerContainer}
-            className="relative"
-          >
-            <div className="flex items-center gap-3 sm:gap-4 max-w-[400px] mx-auto lg:mx-0">
-              <div className="flex flex-col gap-3 sm:gap-4 pt-6 sm:pt-10">
-                <MotionItem>
-                  <div className="w-[132px] sm:w-[158px] h-[188px] sm:h-[228px] rounded-[100px] overflow-hidden shadow-md">
-                    <img
-                      src={aboutImages[0].src}
-                      alt={aboutImages[0].alt}
-                      className="w-full h-full object-cover"
-                      loading="lazy"
-                    />
-                  </div>
-                </MotionItem>
-                <MotionItem>
-                  <div className="w-[132px] sm:w-[158px] h-[188px] sm:h-[228px] rounded-[100px] overflow-hidden shadow-md">
-                    <img
-                      src={aboutImages[1].src}
-                      alt={aboutImages[1].alt}
-                      className="w-full h-full object-cover"
-                      loading="lazy"
-                    />
-                  </div>
-                </MotionItem>
-              </div>
-
-              <MotionItem>
-                <div className="w-[148px] sm:w-[178px] h-[268px] sm:h-[328px] rounded-[100px] overflow-hidden shadow-lg flex-shrink-0">
-                  <img
-                    src={aboutImages[2].src}
-                    alt={aboutImages[2].alt}
-                    className="w-full h-full object-cover"
-                    loading="lazy"
-                  />
-                </div>
-              </MotionItem>
-            </div>
-          </motion.div>
-
-          {/* Right — Content */}
-          <motion.div
-            initial="hidden"
-            animate={isInView ? 'visible' : 'hidden'}
-            variants={staggerContainer}
-            className="relative"
-          >
-            <PremiumReveal direction="right">
-              <SectionHeader
-                label="About Our Company"
-                title="Built in Nairobi. Used Across East Africa."
-                description="MobiWave started because bulk SMS in Kenya had too many middlemen, unreliable delivery, and no transparency. We route messages smartly across all three Kenyan networks, reconcile M-Pesa payments properly, and answer the phone when something breaks."
+    <section className="relative overflow-hidden bg-white py-20 lg:py-28" aria-labelledby="about-heading">
+      <div className="container-custom">
+        <motion.div
+          ref={ref}
+          initial="hidden"
+          animate={isInView ? 'visible' : 'hidden'}
+          variants={staggerContainer}
+          className="grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-24"
+        >
+          <MotionItem className="relative">
+            <div className="relative overflow-hidden rounded-[28px] bg-[#0a1a25]">
+              <img
+                src="/about/about-3.jpg"
+                alt="Professional working with connected technology"
+                className="h-[420px] w-full object-cover opacity-85 grayscale-[15%] sm:h-[500px]"
+                loading="lazy"
               />
-            </PremiumReveal>
-
-            <MotionItem>
-              <p className="text-base text-[#5b6b78] leading-relaxed mb-8 max-w-xl -mt-6">
-                Our clients are SACCOs, hospitals, logistics firms, government agencies, churches, and schools.
-              </p>
-            </MotionItem>
-
-            {/* Purple stats bar */}
-            <div ref={statsRef} className="mb-8">
-              <motion.ul
-                initial={{ opacity: 0, y: 20 }}
-                animate={statsInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, ease: EASE_OUT_EXPO }}
-                className="grid grid-cols-1 sm:grid-cols-3 rounded-2xl overflow-hidden bg-[#7c3aed]"
-              >
-                {stats.map((s, i) => (
-                  <li
-                    key={s.label}
-                    className={`flex items-center gap-3 px-5 py-5 sm:py-6 ${
-                      i > 0 ? 'sm:border-l border-white/25' : ''
-                    } ${i > 0 ? 'border-t sm:border-t-0 border-white/25' : ''}`}
-                  >
-                    <AnimatedCounter value={s.value} suffix={s.suffix} inView={statsInView} />
-                    <p className="text-sm text-white/95 leading-snug font-medium">{s.label}</p>
-                  </li>
-                ))}
-              </motion.ul>
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0a1a25]/85 via-transparent to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-7 sm:p-9">
+                <p className="max-w-xs text-lg font-semibold leading-7 text-white" style={{ fontFamily: 'Outfit, sans-serif' }}>
+                  Technology should remove friction, not add another layer of it.
+                </p>
+              </div>
             </div>
+            <div className="absolute -bottom-5 -right-4 hidden rounded-2xl bg-[#1d8c89] px-5 py-4 text-white shadow-xl sm:block">
+              <strong className="block text-2xl font-extrabold" style={{ fontFamily: 'Outfit, sans-serif' }}>6+</strong>
+              <span className="text-xs text-white/75">years in the field</span>
+            </div>
+          </MotionItem>
 
-            <MotionItem>
-              <Link to="/about" className="mw-btn-teal" id="about-heading">
-                Discover More
-              </Link>
-            </MotionItem>
-          </motion.div>
+          <MotionItem>
+            <div className="mb-5 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-[#0084ff]">
+              <span className="h-px w-8 bg-[#0084ff]" />
+              About MobiWave
+            </div>
+            <h2 id="about-heading" className="max-w-xl text-4xl font-extrabold leading-[1.05] tracking-[-0.04em] text-[#0a1a25] sm:text-5xl" style={{ fontFamily: 'Outfit, sans-serif' }}>
+              Local context. Serious infrastructure.
+            </h2>
+            <p className="mt-6 max-w-xl text-base leading-7 text-[#5b6b78] sm:text-lg">
+              MobiWave started because communication in Kenya had too many middlemen, unreliable delivery, and not enough transparency. We build the tools that let organisations reach people and move money with confidence.
+            </p>
+            <ul className="mt-8 space-y-4">
+              {facts.map((fact) => (
+                <li key={fact} className="flex items-start gap-3 text-sm font-medium leading-6 text-[#0a1a25]">
+                  <span className="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#0084ff]/10 text-[#0084ff]"><Check className="h-3 w-3" /></span>
+                  {fact}
+                </li>
+              ))}
+            </ul>
+            <Link to="/about" className="group mt-9 inline-flex items-center gap-2 border-b border-[#0a1a25]/25 pb-2 text-sm font-bold text-[#0a1a25] transition-colors hover:border-[#0084ff] hover:text-[#0084ff]">
+              More about our approach
+              <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+            </Link>
+          </MotionItem>
+        </motion.div>
+
+        <div className="mt-16 grid border-y border-[#0a1a25]/10 sm:grid-cols-3">
+          {stats.map((stat, index) => (
+            <div key={stat.label} className={`px-1 py-6 sm:px-7 sm:py-8 ${index > 0 ? 'border-t border-[#0a1a25]/10 sm:border-l sm:border-t-0' : ''}`}>
+              <strong className="block text-3xl font-extrabold text-[#0a1a25] sm:text-4xl" style={{ fontFamily: 'Outfit, sans-serif' }}>{stat.value}</strong>
+              <span className="mt-1 block text-sm text-[#5b6b78]">{stat.label}</span>
+            </div>
+          ))}
         </div>
       </div>
     </section>

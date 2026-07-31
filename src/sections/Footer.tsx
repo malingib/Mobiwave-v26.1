@@ -7,7 +7,7 @@ const resourceLinks = [
   { label: 'M-Pesa Integration', href: '/services/mpesa-integration' },
   { label: 'USSD Services', href: '/services/ussd-codes' },
   { label: 'WhatsApp', href: '/services/bulk-whatsapp' },
-  { label: 'API Docs', href: '#' },
+  { label: 'Technical Enquiries', href: '/contact' },
 ];
 
 const legalLinks = [

@@ -1,67 +1,46 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { Phone, ArrowRight } from 'lucide-react';
-import { fadeUp } from '@/lib/motion';
+import { Mail, Phone } from 'lucide-react';
 import { Contact } from '@/sections/Contact';
-import { PremiumReveal } from '@/components/PremiumReveal';
 
 export function CTABanner() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.15 });
 
   return (
-    <section id="contact" className="relative py-20 lg:py-28 mw-section-surface overflow-hidden" aria-labelledby="cta-heading">
+    <section className="overflow-hidden bg-white py-20 lg:py-28" aria-labelledby="cta-heading">
       <div className="container-custom">
         <motion.div
           ref={ref}
-          className="relative rounded-[28px] overflow-hidden"
-          style={{
-            background: 'linear-gradient(135deg, #0a1a25 0%, #0d2137 45%, #0a1a25 100%)',
-            boxShadow: '0 24px 60px rgba(4,16,28,0.22), inset 0 1px 0 rgba(255,255,255,0.06)',
-          }}
-          initial="hidden"
-          animate={isInView ? 'visible' : 'hidden'}
-          variants={fadeUp}
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="overflow-hidden rounded-[28px] bg-[#0a1a25]"
         >
-          <div className="absolute inset-0 pointer-events-none">
-            <div className="absolute top-0 right-0 w-[min(400px,70vw)] h-[min(400px,70vw)] mw-glow-blue rounded-full" />
-            <div className="absolute bottom-0 left-0 w-[min(320px,60vw)] h-[min(320px,60vw)] mw-glow-teal rounded-full" />
-          </div>
-
-          <div className="relative z-10 p-6 sm:p-10 lg:p-14">
-            <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-start">
-              <PremiumReveal direction="left">
-                <div className="flex items-center gap-2.5 mb-5">
-                  <div className="w-7 h-0.5 rounded-full bg-[#1d8c89]" />
-                  <span className="text-xs font-bold text-[#36b8ff] uppercase tracking-[0.18em]">Get in touch</span>
+          <div className="grid lg:grid-cols-[0.9fr_1.1fr]">
+            <div className="relative p-7 sm:p-10 lg:p-14">
+              <div className="absolute -right-24 -top-24 h-64 w-64 rounded-full bg-[#0084ff]/15 blur-3xl" aria-hidden />
+              <div className="relative z-10">
+                <div className="mb-5 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-[#36b8ff]">
+                  <span className="h-px w-8 bg-[#1d8c89]" />
+                  Let&apos;s talk
                 </div>
-                <h2
-                  id="cta-heading"
-                  className="text-2xl sm:text-3xl lg:text-[2.5rem] font-extrabold text-white mb-5 leading-[1.15]"
-                  style={{ fontFamily: 'Outfit, sans-serif' }}
-                >
-                  Need a communication platform that works in Kenya?
+                <h2 id="cta-heading" className="max-w-md text-4xl font-extrabold leading-[1.05] tracking-[-0.04em] text-white sm:text-5xl" style={{ fontFamily: 'Outfit, sans-serif' }}>
+                  Make every message count.
                 </h2>
-                <p className="text-sm sm:text-base text-white/50 leading-relaxed mb-8 max-w-md">
-                  Send us a message or call directly. We respond within an hour during business hours — Mon–Fri, 9am–5pm EAT.
+                <p className="mt-6 max-w-md text-base leading-7 text-white/55">
+                  Tell us what you are trying to reach, collect, or build. We will help you find the simplest way to make it work.
                 </p>
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <a href="tel:+254736427842" className="inline-flex items-center gap-2 text-sm font-semibold text-white/85 hover:text-white transition-colors">
-                    <Phone className="w-4 h-4 text-[#1d8c89]" />
-                    +254 736 427 842
-                  </a>
-                  <a href="mailto:info@mobiwave.co.ke" className="inline-flex items-center gap-2 text-sm font-semibold text-white/85 hover:text-white transition-colors">
-                    info@mobiwave.co.ke
-                    <ArrowRight className="w-4 h-4 text-[#0084ff]" />
-                  </a>
+                <div className="mt-10 space-y-4 border-t border-white/15 pt-6">
+                  <a href="tel:+254736427842" className="flex items-center gap-3 text-sm font-semibold text-white/80 transition-colors hover:text-white"><Phone className="h-4 w-4 text-[#1d8c89]" />+254 736 427 842</a>
+                  <a href="mailto:info@mobiwave.co.ke" className="flex items-center gap-3 text-sm font-semibold text-white/80 transition-colors hover:text-white"><Mail className="h-4 w-4 text-[#36b8ff]" />info@mobiwave.co.ke</a>
                 </div>
-              </PremiumReveal>
-
-              <PremiumReveal direction="right" delay={0.1}>
-                <div className="rounded-[22px] border border-white/10 bg-[rgba(9,27,39,0.55)] backdrop-blur-xl p-6 sm:p-8 shadow-[0_16px_40px_rgba(0,0,0,0.2)]">
-                  <Contact embedded />
-                </div>
-              </PremiumReveal>
+              </div>
+            </div>
+            <div className="border-t border-white/10 bg-white/[0.04] p-2 lg:border-l lg:border-t-0 sm:p-5">
+              <div className="rounded-[22px] border border-white/10 bg-[#091b27]/70 p-1 sm:p-3">
+                <Contact embedded />
+              </div>
             </div>
           </div>
         </motion.div>

@@ -6,6 +6,9 @@ type SeoConfig = {
   description: string;
   path: string;
   type?: 'website' | 'article';
+  pageType?: 'WebPage' | 'AboutPage' | 'ContactPage' | 'Service';
+  robots?: string;
+  serviceType?: string;
 };
 
 const SITE_URL = 'https://mobiwave.co.ke';
@@ -13,7 +16,7 @@ const DEFAULT_IMAGE = `${SITE_URL}/branding/mw-logo.png`;
 
 const ROUTE_SEO: Record<string, SeoConfig> = {
   '/': {
-    title: 'MobiWave | Bulk SMS, M-Pesa & USSD for Kenyan Businesses',
+    title: 'Bulk SMS, USSD & WhatsApp API Kenya | MobiWave',
     description:
       'Nairobi-based communication platform. Bulk SMS across Safaricom, Airtel & Telkom, M-Pesa integration, USSD menus, and WhatsApp — built for SACCOs, hospitals, schools, and government.',
     path: '/',
@@ -23,12 +26,14 @@ const ROUTE_SEO: Record<string, SeoConfig> = {
     description:
       'Learn about MobiWave Innovations, our mission, and how we help Kenyan businesses communicate and grow through reliable telecom solutions.',
     path: '/about',
+    pageType: 'AboutPage',
   },
   '/contact': {
     title: 'Contact MobiWave Innovations',
     description:
       'Get in touch with MobiWave Innovations for bulk messaging, USSD, M-Pesa integration, and enterprise communication support.',
     path: '/contact',
+    pageType: 'ContactPage',
   },
   '/pricing': {
     title: 'MobiWave Pricing | Transparent Communication Service Plans',
@@ -55,58 +60,88 @@ const ROUTE_SEO: Record<string, SeoConfig> = {
     path: '/privacy',
   },
   '/services/bulk-sms': {
-    title: 'Bulk SMS Services in Kenya | MobiWave',
+    title: 'Bulk SMS Kenya & SMS API for Business | MobiWave',
     description:
       'Send reliable bulk SMS campaigns, alerts, OTPs, and notifications across Kenyan networks with enterprise-grade delivery and analytics.',
     path: '/services/bulk-sms',
+    pageType: 'Service',
+    serviceType: 'Bulk SMS and SMS API',
   },
   '/services/bulk-email': {
-    title: 'Bulk Email Marketing Services | MobiWave',
+    title: 'Bulk Email Marketing Platform Kenya | MobiWave',
     description:
       'Launch professional bulk email campaigns with high deliverability, segmentation, automation workflows, and campaign analytics.',
     path: '/services/bulk-email',
+    pageType: 'Service',
+    serviceType: 'Bulk email marketing',
   },
   '/services/bulk-whatsapp': {
-    title: 'Bulk WhatsApp Messaging | MobiWave',
+    title: 'WhatsApp Business API Kenya for Customer Messaging | MobiWave',
     description:
       'Engage customers with WhatsApp business messaging for support, reminders, notifications, and rich media communication at scale.',
     path: '/services/bulk-whatsapp',
+    pageType: 'Service',
+    serviceType: 'WhatsApp Business API',
   },
   '/services/ussd-codes': {
-    title: 'USSD Code Solutions in Kenya | MobiWave',
+    title: 'USSD Codes Kenya for Payments, Surveys and Services | MobiWave',
     description:
       'Build interactive USSD services for onboarding, payments, surveys, and customer self-service without internet dependency.',
     path: '/services/ussd-codes',
+    pageType: 'Service',
+    serviceType: 'USSD codes and applications',
   },
   '/services/shortcodes': {
-    title: 'SMS Shortcode Services | MobiWave',
+    title: 'SMS Shortcodes Kenya and Sender IDs for Businesses | MobiWave',
     description:
       'Deploy shared or dedicated SMS shortcodes for two-way communication, campaigns, voting, lead generation, and subscriptions.',
     path: '/services/shortcodes',
+    pageType: 'Service',
+    serviceType: 'SMS shortcodes and sender IDs',
   },
   '/services/mpesa-integration': {
-    title: 'M-Pesa API Integration Services | MobiWave',
+    title: 'M-Pesa API Integration Kenya for Business Payments | MobiWave',
     description:
       'Integrate M-Pesa workflows for C2B, B2C, and B2B payments, collections, disbursements, and automated reconciliation.',
     path: '/services/mpesa-integration',
+    pageType: 'Service',
+    serviceType: 'M-Pesa API integration',
   },
   '/services/sms-surveys': {
-    title: 'SMS Survey Platform | MobiWave',
+    title: 'SMS Surveys and Customer Feedback Platform Kenya | MobiWave',
     description:
       'Collect customer and market feedback via SMS surveys with real-time tracking, analytics, and high response rates.',
     path: '/services/sms-surveys',
+    pageType: 'Service',
+    serviceType: 'SMS surveys and customer feedback',
   },
   '/services/airtime-rewards': {
-    title: 'Airtime and Data Reward System | MobiWave',
+    title: 'Airtime and Data Rewards API Kenya | MobiWave',
     description:
       'Reward customers instantly with airtime and data incentives for campaigns, referrals, surveys, and loyalty programs.',
     path: '/services/airtime-rewards',
+    pageType: 'Service',
+    serviceType: 'Airtime and data rewards',
   },
   '/services/service-desk': {
-    title: 'Omnichannel Service Desk Platform | MobiWave',
+    title: 'Customer Service Desk Software Kenya | MobiWave',
     description:
       'Unify customer support across SMS, email, and WhatsApp to improve response times and service quality from one desk.',
     path: '/services/service-desk',
+    pageType: 'Service',
+    serviceType: 'Customer service desk software',
+  },
+  '/services': {
+    title: 'Business Communication Services | MobiWave',
+    description: 'Explore MobiWave business communication services, including bulk SMS, WhatsApp, USSD, M-Pesa integrations, email, and customer support tools.',
+    path: '/',
+    robots: 'noindex,follow',
+  },
+  '/testimonials': {
+    title: 'MobiWave Customer Stories',
+    description: 'See how organisations use MobiWave communication and customer engagement solutions.',
+    path: '/',
+    robots: 'noindex,follow',
   },
 };
 
@@ -144,7 +179,7 @@ export function SEOHead() {
     upsertLinkCanonical(canonical);
 
     upsertMeta('meta[name="description"]', { name: 'description', content: config.description });
-    upsertMeta('meta[name="robots"]', { name: 'robots', content: 'index,follow' });
+    upsertMeta('meta[name="robots"]', { name: 'robots', content: config.robots ?? 'index,follow' });
 
     upsertMeta('meta[property="og:type"]', { property: 'og:type', content: config.type ?? 'website' });
     upsertMeta('meta[property="og:site_name"]', { property: 'og:site_name', content: 'MobiWave Innovations' });
@@ -168,10 +203,13 @@ export function SEOHead() {
       document.head.appendChild(schema);
     }
 
-    const schemaPayload = [
+    const organizationId = `${SITE_URL}/#organization`;
+    const websiteId = `${SITE_URL}/#website`;
+    const schemaPayload: Record<string, unknown>[] = [
       {
         '@context': 'https://schema.org',
         '@type': 'Organization',
+        '@id': organizationId,
         name: 'MobiWave Innovations',
         url: SITE_URL,
         logo: DEFAULT_IMAGE,
@@ -191,6 +229,7 @@ export function SEOHead() {
       {
         '@context': 'https://schema.org',
         '@type': 'WebSite',
+        '@id': websiteId,
         name: 'MobiWave Innovations',
         url: SITE_URL,
         potentialAction: {
@@ -201,12 +240,51 @@ export function SEOHead() {
       },
       {
         '@context': 'https://schema.org',
-        '@type': 'WebPage',
+        '@type': config.pageType ?? 'WebPage',
+        '@id': `${canonical}#webpage`,
         name: config.title,
         description: config.description,
         url: canonical,
+        isPartOf: { '@id': websiteId },
+        inLanguage: 'en-KE',
       },
     ];
+
+    const breadcrumbItems = pathname === '/'
+      ? []
+      : [
+          { name: 'Home', item: `${SITE_URL}/` },
+          ...(pathname.startsWith('/services/')
+            ? [{ name: 'Services', item: `${SITE_URL}/services` }]
+            : []),
+          { name: config.title.split(' | ')[0], item: canonical },
+        ];
+
+    if (breadcrumbItems.length > 0) {
+      schemaPayload.push({
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: breadcrumbItems.map((item, index) => ({
+          '@type': 'ListItem',
+          position: index + 1,
+          name: item.name,
+          item: item.item,
+        })),
+      });
+    }
+
+    if (config.pageType === 'Service') {
+      schemaPayload.push({
+        '@context': 'https://schema.org',
+        '@type': 'Service',
+        name: config.serviceType ?? config.title,
+        description: config.description,
+        url: canonical,
+        areaServed: { '@type': 'Country', name: 'Kenya' },
+        provider: { '@id': organizationId },
+        serviceType: config.serviceType ?? config.title,
+      });
+    }
     schema.textContent = JSON.stringify(schemaPayload);
   }, [location.pathname]);
 

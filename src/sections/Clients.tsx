@@ -1,8 +1,7 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { fadeDown } from '@/lib/motion';
+import { fadeUp } from '@/lib/motion';
 import { Marquee } from '@/components/Marquee';
-import { BentoShell } from '@/components/bento/BentoShell';
 
 const partners = [
   { name: 'Jawabu Nexus LTD', logo: 'https://mobiwave.co.ke/images/clients/JNL.png' },
@@ -14,14 +13,18 @@ const partners = [
   { name: 'Comfort Circle', logo: 'https://comfortcircle.co.ke/assets/images/logo.jpg' },
 ];
 
-function PartnerPill({ name, logo }: { name: string; logo: string }) {
+function Partner({ name, logo }: (typeof partners)[number]) {
   return (
-    <div
-      className="flex-shrink-0 flex items-center gap-3 px-5 py-3.5 rounded-[20px] mw-gradient-border bg-white shadow-[0_4px_24px_rgba(4,16,28,0.05)] hover:shadow-[0_12px_40px_rgba(0,132,255,0.1)] transition-all duration-500"
-      style={{ minWidth: 230 }}
-    >
-      <img src={logo} alt={`${name} logo`} className="w-10 h-10 rounded-xl object-contain bg-[#f4f7fb] border border-[rgba(10,26,37,0.06)] p-0.5" loading="lazy" width={40} height={40} />
-      <span className="text-sm font-semibold text-[#0a1a25]/75 whitespace-nowrap">{name}</span>
+    <div className="flex shrink-0 items-center gap-3 border-r border-[#0a1a25]/10 pr-8 mr-8">
+      <img
+        src={logo}
+        alt={`${name} logo`}
+        className="h-8 w-8 rounded-lg object-contain grayscale opacity-60"
+        loading="lazy"
+        width={32}
+        height={32}
+      />
+      <span className="whitespace-nowrap text-sm font-semibold text-[#0a1a25]/55">{name}</span>
     </div>
   );
 }
@@ -29,30 +32,38 @@ function PartnerPill({ name, logo }: { name: string; logo: string }) {
 export function Clients() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
-  const pills = partners.map((p) => <PartnerPill key={p.name} {...p} />);
 
   return (
-    <BentoShell variant="surface" className="py-14 lg:py-16 border-y border-[rgba(10,26,37,0.05)]">
-      <motion.div
-        ref={ref}
-        className="flex flex-col items-center text-center mb-10"
-        initial="hidden"
-        animate={isInView ? 'visible' : 'hidden'}
-        variants={fadeDown}
-      >
-        <div className="flex items-center gap-2.5 mb-3">
-          <div className="w-7 h-0.5 rounded-full bg-[#1d8c89]" />
-          <span className="text-xs font-bold text-[#7c3aed] uppercase tracking-[0.18em]">Trusted by</span>
-          <div className="w-7 h-0.5 rounded-full bg-[#1d8c89]" />
-        </div>
-        <p className="text-sm sm:text-base text-[#5b6b78] font-medium max-w-md">
-          SACCOs, schools, county governments, and community organisations across Kenya
-        </p>
-      </motion.div>
-      <div className="space-y-4 -mx-4 sm:mx-0">
-        <Marquee speed={48}>{pills}</Marquee>
-        <Marquee reverse speed={52}>{pills}</Marquee>
+    <section className="overflow-hidden border-y border-[#0a1a25]/10 bg-[#f4f7fb] py-10 lg:py-12" aria-label="MobiWave clients">
+      <div className="container-custom">
+        <motion.div
+          ref={ref}
+          initial="hidden"
+          animate={isInView ? 'visible' : 'hidden'}
+          variants={fadeUp}
+          className="mb-8 flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between"
+        >
+          <div>
+            <p className="mb-2 text-xs font-bold uppercase tracking-[0.18em] text-[#0084ff]">Trusted in Kenya</p>
+            <p className="max-w-lg text-sm leading-6 text-[#5b6b78] sm:text-base">
+              Supporting SACCOs, schools, county governments, and community organisations where reliability matters.
+            </p>
+          </div>
+          <div className="flex gap-6 sm:gap-8">
+            <div>
+              <strong className="block text-xl font-extrabold text-[#0a1a25]" style={{ fontFamily: 'Outfit, sans-serif' }}>99.9%</strong>
+              <span className="text-xs text-[#5b6b78]">delivery target</span>
+            </div>
+            <div>
+              <strong className="block text-xl font-extrabold text-[#0a1a25]" style={{ fontFamily: 'Outfit, sans-serif' }}>3</strong>
+              <span className="text-xs text-[#5b6b78]">local networks</span>
+            </div>
+          </div>
+        </motion.div>
       </div>
-    </BentoShell>
+      <Marquee speed={42} className="-mx-4 sm:mx-0">
+        {partners.map((partner) => <Partner key={partner.name} {...partner} />)}
+      </Marquee>
+    </section>
   );
 }

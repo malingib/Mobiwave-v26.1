@@ -130,18 +130,31 @@ export function Header() {
               onMouseEnter={openServicesMenu}
               onMouseLeave={closeServicesMenu}
             >
-              <button className={`flex items-center gap-1 text-sm font-medium transition-colors ${
-                'text-white hover:text-white'
-              }`}>
+              <button
+                type="button"
+                onClick={() => {
+                  if (isServicesOpen) {
+                    setIsServicesOpen(false);
+                  } else {
+                    openServicesMenu();
+                  }
+                }}
+                aria-expanded={isServicesOpen}
+                aria-haspopup="menu"
+                className={`flex items-center gap-1 text-sm font-medium transition-colors ${
+                  'text-white hover:text-white'
+                }`}
+              >
                 Services
                 <ChevronDown className={`w-4 h-4 transition-transform ${isServicesOpen ? 'rotate-180' : ''}`} />
               </button>
               {isServicesOpen && (
-                <div className="absolute top-full left-0 pt-4 z-50">
+                <div className="absolute top-full left-0 z-50 pt-4">
                   <div className="w-56 rounded-2xl border border-white/10 bg-[rgba(8,24,35,0.94)] py-2 shadow-[0_18px_40px_rgba(10,26,37,0.22)]"
-                    style={{ minWidth: 220 }}>
+                    style={{ minWidth: 220 }} role="menu">
                     {services.map((s) => (
                       <Link key={s.href} to={s.href}
+                        role="menuitem"
                         className={`block px-4 py-2.5 text-sm transition-colors ${
                           isActive(s.href) ? 'bg-white/10 text-white' : 'text-white/75 hover:bg-white/8 hover:text-white'
                         }`}>

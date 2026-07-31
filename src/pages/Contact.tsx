@@ -14,6 +14,8 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { PageBanner } from '@/components/PageBanner';
+import { submitContactForm } from '@/lib/contact-form';
+import { trackEvent } from '@/lib/analytics';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -67,6 +69,8 @@ const subjects = [
 
 export function Contact() {
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
   const formRef = useRef<HTMLFormElement>(null);
   const infoRef = useRef<HTMLDivElement>(null);
 
@@ -109,10 +113,20 @@ export function Contact() {
     return () => ctx.revert();
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setIsSubmitted(true);
-    setTimeout(() => setIsSubmitted(false), 3000);
+    setIsSubmitting(true);
+    setSubmitError('');
+
+    try {
+      await submitContactForm(e.currentTarget);
+      trackEvent('form_success', { form_location: 'contact_page' });
+      setIsSubmitted(true);
+    } catch {
+      setSubmitError('We could not send your message. Please call +254 736 427 842 or email info@mobiwave.co.ke.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -176,6 +190,7 @@ export function Contact() {
                       <Label htmlFor="firstName">First Name *</Label>
                       <Input
                         id="firstName"
+                        name="firstName"
                         placeholder="Enter your first name"
                         required
                         className="mt-2"
@@ -185,6 +200,7 @@ export function Contact() {
                       <Label htmlFor="lastName">Last Name *</Label>
                       <Input
                         id="lastName"
+                        name="lastName"
                         placeholder="Enter your last name"
                         required
                         className="mt-2"
@@ -196,6 +212,7 @@ export function Contact() {
                     <Label htmlFor="email">Email Address *</Label>
                     <Input
                       id="email"
+                      name="email"
                       type="email"
                       placeholder="Enter your email"
                       required
@@ -207,6 +224,7 @@ export function Contact() {
                     <Label htmlFor="phone">Phone Number</Label>
                     <Input
                       id="phone"
+                      name="phone"
                       type="tel"
                       placeholder="Enter your phone number"
                       className="mt-2"
@@ -216,7 +234,7 @@ export function Contact() {
                   <div className="grid sm:grid-cols-2 gap-6">
                     <div>
                       <Label htmlFor="subject">Subject *</Label>
-                      <Select required>
+                        <Select name="subject" required>
                         <SelectTrigger className="mt-2">
                           <SelectValue placeholder="Select a subject" />
                         </SelectTrigger>
@@ -231,7 +249,7 @@ export function Contact() {
                     </div>
                     <div>
                       <Label htmlFor="inquiryType">Inquiry Type *</Label>
-                      <Select required>
+                        <Select name="inquiryType" required>
                         <SelectTrigger className="mt-2">
                           <SelectValue placeholder="Select inquiry type" />
                         </SelectTrigger>
@@ -250,6 +268,7 @@ export function Contact() {
                     <Label htmlFor="message">Message *</Label>
                     <Textarea
                       id="message"
+                      name="message"
                       placeholder="Enter your message"
                       required
                       rows={5}
@@ -257,12 +276,15 @@ export function Contact() {
                     />
                   </div>
 
+                  {submitError && <p className="text-sm leading-5 text-red-600" role="alert">{submitError}</p>}
+
                   <Button
                     type="submit"
+                    disabled={isSubmitting}
                     className="w-full bg-gradient-to-r from-[#0084ff] to-[#031522] text-white hover:shadow-lg py-6"
                   >
                     <Send className="w-5 h-5 mr-2" />
-                    Send Message
+                    {isSubmitting ? 'Sending...' : 'Send Message'}
                   </Button>
                 </div>
               )}

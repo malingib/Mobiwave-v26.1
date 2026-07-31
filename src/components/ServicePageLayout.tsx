@@ -4,6 +4,8 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Check, ArrowRight, Phone, Mail, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { PageBanner } from './PageBanner';
+import { Breadcrumbs } from './Breadcrumbs';
+import { trackEvent } from '@/lib/analytics';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 
@@ -30,7 +32,7 @@ export function ServicePageLayout({
   title,
   subtitle,
   description,
-  icon: _Icon,
+  icon: ServiceIcon,
   features,
   benefits,
   useCases,
@@ -77,6 +79,7 @@ export function ServicePageLayout({
   return (
     <div className="min-h-screen bg-white">
       <PageBanner title={title} subtitle={subtitle} />
+      <Breadcrumbs items={[{ label: 'Services', href: '/services' }, { label: title }]} />
 
       <div ref={contentRef}>
         <section className="section-padding">
@@ -84,6 +87,7 @@ export function ServicePageLayout({
             <div className="grid lg:grid-cols-2 gap-12 items-center animate-section">
               <div className="animate-item lg:col-span-2 text-center max-w-3xl mx-auto">
                 <div className="flex items-center justify-center gap-2.5 mb-5">
+                  <ServiceIcon className="w-4 h-4 text-[#7c3aed]" aria-hidden="true" />
                   <div className="w-7 h-0.5 rounded-full bg-[#1d8c89]" />
                   <span className="text-xs font-bold text-[#7c3aed] uppercase tracking-[0.18em]">{title}</span>
                   <div className="w-7 h-0.5 rounded-full bg-[#1d8c89]" />
@@ -94,7 +98,11 @@ export function ServicePageLayout({
                 <p className="text-[#5b6b78] text-lg leading-relaxed mb-8">
                   {description}
                 </p>
-                <a href="/contact" className="mw-btn-primary-solid">
+                <a
+                  href="/contact"
+                  className="mw-btn-primary-solid"
+                  onClick={() => trackEvent('service_cta_click', { service: title, location: 'intro' })}
+                >
                   Get Started <ArrowRight className="w-5 h-5" />
                 </a>
               </div>
@@ -154,7 +162,11 @@ export function ServicePageLayout({
                     Ready to transform your business communication? Contact us today to learn more about our {title} service.
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4">
-                    <a href="/contact" className="mw-btn-primary-solid justify-center">
+                    <a
+                      href="/contact"
+                      className="mw-btn-primary-solid justify-center"
+                      onClick={() => trackEvent('service_cta_click', { service: title, location: 'mid_page' })}
+                    >
                       Contact Us <ArrowRight className="w-5 h-5" />
                     </a>
                     <a

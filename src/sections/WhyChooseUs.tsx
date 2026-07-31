@@ -1,79 +1,69 @@
-import { motion, useInView, useScroll, useTransform } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { staggerContainer, EASE_OUT_EXPO } from '@/lib/motion';
-import { SectionHeader } from '@/components/SectionHeader';
-import { FloatingCircle, FloatingPlus } from '@/components/Decorations';
+import { ArrowRight, Check } from 'lucide-react';
+import { staggerContainer } from '@/lib/motion';
+import { MotionItem } from '@/components/MotionSection';
 
 const steps = [
   {
     num: '01',
-    title: 'Tell us what you need',
-    text: 'A two-minute conversation is enough. We\'ll ask about volumes, networks, integration points, and budget.',
+    title: 'Tell us what needs to move',
+    text: 'We ask about your volumes, networks, integration points, and the outcome you need.',
   },
   {
     num: '02',
-    title: 'We set it up',
-    text: 'Most clients are live within a day. APIs, docs, sandbox environment — we handle the setup and test everything first.',
+    title: 'We make it work',
+    text: 'APIs, documentation, sandbox access, and testing are handled with your team from day one.',
   },
   {
     num: '03',
-    title: 'You send. We monitor.',
-    text: 'Real-time dashboard, delivery reports, and a support WhatsApp line. If something looks off, we call you before you notice.',
+    title: 'You go live with backup',
+    text: 'Monitor delivery in real time, then reach a real support person when something needs attention.',
   },
 ];
 
 export function WhyChooseUs() {
   const ref = useRef<HTMLDivElement>(null);
-  const timelineRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, amount: 0.2 });
-  const { scrollYProgress } = useScroll({ target: timelineRef, offset: ['start 0.8', 'end 0.4'] });
-  const lineScale = useTransform(scrollYProgress, [0, 1], [0, 1]);
+  const isInView = useInView(ref, { once: true, amount: 0.15 });
 
   return (
-    <section className="mw-section-dark py-20 lg:py-28 overflow-hidden" aria-labelledby="how-it-works-heading">
-      <div className="absolute top-0 right-0 w-[min(500px,80vw)] h-[min(500px,80vw)] mw-glow-blue rounded-full pointer-events-none glow-pulse" />
-      <div className="absolute bottom-0 left-0 w-[min(400px,70vw)] h-[min(400px,70vw)] mw-glow-teal rounded-full pointer-events-none" />
-      <FloatingPlus className="w-5 h-5 top-20 left-[10%] !text-white/10" />
-      <FloatingCircle className="border border-white/10 top-[30%] right-[12%]" size={80} />
-
+    <section className="relative overflow-hidden bg-[#0a1a25] py-20 text-white lg:py-28" aria-labelledby="how-it-works-heading">
+      <div className="absolute right-0 top-0 h-[520px] w-[520px] rounded-full bg-[#0084ff]/10 blur-3xl" aria-hidden />
       <div className="container-custom relative z-10">
         <motion.div ref={ref} initial="hidden" animate={isInView ? 'visible' : 'hidden'} variants={staggerContainer}>
-          <SectionHeader
-            label="How it works"
-            title="Three steps to go live"
-            description="No onboarding calls. No sales deck. Just a working platform."
-            variant="dark"
-          />
-
-          <div ref={timelineRef} className="relative">
-            <div className="hidden lg:block absolute top-14 left-[16.66%] right-[16.66%] h-px bg-white/10 overflow-hidden">
-              <motion.div className="h-full bg-gradient-to-r from-[#0084ff] to-[#1d8c89] origin-left" style={{ scaleX: lineScale }} />
+          <MotionItem className="grid gap-10 lg:grid-cols-[0.75fr_1.25fr] lg:gap-24">
+            <div>
+              <div className="mb-5 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-[#36b8ff]">
+                <span className="h-px w-8 bg-[#1d8c89]" />
+                How it works
+              </div>
+              <h2 id="how-it-works-heading" className="max-w-md text-4xl font-extrabold leading-[1.05] tracking-[-0.04em] sm:text-5xl" style={{ fontFamily: 'Outfit, sans-serif' }}>
+                Simple to start. Solid when it matters.
+              </h2>
+              <p className="mt-6 max-w-md text-base leading-7 text-white/55 sm:text-lg">
+                You should not need a sales deck to get a communication service working. We keep the path from conversation to launch short.
+              </p>
+              <div className="mt-9 inline-flex items-center gap-2 text-sm font-bold text-white/80">
+                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#1d8c89]"><Check className="h-4 w-4" /></span>
+                Human support included
+              </div>
             </div>
 
-            <div className="grid lg:grid-cols-3 gap-5">
-              {steps.map((step, i) => (
-                <motion.article
-                  key={step.num}
-                  initial={{ opacity: 0, y: 48 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.65, delay: i * 0.12, ease: EASE_OUT_EXPO }}
-                  className="mw-card-glass p-7 sm:p-8 relative"
-                >
-                  <div
-                    className="text-5xl sm:text-6xl font-extrabold mb-5 leading-none"
-                    style={{ fontFamily: 'Outfit, sans-serif', color: 'transparent', WebkitTextStroke: '1.5px rgba(0, 132, 255, 0.4)' }}
-                    aria-hidden
-                  >
-                    {step.num}
+            <div className="border-t border-white/15">
+              {steps.map((step) => (
+                <MotionItem key={step.num}>
+                  <div className="group grid gap-4 border-b border-white/15 py-7 sm:grid-cols-[64px_1fr_24px] sm:items-start sm:gap-6 sm:py-8">
+                    <span className="font-mono text-sm text-[#36b8ff]">{step.num}</span>
+                    <div>
+                      <h3 className="text-xl font-bold sm:text-2xl" style={{ fontFamily: 'Outfit, sans-serif' }}>{step.title}</h3>
+                      <p className="mt-2 max-w-xl text-sm leading-6 text-white/50 sm:text-base">{step.text}</p>
+                    </div>
+                    <ArrowRight className="mt-1 hidden h-5 w-5 text-white/30 transition-transform group-hover:translate-x-1 group-hover:text-[#36b8ff] sm:block" />
                   </div>
-                  <h3 id={i === 0 ? 'how-it-works-heading' : undefined} className="text-lg sm:text-xl font-bold text-white mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                    {step.title}
-                  </h3>
-                  <p className="text-sm sm:text-base text-white/55 leading-relaxed">{step.text}</p>
-                </motion.article>
+                </MotionItem>
               ))}
             </div>
-          </div>
+          </MotionItem>
         </motion.div>
       </div>
     </section>

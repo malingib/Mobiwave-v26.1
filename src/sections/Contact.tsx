@@ -12,6 +12,9 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { useInView } from '@/hooks/useInView';
+import { submitContactForm } from '@/lib/contact-form';
+import { trackEvent } from '@/lib/analytics';
+import { Textarea } from '@/components/ui/textarea';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -61,10 +64,11 @@ interface ContactProps {
 
 export function Contact({ embedded = false }: ContactProps) {
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const sectionRef = useRef<HTMLElement | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
   const contentRef = useRef<HTMLDivElement | null>(null);
   const formRef = useRef<HTMLFormElement | null>(null);
-  const [inViewRef, isInView] = useInView<HTMLElement>({ threshold: 0.1 });
+  const [sectionRef, isInView] = useInView<HTMLElement>({ threshold: 0.1 });
 
   useEffect(() => {
     if (!isInView || !sectionRef.current) return;
@@ -164,12 +168,22 @@ export function Contact({ embedded = false }: ContactProps) {
     }, sectionRef);
 
     return () => ctx.revert();
-  }, [isInView]);
+  }, [isInView, sectionRef]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setIsSubmitted(true);
-    setTimeout(() => setIsSubmitted(false), 3000);
+    setIsSubmitting(true);
+    setSubmitError('');
+
+    try {
+      await submitContactForm(e.currentTarget);
+      trackEvent('form_success', { form_location: embedded ? 'homepage' : 'contact_page' });
+      setIsSubmitted(true);
+    } catch {
+      setSubmitError('We could not send your message. Please call +254 736 427 842 or email info@mobiwave.co.ke.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (embedded) {
@@ -187,19 +201,19 @@ export function Contact({ embedded = false }: ContactProps) {
           <div className="space-y-4">
             <div className="form-field">
               <Label htmlFor="emb-name" className="text-white/80 text-sm">Name <span className="text-red-400">*</span></Label>
-              <Input id="emb-name" placeholder="Your name" required className="mt-1.5 border-white/15 bg-white/10 text-white placeholder:text-white/40 focus:border-[#0084ff]" />
+              <Input id="emb-name" name="name" placeholder="Your name" required className="mt-1.5 border-white/15 bg-white/10 text-white placeholder:text-white/40 focus:border-[#0084ff]" />
             </div>
             <div className="form-field">
               <Label htmlFor="emb-email" className="text-white/80 text-sm">Email <span className="text-red-400">*</span></Label>
-              <Input id="emb-email" type="email" placeholder="you@company.co.ke" required className="mt-1.5 border-white/15 bg-white/10 text-white placeholder:text-white/40 focus:border-[#0084ff]" />
+              <Input id="emb-email" name="email" type="email" placeholder="you@company.co.ke" required className="mt-1.5 border-white/15 bg-white/10 text-white placeholder:text-white/40 focus:border-[#0084ff]" />
             </div>
             <div className="form-field">
               <Label htmlFor="emb-phone" className="text-white/80 text-sm">Phone</Label>
-              <Input id="emb-phone" type="tel" placeholder="+254 7XX XXX XXX" className="mt-1.5 border-white/15 bg-white/10 text-white placeholder:text-white/40 focus:border-[#0084ff]" />
+              <Input id="emb-phone" name="phone" type="tel" placeholder="+254 7XX XXX XXX" className="mt-1.5 border-white/15 bg-white/10 text-white placeholder:text-white/40 focus:border-[#0084ff]" />
             </div>
             <div className="form-field">
               <Label htmlFor="emb-service" className="text-white/80 text-sm">Service <span className="text-red-400">*</span></Label>
-              <Select required>
+              <Select name="service" required>
                 <SelectTrigger id="emb-service" className="mt-1.5 border-white/15 bg-white/10 text-white">
                   <SelectValue placeholder="Select a service" />
                 </SelectTrigger>
@@ -210,9 +224,14 @@ export function Contact({ embedded = false }: ContactProps) {
                 </SelectContent>
               </Select>
             </div>
-            <button type="submit" className="mw-btn-primary-solid w-full justify-center py-3.5">
+            <div className="form-field">
+              <Label htmlFor="emb-message" className="text-white/80 text-sm">Message</Label>
+              <Textarea id="emb-message" name="message" placeholder="Tell us what you need" rows={4} className="mt-1.5 border-white/15 bg-white/10 text-white placeholder:text-white/40 focus:border-[#0084ff]" />
+            </div>
+            {submitError && <p className="text-sm leading-5 text-red-300" role="alert">{submitError}</p>}
+            <button type="submit" disabled={isSubmitting} className="mw-btn-primary-solid w-full justify-center py-3.5 disabled:cursor-not-allowed disabled:opacity-60">
               <Send className="w-4 h-4" />
-              Send Message
+              {isSubmitting ? 'Sending...' : 'Send Message'}
             </button>
           </div>
         )}
@@ -222,10 +241,7 @@ export function Contact({ embedded = false }: ContactProps) {
 
   return (
     <section
-      ref={(el) => {
-        (sectionRef as React.MutableRefObject<HTMLElement | null>).current = el;
-        (inViewRef as React.MutableRefObject<HTMLElement | null>).current = el;
-      }}
+      ref={sectionRef}
       id="contact"
       className={embedded ? 'relative overflow-hidden' : 'section-padding relative overflow-hidden'}
       style={{ background: embedded ? 'transparent' : '#f4f7fb' }}
@@ -310,6 +326,7 @@ export function Contact({ embedded = false }: ContactProps) {
                   </Label>
                   <Input
                     id="name"
+                    name="name"
                     placeholder="Your name"
                     required
                     className={`mt-1.5 focus:border-[#0084ff] focus:ring-[#0084ff]/20 ${embedded ? 'border-white/15 bg-white/10 text-white placeholder:text-white/45' : 'border-gray-200'}`}
@@ -322,6 +339,7 @@ export function Contact({ embedded = false }: ContactProps) {
                   </Label>
                   <Input
                     id="email"
+                    name="email"
                     type="email"
                     placeholder="Your email"
                     required
@@ -335,6 +353,7 @@ export function Contact({ embedded = false }: ContactProps) {
                   </Label>
                   <Input
                     id="phone"
+                    name="phone"
                     type="tel"
                     placeholder="Your phone number"
                     className={`mt-1.5 focus:border-[#0084ff] focus:ring-[#0084ff]/20 ${embedded ? 'border-white/15 bg-white/10 text-white placeholder:text-white/45' : 'border-gray-200'}`}
@@ -345,7 +364,7 @@ export function Contact({ embedded = false }: ContactProps) {
                   <Label htmlFor="service" className={embedded ? 'text-white/80' : 'text-gray-700'}>
                     Service <span className="text-red-500">*</span>
                   </Label>
-                  <Select required>
+                  <Select name="service" required>
                     <SelectTrigger className={`mt-1.5 focus:border-[#0084ff] focus:ring-[#0084ff]/20 ${embedded ? 'border-white/15 bg-white/10 text-white' : 'border-gray-200'}`}>
                       <SelectValue placeholder="Select a service" />
                     </SelectTrigger>
@@ -363,7 +382,7 @@ export function Contact({ embedded = false }: ContactProps) {
                   <Label htmlFor="product" className={embedded ? 'text-white/80' : 'text-gray-700'}>
                     Product <span className="text-red-500">*</span>
                   </Label>
-                  <Select required>
+                  <Select name="product" required>
                     <SelectTrigger className={`mt-1.5 focus:border-[#0084ff] focus:ring-[#0084ff]/20 ${embedded ? 'border-white/15 bg-white/10 text-white' : 'border-gray-200'}`}>
                       <SelectValue placeholder="Select a product" />
                     </SelectTrigger>
@@ -377,15 +396,18 @@ export function Contact({ embedded = false }: ContactProps) {
                   </Select>
                 </div>
 
+                {submitError && <p className="text-sm leading-5 text-red-600" role="alert">{submitError}</p>}
+
                 <button
                   type="submit"
+                  disabled={isSubmitting}
                   className="w-full py-3.5 rounded-xl text-white font-semibold text-base transition-all duration-300 flex items-center justify-center gap-2"
                   style={{ background: '#0084ff' }}
                   onMouseEnter={e => ((e.currentTarget as HTMLElement).style.background = '#0068d6')}
                   onMouseLeave={e => ((e.currentTarget as HTMLElement).style.background = '#0084ff')}
                 >
                   <Send className="w-4 h-4" />
-                  Send Message
+                  {isSubmitting ? 'Sending...' : 'Send Message'}
                 </button>
               </div>
             )}
