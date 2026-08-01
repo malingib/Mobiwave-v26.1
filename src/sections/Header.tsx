@@ -20,6 +20,7 @@ export function Header() {
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
   const servicesCloseTimerRef = useRef<number | null>(null);
+  const servicesMenuRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
 
   useEffect(() => {
@@ -39,6 +40,26 @@ export function Header() {
       if (servicesCloseTimerRef.current) window.clearTimeout(servicesCloseTimerRef.current);
     };
   }, []);
+
+  useEffect(() => {
+    if (!isServicesOpen) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setIsServicesOpen(false);
+    };
+    const handlePointerDown = (event: PointerEvent) => {
+      if (servicesMenuRef.current && !servicesMenuRef.current.contains(event.target as Node)) {
+        setIsServicesOpen(false);
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    document.addEventListener('pointerdown', handlePointerDown);
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener('pointerdown', handlePointerDown);
+    };
+  }, [isServicesOpen]);
 
   const openServicesMenu = () => {
     if (servicesCloseTimerRef.current) {
@@ -104,7 +125,7 @@ export function Header() {
         }`}
       >
         <div
-          className={`relative mx-auto flex w-full max-w-xl items-center justify-between gap-3 overflow-hidden rounded-[26px] border px-4 py-2.5 shadow-[0_16px_40px_rgba(4,16,28,0.18)] transition-all duration-300 sm:px-5 sm:py-2.5 lg:w-auto lg:max-w-fit lg:gap-4 ${
+          className={`relative mx-auto flex w-full max-w-xl items-center justify-between gap-3 overflow-visible rounded-[26px] border px-4 py-2.5 shadow-[0_16px_40px_rgba(4,16,28,0.18)] transition-all duration-300 sm:px-5 sm:py-2.5 lg:w-auto lg:max-w-fit lg:gap-4 ${
             isScrolled
               ? 'border-white/12 bg-[rgba(10,30,43,0.76)] backdrop-blur-md'
               : 'border-white/10 bg-[rgba(9,27,39,0.64)] backdrop-blur-md'
@@ -126,9 +147,12 @@ export function Header() {
           <div className="hidden lg:flex items-center gap-5 px-1.5">
             {navLink('/', 'Home')}
 
-            <div className="relative pb-4 -mb-4"
+            <div ref={servicesMenuRef} className="relative pb-4 -mb-4"
               onMouseEnter={openServicesMenu}
               onMouseLeave={closeServicesMenu}
+              onBlur={(event) => {
+                if (!event.currentTarget.contains(event.relatedTarget as Node | null)) closeServicesMenu();
+              }}
             >
               <button
                 type="button"
@@ -169,11 +193,12 @@ export function Header() {
             {navLink('/pricing', 'Pricing')}
             {navLink('/innovations', 'Innovations')}
             {navLink('/about', 'About Us')}
+            {navLink('/developers/docs', 'API Docs')}
 
             {navLink('/contact', 'Contact Us')}
           </div>
 
-          <div className="hidden lg:flex items-center gap-2 pl-1">
+          <div className="hidden xl:flex items-center gap-2 pl-1">
             <a
               href="https://sms.mobiwave.co.ke/login"
               target="_blank"
@@ -190,17 +215,6 @@ export function Header() {
               }}
             >
               SMS Platform
-            </a>
-            <a
-              href="https://rewards.mobiwave.co.ke"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-4 py-2 rounded-full border text-sm font-semibold text-white transition-all duration-200"
-              style={{ borderColor: 'rgba(255,255,255,0.12)', background: 'rgba(255,255,255,0.06)' }}
-              onMouseEnter={e => ((e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.1)')}
-              onMouseLeave={e => ((e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.06)')}
-            >
-              Rewards Platform
             </a>
           </div>
 
@@ -253,17 +267,13 @@ export function Header() {
             <Link to="/pricing" className={`py-3 px-4 rounded-xl text-base font-medium transition-colors ${isActive('/pricing') ? 'bg-white/18 text-white' : 'text-white/90 hover:bg-white/10'}`}>Pricing</Link>
             <Link to="/innovations" className={`py-3 px-4 rounded-xl text-base font-medium transition-colors ${isActive('/innovations') ? 'bg-white/18 text-white' : 'text-white/90 hover:bg-white/10'}`}>Innovations</Link>
             <Link to="/about" className={`py-3 px-4 rounded-xl text-base font-medium transition-colors ${isActive('/about') ? 'bg-white/18 text-white' : 'text-white/90 hover:bg-white/10'}`}>About Us</Link>
+            <Link to="/developers/docs" className={`py-3 px-4 rounded-xl text-base font-medium transition-colors ${isActive('/developers/docs') ? 'bg-white/18 text-white' : 'text-white/90 hover:bg-white/10'}`}>API Docs</Link>
             <Link to="/contact" className={`py-3 px-4 rounded-xl text-base font-medium transition-colors ${isActive('/contact') ? 'bg-white/18 text-white' : 'text-white/90 hover:bg-white/10'}`}>Contact Us</Link>
 
             <div className="flex flex-col gap-3 pt-4 border-t mt-2">
               <a href="https://sms.mobiwave.co.ke/login" target="_blank" rel="noopener noreferrer"
                 className="w-full py-3 rounded-xl border border-blue-600 text-blue-600 text-sm font-semibold text-center">
                 SMS Platform
-              </a>
-              <a href="https://rewards.mobiwave.co.ke" target="_blank" rel="noopener noreferrer"
-                className="w-full py-3 rounded-xl text-white text-sm font-semibold text-center"
-                style={{ background: '#0a1a25' }}>
-                Rewards Platform
               </a>
             </div>
           </div>

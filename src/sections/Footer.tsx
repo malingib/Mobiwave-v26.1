@@ -3,6 +3,7 @@ import { ArrowUp } from 'lucide-react';
 import { useState, type ReactNode } from 'react';
 
 const resourceLinks = [
+  { label: 'API Documentation', href: '/developers/docs' },
   { label: 'Bulk SMS', href: '/services/bulk-sms' },
   { label: 'M-Pesa Integration', href: '/services/mpesa-integration' },
   { label: 'USSD Services', href: '/services/ussd-codes' },

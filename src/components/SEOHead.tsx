@@ -59,6 +59,12 @@ const ROUTE_SEO: Record<string, SeoConfig> = {
       'Learn how MobiWave Innovations handles personal and business data across our communication and payment services.',
     path: '/privacy',
   },
+  '/developers/docs': {
+    title: 'API Documentation | MobiWave Innovations',
+    description: 'Integrate MobiWave SMS, WhatsApp, contact management, profile, and balance APIs with secure bearer-token authentication.',
+    path: '/developers/docs',
+    type: 'article',
+  },
   '/services/bulk-sms': {
     title: 'Bulk SMS Kenya & SMS API for Business | MobiWave',
     description:

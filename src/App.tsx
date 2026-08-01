@@ -7,6 +7,7 @@ import { Pricing, Contact, About, Products } from '@/pages';
 import { SEOHead } from '@/components/SEOHead';
 import { Terms } from '@/pages/Terms';
 import { Privacy } from '@/pages/Privacy';
+import { ApiDocs } from '@/pages/ApiDocs';
 import {
   BulkSMS,
   BulkEmail,
@@ -49,6 +50,7 @@ function App() {
             <Route path="/innovations" element={<Products />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/privacy" element={<Privacy />} />
+            <Route path="/developers/docs" element={<ApiDocs />} />
             <Route path="/products" element={<Navigate to="/innovations" replace />} />
             <Route path="/services" element={<HomeSectionRoute sectionId="services" />} />
             <Route path="/testimonials" element={<HomeSectionRoute sectionId="testimonials" />} />
