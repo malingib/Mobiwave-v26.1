@@ -189,6 +189,7 @@ export function Contact({ embedded = false }: ContactProps) {
   if (embedded) {
     return (
       <form ref={formRef} onSubmit={handleSubmit} className="w-full" aria-label="Contact form">
+        <input type="hidden" name="formType" value="homepage" />
         {isSubmitted ? (
           <div className="flex flex-col items-center justify-center py-10">
             <div className="w-14 h-14 rounded-2xl bg-[#1d8c89]/20 flex items-center justify-center mb-4">
@@ -304,6 +305,7 @@ export function Contact({ embedded = false }: ContactProps) {
             onSubmit={handleSubmit}
             className={`rounded-2xl p-8 ${embedded ? 'bg-white/5 border border-white/10' : 'bg-white border border-gray-100 shadow-sm'}`}
           >
+            <input type="hidden" name="formType" value="homepage" />
             <h3 className={`text-2xl font-bold mb-6 text-center ${embedded ? 'text-white' : 'text-gray-900'}`}>
               Get in Touch
             </h3>

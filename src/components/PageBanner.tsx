@@ -1,6 +1,5 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
-import { GravityParticles } from '@/components/GravityParticles';
 
 interface PageBannerProps {
   title: string;
@@ -30,28 +29,26 @@ export function PageBanner({ title, subtitle }: PageBannerProps) {
   }, []);
 
   return (
-    <div className="relative bg-[#0a1a25] pt-36 pb-28 overflow-hidden">
-      <GravityParticles />
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 mw-glow-blue rounded-full pointer-events-none" />
-      <div className="absolute bottom-0 right-1/4 w-72 h-72 mw-glow-teal rounded-full pointer-events-none" />
+    <div className="relative overflow-hidden bg-[#f6f4ff] pb-20 pt-32 lg:pb-24 lg:pt-36">
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(184,201,232,0.46),transparent_30%),radial-gradient(circle_at_82%_12%,rgba(209,198,242,0.5),transparent_28%)]" />
+      <div aria-hidden="true" className="pointer-events-none absolute -bottom-32 left-1/2 h-72 w-[38rem] -translate-x-1/2 rounded-full bg-white/55 blur-3xl" />
 
       <div className="container-custom relative z-10 text-center">
-        <div className="flex items-center justify-center gap-2.5 mb-5">
-          <div className="w-7 h-0.5 rounded-full bg-[#1d8c89]" />
-          <span className="text-xs font-bold text-[#36b8ff] uppercase tracking-[0.18em]">
+        <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#7566cf]/20 bg-white/65 px-3.5 py-2 shadow-sm backdrop-blur-sm">
+          <span className="h-1.5 w-1.5 rounded-full bg-[#176fe8]" />
+          <span className="text-xs font-bold uppercase tracking-[0.18em] text-[#6255b7]">
             MobiWave
           </span>
-          <div className="w-7 h-0.5 rounded-full bg-[#1d8c89]" />
         </div>
         <h1
           ref={titleRef}
-          className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-4"
+          className="mb-4 text-4xl font-extrabold text-[#172333] md:text-5xl lg:text-6xl"
           style={{ fontFamily: 'Outfit, sans-serif', letterSpacing: '-0.02em' }}
         >
           {title}
         </h1>
         {subtitle && (
-          <p ref={subtitleRef} className="text-base md:text-lg text-white/55 max-w-2xl mx-auto leading-relaxed">
+          <p ref={subtitleRef} className="mx-auto max-w-2xl text-base leading-relaxed text-[#586273] md:text-lg">
             {subtitle}
           </p>
         )}
@@ -61,7 +58,7 @@ export function PageBanner({ title, subtitle }: PageBannerProps) {
         <svg viewBox="0 0 1440 120" fill="none" className="block w-full h-auto" preserveAspectRatio="none">
           <path
             d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z"
-            fill="white"
+            fill="#ffffff"
           />
         </svg>
       </div>

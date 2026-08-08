@@ -28,36 +28,36 @@ export function ParallaxDecoration({ children, speed = 0.3, className = '' }: Pa
   );
 }
 
-/* ── Hero wave dividers — dark hero easing into a white next section ── */
+/* ── Hero wave dividers — lavender hero easing into the light trust band ── */
 export function HeroWaves() {
   return (
     <div className="absolute bottom-0 left-0 right-0 pointer-events-none z-[5]">
       <svg className="absolute w-0 h-0" aria-hidden="true">
         <defs>
-          {/* Back: hero navy mass, slightly translucent so the morph does not end in a hard slab */}
+          {/* Back: carries the hero's lavender tone into the transition. */}
           <linearGradient id="wgA" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#0a1a25" stopOpacity="0.94" />
-            <stop offset="100%" stopColor="#12374d" stopOpacity="0.8" />
+            <stop offset="0%" stopColor="#c9c0ed" stopOpacity="0.9" />
+            <stop offset="100%" stopColor="#b8c9e8" stopOpacity="0.86" />
           </linearGradient>
 
-          {/* Mid: brand bridge, but it thins out near the white section */}
+          {/* Mid: a cool blue bridge between the hero and client logos. */}
           <linearGradient id="wgB" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#0f3147" stopOpacity="0.92" />
-            <stop offset="42%" stopColor="#1d5f85" stopOpacity="0.72" />
-            <stop offset="100%" stopColor="#86bddb" stopOpacity="0.34" />
+            <stop offset="0%" stopColor="#aaa2d5" stopOpacity="0.86" />
+            <stop offset="42%" stopColor="#91b6df" stopOpacity="0.7" />
+            <stop offset="100%" stopColor="#c9dced" stopOpacity="0.42" />
           </linearGradient>
 
-          {/* Front: pale blue into white so the lower section arrives cleanly */}
+          {/* Front: soft blue into the Clients section's white surface. */}
           <linearGradient id="wgC" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#8abfd8" stopOpacity="0.22" />
-            <stop offset="30%" stopColor="#bfdbe9" stopOpacity="0.52" />
-            <stop offset="68%" stopColor="#e7f0f5" stopOpacity="0.9" />
+            <stop offset="0%" stopColor="#b6d0ea" stopOpacity="0.3" />
+            <stop offset="30%" stopColor="#d0e0f0" stopOpacity="0.54" />
+            <stop offset="68%" stopColor="#e9eff8" stopOpacity="0.92" />
             <stop offset="100%" stopColor="#ffffff" stopOpacity="1" />
           </linearGradient>
         </defs>
       </svg>
 
-      <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-white/0 via-white/35 to-white" />
+      <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-[#f6f4ff]/0 via-white/40 to-white" />
 
       {/* Back — slowest, deep undulation */}
       <div className="hero-wave hero-wave-3">

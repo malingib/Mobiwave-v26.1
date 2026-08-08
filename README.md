@@ -1,5 +1,21 @@
 # React + TypeScript + Vite
 
+## Contact form mail
+
+The production build includes `contact.php`. On PHP hosting, configure these server environment variables for authenticated SMTP:
+
+```text
+SMTP_HOST=your-mail-server
+SMTP_PORT=587
+SMTP_ENCRYPTION=tls
+SMTP_USERNAME=your-mailbox
+SMTP_PASSWORD=your-mailbox-password
+CONTACT_MAIL_FROM=no-reply@mobiwave.co.ke
+CONTACT_MAIL_TO=sales@mobiwave.co.ke
+```
+
+Without SMTP variables, the endpoint falls back to the host's PHP `mail()` transport. Keep the SMTP password in the hosting environment; do not put it in the React `.env` file or commit it.
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:

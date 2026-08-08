@@ -22,21 +22,21 @@ export function About() {
   const isInView = useInView(ref, { once: true, amount: 0.2 });
 
   return (
-    <section className="relative overflow-hidden bg-white py-20 lg:py-28" aria-labelledby="about-heading">
+    <section className="relative overflow-hidden bg-[#f6f4ff] py-14 lg:py-24" aria-labelledby="about-heading">
       <div className="container-custom">
         <motion.div
           ref={ref}
           initial="hidden"
           animate={isInView ? 'visible' : 'hidden'}
           variants={staggerContainer}
-          className="grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-24"
+          className="grid items-center gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20"
         >
           <MotionItem className="relative">
             <div className="relative overflow-hidden rounded-[28px] bg-[#0a1a25]">
               <img
                 src="/about/about-3.jpg"
                 alt="Professional working with connected technology"
-                className="h-[420px] w-full object-cover opacity-85 grayscale-[15%] sm:h-[500px]"
+                className="h-[340px] w-full object-cover opacity-85 grayscale-[15%] sm:h-[460px]"
                 loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0a1a25]/85 via-transparent to-transparent" />
@@ -46,7 +46,7 @@ export function About() {
                 </p>
               </div>
             </div>
-            <div className="absolute -bottom-5 -right-4 hidden rounded-2xl bg-[#1d8c89] px-5 py-4 text-white shadow-xl sm:block">
+            <div className="absolute -bottom-5 -right-4 hidden rounded-2xl bg-[#176fe8] px-5 py-4 text-white shadow-xl sm:block">
               <strong className="block text-2xl font-extrabold" style={{ fontFamily: 'Outfit, sans-serif' }}>6+</strong>
               <span className="text-xs text-white/75">years in the field</span>
             </div>
@@ -78,9 +78,9 @@ export function About() {
           </MotionItem>
         </motion.div>
 
-        <div className="mt-16 grid border-y border-[#0a1a25]/10 sm:grid-cols-3">
+        <div className="mt-10 grid border-y border-[#0a1a25]/10 sm:mt-14 sm:grid-cols-3">
           {stats.map((stat, index) => (
-            <div key={stat.label} className={`px-1 py-6 sm:px-7 sm:py-8 ${index > 0 ? 'border-t border-[#0a1a25]/10 sm:border-l sm:border-t-0' : ''}`}>
+            <div key={stat.label} className={`px-1 py-5 sm:px-7 sm:py-7 ${index > 0 ? 'border-t border-[#0a1a25]/10 sm:border-l sm:border-t-0' : ''}`}>
               <strong className="block text-3xl font-extrabold text-[#0a1a25] sm:text-4xl" style={{ fontFamily: 'Outfit, sans-serif' }}>{stat.value}</strong>
               <span className="mt-1 block text-sm text-[#5b6b78]">{stat.label}</span>
             </div>

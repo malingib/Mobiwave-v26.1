@@ -22,6 +22,7 @@ export function Header() {
   const servicesCloseTimerRef = useRef<number | null>(null);
   const servicesMenuRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
+  const useLightNav = !location.pathname.startsWith('/developers/docs');
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 40);
@@ -80,23 +81,19 @@ export function Header() {
   const navLink = (href: string, label: string) => (
     <Link
       to={href}
-      className={`relative text-sm font-medium transition-colors ${
-        'text-white hover:text-white'
-      }`}
+      className={`relative text-sm font-medium transition-colors ${useLightNav ? 'text-[#273243] hover:text-[#176fe8]' : 'text-white hover:text-white'}`}
     >
       {label}
       {isActive(href) && (
-        <span className="absolute -bottom-1 left-0 w-full h-px rounded-full bg-white/55" />
+        <span className={`absolute -bottom-1 left-0 h-px w-full rounded-full ${useLightNav ? 'bg-[#176fe8]' : 'bg-white/55'}`} />
       )}
     </Link>
   );
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 flex flex-col items-center pt-0 sm:pt-0">
+    <header className="fixed left-0 right-0 top-0 z-50 flex flex-col items-center pt-0">
       <div
-        className={`hidden md:block w-full transition-all duration-400 overflow-hidden ${
-          isScrolled ? 'max-h-0 opacity-0 -translate-y-2' : 'max-h-10 opacity-100 translate-y-0'
-        }`}
+        className={`hidden w-full overflow-hidden transition-all duration-400 md:block ${useLightNav ? 'max-h-0 opacity-0' : isScrolled ? 'max-h-0 opacity-0 -translate-y-2' : 'max-h-10 opacity-100 translate-y-0'}`}
         style={{
           background: '#0a1a25',
           borderBottom: '1px solid rgba(255,255,255,0.08)',
@@ -120,21 +117,19 @@ export function Header() {
       </div>
 
       <nav
-        className={`relative mt-1.5 w-full max-w-xl px-2 transition-all duration-300 sm:mt-2 sm:px-4 lg:max-w-fit ${
-          isScrolled ? 'translate-y-0' : 'translate-y-0'
-        }`}
+        className={`relative w-full transition-all duration-300 ${useLightNav ? 'px-5 sm:px-8 lg:px-10' : 'mt-1.5 max-w-xl px-2 sm:mt-2 sm:px-4 lg:max-w-fit'}`}
       >
         <div
-          className={`relative mx-auto flex w-full max-w-xl items-center justify-between gap-3 overflow-visible rounded-[26px] border px-4 py-2.5 shadow-[0_16px_40px_rgba(4,16,28,0.18)] transition-all duration-300 sm:px-5 sm:py-2.5 lg:w-auto lg:max-w-fit lg:gap-4 ${
-            isScrolled
-              ? 'border-white/12 bg-[rgba(10,30,43,0.76)] backdrop-blur-md'
-              : 'border-white/10 bg-[rgba(9,27,39,0.64)] backdrop-blur-md'
-          }`}
+          className={`relative mx-auto flex w-full items-center justify-between gap-3 overflow-visible transition-all duration-300 ${useLightNav
+            ? isScrolled
+              ? 'max-w-7xl rounded-2xl border border-[#273243]/10 bg-white/90 px-4 py-2.5 shadow-[0_12px_30px_rgba(45,49,84,0.12)] backdrop-blur-md sm:px-5'
+              : 'max-w-7xl border-b border-[#273243]/10 px-0 py-4 sm:py-5'
+            : `max-w-xl rounded-[26px] border px-4 py-2.5 shadow-[0_16px_40px_rgba(4,16,28,0.18)] sm:px-5 sm:py-2.5 lg:w-auto lg:max-w-fit lg:gap-4 ${isScrolled ? 'border-white/12 bg-[rgba(10,30,43,0.76)] backdrop-blur-md' : 'border-white/10 bg-[rgba(9,27,39,0.64)] backdrop-blur-md'}`}`}
           style={{
-            boxShadow: '0 16px 40px rgba(4,16,28,0.18), inset 0 1px 0 rgba(255,255,255,0.05)',
+            boxShadow: useLightNav && !isScrolled ? 'none' : undefined,
           }}
         >
-          <Link to="/" className="flex items-center gap-2.5 pr-2 group">
+          <Link to="/" className={`flex items-center gap-2.5 pr-2 group ${useLightNav ? 'rounded-md bg-white px-1.5 py-1' : ''}`}>
             <img
               src="/branding/mw-logo.svg"
               alt="MobiWave Innovations"
@@ -165,22 +160,20 @@ export function Header() {
                 }}
                 aria-expanded={isServicesOpen}
                 aria-haspopup="menu"
-                className={`flex items-center gap-1 text-sm font-medium transition-colors ${
-                  'text-white hover:text-white'
-                }`}
+                className={`flex items-center gap-1 text-sm font-medium transition-colors ${useLightNav ? 'text-[#273243] hover:text-[#176fe8]' : 'text-white hover:text-white'}`}
               >
                 Services
                 <ChevronDown className={`w-4 h-4 transition-transform ${isServicesOpen ? 'rotate-180' : ''}`} />
               </button>
               {isServicesOpen && (
                 <div className="absolute top-full left-0 z-50 pt-4">
-                  <div className="w-56 rounded-2xl border border-white/10 bg-[rgba(8,24,35,0.94)] py-2 shadow-[0_18px_40px_rgba(10,26,37,0.22)]"
+                  <div className={`w-56 rounded-2xl border py-2 shadow-[0_18px_40px_rgba(10,26,37,0.16)] ${useLightNav ? 'border-[#273243]/10 bg-white' : 'border-white/10 bg-[rgba(8,24,35,0.94)]'}`}
                     style={{ minWidth: 220 }} role="menu">
                     {services.map((s) => (
                       <Link key={s.href} to={s.href}
                         role="menuitem"
                         className={`block px-4 py-2.5 text-sm transition-colors ${
-                          isActive(s.href) ? 'bg-white/10 text-white' : 'text-white/75 hover:bg-white/8 hover:text-white'
+                          isActive(s.href) ? (useLightNav ? 'bg-[#f1efff] text-[#5143a5]' : 'bg-white/10 text-white') : (useLightNav ? 'text-[#4c5565] hover:bg-[#f7f5ff] hover:text-[#5143a5]' : 'text-white/75 hover:bg-white/8 hover:text-white')
                         }`}>
                         {s.label}
                       </Link>
@@ -203,15 +196,19 @@ export function Header() {
               href="https://sms.mobiwave.co.ke/login"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-4 py-2 rounded-full border text-sm font-semibold text-white transition-all duration-200 hover:bg-white/8"
-              style={{ borderColor: 'rgba(255,255,255,0.12)' }}
+              className={`rounded-full border px-4 py-2 text-sm font-semibold transition-all duration-200 ${useLightNav ? 'border-[#176fe8] bg-[#176fe8] text-white hover:bg-[#0f5ec9]' : 'text-white hover:bg-white/8'}`}
+              style={useLightNav ? undefined : { borderColor: 'rgba(255,255,255,0.12)' }}
               onMouseEnter={e => {
-                (e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.08)';
-                (e.currentTarget as HTMLElement).style.color = 'white';
+                if (!useLightNav) {
+                  (e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.08)';
+                  (e.currentTarget as HTMLElement).style.color = 'white';
+                }
               }}
               onMouseLeave={e => {
-                (e.currentTarget as HTMLElement).style.background = 'transparent';
-                (e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,0.88)';
+                if (!useLightNav) {
+                  (e.currentTarget as HTMLElement).style.background = 'transparent';
+                  (e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,0.88)';
+                }
               }}
             >
               SMS Platform
@@ -219,7 +216,7 @@ export function Header() {
           </div>
 
           <button
-            className="lg:hidden rounded-full p-2 text-white/90 hover:bg-white/10 hover:text-white transition-colors"
+            className={`rounded-full p-2 transition-colors lg:hidden ${useLightNav ? 'text-[#273243] hover:bg-[#ebe8fa] hover:text-[#176fe8]' : 'text-white/90 hover:bg-white/10 hover:text-white'}`}
             onClick={() => setIsMobileOpen(!isMobileOpen)}
             aria-label={isMobileOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={isMobileOpen}
@@ -231,17 +228,17 @@ export function Header() {
 
         <div
           id="mobile-navigation"
-          className={`lg:hidden absolute top-full left-1/2 mt-2 w-full max-w-xl -translate-x-1/2 rounded-[26px] border border-white/10 bg-[rgba(9,27,39,0.88)] shadow-[0_16px_40px_rgba(4,16,28,0.18)] backdrop-blur-md transition-all duration-300 ${
+          className={`absolute left-1/2 top-full mt-2 w-full max-w-xl -translate-x-1/2 rounded-[26px] border shadow-[0_16px_40px_rgba(4,16,28,0.18)] backdrop-blur-md transition-all duration-300 lg:hidden ${useLightNav ? 'border-[#273243]/10 bg-white/95' : 'border-white/10 bg-[rgba(9,27,39,0.88)]'} ${
           isMobileOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible pointer-events-none -translate-y-2'
         }`}>
           <div className="max-h-[calc(100dvh-96px)] overflow-y-auto px-4 py-4 flex flex-col gap-1">
-            <Link to="/" className={`py-3 px-4 rounded-xl text-base font-medium transition-colors ${isActive('/') ? 'bg-white/18 text-white' : 'text-white/90 hover:bg-white/10'}`}>Home</Link>
+            <Link to="/" className={`rounded-xl px-4 py-3 text-base font-medium transition-colors ${isActive('/') ? (useLightNav ? 'bg-[#f1efff] text-[#5143a5]' : 'bg-white/18 text-white') : (useLightNav ? 'text-[#273243] hover:bg-[#f7f5ff]' : 'text-white/90 hover:bg-white/10')}`}>Home</Link>
 
             <div className="px-1 py-1">
               <button
                 type="button"
                 onClick={() => setIsMobileServicesOpen((prev) => !prev)}
-                className="w-full flex items-center justify-between py-3 px-3 rounded-xl text-base font-medium text-white/90 hover:bg-white/10 transition-colors"
+                className={`flex w-full items-center justify-between rounded-xl px-3 py-3 text-base font-medium transition-colors ${useLightNav ? 'text-[#273243] hover:bg-[#f7f5ff]' : 'text-white/90 hover:bg-white/10'}`}
                 aria-expanded={isMobileServicesOpen}
                 aria-controls="mobile-services-list"
               >
@@ -257,18 +254,18 @@ export function Header() {
                 <div className="overflow-hidden">
                   <div className="pl-3 pr-1 pb-2 pt-1 space-y-1">
                     {services.map((s) => (
-                      <Link key={s.href} to={s.href} className={`block py-2.5 px-3 rounded-lg text-sm transition-colors ${isActive(s.href) ? 'bg-white/18 text-white' : 'text-white/75 hover:bg-white/10 hover:text-white'}`}>{s.label}</Link>
+                      <Link key={s.href} to={s.href} className={`block rounded-lg px-3 py-2.5 text-sm transition-colors ${isActive(s.href) ? (useLightNav ? 'bg-[#f1efff] text-[#5143a5]' : 'bg-white/18 text-white') : (useLightNav ? 'text-[#596274] hover:bg-[#f7f5ff] hover:text-[#5143a5]' : 'text-white/75 hover:bg-white/10 hover:text-white')}`}>{s.label}</Link>
                     ))}
                   </div>
                 </div>
               </div>
             </div>
 
-            <Link to="/pricing" className={`py-3 px-4 rounded-xl text-base font-medium transition-colors ${isActive('/pricing') ? 'bg-white/18 text-white' : 'text-white/90 hover:bg-white/10'}`}>Pricing</Link>
-            <Link to="/innovations" className={`py-3 px-4 rounded-xl text-base font-medium transition-colors ${isActive('/innovations') ? 'bg-white/18 text-white' : 'text-white/90 hover:bg-white/10'}`}>Innovations</Link>
-            <Link to="/about" className={`py-3 px-4 rounded-xl text-base font-medium transition-colors ${isActive('/about') ? 'bg-white/18 text-white' : 'text-white/90 hover:bg-white/10'}`}>About Us</Link>
-            <Link to="/developers/docs" className={`py-3 px-4 rounded-xl text-base font-medium transition-colors ${isActive('/developers/docs') ? 'bg-white/18 text-white' : 'text-white/90 hover:bg-white/10'}`}>API Docs</Link>
-            <Link to="/contact" className={`py-3 px-4 rounded-xl text-base font-medium transition-colors ${isActive('/contact') ? 'bg-white/18 text-white' : 'text-white/90 hover:bg-white/10'}`}>Contact Us</Link>
+            <Link to="/pricing" className={`rounded-xl px-4 py-3 text-base font-medium transition-colors ${isActive('/pricing') ? (useLightNav ? 'bg-[#f1efff] text-[#5143a5]' : 'bg-white/18 text-white') : (useLightNav ? 'text-[#273243] hover:bg-[#f7f5ff]' : 'text-white/90 hover:bg-white/10')}`}>Pricing</Link>
+            <Link to="/innovations" className={`rounded-xl px-4 py-3 text-base font-medium transition-colors ${isActive('/innovations') ? (useLightNav ? 'bg-[#f1efff] text-[#5143a5]' : 'bg-white/18 text-white') : (useLightNav ? 'text-[#273243] hover:bg-[#f7f5ff]' : 'text-white/90 hover:bg-white/10')}`}>Innovations</Link>
+            <Link to="/about" className={`rounded-xl px-4 py-3 text-base font-medium transition-colors ${isActive('/about') ? (useLightNav ? 'bg-[#f1efff] text-[#5143a5]' : 'bg-white/18 text-white') : (useLightNav ? 'text-[#273243] hover:bg-[#f7f5ff]' : 'text-white/90 hover:bg-white/10')}`}>About Us</Link>
+            <Link to="/developers/docs" className={`rounded-xl px-4 py-3 text-base font-medium transition-colors ${isActive('/developers/docs') ? (useLightNav ? 'bg-[#f1efff] text-[#5143a5]' : 'bg-white/18 text-white') : (useLightNav ? 'text-[#273243] hover:bg-[#f7f5ff]' : 'text-white/90 hover:bg-white/10')}`}>API Docs</Link>
+            <Link to="/contact" className={`rounded-xl px-4 py-3 text-base font-medium transition-colors ${isActive('/contact') ? (useLightNav ? 'bg-[#f1efff] text-[#5143a5]' : 'bg-white/18 text-white') : (useLightNav ? 'text-[#273243] hover:bg-[#f7f5ff]' : 'text-white/90 hover:bg-white/10')}`}>Contact Us</Link>
 
             <div className="flex flex-col gap-3 pt-4 border-t mt-2">
               <a href="https://sms.mobiwave.co.ke/login" target="_blank" rel="noopener noreferrer"

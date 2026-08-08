@@ -173,6 +173,7 @@ export function Contact() {
               onSubmit={handleSubmit}
               className="lg:col-span-2 bg-white rounded-2xl shadow-lg border border-gray-100 p-8"
             >
+              <input type="hidden" name="formType" value="contact-page" />
               {isSubmitted ? (
                 <div className="flex flex-col items-center justify-center py-16">
                   <div className="w-16 h-16 rounded-full bg-[#1d8c89]/20 flex items-center justify-center mb-4">

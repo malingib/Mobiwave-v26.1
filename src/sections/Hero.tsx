@@ -1,79 +1,64 @@
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
-import { staggerContainer, heroLine, heroButton } from '@/lib/motion';
-import { GlobeBackground } from '@/components/GlobeBackground';
-import { GravityParticles } from '@/components/GravityParticles';
-import { HeroWaves, ParallaxDecoration, FloatingPlus, FloatingCircle } from '@/components/Decorations';
+import { heroButton, heroLine, staggerContainer } from '@/lib/motion';
+import { HeroWaves } from '@/components/Decorations';
 
 export function Hero() {
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0a1a25]">
-      <GravityParticles />
-      <GlobeBackground />
+    <section id="home" className="relative isolate min-h-screen overflow-hidden bg-[#f6f4ff] text-[#172333]">
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_44%,rgba(202,190,244,0.38),transparent_28%),radial-gradient(circle_at_88%_22%,rgba(124,193,245,0.16),transparent_25%)]" />
+      <div aria-hidden="true" className="pointer-events-none absolute bottom-28 left-0 h-40 w-40 opacity-30 [background-image:radial-gradient(#8c7ed1_1.2px,transparent_1.2px)] [background-size:15px_15px]" />
 
-      {/* Parallax floating decorations — Luxas-style */}
-      <ParallaxDecoration speed={0.4} className="top-[15%] left-[8%] text-blue-500/15">
-        <FloatingPlus className="w-16 h-16" />
-      </ParallaxDecoration>
-      <ParallaxDecoration speed={-0.3} className="top-[25%] right-[12%]">
-        <FloatingCircle className="border-2 border-cyan-400/15" size={100} />
-      </ParallaxDecoration>
-      <ParallaxDecoration speed={0.2} className="bottom-[30%] left-[15%]">
-        <FloatingCircle className="border-2 border-blue-400/10" size={60} />
-      </ParallaxDecoration>
-      <ParallaxDecoration speed={-0.25} className="top-[40%] right-[5%] text-blue-500/10">
-        <FloatingPlus className="w-10 h-10" />
-      </ParallaxDecoration>
-
-      <div className="relative z-10 container-custom text-center px-4 pt-32 pb-40">
-        <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
-
-          {/* Headline */}
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-5 leading-tight"
-            style={{ fontFamily: 'Outfit, sans-serif', letterSpacing: '-0.02em' }}>
-            <motion.span variants={heroLine} className="block">Bulk SMS that</motion.span>
-            <motion.span variants={heroLine} className="block" style={{ color: '#0084ff' }}>actually delivers.</motion.span>
-          </h1>
-
-          {/* Sub */}
-          <motion.p variants={heroLine} className="text-base sm:text-lg text-white/60 max-w-xl mx-auto mb-10 leading-relaxed">
-            MobiWave is a Nairobi-based communication platform built for Kenyan organisations.
-            Bulk SMS, M-Pesa integration, USSD menus — all routed smartly across Safaricom, Airtel, and Telkom.
-          </motion.p>
-
-          {/* CTAs */}
-          <motion.div variants={heroButton} className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-16">
-            <a href="#contact" className="mw-btn mw-btn-primary inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-white transition-all">
-              Talk to us <ArrowRight className="w-4 h-4" />
-            </a>
-            <a href="#services" className="mw-btn mw-btn-secondary inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-white/80 transition-all"
-              style={{ border: '1px solid rgba(255,255,255,0.2)' }}>
-              What we do
-            </a>
+      <div className="relative z-10 mx-auto max-w-7xl px-5 pb-40 pt-16 sm:px-8 sm:pt-16 lg:px-10 lg:pb-44 lg:pt-20">
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={staggerContainer}
+          className="grid items-center gap-8 lg:grid-cols-[minmax(0,1.02fr)_minmax(0,0.98fr)] lg:gap-12"
+        >
+          <motion.div variants={heroButton} className="relative flex min-h-[31rem] items-center justify-center sm:min-h-[38rem] lg:min-h-[43rem]">
+            <img
+              src="/martex-hero.png"
+              alt="MobiWave communication campaign illustration"
+              className="relative z-10 h-auto w-full max-w-[33rem] object-contain drop-shadow-[0_24px_30px_rgba(94,77,148,0.08)]"
+              loading="eager"
+              decoding="async"
+            />
           </motion.div>
 
-          {/* Stats */}
-          <div className="flex justify-center gap-10 sm:gap-16">
-            <div className="text-center">
-              <div className="text-2xl sm:text-3xl font-bold text-white">99.9%</div>
-              <div className="text-xs text-white/40 uppercase tracking-wider mt-1">Delivery rate</div>
-              <div className="text-[10px] text-white/30 mt-0.5">across Kenyan networks</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl sm:text-3xl font-bold text-white">10M+</div>
-              <div className="text-xs text-white/40 uppercase tracking-wider mt-1">Messages sent</div>
-              <div className="text-[10px] text-white/30 mt-0.5">since 2019</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl sm:text-3xl font-bold text-white">500+</div>
-              <div className="text-xs text-white/40 uppercase tracking-wider mt-1">Projects</div>
-              <div className="text-[10px] text-white/30 mt-0.5">across East Africa</div>
-            </div>
+          <div className="max-w-xl lg:pl-2">
+            <motion.h1 variants={heroLine} className="max-w-[10ch] text-5xl font-bold leading-[1.02] tracking-[-0.04em] text-[#172333] sm:text-6xl lg:text-[clamp(4rem,5.15vw,5.5rem)]">
+              Reach every customer with MobiWave.
+            </motion.h1>
+
+            <motion.p variants={heroLine} className="mt-7 max-w-xl text-base leading-7 text-[#586273] sm:text-lg sm:leading-8">
+              Build stronger conversations with reliable SMS, M-Pesa, USSD, and WhatsApp tools made for Kenyan organisations.
+            </motion.p>
+
+            <motion.div variants={heroButton} className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
+              <a href="#contact" className="mw-btn-primary-solid inline-flex items-center justify-center gap-2 rounded-md px-7 py-3.5 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5">
+                Get started <ArrowRight className="h-4 w-4" />
+              </a>
+              <a href="#services" className="inline-flex items-center justify-center gap-2 rounded-md border border-[#7a70a8]/25 bg-white/50 px-7 py-3.5 text-sm font-semibold text-[#4b4e64] transition-all duration-300 hover:border-[#6651c9]/40 hover:bg-white hover:text-[#3e347f]">
+                See how it works
+              </a>
+            </motion.div>
+
+            <motion.div variants={heroLine} className="mt-12 grid max-w-md grid-cols-2 gap-6 sm:gap-10">
+              <div>
+                <span className="block text-3xl font-bold tracking-[-0.045em] text-[#172333] sm:text-4xl">99.9%</span>
+                <span className="mt-1 block max-w-[10rem] text-xs leading-5 text-[#586273]">reliable delivery across Kenyan networks</span>
+              </div>
+              <div>
+                <span className="block text-3xl font-bold tracking-[-0.045em] text-[#172333] sm:text-4xl">10M+</span>
+                <span className="mt-1 block max-w-[10rem] text-xs leading-5 text-[#586273]">messages sent through MobiWave</span>
+              </div>
+            </motion.div>
           </div>
         </motion.div>
       </div>
 
-      {/* Animated wave dividers — Luxas-style */}
+      {/* The MobiWave wave transition is intentionally retained as the only incumbent hero element. */}
       <HeroWaves />
     </section>
   );

@@ -65,7 +65,7 @@ export function Services() {
   return (
     <section
       id="services"
-      className="relative overflow-hidden bg-[#f4f7fb] py-20 lg:py-28"
+      className="relative overflow-hidden bg-white py-20 lg:py-28"
       aria-labelledby="services-heading"
     >
       <div className="container-custom relative z-10">
