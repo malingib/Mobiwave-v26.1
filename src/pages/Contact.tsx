@@ -35,7 +35,7 @@ const contactInfo = [
   {
     icon: MapPin,
     label: 'Address',
-    value: 'Nairobi, Kenya',
+    value: 'Titanic Building, 1st Floor, Room 2, Biashara Street, Kilifi',
     href: null
   },
   {

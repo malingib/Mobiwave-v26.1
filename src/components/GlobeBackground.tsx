@@ -9,7 +9,7 @@ interface City {
 }
 
 const CITIES: City[] = [
-  { name: 'Nairobi', lat: -1.29, lng: 36.82, color: '#0084ff' },
+  { name: 'Kilifi', lat: -3.63, lng: 39.85, color: '#0084ff' },
   { name: 'London', lat: 51.51, lng: -0.13, color: '#0084ff' },
   { name: 'Dubai', lat: 25.2, lng: 55.27, color: '#1d8c89' },
   { name: 'Johannesburg', lat: -26.2, lng: 28.04, color: '#1ea6ff' },

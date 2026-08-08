@@ -1,5 +1,7 @@
 type AnalyticsParams = Record<string, string | number | boolean | undefined>;
 
+export const GA_MEASUREMENT_ID = 'G-G3K9EHFW8M';
+
 declare global {
   interface Window {
     dataLayer: unknown[];
@@ -8,19 +10,20 @@ declare global {
 }
 
 export function initializeAnalytics() {
-  const measurementId = import.meta.env.VITE_GA_MEASUREMENT_ID;
-  if (!measurementId || document.querySelector(`script[data-ga-id="${measurementId}"]`)) return;
+  if (typeof window === 'undefined' || window.gtag) return;
 
   window.dataLayer = window.dataLayer || [];
   window.gtag = (...args: unknown[]) => window.dataLayer.push(args);
   window.gtag('js', new Date());
-  window.gtag('config', measurementId, { anonymize_ip: true });
+  window.gtag('config', GA_MEASUREMENT_ID, { anonymize_ip: true });
+}
 
-  const script = document.createElement('script');
-  script.async = true;
-  script.dataset.gaId = measurementId;
-  script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(measurementId)}`;
-  document.head.appendChild(script);
+export function trackPageView(path: string, title?: string) {
+  window.gtag?.('event', 'page_view', {
+    page_path: path,
+    page_title: title ?? document.title,
+    page_location: window.location.href,
+  });
 }
 
 export function trackEvent(name: string, params: AnalyticsParams = {}) {

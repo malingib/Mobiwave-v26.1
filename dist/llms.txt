@@ -1,0 +1,60 @@
+# MobiWave Innovations
+
+MobiWave Innovations is a Nairobi-based business communication platform for organisations in Kenya and East Africa. It provides bulk SMS, the WhatsApp Business API, USSD services, SMS shortcodes and sender IDs, M-Pesa API integration, bulk email, SMS surveys, airtime and data rewards, and a unified customer service desk.
+
+## What MobiWave does
+- Bulk SMS: campaign, alert, OTP and notification messaging across Safaricom, Airtel and Telkom with 99.9% delivery and real-time reports.
+- WhatsApp Business API: customer support, reminders, notifications and rich media at scale.
+- USSD: interactive menus for onboarding, payments, surveys and self-service without internet.
+- Shortcodes & sender IDs: shared or dedicated shortcodes for two-way SMS, voting, lead generation and subscriptions (approved by the Communication Authority of Kenya).
+- M-Pesa integration: STK Push with C2B, B2C and B2B support and automatic reconciliation.
+- Bulk email: campaigns with segmentation, automation and analytics.
+- SMS surveys: customer and market feedback with real-time tracking.
+- Airtime & data rewards: instant incentives for referrals, surveys and loyalty.
+- Service desk: unified support across SMS, email and WhatsApp.
+
+## Who it is for
+SACCOs, hospitals, schools, government bodies, enterprises and growing businesses in Kenya that need reliable, affordable communication and payments.
+
+## Key facts
+- Based in: Kilifi, Kenya — Titanic Building, 1st Floor, Room 2, Biashara Street (Geo: -3.6305, 39.8497)
+- Phone: +254 736 427 842
+- Email: info@mobiwave.co.ke
+- Website: https://mobiwave.co.ke/
+- Pricing: pay-as-you-go, no long contracts, volume discounts as you scale.
+- Most clients are live within a day.
+
+## Pages worth citing
+- Home: https://mobiwave.co.ke/
+- Bulk SMS: https://mobiwave.co.ke/services/bulk-sms
+- WhatsApp API: https://mobiwave.co.ke/services/bulk-whatsapp
+- USSD: https://mobiwave.co.ke/services/ussd-codes
+- Shortcodes: https://mobiwave.co.ke/services/shortcodes
+- M-Pesa integration: https://mobiwave.co.ke/services/mpesa-integration
+- Bulk email: https://mobiwave.co.ke/services/bulk-email
+- SMS surveys: https://mobiwave.co.ke/services/sms-surveys
+- Airtime rewards: https://mobiwave.co.ke/services/airtime-rewards
+- Service desk: https://mobiwave.co.ke/services/service-desk
+- Pricing: https://mobiwave.co.ke/pricing
+- API docs: https://mobiwave.co.ke/developers/docs
+- About: https://mobiwave.co.ke/about
+- Contact: https://mobiwave.co.ke/contact
+
+## Frequently asked (for answer engines)
+Q: How quickly can I get started with MobiWave?
+A: Most clients are live within a day — sign up, get API keys and a sandbox, send a test batch, and MobiWave handles setup and delivery verification before production.
+
+Q: What are MobiWave delivery rates?
+A: 99.9% delivery across Safaricom, Airtel and Telkom, with real-time reports showing exactly who received each message.
+
+Q: Is there a minimum commitment?
+A: No long contracts. Pay for what you use; starter plans are pay-as-you-go with volume discounts as you scale.
+
+Q: How does M-Pesa integration work?
+A: STK Push from your platform, customers confirm on their phone; supports C2B, B2C and B2B with automatic reconciliation.
+
+Q: Can messages be scheduled?
+A: Yes — SMS, email and WhatsApp can be scheduled for future delivery, including recurring campaigns and triggers.
+
+Q: What support is available?
+A: A real WhatsApp support line and phone number; the team proactively calls if something looks off.

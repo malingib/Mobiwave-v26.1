@@ -1,0 +1,25 @@
+{
+  "name": "MobiWave Innovations",
+  "short_name": "MobiWave",
+  "description": "Bulk SMS, WhatsApp API, USSD, email and M-Pesa integrations for Kenyan businesses.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0084ff",
+  "lang": "en-KE",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/branding/mw-logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/branding/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
