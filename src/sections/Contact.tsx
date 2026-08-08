@@ -191,31 +191,31 @@ export function Contact({ embedded = false }: ContactProps) {
       <form ref={formRef} onSubmit={handleSubmit} className="w-full" aria-label="Contact form">
         <input type="hidden" name="formType" value="homepage" />
         {isSubmitted ? (
-          <div className="flex flex-col items-center justify-center py-10">
-            <div className="w-14 h-14 rounded-2xl bg-[#1d8c89]/20 flex items-center justify-center mb-4">
-              <CheckCircle className="w-7 h-7 text-[#1d8c89]" />
+            <div className="flex flex-col items-center justify-center py-10">
+            <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#e5f7f2]">
+              <CheckCircle className="h-7 w-7 text-[#168a75]" />
             </div>
-            <h4 className="text-lg font-bold text-white mb-2">Message sent</h4>
-            <p className="text-white/55 text-sm text-center">We&apos;ll get back to you within an hour during business hours.</p>
+            <h4 className="mb-2 text-lg font-bold text-[#172333]">Message sent</h4>
+            <p className="text-center text-sm text-[#586273]">We&apos;ll get back to you within an hour during business hours.</p>
           </div>
         ) : (
           <div className="space-y-4">
             <div className="form-field">
-              <Label htmlFor="emb-name" className="text-white/80 text-sm">Name <span className="text-red-400">*</span></Label>
-              <Input id="emb-name" name="name" placeholder="Your name" required className="mt-1.5 border-white/15 bg-white/10 text-white placeholder:text-white/40 focus:border-[#0084ff]" />
+              <Label htmlFor="emb-name" className="text-sm text-[#172333]">Name <span className="text-red-500">*</span></Label>
+              <Input id="emb-name" name="name" placeholder="Your name" required className="mt-1.5 border-[#172333]/15 bg-white text-[#172333] placeholder:text-[#586273]/55 focus:border-[#176fe8]" />
             </div>
             <div className="form-field">
-              <Label htmlFor="emb-email" className="text-white/80 text-sm">Email <span className="text-red-400">*</span></Label>
-              <Input id="emb-email" name="email" type="email" placeholder="you@company.co.ke" required className="mt-1.5 border-white/15 bg-white/10 text-white placeholder:text-white/40 focus:border-[#0084ff]" />
+              <Label htmlFor="emb-email" className="text-sm text-[#172333]">Email <span className="text-red-500">*</span></Label>
+              <Input id="emb-email" name="email" type="email" placeholder="you@company.co.ke" required className="mt-1.5 border-[#172333]/15 bg-white text-[#172333] placeholder:text-[#586273]/55 focus:border-[#176fe8]" />
             </div>
             <div className="form-field">
-              <Label htmlFor="emb-phone" className="text-white/80 text-sm">Phone</Label>
-              <Input id="emb-phone" name="phone" type="tel" placeholder="+254 7XX XXX XXX" className="mt-1.5 border-white/15 bg-white/10 text-white placeholder:text-white/40 focus:border-[#0084ff]" />
+              <Label htmlFor="emb-phone" className="text-sm text-[#172333]">Phone</Label>
+              <Input id="emb-phone" name="phone" type="tel" placeholder="+254 7XX XXX XXX" className="mt-1.5 border-[#172333]/15 bg-white text-[#172333] placeholder:text-[#586273]/55 focus:border-[#176fe8]" />
             </div>
             <div className="form-field">
-              <Label htmlFor="emb-service" className="text-white/80 text-sm">Service <span className="text-red-400">*</span></Label>
+              <Label htmlFor="emb-service" className="text-sm text-[#172333]">Service <span className="text-red-500">*</span></Label>
               <Select name="service" required>
-                <SelectTrigger id="emb-service" className="mt-1.5 border-white/15 bg-white/10 text-white">
+                <SelectTrigger id="emb-service" className="mt-1.5 border-[#172333]/15 bg-white text-[#172333]">
                   <SelectValue placeholder="Select a service" />
                 </SelectTrigger>
                 <SelectContent>
@@ -226,8 +226,8 @@ export function Contact({ embedded = false }: ContactProps) {
               </Select>
             </div>
             <div className="form-field">
-              <Label htmlFor="emb-message" className="text-white/80 text-sm">Message</Label>
-              <Textarea id="emb-message" name="message" placeholder="Tell us what you need" rows={4} className="mt-1.5 border-white/15 bg-white/10 text-white placeholder:text-white/40 focus:border-[#0084ff]" />
+              <Label htmlFor="emb-message" className="text-sm text-[#172333]">Message</Label>
+              <Textarea id="emb-message" name="message" placeholder="Tell us what you need" rows={4} className="mt-1.5 border-[#172333]/15 bg-white text-[#172333] placeholder:text-[#586273]/55 focus:border-[#176fe8]" />
             </div>
             {submitError && <p className="text-sm leading-5 text-red-300" role="alert">{submitError}</p>}
             <button type="submit" disabled={isSubmitting} className="mw-btn-primary-solid w-full justify-center py-3.5 disabled:cursor-not-allowed disabled:opacity-60">

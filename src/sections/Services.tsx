@@ -74,67 +74,47 @@ export function Services() {
           initial="hidden"
           animate={isInView ? 'visible' : 'hidden'}
           variants={staggerContainer}
-          className="grid gap-14 lg:grid-cols-[0.8fr_1.2fr] lg:gap-24"
+          className="mx-auto max-w-6xl"
         >
-          <MotionItem className="lg:sticky lg:top-32 lg:self-start">
-            <div className="mb-5 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-[#0084ff]">
-              <span className="h-px w-8 bg-[#0084ff]" />
+          <MotionItem className="text-center">
+            <div className="mb-5 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-[#176fe8]">
+              <span className="h-px w-8 bg-[#176fe8]" />
               What we do
+              <span className="h-px w-8 bg-[#176fe8]" />
             </div>
-            <h2
-              id="services-heading"
-              className="max-w-xl text-4xl font-extrabold leading-[1.04] tracking-[-0.04em] text-[#0a1a25] sm:text-5xl lg:text-6xl"
-              style={{ fontFamily: 'Outfit, sans-serif' }}
-            >
+            <h2 id="services-heading" className="mx-auto max-w-3xl text-4xl font-extrabold leading-[1.04] tracking-[-0.04em] text-[#172333] sm:text-5xl lg:text-6xl" style={{ fontFamily: 'Outfit, sans-serif' }}>
               The channels that keep business moving.
             </h2>
-            <p className="mt-6 max-w-md text-base leading-7 text-[#5b6b78] sm:text-lg">
+            <p className="mx-auto mt-6 max-w-2xl text-base leading-7 text-[#586273] sm:text-lg">
               One dependable platform for the moments that matter: a payment made, a customer reached, a message delivered.
             </p>
-            <Link
-              to="/innovations"
-              className="group mt-9 inline-flex items-center gap-2 border-b border-[#0a1a25]/25 pb-2 text-sm font-bold text-[#0a1a25] transition-colors hover:border-[#0084ff] hover:text-[#0084ff]"
-            >
-              See the full platform
-              <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-            </Link>
           </MotionItem>
 
-          <MotionItem>
-            <div className="border-y border-[#0a1a25]/10">
-              <div>
-                {services.map((service, index) => {
-                  const Icon = service.icon;
+          <div className="mt-12 grid gap-5 md:grid-cols-2 lg:mt-16 lg:grid-cols-3 lg:gap-7">
+            {services.map((service, index) => {
+              const Icon = service.icon;
+              return (
+                <MotionItem key={service.title}>
+                  <Link to={service.href} className="group block h-full rounded-[22px] border border-[#172333]/8 bg-white p-7 text-left shadow-[0_12px_30px_rgba(45,49,84,0.05)] transition-all duration-300 hover:-translate-y-1 hover:border-[#176fe8]/25 hover:shadow-[0_18px_36px_rgba(45,49,84,0.1)]">
+                    <div className="flex items-center justify-between">
+                      <span className="flex h-12 w-12 items-center justify-center rounded-full transition-transform duration-300 group-hover:scale-110" style={{ backgroundColor: `${service.accent}14`, color: service.accent }}>
+                        <Icon className="h-5 w-5" />
+                      </span>
+                      <span className="font-mono text-xs text-[#586273]/55">{String(index + 1).padStart(2, '0')}</span>
+                    </div>
+                    <h3 className="mt-7 text-xl font-bold text-[#172333] transition-colors group-hover:text-[#176fe8]" style={{ fontFamily: 'Outfit, sans-serif' }}>{service.title}</h3>
+                    <p className="mt-3 text-sm leading-6 text-[#586273]">{service.description}</p>
+                    <span className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-[#176fe8]">Explore service <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" /></span>
+                  </Link>
+                </MotionItem>
+              );
+            })}
+          </div>
 
-                  return (
-                    <Link
-                      key={service.title}
-                      to={service.href}
-                      className="group relative flex items-center gap-4 border-b border-[#0a1a25]/10 py-5 last:border-b-0 sm:gap-6 sm:py-6"
-                    >
-                      <span className="w-6 shrink-0 font-mono text-xs text-[#5b6b78]/60">
-                        {String(index + 1).padStart(2, '0')}
-                      </span>
-                      <span
-                        className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full transition-transform duration-300 group-hover:scale-110"
-                        style={{ backgroundColor: `${service.accent}14`, color: service.accent }}
-                      >
-                        <Icon className="h-[18px] w-[18px]" />
-                      </span>
-                      <span className="min-w-0 flex-1">
-                        <span className="block text-base font-bold capitalize text-[#0a1a25] transition-colors group-hover:text-[#0084ff] sm:text-lg">
-                          {service.title}
-                        </span>
-                        <span className="mt-1 block max-w-lg text-sm leading-6 text-[#5b6b78]">
-                          {service.description}
-                        </span>
-                      </span>
-                      <ArrowUpRight className="h-5 w-5 shrink-0 text-[#5b6b78]/40 transition-all duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-[#0084ff]" />
-                    </Link>
-                  );
-                })}
-              </div>
-            </div>
+          <MotionItem className="mt-10 text-center">
+            <Link to="/innovations" className="group inline-flex items-center gap-2 border-b border-[#172333]/25 pb-2 text-sm font-bold text-[#172333] transition-colors hover:border-[#176fe8] hover:text-[#176fe8]">
+              See the full platform <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+            </Link>
           </MotionItem>
         </motion.div>
       </div>

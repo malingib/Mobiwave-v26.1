@@ -31,60 +31,41 @@ const stories = [
 export function Testimonials() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
-  const featured = stories[0];
 
   return (
     <section id="testimonials" className="overflow-hidden bg-white py-20 lg:py-28" aria-labelledby="testimonials-heading">
       <div className="container-custom">
         <motion.div ref={ref} initial="hidden" animate={isInView ? 'visible' : 'hidden'} variants={staggerContainer}>
-          <MotionItem className="mb-12 flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
-            <div>
-              <div className="mb-5 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-[#0084ff]">
-                <span className="h-px w-8 bg-[#0084ff]" />
-                Customer stories
-              </div>
-              <h2 id="testimonials-heading" className="max-w-xl text-4xl font-extrabold leading-[1.05] tracking-[-0.04em] text-[#0a1a25] sm:text-5xl" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                The difference is visible in the work.
-              </h2>
+          <MotionItem className="mx-auto mb-12 max-w-3xl text-center">
+            <div className="mb-5 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-[#6255b7]">
+              <span className="h-px w-8 bg-[#7566cf]" />
+              Customer stories
+              <span className="h-px w-8 bg-[#7566cf]" />
             </div>
-            <p className="max-w-sm text-sm leading-6 text-[#5b6b78] sm:text-base">Real feedback from organisations using MobiWave every day.</p>
+            <h2 id="testimonials-heading" className="text-4xl font-extrabold leading-[1.05] tracking-[-0.04em] text-[#172333] sm:text-5xl" style={{ fontFamily: 'Outfit, sans-serif' }}>
+              Trusted when the message matters.
+            </h2>
+            <p className="mx-auto mt-6 max-w-xl text-base leading-7 text-[#586273] sm:text-lg">Real feedback from organisations using MobiWave every day.</p>
           </MotionItem>
 
-          <MotionItem>
-            <article className="grid overflow-hidden rounded-[28px] bg-[#0a1a25] lg:grid-cols-[1.35fr_0.65fr]">
-              <div className="relative p-7 sm:p-10 lg:p-14">
-                <Quote className="absolute right-8 top-8 h-14 w-14 text-[#36b8ff]/20" aria-hidden />
-                <blockquote className="relative max-w-2xl text-2xl font-semibold leading-9 text-white sm:text-3xl sm:leading-[1.3]" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                  &ldquo;{featured.quote}&rdquo;
-                </blockquote>
-                <div className="mt-10 flex items-center justify-between gap-6 border-t border-white/15 pt-6">
-                  <div>
-                    <p className="text-sm font-bold text-white">{featured.name}</p>
-                    <p className="mt-1 text-sm text-white/50">{featured.role}</p>
-                  </div>
-                  <a href="#contact" className="group inline-flex items-center gap-2 text-sm font-bold text-[#36b8ff]">Start a conversation <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" /></a>
-                </div>
-              </div>
-              <div className="flex flex-col justify-end bg-[#1d8c89] p-7 sm:p-10">
-                <p className="text-5xl font-extrabold text-white sm:text-6xl" style={{ fontFamily: 'Outfit, sans-serif' }}>{featured.result}</p>
-                <p className="mt-2 max-w-[180px] text-sm leading-6 text-white/75">{featured.resultLabel}</p>
-              </div>
-            </article>
-          </MotionItem>
-
-          <div className="mt-8 grid border-y border-[#0a1a25]/10 sm:grid-cols-2 lg:grid-cols-3">
-            {stories.slice(1).map((story, index) => (
+          <div className="grid gap-5 lg:grid-cols-3 lg:gap-7">
+            {stories.map((story) => (
               <MotionItem key={story.name}>
-                <article className={`py-6 sm:px-7 sm:py-8 ${index > 0 ? 'border-t border-[#0a1a25]/10 sm:border-l sm:border-t-0' : ''}`}>
-                  <p className="text-sm leading-6 text-[#0a1a25]/75">&ldquo;{story.quote}&rdquo;</p>
-                  <div className="mt-6 flex items-end justify-between gap-4">
-                    <div><p className="text-sm font-bold text-[#0a1a25]">{story.name}</p><p className="mt-1 text-xs text-[#5b6b78]">{story.role}</p></div>
-                    <div className="text-right"><p className="text-lg font-extrabold text-[#0084ff]" style={{ fontFamily: 'Outfit, sans-serif' }}>{story.result}</p><p className="text-[10px] text-[#5b6b78]">{story.resultLabel}</p></div>
+                <article className="flex h-full flex-col rounded-[22px] border border-[#172333]/10 bg-[#f7f7fc] p-7 transition-transform duration-300 hover:-translate-y-1 sm:p-8">
+                  <Quote className="h-8 w-8 text-[#7566cf]" aria-hidden />
+                  <blockquote className="mt-6 flex-1 text-lg font-semibold leading-8 text-[#172333]" style={{ fontFamily: 'Outfit, sans-serif' }}>&ldquo;{story.quote}&rdquo;</blockquote>
+                  <div className="mt-8 flex items-end justify-between gap-4 border-t border-[#172333]/10 pt-5">
+                    <div><p className="text-sm font-bold text-[#172333]">{story.name}</p><p className="mt-1 text-xs text-[#586273]">{story.role}</p></div>
+                    <div className="text-right"><p className="text-lg font-extrabold text-[#176fe8]" style={{ fontFamily: 'Outfit, sans-serif' }}>{story.result}</p><p className="text-[10px] text-[#586273]">{story.resultLabel}</p></div>
                   </div>
                 </article>
               </MotionItem>
             ))}
           </div>
+
+          <MotionItem className="mt-10 text-center">
+            <a href="#contact" className="group inline-flex items-center gap-2 border-b border-[#172333]/25 pb-2 text-sm font-bold text-[#172333] transition-colors hover:border-[#176fe8] hover:text-[#176fe8]">Start a conversation <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" /></a>
+          </MotionItem>
         </motion.div>
       </div>
     </section>

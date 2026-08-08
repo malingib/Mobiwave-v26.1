@@ -1,14 +1,28 @@
 import { useRef } from 'react';
-import { Link } from 'react-router-dom';
 import { motion, useInView } from 'framer-motion';
-import { ArrowUpRight, Check } from 'lucide-react';
+import { BarChart3, Network, ShieldCheck } from 'lucide-react';
 import { staggerContainer } from '@/lib/motion';
 import { MotionItem } from '@/components/MotionSection';
 
-const facts = [
-  'Smart routing across Safaricom, Airtel, and Telkom',
-  'A real support team when something needs attention',
-  'Tools made for Kenyan organisations, not adapted later',
+const features = [
+  {
+    icon: Network,
+    title: 'Reach every network',
+    text: 'Smart routing across Safaricom, Airtel, and Telkom keeps your messages moving.',
+    tone: 'bg-[#e8e4ff] text-[#6255b7]',
+  },
+  {
+    icon: ShieldCheck,
+    title: 'Built for Kenya',
+    text: 'Tools shaped around the way local organisations collect, communicate, and grow.',
+    tone: 'bg-[#e1f1ff] text-[#176fe8]',
+  },
+  {
+    icon: BarChart3,
+    title: 'See what is working',
+    text: 'Delivery reports and practical support give your team confidence after launch.',
+    tone: 'bg-[#e5f7f2] text-[#168a75]',
+  },
 ];
 
 const stats = [
@@ -22,67 +36,54 @@ export function About() {
   const isInView = useInView(ref, { once: true, amount: 0.2 });
 
   return (
-    <section className="relative overflow-hidden bg-[#f6f4ff] py-14 lg:py-24" aria-labelledby="about-heading">
+    <section className="relative overflow-hidden bg-white py-20 lg:py-28" aria-labelledby="about-heading">
       <div className="container-custom">
         <motion.div
           ref={ref}
           initial="hidden"
           animate={isInView ? 'visible' : 'hidden'}
           variants={staggerContainer}
-          className="grid items-center gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20"
+          className="mx-auto max-w-6xl"
         >
-          <MotionItem className="relative">
-            <div className="relative overflow-hidden rounded-[28px] bg-[#0a1a25]">
-              <img
-                src="/about/about-3.jpg"
-                alt="Professional working with connected technology"
-                className="h-[340px] w-full object-cover opacity-85 grayscale-[15%] sm:h-[460px]"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0a1a25]/85 via-transparent to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-7 sm:p-9">
-                <p className="max-w-xs text-lg font-semibold leading-7 text-white" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                  Technology should remove friction, not add another layer of it.
-                </p>
-              </div>
+          <MotionItem className="text-center">
+            <div className="mb-5 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-[#6255b7]">
+              <span className="h-px w-8 bg-[#7566cf]" />
+              Why MobiWave
+              <span className="h-px w-8 bg-[#7566cf]" />
             </div>
-            <div className="absolute -bottom-5 -right-4 hidden rounded-2xl bg-[#176fe8] px-5 py-4 text-white shadow-xl sm:block">
-              <strong className="block text-2xl font-extrabold" style={{ fontFamily: 'Outfit, sans-serif' }}>6+</strong>
-              <span className="text-xs text-white/75">years in the field</span>
-            </div>
+            <h2 id="about-heading" className="mx-auto max-w-3xl text-4xl font-extrabold leading-[1.05] tracking-[-0.04em] text-[#172333] sm:text-5xl lg:text-6xl" style={{ fontFamily: 'Outfit, sans-serif' }}>
+              Communication infrastructure that fits the way you work.
+            </h2>
+            <p className="mx-auto mt-6 max-w-2xl text-base leading-7 text-[#586273] sm:text-lg">
+              MobiWave combines local context, reliable delivery, and clear reporting so organisations can reach people and move money with confidence.
+            </p>
           </MotionItem>
 
-          <MotionItem>
-            <div className="mb-5 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-[#0084ff]">
-              <span className="h-px w-8 bg-[#0084ff]" />
-              About MobiWave
-            </div>
-            <h2 id="about-heading" className="max-w-xl text-4xl font-extrabold leading-[1.05] tracking-[-0.04em] text-[#0a1a25] sm:text-5xl" style={{ fontFamily: 'Outfit, sans-serif' }}>
-              Local context. Serious infrastructure.
-            </h2>
-            <p className="mt-6 max-w-xl text-base leading-7 text-[#5b6b78] sm:text-lg">
-              MobiWave started because communication in Kenya had too many middlemen, unreliable delivery, and not enough transparency. We build the tools that let organisations reach people and move money with confidence.
-            </p>
-            <ul className="mt-8 space-y-4">
-              {facts.map((fact) => (
-                <li key={fact} className="flex items-start gap-3 text-sm font-medium leading-6 text-[#0a1a25]">
-                  <span className="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#0084ff]/10 text-[#0084ff]"><Check className="h-3 w-3" /></span>
-                  {fact}
-                </li>
-              ))}
-            </ul>
-            <Link to="/about" className="group mt-9 inline-flex items-center gap-2 border-b border-[#0a1a25]/25 pb-2 text-sm font-bold text-[#0a1a25] transition-colors hover:border-[#0084ff] hover:text-[#0084ff]">
-              More about our approach
-              <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-            </Link>
-          </MotionItem>
+          <div className="mt-12 grid gap-5 md:grid-cols-3 lg:mt-16 lg:gap-7">
+            {features.map((feature) => {
+              const Icon = feature.icon;
+              return (
+                <MotionItem key={feature.title} className="group rounded-[24px] bg-[#f7f7fc] p-3 text-center transition-transform duration-300 hover:-translate-y-1">
+                  <div className="flex h-40 items-center justify-center rounded-[18px] bg-[#f0efff]">
+                    <span className={`flex h-20 w-20 items-center justify-center rounded-full ${feature.tone}`}>
+                      <Icon className="h-9 w-9" strokeWidth={1.7} />
+                    </span>
+                  </div>
+                  <div className="px-5 pb-6 pt-7">
+                    <h3 className="text-xl font-bold text-[#172333]" style={{ fontFamily: 'Outfit, sans-serif' }}>{feature.title}</h3>
+                    <p className="mt-3 text-sm leading-6 text-[#586273]">{feature.text}</p>
+                  </div>
+                </MotionItem>
+              );
+            })}
+          </div>
         </motion.div>
 
-        <div className="mt-10 grid border-y border-[#0a1a25]/10 sm:mt-14 sm:grid-cols-3">
+        <div className="mx-auto mt-14 grid max-w-6xl border-y border-[#172333]/10 sm:mt-20 sm:grid-cols-3">
           {stats.map((stat, index) => (
-            <div key={stat.label} className={`px-1 py-5 sm:px-7 sm:py-7 ${index > 0 ? 'border-t border-[#0a1a25]/10 sm:border-l sm:border-t-0' : ''}`}>
-              <strong className="block text-3xl font-extrabold text-[#0a1a25] sm:text-4xl" style={{ fontFamily: 'Outfit, sans-serif' }}>{stat.value}</strong>
-              <span className="mt-1 block text-sm text-[#5b6b78]">{stat.label}</span>
+            <div key={stat.label} className={`px-1 py-5 text-center sm:px-7 sm:py-7 ${index > 0 ? 'border-t border-[#172333]/10 sm:border-l sm:border-t-0' : ''}`}>
+              <strong className="block text-3xl font-extrabold text-[#172333] sm:text-4xl" style={{ fontFamily: 'Outfit, sans-serif' }}>{stat.value}</strong>
+              <span className="mt-1 block text-sm text-[#586273]">{stat.label}</span>
             </div>
           ))}
         </div>

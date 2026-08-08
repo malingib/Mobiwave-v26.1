@@ -30,11 +30,11 @@ function FooterColumn({ title, children }: { title: string; children: ReactNode 
   return (
     <div>
       <h3
-        className="text-sm font-bold text-white mb-5 pb-2 relative"
+        className="relative mb-5 pb-2 text-sm font-bold text-[#172333]"
         style={{ fontFamily: 'Outfit, sans-serif' }}
       >
         {title}
-        <span className="absolute bottom-0 left-0 w-8 h-0.5 rounded-full bg-[#1d8c89]" />
+        <span className="absolute bottom-0 left-0 h-0.5 w-8 rounded-full bg-[#7566cf]" />
       </h3>
       {children}
     </div>
@@ -56,16 +56,15 @@ export function Footer() {
   };
 
   return (
-    <footer className="mw-section-dark pt-16 pb-8">
-      <div className="absolute top-0 right-0 w-[400px] h-[400px] mw-glow-blue rounded-full pointer-events-none opacity-60" />
+    <footer className="relative overflow-hidden border-t border-[#172333]/10 bg-white pb-8 pt-16">
 
       <div className="container-custom relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-white/10">
+        <div className="grid grid-cols-1 gap-10 border-b border-[#172333]/10 pb-12 md:grid-cols-12">
           <div className="md:col-span-4">
             <Link to="/" className="inline-flex items-center gap-3 mb-5">
-              <img src="/branding/mw-logo.svg" alt="MobiWave" className="h-9 w-auto brightness-0 invert" loading="lazy" />
+              <img src="/branding/mw-logo.svg" alt="MobiWave" className="h-9 w-auto" loading="lazy" />
             </Link>
-            <p className="text-sm text-white/50 leading-relaxed mb-6 max-w-xs">
+            <p className="mb-6 max-w-xs text-sm leading-relaxed text-[#586273]">
               Nairobi-based communication platform built for Kenyan organisations.
               Bulk SMS, email, WhatsApp, USSD, and M-Pesa integration.
             </p>
@@ -76,7 +75,7 @@ export function Footer() {
                   href={s.href}
                   target="_blank"
                   rel="noreferrer"
-                  className="w-10 h-10 rounded-full flex items-center justify-center border border-white/10 bg-white/5 text-white/60 hover:bg-[#0084ff] hover:border-[#0084ff] hover:text-white transition-all duration-300"
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-[#172333]/10 bg-[#f7f7fc] text-[#586273] transition-all duration-300 hover:border-[#176fe8] hover:bg-[#176fe8] hover:text-white"
                   aria-label={s.label}
                 >
                   <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
@@ -95,7 +94,7 @@ export function Footer() {
                     <Link
                       to={l.href}
                       className={`text-sm transition-colors duration-200 hover:text-[#36b8ff] ${
-                        isActive(l.href) ? 'text-[#36b8ff] font-medium' : 'text-white/50'
+                        isActive(l.href) ? 'font-medium text-[#176fe8]' : 'text-[#586273]'
                       }`}
                     >
                       {l.label}
@@ -111,7 +110,7 @@ export function Footer() {
               <ul className="space-y-2.5">
                 {legalLinks.map((l) => (
                   <li key={l.label}>
-                    <a href={l.href} className="text-sm text-white/50 hover:text-[#36b8ff] transition-colors duration-200">
+                    <a href={l.href} className="text-sm text-[#586273] transition-colors duration-200 hover:text-[#176fe8]">
                       {l.label}
                     </a>
                   </li>
@@ -128,9 +127,9 @@ export function Footer() {
                   placeholder="Email address"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl text-sm border border-white/10 bg-white/5 text-white placeholder:text-white/30 focus:outline-none focus:border-[#0084ff]/50 focus:ring-1 focus:ring-[#0084ff]/20 transition-colors"
+                  className="w-full rounded-xl border border-[#172333]/15 bg-white px-4 py-3 text-sm text-[#172333] placeholder:text-[#586273]/60 transition-colors focus:border-[#176fe8] focus:outline-none focus:ring-1 focus:ring-[#176fe8]/20"
                 />
-                <button type="submit" className="mw-btn-teal w-full justify-center">
+                <button type="submit" className="mw-btn-primary-solid w-full justify-center">
                   Subscribe
                 </button>
               </form>
@@ -138,9 +137,9 @@ export function Footer() {
           </div>
         </div>
 
-        <p className="text-sm text-center text-white/40 pt-8">
+        <p className="pt-8 text-center text-sm text-[#586273]">
           &copy; {new Date().getFullYear()}{' '}
-          <Link to="/" className="text-white/60 hover:text-[#1d8c89] transition-colors">
+          <Link to="/" className="text-[#172333] transition-colors hover:text-[#176fe8]">
             MobiWave Innovations Ltd
           </Link>
           {' '}— Nairobi, Kenya
@@ -149,7 +148,7 @@ export function Footer() {
 
       <button
         onClick={scrollToTop}
-        className="fixed bottom-6 right-6 z-50 w-11 h-11 rounded-full bg-[#0084ff] text-white flex items-center justify-center shadow-lg hover:bg-[#0068d6] transition-all hover:-translate-y-0.5"
+        className="fixed bottom-6 right-6 z-50 flex h-11 w-11 items-center justify-center rounded-full bg-[#176fe8] text-white shadow-lg transition-all hover:-translate-y-0.5 hover:bg-[#0f5ec9]"
         style={{ boxShadow: '0 4px 20px rgba(0,132,255,0.35)' }}
         aria-label="Back to top"
       >
