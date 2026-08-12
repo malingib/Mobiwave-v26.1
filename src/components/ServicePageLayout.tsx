@@ -1,13 +1,15 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Check, ArrowRight, Phone, Mail, Clock } from 'lucide-react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { Check, ArrowRight, Phone, Mail, Clock, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { PageBanner } from './PageBanner';
 import { Breadcrumbs } from './Breadcrumbs';
 import { trackEvent } from '@/lib/analytics';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -26,6 +28,62 @@ interface ServicePageLayoutProps {
     features: string[];
   }[];
   ctaDescription?: string;
+  howItWorks?: { step: string; title: string; description: string }[];
+  comparisonTable?: {
+    headers: string[];
+    rows: { name: string; cells: (string | { text: string; highlight?: boolean })[] }[];
+    note?: string;
+  };
+  faqs?: { question: string; answer: string }[];
+  stats?: { value: string; label: string }[];
+}
+
+function FaqBlock({ faqs, title }: { faqs: { question: string; answer: string }[]; title: string }) {
+  const [openIndex, setOpenIndex] = useState(0);
+  return (
+    <section className="section-padding mw-section-surface" id="faq" aria-labelledby={`${title}-faq`}>
+      <div className="container-custom">
+        <div className="grid items-start gap-10 lg:grid-cols-[0.6fr_1.4fr] lg:gap-16">
+          <div>
+            <div className="mb-5 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-[#0084ff]">
+              <span className="h-px w-8 bg-[#0084ff]" />
+              Frequently Asked Questions
+            </div>
+            <h2 id={`${title}-faq`} className="text-3xl md:text-4xl font-extrabold leading-[1.05] tracking-[-0.04em] text-[#0a1a25] sm:text-5xl" style={{ fontFamily: 'Outfit, sans-serif' }}>
+              {title} questions, answered.
+            </h2>
+            <p className="mt-6 max-w-sm text-base leading-7 text-[#5b6b78]">
+              The practical questions Kenyan organisations ask about {title.toLowerCase()}, with straight answers and KES pricing where it applies.
+            </p>
+            <a href="/contact" className="mt-8 inline-flex text-sm font-bold text-[#0084ff] hover:text-[#0068d6]">Still have a question? Talk to us <span className="ml-2">&rarr;</span></a>
+          </div>
+
+          <div className="border-t border-[#0a1a25]/15">
+            {faqs.map((faq, index) => {
+              const isOpen = openIndex === index;
+              return (
+                <div key={faq.question} className="border-b border-[#0a1a25]/15">
+                  <h3>
+                    <button onClick={() => setOpenIndex(isOpen ? -1 : index)} className="group flex w-full items-center justify-between gap-6 py-5 text-left sm:py-6" aria-expanded={isOpen}>
+                      <span className="text-base sm:text-lg font-bold text-[#0a1a25] transition-colors group-hover:text-[#0084ff]" style={{ fontFamily: 'Outfit, sans-serif' }}>{faq.question}</span>
+                      <span className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#0a1a25]/15 transition-all ${isOpen ? 'rotate-180 border-[#0084ff] bg-[#0084ff] text-white' : 'text-[#5b6b78]'}`} aria-hidden="true"><ChevronDown className="h-4 w-4" /></span>
+                    </button>
+                  </h3>
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3 }}>
+                        <p className="max-w-2xl pb-6 pr-12 text-sm leading-7 text-[#5b6b78] sm:text-base">{faq.answer}</p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 }
 
 export function ServicePageLayout({
@@ -37,7 +95,11 @@ export function ServicePageLayout({
   benefits,
   useCases,
   pricing,
-  ctaDescription
+  ctaDescription,
+  howItWorks,
+  comparisonTable,
+  faqs,
+  stats
 }: ServicePageLayoutProps) {
   const contentRef = useRef<HTMLDivElement>(null);
   const contactItems = [
@@ -207,6 +269,97 @@ export function ServicePageLayout({
           </div>
         </section>
 
+        {stats && stats.length > 0 && (
+          <section className="section-padding">
+            <div className="container-custom">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 animate-section">
+                {stats.map((stat) => (
+                  <div key={stat.label} className="animate-item mw-card p-5 text-center">
+                    <div className="text-2xl md:text-3xl font-extrabold text-[#0a1a25] mb-1" style={{ fontFamily: 'Outfit, sans-serif' }}>{stat.value}</div>
+                    <div className="text-xs md:text-sm text-[#5b6b78] uppercase tracking-wider">{stat.label}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {howItWorks && howItWorks.length > 0 && (
+          <section className="section-padding mw-section-surface" aria-labelledby={`${title}-how-it-works`}>
+            <div className="container-custom">
+              <div className="text-center mb-12 animate-section animate-item">
+                <div className="flex items-center justify-center gap-2.5 mb-5">
+                  <div className="w-7 h-0.5 rounded-full bg-[#1d8c89]" />
+                  <span className="text-xs font-bold text-[#7c3aed] uppercase tracking-[0.18em]">How It Works</span>
+                  <div className="w-7 h-0.5 rounded-full bg-[#1d8c89]" />
+                </div>
+                <h2 id={`${title}-how-it-works`} className="text-3xl md:text-4xl font-extrabold text-[#0a1a25] mb-4" style={{ fontFamily: 'Outfit, sans-serif' }}>How {title} works in Kenya</h2>
+                <p className="text-[#5b6b78] max-w-2xl mx-auto">From registration to live delivery, here is what working with MobiWave looks like.</p>
+              </div>
+
+              <ol className="grid md:grid-cols-2 gap-4 animate-section max-w-5xl mx-auto">
+                {howItWorks.map((item) => (
+                  <li key={item.step} className="animate-item mw-card p-5 flex gap-4">
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#0084ff] to-[#1d8c89] text-white font-bold" aria-hidden="true">{item.step}</span>
+                    <div>
+                      <h3 className="text-lg font-bold text-[#0a1a25] mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>{item.title}</h3>
+                      <p className="text-[#5b6b78] text-sm leading-relaxed">{item.description}</p>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </section>
+        )}
+
+        {comparisonTable && comparisonTable.rows.length > 0 && (
+          <section className="section-padding" aria-labelledby={`${title}-comparison`}>
+            <div className="container-custom">
+              <div className="text-center mb-10 animate-section animate-item">
+                <div className="flex items-center justify-center gap-2.5 mb-5">
+                  <div className="w-7 h-0.5 rounded-full bg-[#1d8c89]" />
+                  <span className="text-xs font-bold text-[#7c3aed] uppercase tracking-[0.18em]">Comparison</span>
+                  <div className="w-7 h-0.5 rounded-full bg-[#1d8c89]" />
+                </div>
+                <h2 id={`${title}-comparison`} className="text-3xl md:text-4xl font-extrabold text-[#0a1a25] mb-4" style={{ fontFamily: 'Outfit, sans-serif' }}>MobiWave vs other providers in Kenya</h2>
+                <p className="text-[#5b6b78] max-w-2xl mx-auto">A side-by-side look at how MobiWave compares on the things that matter for Kenyan organisations.</p>
+              </div>
+
+              <div className="animate-section mw-card p-2 sm:p-4 overflow-x-auto">
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead className="min-w-[200px]">Capability</TableHead>
+                      {comparisonTable.headers.map((h) => (
+                        <TableHead key={h} className={h === 'MobiWave' ? 'bg-[#0084ff]/5 text-[#0084ff]' : ''}>{h}</TableHead>
+                      ))}
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {comparisonTable.rows.map((row) => (
+                      <TableRow key={row.name}>
+                        <TableCell className="font-medium text-[#0a1a25]">{row.name}</TableCell>
+                        {row.cells.map((cell, i) => {
+                          const text = typeof cell === 'string' ? cell : cell.text;
+                          const highlight = typeof cell === 'string' ? false : cell.highlight;
+                          return (
+                            <TableCell key={i} className={highlight ? 'bg-[#0084ff]/5 font-semibold text-[#0a1a25]' : 'text-[#5b6b78]'}>
+                              {text}
+                            </TableCell>
+                          );
+                        })}
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </div>
+              {comparisonTable.note && (
+                <p className="text-xs text-[#5b6b78] text-center mt-4 animate-item">{comparisonTable.note}</p>
+              )}
+            </div>
+          </section>
+        )}
+
         {pricing && pricing.length > 0 && (
           <section className="section-padding">
             <div className="container-custom">
@@ -245,6 +398,8 @@ export function ServicePageLayout({
             </div>
           </section>
         )}
+
+        {faqs && faqs.length > 0 && <FaqBlock faqs={faqs} title={title} />}
 
         <section className="py-20 bg-white">
           <div className="container-custom">

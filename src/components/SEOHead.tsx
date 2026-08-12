@@ -78,9 +78,9 @@ const ROUTE_SEO: Record<string, SeoConfig> = {
     type: 'article',
   },
   '/services/bulk-sms': {
-    title: 'Bulk SMS Kenya & SMS API for Business | MobiWave',
+    title: 'Bulk SMS Kenya from KES 0.20/SMS | SMS API for Safaricom, Airtel, Telkom | MobiWave',
     description:
-      'Send reliable bulk SMS campaigns, alerts, OTPs, and notifications across Kenyan networks with enterprise-grade delivery and analytics.',
+      'Kenyan bulk SMS provider with direct Safaricom, Airtel and Telkom interconnects. From KES 0.20/SMS at volume, free sender ID registration, 99.9% delivery, REST API + sandbox, and native M-Pesa STK Push — comparison vs Africa’s Talking, Celcom Africa and Twilio.',
     path: '/services/bulk-sms',
     pageType: 'Service',
     serviceType: 'Bulk SMS and SMS API',
