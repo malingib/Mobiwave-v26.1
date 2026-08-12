@@ -19,6 +19,9 @@ import {
   AirtimeRewards,
   ServiceDesk
 } from '@/pages/services';
+import { SenderIdRegistrationGuide } from '@/pages/guides/SenderIdRegistration';
+import { MpesaStkPushGuide } from '@/pages/guides/MpesaStkPush';
+import { BestBulkSmsGuide } from '@/pages/guides/BestBulkSms';
 import './App.css';
 
 function HomeSectionRoute({ sectionId }: { sectionId: string }) {
@@ -63,6 +66,9 @@ function App() {
             <Route path="/services/sms-surveys" element={<SMSSurveys />} />
             <Route path="/services/airtime-rewards" element={<AirtimeRewards />} />
             <Route path="/services/service-desk" element={<ServiceDesk />} />
+            <Route path="/guides/sender-id-registration-kenya" element={<SenderIdRegistrationGuide />} />
+            <Route path="/guides/mpesa-stk-push-api-kenya" element={<MpesaStkPushGuide />} />
+            <Route path="/guides/best-bulk-sms-kenya" element={<BestBulkSmsGuide />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </main>

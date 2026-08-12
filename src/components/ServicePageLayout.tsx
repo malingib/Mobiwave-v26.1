@@ -38,7 +38,7 @@ interface ServicePageLayoutProps {
   stats?: { value: string; label: string }[];
 }
 
-function FaqBlock({ faqs, title }: { faqs: { question: string; answer: string }[]; title: string }) {
+export function FaqBlock({ faqs, title }: { faqs: { question: string; answer: string }[]; title: string }) {
   const [openIndex, setOpenIndex] = useState(0);
   return (
     <section className="section-padding mw-section-surface" id="faq" aria-labelledby={`${title}-faq`}>

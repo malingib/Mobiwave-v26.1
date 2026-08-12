@@ -7,7 +7,7 @@ type SeoConfig = {
   description: string;
   path: string;
   type?: 'website' | 'article';
-  pageType?: 'WebPage' | 'AboutPage' | 'ContactPage' | 'Service';
+  pageType?: 'WebPage' | 'AboutPage' | 'ContactPage' | 'Service' | 'Article';
   robots?: string;
   serviceType?: string;
 };
@@ -148,6 +148,27 @@ const ROUTE_SEO: Record<string, SeoConfig> = {
     path: '/services/service-desk',
     pageType: 'Service',
     serviceType: 'Customer service desk software',
+  },
+  '/guides/sender-id-registration-kenya': {
+    title: 'Sender ID Registration in Kenya 2026 | CAK SMS Sender ID Guide | MobiWave',
+    description:
+      'How to register an SMS sender ID in Kenya under the CAK framework: documents, approval time, cost, and how MobiWave registers your ID across Safaricom, Airtel and Telkom for free.',
+    path: '/guides/sender-id-registration-kenya',
+    pageType: 'Article',
+  },
+  '/guides/mpesa-stk-push-api-kenya': {
+    title: 'M-Pesa STK Push API Kenya 2026 | Lipa Na M-Pesa Online Guide | MobiWave',
+    description:
+      'How M-Pesa STK Push (Lipa Na M-Pesa Online) works in Kenya: the Daraja API flow, what you need to integrate, callbacks, costs, and how MobiWave bundles it with SMS, USSD and WhatsApp.',
+    path: '/guides/mpesa-stk-push-api-kenya',
+    pageType: 'Article',
+  },
+  '/guides/best-bulk-sms-kenya': {
+    title: 'Best Bulk SMS Provider in Kenya 2026 | Buyer’s Guide | MobiWave',
+    description:
+      'How to choose the best bulk SMS provider in Kenya: direct interconnects, KES pricing, sender ID registration, delivery reporting and local support — comparison of MobiWave, Africa’s Talking, Celcom and Twilio.',
+    path: '/guides/best-bulk-sms-kenya',
+    pageType: 'Article',
   },
   '/services': {
     title: 'Business Communication Services | MobiWave',
