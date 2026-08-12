@@ -328,22 +328,6 @@ export function SEOHead() {
       });
     }
 
-    if (config.faq) {
-      schemaPayload.push({
-        '@context': 'https://schema.org',
-        '@type': 'FAQPage',
-        '@id': `${canonical}#faq`,
-        mainEntity: SITE_FAQ.map((f) => ({
-          '@type': 'Question',
-          name: f.question,
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: f.answer,
-          },
-        })),
-      });
-    }
-
     if (config.pageType === 'Service') {
       schemaPayload.push({
         '@context': 'https://schema.org',

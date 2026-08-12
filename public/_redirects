@@ -1,1 +1,20 @@
-/* /index.html 200
+# Prerendered static HTML for clean URLs (first-match wins, keep specific rules above the SPA fallback)
+/about  /about.html  200
+/contact  /contact.html  200
+/pricing  /pricing.html  200
+/innovations  /innovations.html  200
+/developers/docs  /developers/docs.html  200
+/terms  /terms.html  200
+/privacy  /privacy.html  200
+/services/bulk-sms  /services/bulk-sms.html  200
+/services/bulk-email  /services/bulk-email.html  200
+/services/bulk-whatsapp  /services/bulk-whatsapp.html  200
+/services/ussd-codes  /services/ussd-codes.html  200
+/services/shortcodes  /services/shortcodes.html  200
+/services/mpesa-integration  /services/mpesa-integration.html  200
+/services/sms-surveys  /services/sms-surveys.html  200
+/services/airtime-rewards  /services/airtime-rewards.html  200
+/services/service-desk  /services/service-desk.html  200
+
+# SPA fallback for all other client-side routes
+/*  /index.html  200
