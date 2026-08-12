@@ -211,7 +211,7 @@ export function GuidePageLayout({
   return (
     <div className="min-h-screen bg-white">
       <PageBanner title={title} subtitle={subtitle} />
-      <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: breadcrumbLabel }]} />
+      <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Resources', href: '/resources' }, { label: breadcrumbLabel }]} />
 
       <div ref={contentRef}>
         <section className="section-padding">

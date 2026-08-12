@@ -3,6 +3,10 @@ import { ArrowUp } from 'lucide-react';
 import { useState, type ReactNode } from 'react';
 
 const resourceLinks = [
+  { label: 'Guides & Resources', href: '/resources' },
+  { label: 'Sender ID Registration', href: '/guides/sender-id-registration-kenya' },
+  { label: 'M-Pesa STK Push API', href: '/guides/mpesa-stk-push-api-kenya' },
+  { label: 'Best Bulk SMS Provider', href: '/guides/best-bulk-sms-kenya' },
   { label: 'API Documentation', href: '/developers/docs' },
   { label: 'Bulk SMS', href: '/services/bulk-sms' },
   { label: 'M-Pesa Integration', href: '/services/mpesa-integration' },

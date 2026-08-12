@@ -4,6 +4,7 @@ import { Header } from '@/sections/Header';
 import { Footer } from '@/sections/Footer';
 import { Home } from '@/pages/Home';
 import { Pricing, Contact, About, Products } from '@/pages';
+import { Resources } from '@/pages/Resources';
 import { SEOHead } from '@/components/SEOHead';
 import { Terms } from '@/pages/Terms';
 import { Privacy } from '@/pages/Privacy';
@@ -55,6 +56,7 @@ function App() {
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/developers/docs" element={<ApiDocs />} />
             <Route path="/products" element={<Navigate to="/innovations" replace />} />
+            <Route path="/resources" element={<Resources />} />
             <Route path="/services" element={<HomeSectionRoute sectionId="services" />} />
             <Route path="/testimonials" element={<HomeSectionRoute sectionId="testimonials" />} />
             <Route path="/services/bulk-sms" element={<BulkSMS />} />

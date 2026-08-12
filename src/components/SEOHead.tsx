@@ -53,6 +53,13 @@ const ROUTE_SEO: Record<string, SeoConfig> = {
       'Explore simple and transparent pricing for bulk SMS, USSD, shortcodes, WhatsApp messaging, and business communication services.',
     path: '/pricing',
   },
+  '/resources': {
+    title: 'Resources & Guides | MobiWave Kenya',
+    description:
+      'Practical how-to guides for Kenyan business communication — sender ID registration, M-Pesa STK Push integration, and choosing a bulk SMS provider.',
+    path: '/resources',
+    pageType: 'WebPage',
+  },
   '/innovations': {
     title: 'MobiWave Innovations Hub | Products and Solutions',
     description:

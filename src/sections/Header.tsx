@@ -185,6 +185,7 @@ export function Header() {
 
             {navLink('/pricing', 'Pricing')}
             {navLink('/innovations', 'Innovations')}
+            {navLink('/resources', 'Resources')}
             {navLink('/about', 'About Us')}
             {navLink('/developers/docs', 'API Docs')}
 
@@ -263,6 +264,7 @@ export function Header() {
 
             <Link to="/pricing" className={`rounded-xl px-4 py-3 text-base font-medium transition-colors ${isActive('/pricing') ? (useLightNav ? 'bg-[#f1efff] text-[#5143a5]' : 'bg-white/18 text-white') : (useLightNav ? 'text-[#273243] hover:bg-[#f7f5ff]' : 'text-white/90 hover:bg-white/10')}`}>Pricing</Link>
             <Link to="/innovations" className={`rounded-xl px-4 py-3 text-base font-medium transition-colors ${isActive('/innovations') ? (useLightNav ? 'bg-[#f1efff] text-[#5143a5]' : 'bg-white/18 text-white') : (useLightNav ? 'text-[#273243] hover:bg-[#f7f5ff]' : 'text-white/90 hover:bg-white/10')}`}>Innovations</Link>
+            <Link to="/resources" className={`rounded-xl px-4 py-3 text-base font-medium transition-colors ${isActive('/resources') ? (useLightNav ? 'bg-[#f1efff] text-[#5143a5]' : 'bg-white/18 text-white') : (useLightNav ? 'text-[#273243] hover:bg-[#f7f5ff]' : 'text-white/90 hover:bg-white/10')}`}>Resources</Link>
             <Link to="/about" className={`rounded-xl px-4 py-3 text-base font-medium transition-colors ${isActive('/about') ? (useLightNav ? 'bg-[#f1efff] text-[#5143a5]' : 'bg-white/18 text-white') : (useLightNav ? 'text-[#273243] hover:bg-[#f7f5ff]' : 'text-white/90 hover:bg-white/10')}`}>About Us</Link>
             <Link to="/developers/docs" className={`rounded-xl px-4 py-3 text-base font-medium transition-colors ${isActive('/developers/docs') ? (useLightNav ? 'bg-[#f1efff] text-[#5143a5]' : 'bg-white/18 text-white') : (useLightNav ? 'text-[#273243] hover:bg-[#f7f5ff]' : 'text-white/90 hover:bg-white/10')}`}>API Docs</Link>
             <Link to="/contact" className={`rounded-xl px-4 py-3 text-base font-medium transition-colors ${isActive('/contact') ? (useLightNav ? 'bg-[#f1efff] text-[#5143a5]' : 'bg-white/18 text-white') : (useLightNav ? 'text-[#273243] hover:bg-[#f7f5ff]' : 'text-white/90 hover:bg-white/10')}`}>Contact Us</Link>
