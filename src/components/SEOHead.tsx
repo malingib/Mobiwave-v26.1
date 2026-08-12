@@ -102,9 +102,9 @@ const ROUTE_SEO: Record<string, SeoConfig> = {
     serviceType: 'WhatsApp Business API',
   },
   '/services/ussd-codes': {
-    title: 'USSD Codes Kenya for Payments, Surveys and Services | MobiWave',
+    title: 'USSD Codes Kenya from KES 11,000 | USSD Menus, Payments & Surveys | MobiWave',
     description:
-      'Build interactive USSD services for onboarding, payments, surveys, and customer self-service without internet dependency.',
+      'Kenyan USSD service provider with shared codes from KES 11,000 setup + KES 8,000/mo and dedicated codes at KES 40,000/mo +VAT. CAK shortcode registration handled for you, M-Pesa STK Push inside menus, works on every phone with no internet.',
     path: '/services/ussd-codes',
     pageType: 'Service',
     serviceType: 'USSD codes and applications',
@@ -118,9 +118,9 @@ const ROUTE_SEO: Record<string, SeoConfig> = {
     serviceType: 'SMS shortcodes and sender IDs',
   },
   '/services/mpesa-integration': {
-    title: 'M-Pesa API Integration Kenya for Business Payments | MobiWave',
+    title: 'M-Pesa API Integration Kenya | STK Push, C2B, B2C & Daraja | MobiWave',
     description:
-      'Integrate M-Pesa workflows for C2B, B2C, and B2B payments, collections, disbursements, and automated reconciliation.',
+      'MobiWave integrates Safaricom Daraja for STK Push (Lipa Na M-Pesa), C2B, B2C and B2B on one Kenyan account. Free Daraja setup, auto-reconciliation, 24/7 local support — bundle SMS, USSD and WhatsApp.',
     path: '/services/mpesa-integration',
     pageType: 'Service',
     serviceType: 'M-Pesa API integration',
