@@ -1,6 +1,6 @@
 type AnalyticsParams = Record<string, string | number | boolean | undefined>;
 
-export const GA_MEASUREMENT_ID = 'G-G3K9EHFW8M';
+export const GA_MEASUREMENT_ID = 'G-WMTTS4KRS4';
 
 declare global {
   interface Window {
