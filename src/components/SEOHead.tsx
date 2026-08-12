@@ -10,11 +10,12 @@ type SeoConfig = {
   pageType?: 'WebPage' | 'AboutPage' | 'ContactPage' | 'Service';
   robots?: string;
   serviceType?: string;
-  faq?: boolean;
 };
 
 const SITE_URL = 'https://mobiwave.co.ke';
 const DEFAULT_IMAGE = `${SITE_URL}/branding/mw-logo.png`;
+const DEFAULT_IMAGE_WIDTH = 819;
+const DEFAULT_IMAGE_HEIGHT = 305;
 const BUSINESS_NAME = 'MobiWave Innovations';
 const PHONE = '+254736427842';
 const EMAIL = 'info@mobiwave.co.ke';
@@ -25,22 +26,12 @@ const LNG = 39.8497;
 const POSTAL = 'Titanic Building, 1st Floor, Room 2';
 const LASTMOD = '2026-08-08';
 
-export const SITE_FAQ = [
-  { question: 'How quickly can I get started?', answer: 'Most clients are live within a day. Sign up, get API keys and a sandbox, send a test batch, and we handle setup and delivery verification before production.' },
-  { question: 'What are the delivery rates?', answer: 'We maintain 99.9% delivery across Safaricom, Airtel, and Telkom. Real-time reports show exactly who received each message and who did not.' },
-  { question: 'Is there a minimum commitment?', answer: 'No long contracts. Pay for what you use. Starter plans are pay-as-you-go, with volume discounts as you scale.' },
-  { question: 'How does M-Pesa integration work?', answer: 'STK Push from your platform, customers confirm on their phone. We support C2B, B2C, and B2B with automatic reconciliation built in.' },
-  { question: 'Can I schedule messages?', answer: 'Yes. Schedule SMS, email, and WhatsApp for future delivery, including recurring campaigns and triggers from the dashboard.' },
-  { question: 'What support do I get?', answer: 'A real WhatsApp support line and phone number. If something looks off, we call you before you notice.' },
-];
-
 const ROUTE_SEO: Record<string, SeoConfig> = {
   '/': {
     title: 'Bulk SMS, USSD & WhatsApp API Kenya | MobiWave',
     description:
       'Kenya-based communication platform headquartered in Kilifi. Bulk SMS across Safaricom, Airtel & Telkom, M-Pesa integration, USSD menus, and WhatsApp — built for SACCOs, hospitals, schools, and government.',
     path: '/',
-    faq: true,
   },
   '/about': {
     title: 'About MobiWave Innovations | Telecom Solutions in Kenya',
@@ -223,6 +214,8 @@ export function SEOHead() {
     upsertMeta('meta[property="og:description"]', { property: 'og:description', content: config.description });
     upsertMeta('meta[property="og:url"]', { property: 'og:url', content: canonical });
     upsertMeta('meta[property="og:image"]', { property: 'og:image', content: DEFAULT_IMAGE });
+    upsertMeta('meta[property="og:image:width"]', { property: 'og:image:width', content: String(DEFAULT_IMAGE_WIDTH) });
+    upsertMeta('meta[property="og:image:height"]', { property: 'og:image:height', content: String(DEFAULT_IMAGE_HEIGHT) });
     upsertMeta('meta[property="og:image:alt"]', { property: 'og:image:alt', content: 'MobiWave Innovations brand logo' });
 
     upsertMeta('meta[name="twitter:card"]', { name: 'twitter:card', content: 'summary_large_image' });
@@ -305,11 +298,6 @@ export function SEOHead() {
         name: BUSINESS_NAME,
         url: SITE_URL,
         inLanguage: 'en-KE',
-        potentialAction: {
-          '@type': 'SearchAction',
-          target: `${SITE_URL}/?q={search_term_string}`,
-          'query-input': 'required name=search_term_string',
-        },
       },
       {
         '@context': 'https://schema.org',
