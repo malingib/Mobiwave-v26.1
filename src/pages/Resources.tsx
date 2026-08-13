@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, FileText, CreditCard, MessageSquare } from 'lucide-react';
+import { ArrowRight, FileText, CreditCard, MessageSquare, Smartphone, Mail, BarChart3 } from 'lucide-react';
 import { PageBanner } from '@/components/PageBanner';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 
@@ -28,6 +28,24 @@ const guides: GuideEntry[] = [
     title: 'Best Bulk SMS Provider in Kenya',
     description: 'A buyer’s guide to choosing a bulk SMS provider — direct interconnects, KES pricing, sender ID registration, delivery reporting and local support.',
     href: '/guides/best-bulk-sms-kenya'
+  },
+  {
+    icon: Smartphone,
+    title: 'USSD Code Cost in Kenya',
+    description: 'Shared vs dedicated USSD pricing, CAK allocation, end-user per-session charges, and triggering M-Pesa from a menu.',
+    href: '/guides/ussd-code-cost-kenya'
+  },
+  {
+    icon: Mail,
+    title: 'Bulk Email Marketing in Kenya',
+    description: 'How to send email that lands in the inbox: SPF/DKIM/DMARC, segmentation, automation, and bundling with SMS and WhatsApp.',
+    href: '/guides/bulk-email-kenya'
+  },
+  {
+    icon: BarChart3,
+    title: 'SMS Surveys in Kenya',
+    description: 'Run two-way SMS feedback: branching questions, response rates, real-time analytics and CAK/ODPC compliance.',
+    href: '/guides/sms-survey-kenya'
   }
 ];
 

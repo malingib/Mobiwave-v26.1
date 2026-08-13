@@ -23,6 +23,9 @@ import {
 import { SenderIdRegistrationGuide } from '@/pages/guides/SenderIdRegistration';
 import { MpesaStkPushGuide } from '@/pages/guides/MpesaStkPush';
 import { BestBulkSmsGuide } from '@/pages/guides/BestBulkSms';
+import { UssdCodeCostGuide } from '@/pages/guides/UssdCodeCost';
+import { BulkEmailGuide } from '@/pages/guides/BulkEmail';
+import { SmsSurveyGuide } from '@/pages/guides/SmsSurvey';
 import './App.css';
 
 function HomeSectionRoute({ sectionId }: { sectionId: string }) {
@@ -71,6 +74,9 @@ function App() {
             <Route path="/guides/sender-id-registration-kenya" element={<SenderIdRegistrationGuide />} />
             <Route path="/guides/mpesa-stk-push-api-kenya" element={<MpesaStkPushGuide />} />
             <Route path="/guides/best-bulk-sms-kenya" element={<BestBulkSmsGuide />} />
+            <Route path="/guides/ussd-code-cost-kenya" element={<UssdCodeCostGuide />} />
+            <Route path="/guides/bulk-email-kenya" element={<BulkEmailGuide />} />
+            <Route path="/guides/sms-survey-kenya" element={<SmsSurveyGuide />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </main>

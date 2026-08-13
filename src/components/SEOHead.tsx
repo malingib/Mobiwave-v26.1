@@ -177,6 +177,27 @@ const ROUTE_SEO: Record<string, SeoConfig> = {
     path: '/guides/best-bulk-sms-kenya',
     pageType: 'Article',
   },
+  '/guides/ussd-code-cost-kenya': {
+    title: 'USSD Code Cost in Kenya 2026 | Shared vs Dedicated Pricing | MobiWave',
+    description:
+      'How much a USSD code costs in Kenya: shared (KES 11,000 setup + KES 8,000/mo) vs dedicated (KES 40,000 + KES 40,000/mo), CAK allocation, end-user per-session charges, and M-Pesa STK Push from menus.',
+    path: '/guides/ussd-code-cost-kenya',
+    pageType: 'Article',
+  },
+  '/guides/bulk-email-kenya': {
+    title: 'Bulk Email Marketing in Kenya 2026 | Deliverability Guide | MobiWave',
+    description:
+      'How to run bulk email marketing in Kenya: SPF, DKIM, DMARC authentication, segmentation, automation, and how MobiWave bundles email with SMS, WhatsApp and M-Pesa on one local account.',
+    path: '/guides/bulk-email-kenya',
+    pageType: 'Article',
+  },
+  '/guides/sms-survey-kenya': {
+    title: 'SMS Surveys in Kenya 2026 | Two-way Feedback Guide | MobiWave',
+    description:
+      'How to run SMS surveys in Kenya: two-way flows, branching questions, response rates, real-time analytics and CAK/ODPC compliance — bundled with SMS, USSD and WhatsApp.',
+    path: '/guides/sms-survey-kenya',
+    pageType: 'Article',
+  },
   '/services': {
     title: 'Business Communication Services | MobiWave',
     description: 'Explore MobiWave business communication services, including bulk SMS, WhatsApp, USSD, M-Pesa integrations, email, and customer support tools.',
