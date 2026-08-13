@@ -166,8 +166,12 @@ export default function Solutions() {
               style={{ zIndex: 3 }}
             >
               <img
-                src="/phone-mockup.jpg"
+                src="/phone-mockup.webp"
                 alt="Phone Interface"
+                width={832}
+                height={1248}
+                loading="lazy"
+                decoding="async"
                 className="w-full rounded-3xl shadow-2xl animate-float"
               />
             </div>

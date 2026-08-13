@@ -1,5 +1,5 @@
 import { useEffect, useState, type ReactNode } from 'react';
-import { ArrowRight, Check, ChevronRight, Clipboard, Code2, ExternalLink, KeyRound, Menu, ShieldCheck, Terminal, X } from 'lucide-react';
+import { Check, ChevronRight, Clipboard, Code2, ExternalLink, KeyRound, Menu, ShieldCheck, Terminal, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { PageBanner } from '@/components/PageBanner';
 

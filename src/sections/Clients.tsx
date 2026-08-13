@@ -4,13 +4,13 @@ import { fadeUp } from '@/lib/motion';
 import { Marquee } from '@/components/Marquee';
 
 const partners = [
-  { name: 'Jawabu Nexus LTD', logo: 'https://mobiwave.co.ke/images/clients/JNL.png' },
-  { name: 'The United Adzukulu Network', logo: 'https://mobiwave.co.ke/images/clients/TUAN.jpeg' },
-  { name: 'Shamba Project Kilifi', logo: 'https://mobiwave.co.ke/images/clients/SPK.jpeg' },
-  { name: 'T4T Kilifi', logo: 'https://t4tkilifi.org/uploads/school_content/logo/1718949765-13899807756675178573a51!logo.jpg' },
-  { name: 'Malanga Welfare', logo: 'https://malangawelfare.org/malanga-logo.png' },
-  { name: 'Jazafit Gyms', logo: 'https://ui-avatars.com/api/?name=Jazafit+Gyms&background=0f172a&color=ffffff&bold=true' },
-  { name: 'Comfort Circle', logo: 'https://comfortcircle.co.ke/assets/images/logo.jpg' },
+  { name: 'Jawabu Nexus LTD', logo: '/images/clients/JNL.png' },
+  { name: 'The United Adzukulu Network', logo: '/images/clients/TUAN.jpeg' },
+  { name: 'Shamba Project Kilifi', logo: '/images/clients/SPK.jpeg' },
+  { name: 'T4T Kilifi', logo: '/images/clients/t4t.png' },
+  { name: 'Malanga Welfare', logo: '/images/clients/malanga.png' },
+  { name: 'Jazafit Gyms', logo: '/images/clients/jazafit.png' },
+  { name: 'Comfort Circle', logo: '/images/clients/comfortcircle.jpg' },
 ];
 
 function Partner({ name, logo }: (typeof partners)[number]) {
