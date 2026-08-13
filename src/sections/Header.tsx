@@ -22,7 +22,7 @@ export function Header() {
   const servicesCloseTimerRef = useRef<number | null>(null);
   const servicesMenuRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
-  const useLightNav = !location.pathname.startsWith('/developers/docs');
+  const useLightNav = true;
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 40);

@@ -34,12 +34,6 @@ export function PageBanner({ title, subtitle }: PageBannerProps) {
       <div aria-hidden="true" className="pointer-events-none absolute -bottom-32 left-1/2 h-72 w-[38rem] -translate-x-1/2 rounded-full bg-white/55 blur-3xl" />
 
       <div className="container-custom relative z-10 text-center">
-        <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#7566cf]/20 bg-white/65 px-3.5 py-2 shadow-sm backdrop-blur-sm">
-          <span className="h-1.5 w-1.5 rounded-full bg-[#176fe8]" />
-          <span className="text-xs font-bold uppercase tracking-[0.18em] text-[#6255b7]">
-            MobiWave
-          </span>
-        </div>
         <h1
           ref={titleRef}
           className="mb-4 text-4xl font-extrabold text-[#172333] md:text-5xl lg:text-6xl"
