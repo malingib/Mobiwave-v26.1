@@ -1,4 +1,25 @@
 # Prerendered static HTML for clean URLs (first-match wins, keep specific rules above the SPA fallback)
+/about/  /about  301
+/contact/  /contact  301
+/pricing/  /pricing  301
+/innovations/  /innovations  301
+/developers/docs/  /developers/docs  301
+/resources/  /resources  301
+/services/bulk-sms/  /services/bulk-sms  301
+/services/bulk-email/  /services/bulk-email  301
+/services/bulk-whatsapp/  /services/bulk-whatsapp  301
+/services/ussd-codes/  /services/ussd-codes  301
+/services/shortcodes/  /services/shortcodes  301
+/services/mpesa-integration/  /services/mpesa-integration  301
+/services/sms-surveys/  /services/sms-surveys  301
+/services/airtime-rewards/  /services/airtime-rewards  301
+/services/service-desk/  /services/service-desk  301
+/guides/sender-id-registration-kenya/  /guides/sender-id-registration-kenya  301
+/guides/mpesa-stk-push-api-kenya/  /guides/mpesa-stk-push-api-kenya  301
+/guides/best-bulk-sms-kenya/  /guides/best-bulk-sms-kenya  301
+/guides/ussd-code-cost-kenya/  /guides/ussd-code-cost-kenya  301
+/guides/bulk-email-kenya/  /guides/bulk-email-kenya  301
+/guides/sms-survey-kenya/  /guides/sms-survey-kenya  301
 /about  /about.html  200
 /contact  /contact.html  200
 /pricing  /pricing.html  200
