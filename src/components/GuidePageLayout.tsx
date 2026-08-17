@@ -66,7 +66,7 @@ function StepBlock({ steps }: { steps: GuideStep[] }) {
         <ol className="grid md:grid-cols-2 gap-4 animate-section max-w-5xl mx-auto">
           {steps.map((item) => (
             <li key={item.step} className="animate-item mw-card p-5 flex gap-4">
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#0084ff] to-[#1d8c89] text-white font-bold" aria-hidden="true">{item.step}</span>
+              <span className="pt-1 text-sm font-bold text-[#0084ff]" aria-hidden="true">{item.step}</span>
               <div>
                 <h3 className="text-lg font-bold text-[#0a1a25] mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>{item.title}</h3>
                 <p className="text-[#5b6b78] text-sm leading-relaxed">{item.description}</p>
@@ -95,8 +95,8 @@ function ChecklistBlock({ items }: { items: string[] }) {
           <div className="grid sm:grid-cols-2 gap-3 md:gap-4 mt-8">
             {items.map((item, index) => (
               <div key={index} className="animate-item mw-card flex items-start gap-3 px-4 py-3.5">
-                <div className="w-6 h-6 rounded-full bg-gradient-to-br from-[#0084ff] to-[#1d8c89] flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <Check className="w-3.5 h-3.5 text-white" />
+                <div className="mt-1 flex h-5 w-5 flex-shrink-0 items-center justify-center text-[#1d8c89]">
+                  <Check className="h-4 w-4" />
                 </div>
                 <p className="text-base sm:text-lg font-medium leading-snug text-[#0a1a25]">{item}</p>
               </div>

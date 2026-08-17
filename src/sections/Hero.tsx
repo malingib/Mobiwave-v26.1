@@ -18,9 +18,7 @@ export function Hero() {
         >
           <motion.div variants={heroButton} className="relative flex min-h-[31rem] items-center justify-center sm:min-h-[38rem] lg:min-h-[43rem]">
             <img
-              src="/martex-hero.webp"
-              srcSet="/martex-hero.webp 615w, /martex-hero@2x.webp 1230w"
-              sizes="(max-width: 1024px) 90vw, 528px"
+              src="/martex-hero.png"
               alt="MobiWave communication campaign illustration"
               width={615}
               height={715}

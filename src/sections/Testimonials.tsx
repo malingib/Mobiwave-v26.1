@@ -33,7 +33,7 @@ export function Testimonials() {
   const isInView = useInView(ref, { once: true, amount: 0.2 });
 
   return (
-    <section id="testimonials" className="overflow-hidden bg-white py-20 lg:py-28" aria-labelledby="testimonials-heading">
+    <section id="testimonials" className="overflow-hidden bg-white py-14 lg:py-20" aria-labelledby="testimonials-heading">
       <div className="container-custom">
         <motion.div ref={ref} initial="hidden" animate={isInView ? 'visible' : 'hidden'} variants={staggerContainer}>
           <MotionItem className="mx-auto mb-12 max-w-3xl text-center">

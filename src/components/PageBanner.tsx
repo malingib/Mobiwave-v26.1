@@ -29,9 +29,7 @@ export function PageBanner({ title, subtitle }: PageBannerProps) {
   }, []);
 
   return (
-    <div className="relative overflow-hidden bg-[#f6f4ff] pb-20 pt-32 lg:pb-24 lg:pt-36">
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(184,201,232,0.46),transparent_30%),radial-gradient(circle_at_82%_12%,rgba(209,198,242,0.5),transparent_28%)]" />
-      <div aria-hidden="true" className="pointer-events-none absolute -bottom-32 left-1/2 h-72 w-[38rem] -translate-x-1/2 rounded-full bg-white/55 blur-3xl" />
+    <div className="relative overflow-hidden bg-[#f6f4ff] pb-14 pt-24 lg:pb-16 lg:pt-28">
 
       <div className="container-custom relative z-10 text-center">
         <h1

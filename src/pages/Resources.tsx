@@ -86,11 +86,8 @@ export function Resources() {
               <Link
                 key={g.href}
                 to={g.href}
-                className="animate-item mw-card p-6 flex flex-col gap-4 hover:border-[#0084ff]/40 transition-colors group"
+                className="animate-item mw-card flex flex-col gap-4 p-2 pb-6 hover:border-[#0084ff]/40 transition-colors group"
               >
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-[#0084ff] to-[#1d8c89] text-white">
-                  <g.icon className="w-6 h-6" />
-                </div>
                 <h3 className="text-lg font-bold text-[#0a1a25]" style={{ fontFamily: 'Outfit, sans-serif' }}>{g.title}</h3>
                 <p className="text-sm text-[#5b6b78] leading-relaxed flex-1">{g.description}</p>
                 <span className="inline-flex items-center gap-2 text-sm font-bold text-[#0084ff] group-hover:gap-3 transition-all">

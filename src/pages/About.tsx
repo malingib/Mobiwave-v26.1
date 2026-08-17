@@ -132,8 +132,10 @@ export function About() {
         <div className="container-custom">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <span className="inline-block px-4 py-1.5 rounded-full bg-[#0084ff]/10 text-[#0084ff] text-sm font-medium mb-4">
+              <span className="mb-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-[#176fe8]">
+                <span className="h-px w-8 bg-[#176fe8]" />
                 OUR MISSION
+                <span className="h-px w-8 bg-[#176fe8]" />
               </span>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
                 Bridging Communication Gaps with Innovative Solutions
@@ -159,22 +161,22 @@ export function About() {
               </div>
             </div>
             <div className="relative">
-              <div className="grid grid-cols-2 gap-4">
-                <div className="bg-gradient-to-br from-[#0084ff] to-[#031522] rounded-2xl p-6 text-white">
-                  <div className="text-4xl font-bold mb-2">50+</div>
-                  <div className="text-white/80">Projects</div>
+              <div className="grid grid-cols-2 gap-x-8 gap-y-6">
+                <div className="border-b border-[#172333]/10 pb-5">
+                  <div className="text-4xl font-bold text-[#172333] mb-2">50+</div>
+                  <div className="text-gray-600">Projects</div>
                 </div>
-                <div className="bg-gradient-to-br from-[#1d8c89] to-[#1ea6ff] rounded-2xl p-6 text-white">
-                  <div className="text-4xl font-bold mb-2">10M+</div>
-                  <div className="text-white/80">Messages Sent</div>
+                <div className="border-b border-[#172333]/10 pb-5">
+                  <div className="text-4xl font-bold text-[#172333] mb-2">10M+</div>
+                  <div className="text-gray-600">Messages Sent</div>
                 </div>
-                <div className="bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl p-6 text-white">
-                  <div className="text-4xl font-bold mb-2">99.9%</div>
-                  <div className="text-white/80">Delivery Rate</div>
+                <div className="border-b border-[#172333]/10 pb-5">
+                  <div className="text-4xl font-bold text-[#172333] mb-2">99.9%</div>
+                  <div className="text-gray-600">Delivery Rate</div>
                 </div>
-                <div className="bg-gradient-to-br from-orange-500 to-red-500 rounded-2xl p-6 text-white">
-                  <div className="text-4xl font-bold mb-2">9+</div>
-                  <div className="text-white/80">Services</div>
+                <div className="border-b border-[#172333]/10 pb-5">
+                  <div className="text-4xl font-bold text-[#172333] mb-2">9+</div>
+                  <div className="text-gray-600">Services</div>
                 </div>
               </div>
             </div>
@@ -185,9 +187,11 @@ export function About() {
       {/* Timeline Section */}
       <section ref={timelineRef} className="section-padding bg-gray-50">
         <div className="container-custom">
-          <div className="text-center mb-16">
-            <span className="inline-block px-4 py-1.5 rounded-full bg-[#1d8c89]/10 text-[#1d8c89] text-sm font-medium mb-4">
+          <div className="text-center mb-10">
+            <span className="mb-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-[#1d8c89]">
+              <span className="h-px w-8 bg-[#1d8c89]" />
               OUR JOURNEY
+              <span className="h-px w-8 bg-[#1d8c89]" />
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900">The MobiWave Story</h2>
           </div>
@@ -196,7 +200,7 @@ export function About() {
             {milestones.map((milestone, index) => (
               <div
                 key={index}
-                className="timeline-item bg-white rounded-xl p-5 shadow-md border border-gray-100"
+                className="timeline-item border-b border-gray-200 py-5"
               >
                 <span className="inline-flex px-2.5 py-1 rounded-full bg-[#0084ff]/10 text-[#0084ff] font-semibold text-sm">
                   {milestone.year}
@@ -212,9 +216,11 @@ export function About() {
       {/* Values Section */}
       <section ref={valuesRef} className="section-padding">
         <div className="container-custom">
-          <div className="text-center mb-16">
-            <span className="inline-block px-4 py-1.5 rounded-full bg-purple-100 text-purple-600 text-sm font-medium mb-4">
+          <div className="text-center mb-10">
+            <span className="mb-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-purple-600">
+              <span className="h-px w-8 bg-purple-600" />
               OUR VALUES
+              <span className="h-px w-8 bg-purple-600" />
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">What Drives Us</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
@@ -226,10 +232,10 @@ export function About() {
             {values.map((value, index) => (
               <div
                 key={index}
-                className="value-card bg-white rounded-2xl p-6 shadow-md border border-gray-100 hover:shadow-lg transition-shadow"
+                className="value-card border-b border-gray-200 py-5 transition-colors hover:border-[#0084ff]/40"
               >
-                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#0084ff] to-[#1d8c89] flex items-center justify-center mb-4">
-                  <value.icon className="w-7 h-7 text-white" />
+                <div className="mb-4 text-[#0084ff]">
+                  <value.icon className="h-7 w-7" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-2">{value.title}</h3>
                 <p className="text-gray-600 text-sm">{value.description}</p>

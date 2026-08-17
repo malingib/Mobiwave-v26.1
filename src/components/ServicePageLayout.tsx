@@ -90,7 +90,6 @@ export function ServicePageLayout({
   title,
   subtitle,
   description,
-  icon: ServiceIcon,
   features,
   benefits,
   useCases,
@@ -149,7 +148,6 @@ export function ServicePageLayout({
             <div className="grid lg:grid-cols-2 gap-12 items-center animate-section">
               <div className="animate-item lg:col-span-2 text-center max-w-3xl mx-auto">
                 <div className="flex items-center justify-center gap-2.5 mb-5">
-                  <ServiceIcon className="w-4 h-4 text-[#7c3aed]" aria-hidden="true" />
                   <div className="w-7 h-0.5 rounded-full bg-[#1d8c89]" />
                   <span className="text-xs font-bold text-[#7c3aed] uppercase tracking-[0.18em]">{title}</span>
                   <div className="w-7 h-0.5 rounded-full bg-[#1d8c89]" />
@@ -189,8 +187,8 @@ export function ServicePageLayout({
             <div className="grid md:grid-cols-2 gap-3 md:gap-4 animate-section max-w-5xl mx-auto">
               {features.map((feature, index) => (
                 <div key={index} className="animate-item mw-card flex items-start gap-3 px-4 py-3.5">
-                  <div className="w-6 h-6 rounded-full bg-gradient-to-br from-[#0084ff] to-[#1d8c89] flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <Check className="w-3.5 h-3.5 text-white" />
+                  <div className="mt-1 flex h-5 w-5 flex-shrink-0 items-center justify-center text-[#1d8c89]">
+                    <Check className="h-4 w-4" />
                   </div>
                   <p className="text-base sm:text-lg font-medium leading-snug text-[#0a1a25]">{feature}</p>
                 </div>
@@ -209,8 +207,8 @@ export function ServicePageLayout({
                 <ul className="space-y-4">
                   {benefits.map((benefit, index) => (
                     <li key={index} className="flex items-start gap-3">
-                      <div className="w-6 h-6 rounded-full bg-gradient-to-br from-[#0084ff] to-[#1d8c89] flex items-center justify-center flex-shrink-0 mt-0.5">
-                        <Check className="w-3 h-3 text-white" />
+                      <div className="mt-1 flex h-5 w-5 flex-shrink-0 items-center justify-center text-[#1d8c89]">
+                        <Check className="h-4 w-4" />
                       </div>
                       <span className="text-gray-700">{benefit}</span>
                     </li>
@@ -300,7 +298,7 @@ export function ServicePageLayout({
               <ol className="grid md:grid-cols-2 gap-4 animate-section max-w-5xl mx-auto">
                 {howItWorks.map((item) => (
                   <li key={item.step} className="animate-item mw-card p-5 flex gap-4">
-                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#0084ff] to-[#1d8c89] text-white font-bold" aria-hidden="true">{item.step}</span>
+                    <span className="pt-1 text-sm font-bold text-[#0084ff]" aria-hidden="true">{item.step}</span>
                     <div>
                       <h3 className="text-lg font-bold text-[#0a1a25] mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>{item.title}</h3>
                       <p className="text-[#5b6b78] text-sm leading-relaxed">{item.description}</p>
@@ -401,21 +399,12 @@ export function ServicePageLayout({
 
         {faqs && faqs.length > 0 && <FaqBlock faqs={faqs} title={title} />}
 
-        <section className="py-20 bg-white">
+        <section className="py-14 bg-white md:py-20">
           <div className="container-custom">
             <Card
               className="relative overflow-hidden rounded-3xl border-0 p-0 gap-0"
               style={{ background: '#0a1a25' }}
             >
-              <div
-                className="absolute top-0 right-0 w-72 h-72 rounded-full opacity-10 pointer-events-none"
-                style={{ background: 'radial-gradient(circle, #0084ff, transparent)', transform: 'translate(30%, -30%)' }}
-              />
-              <div
-                className="absolute bottom-0 left-0 w-56 h-56 rounded-full opacity-10 pointer-events-none"
-                style={{ background: 'radial-gradient(circle, #0055ae, transparent)', transform: 'translate(-30%, 30%)' }}
-              />
-
               <CardHeader className="relative z-10 p-6 sm:p-8 md:p-12 pb-0">
                 <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 mb-10">
                   <div className="max-w-xl">

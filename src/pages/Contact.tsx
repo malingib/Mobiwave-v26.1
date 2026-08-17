@@ -149,9 +149,9 @@ export function Contact() {
             {/* Contact Info */}
             <div ref={infoRef} className="space-y-4">
               {contactInfo.map((item, index) => (
-                <div key={index} className="info-card flex items-center gap-4 p-4 bg-gray-50 rounded-xl">
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#0084ff] to-[#1d8c89] flex items-center justify-center flex-shrink-0">
-                    <item.icon className="w-5 h-5 text-white" />
+                <div key={index} className="info-card flex items-start gap-4 border-b border-gray-200 py-4">
+                  <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center text-[#0084ff]">
+                    <item.icon className="h-5 w-5" />
                   </div>
                   <div>
                     <p className="text-sm text-gray-500">{item.label}</p>
@@ -171,7 +171,7 @@ export function Contact() {
             <form
               ref={formRef}
               onSubmit={handleSubmit}
-              className="lg:col-span-2 bg-white rounded-2xl shadow-lg border border-gray-100 p-8"
+              className="lg:col-span-2 border border-gray-200 p-6 sm:p-8"
             >
               <input type="hidden" name="formType" value="contact-page" />
               {isSubmitted ? (
@@ -282,7 +282,7 @@ export function Contact() {
                   <Button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-gradient-to-r from-[#0084ff] to-[#031522] text-white hover:shadow-lg py-6"
+                    className="w-full bg-[#0084ff] text-white hover:bg-[#0068d6] py-6"
                   >
                     <Send className="w-5 h-5 mr-2" />
                     {isSubmitting ? 'Sending...' : 'Send Message'}

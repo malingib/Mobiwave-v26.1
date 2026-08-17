@@ -19,7 +19,7 @@ export function FAQ() {
   const [openIndex, setOpenIndex] = useState(0);
 
   return (
-    <section id="faq" className="overflow-hidden bg-white py-20 lg:py-28" aria-labelledby="faq-heading">
+    <section id="faq" className="overflow-hidden bg-white py-14 lg:py-20" aria-labelledby="faq-heading">
       <div className="container-custom">
         <motion.div ref={ref} initial="hidden" animate={isInView ? 'visible' : 'hidden'} variants={staggerContainer} className="grid items-start gap-12 lg:grid-cols-[0.75fr_1.25fr] lg:gap-24">
           <MotionItem className="lg:sticky lg:top-32">

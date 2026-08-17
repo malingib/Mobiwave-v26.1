@@ -20,7 +20,7 @@ export function Pricing() {
   const isInView = useInView(ref, { once: true, amount: 0.12 });
 
   return (
-    <section className="relative overflow-hidden bg-[#f1efff] py-20 lg:py-28" aria-labelledby="projects-heading">
+    <section className="relative overflow-hidden bg-[#f1efff] py-14 lg:py-20" aria-labelledby="projects-heading">
       <div className="container-custom">
         <motion.div ref={ref} initial="hidden" animate={isInView ? 'visible' : 'hidden'} variants={staggerContainer}>
           <MotionItem className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-end lg:gap-24">

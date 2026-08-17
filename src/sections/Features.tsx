@@ -84,8 +84,10 @@ export function Features() {
           variants={staggerContainer}
         >
           <MotionItem>
-            <span className="inline-block px-4 py-1.5 bg-blue-500/10 text-blue-400 text-sm font-medium rounded-full mb-4 border border-blue-500/20">
+            <span className="mb-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-blue-400">
+              <span className="h-px w-8 bg-blue-400" />
               POWERFUL FEATURES
+              <span className="h-px w-8 bg-blue-400" />
             </span>
           </MotionItem>
           <MotionItem>

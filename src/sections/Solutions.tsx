@@ -147,8 +147,10 @@ export default function Solutions() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="solutions-header text-center max-w-3xl mx-auto mb-16">
-          <span className="inline-block px-4 py-1.5 bg-brand-blue/10 text-brand-blue text-sm font-medium rounded-full mb-4">
+          <span className="mb-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-brand-blue">
+            <span className="h-px w-8 bg-brand-blue" />
             TAILORED SOLUTIONS
+            <span className="h-px w-8 bg-brand-blue" />
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-6">
             Built for Every Industry

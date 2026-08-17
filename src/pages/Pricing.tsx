@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Check, ArrowRight, HelpCircle, MessageSquare, Mail, MessageCircle, Smartphone, Hash, CreditCard, BarChart3, Gift, Headphones } from 'lucide-react';
+import { Check, ArrowRight, HelpCircle, Mail, MessageCircle, CreditCard, BarChart3, Gift, Headphones } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { PageBanner } from '@/components/PageBanner';
 import { TiltCard } from '@/components/TiltCard';
@@ -271,9 +271,10 @@ export function Pricing() {
       <section ref={(el) => { sectionRefs.current[0] = el; }} className="section-padding">
         <div className="container-custom">
           <div className="text-center mb-12">
-            <span className="inline-block px-4 py-1.5 rounded-full bg-[#0084ff]/10 text-[#0084ff] text-sm font-medium mb-4">
-              <MessageSquare className="w-4 h-4 inline mr-2" />
+            <span className="mb-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-[#0084ff]">
+              <span className="h-px w-8 bg-[#0084ff]" />
               BULK SMS
+              <span className="h-px w-8 bg-[#0084ff]" />
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Bulk SMS Packages</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
@@ -284,7 +285,7 @@ export function Pricing() {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {bulkSMSPlans.map((plan) => (
               <TiltCard key={plan.name} className="pricing-card" maxTilt={5}>
-                <div className={`h-full p-6 rounded-2xl border ${plan.popular ? 'border-[#1d8c89] shadow-lg shadow-[#1d8c89]/10' : 'border-gray-200'} bg-white relative`}>
+                <div className={`h-full border-b p-6 ${plan.popular ? 'border-[#1d8c89]' : 'border-gray-200'} relative`}>
                   {plan.popular && (
                     <div className="absolute -top-3 right-4 px-3 py-1 bg-[#1d8c89] text-white text-xs font-medium rounded-full">
                       POPULAR
@@ -305,7 +306,7 @@ export function Pricing() {
                       </li>
                     ))}
                   </ul>
-                  <Button className="w-full bg-gradient-to-r from-[#0084ff] to-[#031522] text-white hover:shadow-lg">
+                  <Button className="w-full bg-[#0084ff] text-white hover:bg-[#0068d6]">
                     Get Started
                   </Button>
                 </div>
@@ -319,9 +320,10 @@ export function Pricing() {
       <section ref={(el) => { sectionRefs.current[1] = el; }} className="section-padding bg-gray-50">
         <div className="container-custom">
           <div className="text-center mb-12">
-            <span className="inline-block px-4 py-1.5 rounded-full bg-purple-100 text-purple-600 text-sm font-medium mb-4">
-              <Smartphone className="w-4 h-4 inline mr-2" />
+            <span className="mb-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-purple-600">
+              <span className="h-px w-8 bg-purple-600" />
               USSD SERVICES
+              <span className="h-px w-8 bg-purple-600" />
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">USSD Code Options</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
@@ -331,7 +333,7 @@ export function Pricing() {
 
           <div className="grid md:grid-cols-3 gap-6">
             {ussdPlans.map((plan) => (
-              <div key={plan.name} className="pricing-card bg-white rounded-2xl p-6 shadow-md border border-gray-100">
+              <div key={plan.name} className="pricing-card border-b border-gray-200 p-6">
                 <h3 className="text-xl font-bold text-gray-900 mb-2">{plan.name}</h3>
                 <p className="text-sm text-gray-500 mb-4">{plan.description}</p>
                 <div className="space-y-2 mb-4">
@@ -350,7 +352,7 @@ export function Pricing() {
                     </li>
                   ))}
                 </ul>
-                <Button className="w-full bg-gradient-to-r from-[#0084ff] to-[#031522] text-white hover:shadow-lg">
+                <Button className="w-full bg-[#0084ff] text-white hover:bg-[#0068d6]">
                   Get Started
                 </Button>
               </div>
@@ -372,9 +374,10 @@ export function Pricing() {
       <section ref={(el) => { sectionRefs.current[2] = el; }} className="section-padding">
         <div className="container-custom">
           <div className="text-center mb-12">
-            <span className="inline-block px-4 py-1.5 rounded-full bg-orange-100 text-orange-600 text-sm font-medium mb-4">
-              <Hash className="w-4 h-4 inline mr-2" />
+            <span className="mb-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-orange-600">
+              <span className="h-px w-8 bg-orange-600" />
               SHORTCODES
+              <span className="h-px w-8 bg-orange-600" />
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">SMS Shortcode Options</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
@@ -384,7 +387,7 @@ export function Pricing() {
 
           <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
             {shortcodePlans.map((plan) => (
-              <div key={plan.name} className={`pricing-card bg-white rounded-2xl p-6 shadow-md border ${plan.popular ? 'border-[#1d8c89]' : 'border-gray-100'} relative`}>
+              <div key={plan.name} className={`pricing-card border-b p-6 ${plan.popular ? 'border-[#1d8c89]' : 'border-gray-200'} relative`}>
                 {plan.popular && (
                   <div className="absolute -top-3 right-4 px-3 py-1 bg-[#1d8c89] text-white text-xs font-medium rounded-full">
                     POPULAR
@@ -411,7 +414,7 @@ export function Pricing() {
                     ))}
                   </ul>
                 </div>
-                <Button className="w-full bg-gradient-to-r from-[#0084ff] to-[#031522] text-white hover:shadow-lg">
+                <Button className="w-full bg-[#0084ff] text-white hover:bg-[#0068d6]">
                   Get Started
                 </Button>
               </div>
@@ -433,8 +436,10 @@ export function Pricing() {
       <section ref={(el) => { sectionRefs.current[3] = el; }} className="section-padding bg-gray-50">
         <div className="container-custom">
           <div className="text-center mb-12">
-            <span className="inline-block px-4 py-1.5 rounded-full bg-[#1d8c89]/10 text-[#1d8c89] text-sm font-medium mb-4">
+            <span className="mb-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-[#1d8c89]">
+              <span className="h-px w-8 bg-[#1d8c89]" />
               MORE SERVICES
+              <span className="h-px w-8 bg-[#1d8c89]" />
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Additional Services</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
@@ -444,10 +449,7 @@ export function Pricing() {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {otherServices.map((service) => (
-              <div key={service.name} className="pricing-card bg-white rounded-2xl p-6 shadow-md border border-gray-100 hover:shadow-lg transition-shadow">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#0084ff] to-[#1d8c89] flex items-center justify-center mb-4">
-                  <service.icon className="w-6 h-6 text-white" />
-                </div>
+              <div key={service.name} className="pricing-card border-b border-gray-200 p-6 transition-colors hover:border-[#0084ff]/40">
                 <h3 className="text-lg font-bold text-gray-900 mb-2">{service.name}</h3>
                 <p className="text-sm text-gray-500 mb-4">{service.description}</p>
                 <div className="flex items-baseline gap-1 mb-4">
@@ -472,7 +474,7 @@ export function Pricing() {
       </section>
 
       {/* Custom Pricing CTA */}
-      <section className="py-16 bg-gradient-to-r from-[#0084ff] to-[#031522]">
+      <section className="bg-[#0a1a25] py-14">
         <div className="container-custom text-center">
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
             Need a custom package?

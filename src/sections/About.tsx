@@ -36,7 +36,7 @@ export function About() {
   const isInView = useInView(ref, { once: true, amount: 0.2 });
 
   return (
-    <section className="relative overflow-hidden bg-white py-20 lg:py-28" aria-labelledby="about-heading">
+    <section className="relative overflow-hidden bg-white py-14 lg:py-20" aria-labelledby="about-heading">
       <div className="container-custom">
         <motion.div
           ref={ref}

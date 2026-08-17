@@ -90,8 +90,10 @@ export default function Integrations() {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="integrations-title text-center max-w-3xl mx-auto mb-20">
-          <span className="inline-block px-4 py-1.5 bg-brand-green/20 text-brand-green text-sm font-medium rounded-full mb-4">
+          <span className="mb-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-brand-green">
+            <span className="h-px w-8 bg-brand-green" />
             INTEGRATIONS
+            <span className="h-px w-8 bg-brand-green" />
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
             Seamless Integrations

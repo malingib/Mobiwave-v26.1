@@ -8,7 +8,7 @@ export function CTABanner() {
   const isInView = useInView(ref, { once: true, amount: 0.15 });
 
   return (
-    <section id="contact" className="overflow-hidden bg-[#f1efff] py-20 lg:py-28" aria-labelledby="cta-heading">
+    <section id="contact" className="overflow-hidden bg-[#f1efff] py-16 lg:py-24" aria-labelledby="cta-heading">
       <div className="container-custom">
         <motion.div
           ref={ref}

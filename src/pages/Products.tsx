@@ -314,10 +314,11 @@ export function Products() {
       {/* Innovations Hub Section */}
       <section ref={innovationsHubRef} className="section-padding bg-white">
         <div className="container-custom">
-          <div className="text-center mb-16">
-            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#0084ff]/10 text-[#0084ff] text-sm font-medium mb-4">
-              <Sparkles className="w-4 h-4" />
+          <div className="text-center mb-10">
+            <span className="mb-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-[#0084ff]">
+              <span className="h-px w-8 bg-[#0084ff]" />
               INNOVATIONS HUB
+              <span className="h-px w-8 bg-[#0084ff]" />
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Use Cases, Live Projects, and What&apos;s Next
@@ -328,7 +329,7 @@ export function Products() {
           </div>
 
           <div className="grid lg:grid-cols-3 gap-8">
-            <div className="innovation-card rounded-3xl border border-gray-100 bg-gray-50 p-7">
+            <div className="innovation-card border-b border-gray-200 p-2 pb-7">
               <h3 className="text-xl font-bold text-gray-900 mb-2">Use Cases</h3>
               <p className="text-sm text-gray-600 mb-5">Industry scenarios we build for.</p>
               <ul className="space-y-3">
@@ -344,7 +345,7 @@ export function Products() {
               </ul>
             </div>
 
-            <div className="innovation-card rounded-3xl border border-emerald-100 bg-emerald-50/40 p-7">
+            <div className="innovation-card border-b border-gray-200 p-2 pb-7">
               <h3 className="text-xl font-bold text-gray-900 mb-2">Live Projects</h3>
               <p className="text-sm text-gray-600 mb-5">Projects currently deployed and accessible.</p>
               <ul className="space-y-3">
@@ -364,7 +365,7 @@ export function Products() {
               </ul>
             </div>
 
-            <div className="innovation-card rounded-3xl border border-amber-100 bg-amber-50/50 p-7">
+            <div className="innovation-card border-b border-gray-200 p-2 pb-7">
               <h3 className="text-xl font-bold text-gray-900 mb-2">Coming Soon</h3>
               <p className="text-sm text-gray-600 mb-5">Products in development and planned release.</p>
               <ul className="space-y-3">
@@ -383,10 +384,11 @@ export function Products() {
       {/* Software Products Section */}
       <section id="products" ref={productsRef} className="section-padding bg-gray-50">
         <div className="container-custom">
-          <div className="text-center mb-16">
-            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#0084ff]/10 text-[#0084ff] text-sm font-medium mb-4">
-              <Layers className="w-4 h-4" />
+          <div className="text-center mb-10">
+            <span className="mb-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-[#0084ff]">
+              <span className="h-px w-8 bg-[#0084ff]" />
               SOFTWARE PRODUCTS
+              <span className="h-px w-8 bg-[#0084ff]" />
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Industry-Specific Solutions
@@ -401,23 +403,10 @@ export function Products() {
             {softwareProducts.map((product) => (
               <div
                 key={product.name}
-                className="product-card group relative bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100"
+                className="product-card group relative border-b border-gray-200 pb-6 transition-colors duration-300 hover:border-[#0084ff]/40"
               >
-                {/* Card Header with Gradient */}
-                <div className={`h-32 bg-gradient-to-br ${product.color} relative overflow-hidden`}>
-                  <div className="absolute inset-0 opacity-20">
-                    <div className="absolute top-4 right-4 w-20 h-20 bg-white rounded-full blur-2xl" />
-                    <div className="absolute bottom-4 left-4 w-16 h-16 bg-white rounded-full blur-xl" />
-                  </div>
-                  <div className="absolute -bottom-8 left-6">
-                    <div className="w-16 h-16 bg-white rounded-2xl shadow-lg flex items-center justify-center">
-                      <product.icon className={`w-8 h-8 ${product.textColor}`} />
-                    </div>
-                  </div>
-                </div>
-
                 {/* Card Content */}
-                <div className="pt-12 pb-6 px-6">
+                <div className="pt-2 px-2">
                   <div className="flex items-center gap-2 mb-2">
                     <span className={`text-xs font-semibold px-2 py-1 rounded-full ${product.bgColor} ${product.textColor}`}>
                       {product.shortName}
@@ -452,9 +441,10 @@ export function Products() {
       <section ref={solutionsRef} className="section-padding bg-white">
         <div className="container-custom">
           <div className="text-center mb-16">
-            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-100 text-purple-600 text-sm font-medium mb-4">
-              <Sparkles className="w-4 h-4" />
+            <span className="mb-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-purple-600">
+              <span className="h-px w-8 bg-purple-600" />
               ENTERPRISE SOLUTIONS
+              <span className="h-px w-8 bg-purple-600" />
             </span>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
               Custom Development Services
@@ -469,14 +459,11 @@ export function Products() {
             {enterpriseSolutions.map((solution) => (
               <div
                 key={solution.title}
-                className="solution-card group relative bg-gradient-to-br from-white to-gray-50 rounded-3xl p-8 shadow-lg border border-gray-100 hover:shadow-2xl transition-all duration-500 overflow-hidden"
+                className="solution-card group relative border-b border-gray-200 p-2 pb-8 transition-colors duration-300 hover:border-[#0084ff]/40"
               >
-                {/* Hover Gradient Overlay */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${solution.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500`} />
-                
                 <div className="relative z-10">
-                  <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${solution.gradient} flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform duration-500`}>
-                    <solution.icon className="w-8 h-8 text-white" />
+                  <div className="mb-5 text-[#0084ff]">
+                    <solution.icon className="h-8 w-8" />
                   </div>
                   <h3 className="text-2xl font-bold text-gray-900 mb-3">{solution.title}</h3>
                   <p className="text-gray-600 mb-6">{solution.description}</p>
@@ -498,12 +485,13 @@ export function Products() {
       </section>
 
       {/* Why Choose Us Section */}
-      <section ref={whyUsRef} className="section-padding bg-gradient-to-b from-gray-50 to-white">
+      <section ref={whyUsRef} className="section-padding bg-gray-50">
         <div className="container-custom">
-          <div className="text-center mb-16">
-            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-100 text-orange-600 text-sm font-medium mb-4">
-              <Zap className="w-4 h-4" />
+          <div className="text-center mb-10">
+            <span className="mb-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-orange-600">
+              <span className="h-px w-8 bg-orange-600" />
               WHY CHOOSE US
+              <span className="h-px w-8 bg-orange-600" />
             </span>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
               The MobiWave Advantage
@@ -517,10 +505,10 @@ export function Products() {
             {whyChooseUs.map((item) => (
               <div
                 key={item.title}
-                className="why-card group bg-white rounded-3xl p-8 shadow-lg border border-gray-100 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 text-center"
+                className="why-card group border-b border-gray-200 p-5 text-center transition-colors duration-300 hover:border-[#0084ff]/40"
               >
-                <div className="w-20 h-20 rounded-full bg-gradient-to-br from-[#0084ff] to-[#1d8c89] flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform duration-500">
-                  <item.icon className="w-10 h-10 text-white" />
+                <div className="mx-auto mb-5 text-[#0084ff]">
+                  <item.icon className="h-8 w-8" />
                 </div>
                 <div className="text-2xl font-bold text-[#0084ff] mb-2">{item.stat}</div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3">{item.title}</h3>
@@ -534,10 +522,11 @@ export function Products() {
       {/* Tech Stack Section */}
       <section ref={techRef} className="section-padding bg-gray-50">
         <div className="container-custom">
-          <div className="text-center mb-16">
-            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#0084ff]/10 text-[#0084ff] text-sm font-medium mb-4">
-              <Code2 className="w-4 h-4" />
+          <div className="text-center mb-10">
+            <span className="mb-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-[#0084ff]">
+              <span className="h-px w-8 bg-[#0084ff]" />
               TECHNOLOGIES
+              <span className="h-px w-8 bg-[#0084ff]" />
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Modern Tech Stack
@@ -551,7 +540,7 @@ export function Products() {
             {techStack.map((tech) => (
               <div
                 key={tech.name}
-                className="tech-item group flex flex-col items-center gap-4 p-6 bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300 min-w-[120px]"
+                className="tech-item group flex min-w-[120px] flex-col items-center gap-4 border-b border-gray-200 p-5 transition-colors duration-300 hover:border-[#0084ff]/40"
               >
                 <tech.icon className={`w-10 h-10 ${tech.color} group-hover:scale-110 transition-transform duration-300`} />
                 <span className="text-gray-900 font-medium">{tech.name}</span>
@@ -564,10 +553,11 @@ export function Products() {
       {/* Process Section */}
       <section className="section-padding bg-white">
         <div className="container-custom">
-          <div className="text-center mb-16">
-            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-100 text-emerald-600 text-sm font-medium mb-4">
-              <TrendingUp className="w-4 h-4" />
+          <div className="text-center mb-10">
+            <span className="mb-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-emerald-600">
+              <span className="h-px w-8 bg-emerald-600" />
               OUR PROCESS
+              <span className="h-px w-8 bg-emerald-600" />
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               How We Work
@@ -582,7 +572,7 @@ export function Products() {
               { step: '04', title: 'Deployment', desc: 'We launch and provide ongoing support' }
             ].map((item, i) => (
               <div key={item.step} className="relative text-center">
-                <div className="w-20 h-20 rounded-full bg-gradient-to-br from-[#0084ff] to-[#1d8c89] flex items-center justify-center mx-auto mb-6 text-white text-2xl font-bold">
+                <div className="mx-auto mb-5 text-2xl font-bold text-[#0084ff]">
                   {item.step}
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-2">{item.title}</h3>
@@ -599,7 +589,7 @@ export function Products() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-[#0a1a25]">
+      <section className="bg-[#0a1a25] py-14">
         <div className="container-custom text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             Ready to Transform Your Business?

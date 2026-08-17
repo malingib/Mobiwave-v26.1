@@ -27,7 +27,7 @@ export function WhyChooseUs() {
   const isInView = useInView(ref, { once: true, amount: 0.15 });
 
   return (
-    <section className="relative overflow-hidden bg-[#f1efff] py-20 text-[#172333] lg:py-28" aria-labelledby="how-it-works-heading">
+    <section className="relative overflow-hidden bg-[#f1efff] py-14 text-[#172333] lg:py-20" aria-labelledby="how-it-works-heading">
       <div className="absolute right-0 top-0 h-[520px] w-[520px] rounded-full bg-[#b8c9e8]/35 blur-3xl" aria-hidden />
       <div className="container-custom relative z-10">
         <motion.div ref={ref} initial="hidden" animate={isInView ? 'visible' : 'hidden'} variants={staggerContainer}>
