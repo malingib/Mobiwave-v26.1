@@ -4,6 +4,7 @@
 /pricing  /pricing.html  200
 /innovations  /innovations.html  200
 /developers/docs  /developers/docs.html  200
+/resources  /resources.html  200
 /terms  /terms.html  200
 /privacy  /privacy.html  200
 /services/bulk-sms  /services/bulk-sms.html  200
@@ -15,6 +16,12 @@
 /services/sms-surveys  /services/sms-surveys.html  200
 /services/airtime-rewards  /services/airtime-rewards.html  200
 /services/service-desk  /services/service-desk.html  200
+/guides/sender-id-registration-kenya  /guides/sender-id-registration-kenya.html  200
+/guides/mpesa-stk-push-api-kenya  /guides/mpesa-stk-push-api-kenya.html  200
+/guides/best-bulk-sms-kenya  /guides/best-bulk-sms-kenya.html  200
+/guides/ussd-code-cost-kenya  /guides/ussd-code-cost-kenya.html  200
+/guides/bulk-email-kenya  /guides/bulk-email-kenya.html  200
+/guides/sms-survey-kenya  /guides/sms-survey-kenya.html  200
 
 # SPA fallback for all other client-side routes
 /*  /index.html  200
