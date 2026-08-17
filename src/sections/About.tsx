@@ -27,7 +27,7 @@ const features = [
 
 const stats = [
   { value: '6+', label: 'years building locally' },
-  { value: '500+', label: 'organisations reached' },
+  { value: '50+', label: 'organisations reached' },
   { value: '12+', label: 'services under one roof' },
 ];
 
