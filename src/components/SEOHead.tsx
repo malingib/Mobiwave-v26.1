@@ -85,9 +85,9 @@ const ROUTE_SEO: Record<string, SeoConfig> = {
     type: 'article',
   },
   '/services/bulk-sms': {
-    title: 'Bulk SMS Kenya from KES 0.20/SMS | SMS API for Safaricom, Airtel, Telkom | MobiWave',
+    title: 'Bulk SMS API Kenya | From KES 0.20/SMS | MobiWave',
     description:
-      'Kenyan bulk SMS provider with direct Safaricom, Airtel and Telkom interconnects. From KES 0.20/SMS at volume, free sender ID registration, 99.9% delivery, REST API + sandbox, and native M-Pesa STK Push — comparison vs Africa’s Talking, Celcom Africa and Twilio.',
+      'Bulk SMS provider in Kenya with Safaricom, Airtel and Telkom coverage. From KES 0.20/SMS at volume, sender ID registration, delivery reports, REST API, sandbox and M-Pesa integration.',
     path: '/services/bulk-sms',
     pageType: 'Service',
     serviceType: 'Bulk SMS and SMS API',
@@ -109,15 +109,15 @@ const ROUTE_SEO: Record<string, SeoConfig> = {
     serviceType: 'WhatsApp Business API',
   },
   '/services/ussd-codes': {
-    title: 'USSD Codes Kenya from KES 11,000 | USSD Menus, Payments & Surveys | MobiWave',
+    title: 'USSD Codes Kenya from KES 11,000 | MobiWave',
     description:
-      'Kenyan USSD service provider with shared codes from KES 11,000 setup + KES 8,000/mo and dedicated codes at KES 40,000/mo +VAT. CAK shortcode registration handled for you, M-Pesa STK Push inside menus, works on every phone with no internet.',
+      'Kenyan USSD service provider for shared and dedicated codes, payments, surveys and business menus. CAK shortcode registration, M-Pesa STK Push and no-internet access.',
     path: '/services/ussd-codes',
     pageType: 'Service',
     serviceType: 'USSD codes and applications',
   },
   '/services/shortcodes': {
-    title: 'SMS Shortcodes Kenya and Sender IDs for Businesses | MobiWave',
+    title: 'SMS Shortcodes Kenya and Sender IDs | MobiWave',
     description:
       'Deploy shared or dedicated SMS shortcodes for two-way communication, campaigns, voting, lead generation, and subscriptions.',
     path: '/services/shortcodes',
@@ -125,9 +125,9 @@ const ROUTE_SEO: Record<string, SeoConfig> = {
     serviceType: 'SMS shortcodes and sender IDs',
   },
   '/services/mpesa-integration': {
-    title: 'M-Pesa API Integration Kenya | STK Push, C2B, B2C & Daraja | MobiWave',
+    title: 'M-Pesa API Integration Kenya | STK Push & Daraja | MobiWave',
     description:
-      'MobiWave integrates Safaricom Daraja for STK Push (Lipa Na M-Pesa), C2B, B2C and B2B on one Kenyan account. Free Daraja setup, auto-reconciliation, 24/7 local support — bundle SMS, USSD and WhatsApp.',
+      'Integrate Safaricom Daraja for STK Push, C2B, B2C and B2B payments in Kenya. Local support, auto-reconciliation and SMS, USSD and WhatsApp integrations.',
     path: '/services/mpesa-integration',
     pageType: 'Service',
     serviceType: 'M-Pesa API integration',
@@ -157,44 +157,44 @@ const ROUTE_SEO: Record<string, SeoConfig> = {
     serviceType: 'Customer service desk software',
   },
   '/guides/sender-id-registration-kenya': {
-    title: 'Sender ID Registration in Kenya 2026 | CAK SMS Sender ID Guide | MobiWave',
+    title: 'Sender ID Registration in Kenya 2026 | CAK Guide | MobiWave',
     description:
-      'How to register an SMS sender ID in Kenya under the CAK framework: documents, approval time, cost, and how MobiWave registers your ID across Safaricom, Airtel and Telkom for free.',
+      'How to register an SMS sender ID in Kenya under the CAK framework: documents, approval time, cost, and how MobiWave registers your ID across Safaricom, Airtel and Telkom.',
     path: '/guides/sender-id-registration-kenya',
     pageType: 'Article',
   },
   '/guides/mpesa-stk-push-api-kenya': {
-    title: 'M-Pesa STK Push API Kenya 2026 | Lipa Na M-Pesa Online Guide | MobiWave',
+    title: 'M-Pesa STK Push API Kenya 2026 | Daraja Guide | MobiWave',
     description:
-      'How M-Pesa STK Push (Lipa Na M-Pesa Online) works in Kenya: the Daraja API flow, what you need to integrate, callbacks, costs, and how MobiWave bundles it with SMS, USSD and WhatsApp.',
+      'How M-Pesa STK Push works in Kenya: the Daraja API flow, integration requirements, callbacks, costs, and how MobiWave bundles payments with SMS, USSD and WhatsApp.',
     path: '/guides/mpesa-stk-push-api-kenya',
     pageType: 'Article',
   },
   '/guides/best-bulk-sms-kenya': {
     title: 'Best Bulk SMS Provider in Kenya 2026 | Buyer’s Guide | MobiWave',
     description:
-      'How to choose the best bulk SMS provider in Kenya: direct interconnects, KES pricing, sender ID registration, delivery reporting and local support — comparison of MobiWave, Africa’s Talking, Celcom and Twilio.',
+      'How to choose a bulk SMS provider in Kenya: direct interconnects, KES pricing, sender ID registration, delivery reporting and local support.',
     path: '/guides/best-bulk-sms-kenya',
     pageType: 'Article',
   },
   '/guides/ussd-code-cost-kenya': {
-    title: 'USSD Code Cost in Kenya 2026 | Shared vs Dedicated Pricing | MobiWave',
+    title: 'USSD Code Cost in Kenya 2026 | Shared vs Dedicated | MobiWave',
     description:
-      'How much a USSD code costs in Kenya: shared (KES 11,000 setup + KES 8,000/mo) vs dedicated (KES 40,000 + KES 40,000/mo), CAK allocation, end-user per-session charges, and M-Pesa STK Push from menus.',
+      'How much a USSD code costs in Kenya: shared vs dedicated pricing, CAK allocation, end-user session charges, and M-Pesa STK Push from menus.',
     path: '/guides/ussd-code-cost-kenya',
     pageType: 'Article',
   },
   '/guides/bulk-email-kenya': {
     title: 'Bulk Email Marketing in Kenya 2026 | Deliverability Guide | MobiWave',
     description:
-      'How to run bulk email marketing in Kenya: SPF, DKIM, DMARC authentication, segmentation, automation, and how MobiWave bundles email with SMS, WhatsApp and M-Pesa on one local account.',
+      'How to run bulk email marketing in Kenya: SPF, DKIM, DMARC authentication, segmentation, automation, and local delivery best practices.',
     path: '/guides/bulk-email-kenya',
     pageType: 'Article',
   },
   '/guides/sms-survey-kenya': {
     title: 'SMS Surveys in Kenya 2026 | Two-way Feedback Guide | MobiWave',
     description:
-      'How to run SMS surveys in Kenya: two-way flows, branching questions, response rates, real-time analytics and CAK/ODPC compliance — bundled with SMS, USSD and WhatsApp.',
+      'How to run SMS surveys in Kenya: two-way flows, branching questions, response rates, real-time analytics and compliance considerations.',
     path: '/guides/sms-survey-kenya',
     pageType: 'Article',
   },
@@ -238,7 +238,11 @@ export function SEOHead() {
   const location = useLocation();
 
   useEffect(() => {
-    const pathname = location.pathname || '/';
+    // Normalize trailing slashes before resolving route SEO. Without this,
+    // /services/bulk-email/ fell back to the homepage SEO configuration.
+    const pathname = location.pathname === '/'
+      ? '/'
+      : location.pathname.replace(/\/+$/, '');
     const config = ROUTE_SEO[pathname] ?? ROUTE_SEO['/'];
     const canonical = `${SITE_URL}${config.path}`;
 
@@ -294,80 +298,69 @@ export function SEOHead() {
           { name: config.title.split(' | ')[0], item: canonical },
         ];
 
-    const schemaPayload: Record<string, unknown>[] = [
+    const graph: Record<string, unknown>[] = [
       {
-        '@context': 'https://schema.org',
-        '@type': ['Organization', 'LocalBusiness', 'ProfessionalService'],
+        '@type': 'Organization',
         '@id': organizationId,
         name: BUSINESS_NAME,
         url: SITE_URL,
         logo: DEFAULT_IMAGE,
-        image: DEFAULT_IMAGE,
-        slogan: 'Reliable business communication for Africa',
-        priceRange: 'KSh',
+        telephone: PHONE,
+        email: EMAIL,
         address: {
           '@type': 'PostalAddress',
-          streetAddress: POSTAL,
           addressLocality: CITY,
-          addressRegion: 'Kilifi County',
+          addressRegion: REGION,
           addressCountry: 'KE',
+          streetAddress: POSTAL,
         },
         geo: {
           '@type': 'GeoCoordinates',
           latitude: LAT,
           longitude: LNG,
         },
-        areaServed: [
-          { '@type': 'Country', name: 'Kenya' },
-          { '@type': 'City', name: 'Kilifi' },
-          { '@type': 'City', name: 'Mombasa' },
-          { '@type': 'City', name: 'Nairobi' },
-        ],
-        telephone: PHONE,
-        email: EMAIL,
-        contactPoint: {
-          '@type': 'ContactPoint',
-          telephone: PHONE,
-          email: EMAIL,
-          contactType: 'customer support',
-          areaServed: 'KE',
-          availableLanguage: ['English', 'Swahili'],
-        },
-        sameAs: [
-          'https://x.com/mobiwave_ke',
-          'https://www.linkedin.com/company/mobiwave-kenya',
-          'https://www.facebook.com/p/MobiWave-Innovations-Ltd-61569833317922/',
-          'https://instagram.com/mobiwave_ke',
-        ],
       },
       {
-        '@context': 'https://schema.org',
         '@type': 'WebSite',
         '@id': websiteId,
-        name: BUSINESS_NAME,
         url: SITE_URL,
-        inLanguage: 'en-KE',
-      },
-      {
-        '@context': 'https://schema.org',
-        '@type': config.pageType ?? 'WebPage',
-        '@id': `${canonical}#webpage`,
-        name: config.title,
-        description: config.description,
-        url: canonical,
-        inLanguage: 'en-KE',
-        dateModified: LASTMOD,
-        isPartOf: { '@id': websiteId },
+        name: BUSINESS_NAME,
         publisher: { '@id': organizationId },
-        breadcrumb: breadcrumbItems.length > 0 ? { '@id': `${canonical}#breadcrumb` } : undefined,
+        inLanguage: 'en-KE',
       },
     ];
 
-    if (breadcrumbItems.length > 0) {
-      schemaPayload.push({
-        '@context': 'https://schema.org',
+    if (config.pageType === 'Service') {
+      graph.push({
+        '@type': 'Service',
+        '@id': `${canonical}#service`,
+        name: config.title.split(' | ')[0],
+        serviceType: config.serviceType,
+        provider: { '@id': organizationId },
+        areaServed: { '@type': 'Country', name: 'Kenya' },
+        url: canonical,
+      });
+    }
+
+    if (config.pageType === 'Article') {
+      graph.push({
+        '@type': 'Article',
+        '@id': `${canonical}#article`,
+        headline: config.title,
+        description: config.description,
+        mainEntityOfPage: canonical,
+        author: { '@id': organizationId },
+        publisher: { '@id': organizationId },
+        dateModified: LASTMOD,
+        datePublished: LASTMOD,
+        image: [DEFAULT_IMAGE],
+        inLanguage: 'en-KE',
+      });
+    }
+
+    if (breadcrumbItems.length) {
+      graph.push({
         '@type': 'BreadcrumbList',
-        '@id': `${canonical}#breadcrumb`,
         itemListElement: breadcrumbItems.map((item, index) => ({
           '@type': 'ListItem',
           position: index + 1,
@@ -377,19 +370,22 @@ export function SEOHead() {
       });
     }
 
-    if (config.pageType === 'Service') {
-      schemaPayload.push({
-        '@context': 'https://schema.org',
-        '@type': 'Service',
-        name: config.serviceType ?? config.title,
-        description: config.description,
-        url: canonical,
-        areaServed: { '@type': 'Country', name: 'Kenya' },
-        provider: { '@id': organizationId },
-        serviceType: config.serviceType ?? config.title,
-      });
-    }
-    schema.textContent = JSON.stringify(schemaPayload);
+    graph.push({
+      '@type': config.pageType ?? 'WebPage',
+      '@id': `${canonical}#webpage`,
+      url: canonical,
+      name: config.title,
+      description: config.description,
+      isPartOf: { '@id': websiteId },
+      about: { '@id': organizationId },
+      inLanguage: 'en-KE',
+      dateModified: LASTMOD,
+    });
+
+    schema.textContent = JSON.stringify({
+      '@context': 'https://schema.org',
+      '@graph': graph,
+    });
   }, [location.pathname]);
 
   return null;
