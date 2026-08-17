@@ -8,7 +8,9 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const rootDir = path.resolve(__dirname, '..')
 const distDir = path.join(rootDir, 'dist')
 const sitemapPath = path.join(rootDir, 'public', 'sitemap.xml')
-const PORT = 4174
+// Use a per-run port so a stale preview process from an interrupted build
+// cannot serve old HTML with asset filenames from a previous build.
+const PORT = 4174 + (process.pid % 1000)
 const BASE_URL = `http://localhost:${PORT}`
 const SITE_URL = 'https://mobiwave.co.ke'
 
@@ -64,10 +66,12 @@ async function main() {
   const routes = await routesFromSitemap()
   console.log(`Prerendering ${routes.length} routes: ${routes.join(', ')}`)
 
+  const previewCommand = process.execPath
+  const previewScript = path.join(rootDir, 'node_modules', 'vite', 'bin', 'vite.js')
   const preview = spawn(
-    'npx',
-    ['vite', 'preview', '--port', String(PORT), '--strictPort'],
-    { cwd: rootDir, stdio: 'ignore', shell: true },
+    previewCommand,
+    [previewScript, 'preview', '--port', String(PORT), '--strictPort'],
+    { cwd: rootDir, stdio: 'ignore', shell: false },
   )
 
   const failures = []
