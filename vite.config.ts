@@ -4,9 +4,11 @@ import { defineConfig } from "vite"
 import { inspectAttr } from 'kimi-plugin-inspect-react'
 
 // https://vite.dev/config/
-export default defineConfig({
+export default defineConfig(({ command }) => ({
   base: '/',
-  plugins: [inspectAttr(), react()],
+  // Keep source-location attributes available while developing, but never
+  // ship them in production HTML where they add DOM weight and expose paths.
+  plugins: [command === 'serve' && inspectAttr(), react()],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
@@ -30,4 +32,4 @@ export default defineConfig({
       },
     },
   },
-});
+}));

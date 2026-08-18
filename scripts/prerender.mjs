@@ -13,6 +13,9 @@ const sitemapPath = path.join(rootDir, 'public', 'sitemap.xml')
 const PORT = 4174 + (process.pid % 1000)
 const BASE_URL = `http://localhost:${PORT}`
 const SITE_URL = 'https://mobiwave.co.ke'
+// These pages are intentionally excluded from the sitemap because they are
+// noindex utility content, but must still have crawlable, route-specific HTML.
+const EXTRA_PRERENDER_ROUTES = ['/privacy', '/terms']
 
 const BLOCKED_HOSTS = [
   'googletagmanager.com',
@@ -63,7 +66,7 @@ async function scrollThroughPage(page) {
 }
 
 async function main() {
-  const routes = await routesFromSitemap()
+  const routes = [...new Set([...(await routesFromSitemap()), ...EXTRA_PRERENDER_ROUTES])]
   console.log(`Prerendering ${routes.length} routes: ${routes.join(', ')}`)
 
   const previewCommand = process.execPath

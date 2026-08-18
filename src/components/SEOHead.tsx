@@ -71,12 +71,14 @@ const ROUTE_SEO: Record<string, SeoConfig> = {
     description:
       'Read the terms and conditions governing use of MobiWave Innovations communication services and digital platforms.',
     path: '/terms',
+    robots: 'noindex,follow',
   },
   '/privacy': {
     title: 'Privacy Policy | MobiWave Innovations',
     description:
       'Learn how MobiWave Innovations handles personal and business data across our communication and payment services.',
     path: '/privacy',
+    robots: 'noindex,follow',
   },
   '/developers/docs': {
     title: 'API Documentation | MobiWave Innovations',
