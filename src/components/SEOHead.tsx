@@ -10,6 +10,7 @@ type SeoConfig = {
   pageType?: 'WebPage' | 'AboutPage' | 'ContactPage' | 'Service' | 'Article';
   robots?: string;
   serviceType?: string;
+  faqItems?: { question: string; answer: string }[];
 };
 
 const SITE_URL = 'https://mobiwave.co.ke';
@@ -24,7 +25,7 @@ const REGION = 'KE-04';
 const LAT = -3.6305;
 const LNG = 39.8497;
 const POSTAL = 'Titanic Building, 1st Floor, Room 2';
-const LASTMOD = '2026-08-08';
+const LASTMOD = '2026-08-28';
 
 const ROUTE_SEO: Record<string, SeoConfig> = {
   '/': {
@@ -87,13 +88,33 @@ const ROUTE_SEO: Record<string, SeoConfig> = {
     type: 'article',
   },
   '/services/bulk-sms': {
-    title: 'Bulk SMS API Kenya | From KES 0.20/SMS | MobiWave',
+    title: 'Best Bulk SMS Provider in Kenya | MobiWave',
     description:
       'Bulk SMS provider in Kenya with Safaricom, Airtel and Telkom coverage. From KES 0.20/SMS at volume, sender ID registration, delivery reports, REST API, sandbox and M-Pesa integration.',
     path: '/services/bulk-sms',
     pageType: 'Service',
     serviceType: 'Bulk SMS and SMS API',
+    faqItems: [{
+      question: 'How quickly can I get started?',
+      answer: 'After you submit your business registration and KRA PIN, MobiWave verifies and activates your account within one business day. Sender ID approval typically takes 1–3 business days, and you can test your integration in the sandbox while approval is in progress.',
+    }],
   },
+  '/sms-api-kenya': {
+    title: 'SMS API Kenya for Alerts, OTPs and Messaging | MobiWave',
+    description:
+      'Integrate a Kenya-ready SMS API for OTPs, payment receipts, reminders and customer notifications. REST API, delivery webhooks, sender ID support and sandbox testing across Safaricom, Airtel and Telkom.',
+    path: '/sms-api-kenya',
+    pageType: 'Service',
+    serviceType: 'SMS API',
+  },
+  '/whatsapp-api-pricing-kenya': { title: 'WhatsApp Business API Pricing Kenya | MobiWave', description: 'Understand WhatsApp Business API pricing in Kenya, including Meta conversation charges, templates, setup, automation and local support.', path: '/whatsapp-api-pricing-kenya', pageType: 'Service', serviceType: 'WhatsApp Business API pricing' },
+  '/mpesa-daraja-api-kenya': { title: 'M-Pesa Daraja API Integration Kenya | MobiWave', description: 'Integrate Safaricom Daraja for STK Push, C2B, B2C, B2B payments, callbacks and reconciliation with local Kenyan implementation support.', path: '/mpesa-daraja-api-kenya', pageType: 'Service', serviceType: 'M-Pesa Daraja API integration' },
+  '/ussd-pricing-kenya': { title: 'USSD Code Pricing Kenya | Shared and Dedicated | MobiWave', description: 'Compare shared and dedicated USSD code pricing in Kenya, setup fees, monthly maintenance, session costs and M-Pesa integration.', path: '/ussd-pricing-kenya', pageType: 'Service', serviceType: 'USSD pricing' },
+  '/industries/sacco-communication-kenya': { title: 'SACCO SMS, USSD and M-Pesa Solutions Kenya | MobiWave', description: 'SACCO communication tools for member alerts, payment reminders, statements, USSD self-service and M-Pesa reconciliation in Kenya.', path: '/industries/sacco-communication-kenya', pageType: 'Service', serviceType: 'SACCO communication' },
+  '/industries/school-communication-kenya': { title: 'School SMS, WhatsApp and M-Pesa Tools Kenya | MobiWave', description: 'Help Kenyan schools send parent alerts, fee reminders and results notices while automating M-Pesa collections and confirmations.', path: '/industries/school-communication-kenya', pageType: 'Service', serviceType: 'School communication' },
+  '/industries/healthcare-communication-kenya': { title: 'Healthcare SMS and Patient Reminders Kenya | MobiWave', description: 'Healthcare communication tools for appointment reminders, patient updates, receipts and accessible messaging in Kenya.', path: '/industries/healthcare-communication-kenya', pageType: 'Service', serviceType: 'Healthcare communication' },
+  '/industries/logistics-communication-kenya': { title: 'Logistics SMS and Delivery Notifications Kenya | MobiWave', description: 'Automate logistics delivery alerts, payment confirmations, collection instructions and customer support across Kenya.', path: '/industries/logistics-communication-kenya', pageType: 'Service', serviceType: 'Logistics communication' },
+  '/industries/fintech-communication-kenya': { title: 'Fintech SMS, WhatsApp and M-Pesa APIs Kenya | MobiWave', description: 'Connect fintech OTPs, payment notifications, M-Pesa collections, disbursements and customer support through one Kenya-ready platform.', path: '/industries/fintech-communication-kenya', pageType: 'Service', serviceType: 'Fintech communication' },
   '/services/bulk-email': {
     title: 'Bulk Email Marketing Platform Kenya | MobiWave',
     description:
@@ -166,9 +187,9 @@ const ROUTE_SEO: Record<string, SeoConfig> = {
     pageType: 'Article',
   },
   '/guides/mpesa-stk-push-api-kenya': {
-    title: 'M-Pesa STK Push API Kenya 2026 | Daraja Guide | MobiWave',
+    title: 'M-Pesa STK Push API Kenya | Daraja Integration Guide | MobiWave',
     description:
-      'How M-Pesa STK Push works in Kenya: the Daraja API flow, integration requirements, callbacks, costs, and how MobiWave bundles payments with SMS, USSD and WhatsApp.',
+      'M-Pesa STK Push API and Daraja integration guide for Kenya, with code examples, requirements, callbacks, costs, and SMS, USSD and WhatsApp integrations.',
     path: '/guides/mpesa-stk-push-api-kenya',
     pageType: 'Article',
   },
@@ -357,6 +378,18 @@ export function SEOHead() {
         datePublished: LASTMOD,
         image: [DEFAULT_IMAGE],
         inLanguage: 'en-KE',
+      });
+    }
+
+    if (config.faqItems?.length) {
+      graph.push({
+        '@type': 'FAQPage',
+        '@id': `${canonical}#faq`,
+        mainEntity: config.faqItems.map((faq) => ({
+          '@type': 'Question',
+          name: faq.question,
+          acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+        })),
       });
     }
 

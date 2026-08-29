@@ -68,6 +68,7 @@ export function Contact({ embedded = false }: ContactProps) {
   const [submitError, setSubmitError] = useState('');
   const contentRef = useRef<HTMLDivElement | null>(null);
   const formRef = useRef<HTMLFormElement | null>(null);
+  const formStartedRef = useRef(false);
   const [sectionRef, isInView] = useInView<HTMLElement>({ threshold: 0.1 });
 
   useEffect(() => {
@@ -178,8 +179,13 @@ export function Contact({ embedded = false }: ContactProps) {
     try {
       await submitContactForm(e.currentTarget);
       trackEvent('form_success', { form_location: embedded ? 'homepage' : 'contact_page' });
+      trackEvent('generate_lead', {
+        form_location: embedded ? 'homepage' : 'contact_page',
+        lead_type: 'contact_form',
+      });
       setIsSubmitted(true);
     } catch {
+      trackEvent('form_error', { form_location: embedded ? 'homepage' : 'contact_page' });
       setSubmitError('We could not send your message. Please call +254 736 427 842 or email info@mobiwave.co.ke.');
     } finally {
       setIsSubmitting(false);
@@ -188,7 +194,11 @@ export function Contact({ embedded = false }: ContactProps) {
 
   if (embedded) {
     return (
-      <form ref={formRef} onSubmit={handleSubmit} className="w-full" aria-label="Contact form">
+      <form ref={formRef} onFocusCapture={() => {
+        if (formStartedRef.current) return;
+        formStartedRef.current = true;
+        trackEvent('form_start', { form_location: 'homepage' });
+      }} onSubmit={handleSubmit} className="w-full" aria-label="Contact form">
         <input type="hidden" name="formType" value="homepage" />
         {isSubmitted ? (
             <div className="flex flex-col items-center justify-center py-10">
@@ -302,7 +312,12 @@ export function Contact({ embedded = false }: ContactProps) {
           {/* Right Column - Form */}
           <form
             ref={formRef}
-            onSubmit={handleSubmit}
+      onFocusCapture={() => {
+        if (formStartedRef.current) return;
+        formStartedRef.current = true;
+        trackEvent('form_start', { form_location: 'contact_section' });
+      }}
+      onSubmit={handleSubmit}
             className={`rounded-2xl p-8 ${embedded ? 'bg-white/5 border border-white/10' : 'bg-white border border-gray-100 shadow-sm'}`}
           >
             <input type="hidden" name="formType" value="homepage" />

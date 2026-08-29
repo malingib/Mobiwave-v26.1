@@ -17,16 +17,10 @@ export function Hero() {
           className="grid items-center gap-8 lg:grid-cols-[minmax(0,1.02fr)_minmax(0,0.98fr)] lg:gap-12"
         >
           <motion.div variants={heroButton} className="relative flex min-h-[31rem] items-center justify-center sm:min-h-[38rem] lg:min-h-[43rem]">
-            <img
-              src="/martex-hero.png"
-              alt="MobiWave communication campaign illustration"
-              width={615}
-              height={715}
-              fetchPriority="high"
-              className="relative z-10 h-auto w-full max-w-[33rem] object-contain drop-shadow-[0_24px_30px_rgba(94,77,148,0.08)]"
-              loading="eager"
-              decoding="async"
-            />
+            <picture>
+              <source srcSet="/martex-hero-nobg.webp?v=2 1x, /martex-hero@2x-nobg.webp?v=2 2x" type="image/webp" />
+              <img src="/martex-hero-nobg.png?v=2" alt="MobiWave communication campaign illustration" width={615} height={715} fetchPriority="high" className="relative z-10 h-auto w-full max-w-[33rem] object-contain drop-shadow-[0_24px_30px_rgba(94,77,148,0.08)]" loading="eager" decoding="async" />
+            </picture>
           </motion.div>
 
           <div className="max-w-xl lg:pl-2">
@@ -42,8 +36,8 @@ export function Hero() {
               <a href="#contact" className="mw-btn-primary-solid inline-flex items-center justify-center gap-2 rounded-md px-7 py-3.5 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5">
                 Get started <ArrowRight className="h-4 w-4" />
               </a>
-              <a href="#services" className="inline-flex items-center justify-center gap-2 rounded-md border border-[#7a70a8]/25 bg-white/50 px-7 py-3.5 text-sm font-semibold text-[#4b4e64] transition-all duration-300 hover:border-[#6651c9]/40 hover:bg-white hover:text-[#3e347f]">
-                See how it works
+              <a href="/services/bulk-sms" className="inline-flex items-center justify-center gap-2 rounded-md border border-[#7a70a8]/25 bg-white/50 px-7 py-3.5 text-sm font-semibold text-[#4b4e64] transition-all duration-300 hover:border-[#6651c9]/40 hover:bg-white hover:text-[#3e347f]">
+                Explore bulk SMS
               </a>
             </motion.div>
 

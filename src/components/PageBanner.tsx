@@ -4,9 +4,10 @@ import { gsap } from 'gsap';
 interface PageBannerProps {
   title: string;
   subtitle?: string;
+  heading?: string;
 }
 
-export function PageBanner({ title, subtitle }: PageBannerProps) {
+export function PageBanner({ title, subtitle, heading = title }: PageBannerProps) {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
 
@@ -37,7 +38,7 @@ export function PageBanner({ title, subtitle }: PageBannerProps) {
           className="mb-4 text-4xl font-extrabold text-[#172333] md:text-5xl lg:text-6xl"
           style={{ fontFamily: 'Outfit, sans-serif', letterSpacing: '-0.02em' }}
         >
-          {title}
+          {heading}
         </h1>
         {subtitle && (
           <p ref={subtitleRef} className="mx-auto max-w-2xl text-base leading-relaxed text-[#586273] md:text-lg">

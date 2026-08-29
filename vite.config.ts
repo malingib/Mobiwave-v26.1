@@ -27,6 +27,8 @@ export default defineConfig(({ command }) => ({
         manualChunks(id) {
           if (id.includes('node_modules')) {
             if (id.includes('three') || id.includes('recharts') || id.includes('/d3')) return 'viz3d';
+            if (id.includes('gsap')) return 'motion-gsap';
+            if (id.includes('framer-motion')) return 'motion-framer';
           }
         },
       },

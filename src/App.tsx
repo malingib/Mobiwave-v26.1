@@ -15,6 +15,15 @@ const Terms = lazy(() => import('@/pages/Terms').then(({ Terms }) => ({ default:
 const Privacy = lazy(() => import('@/pages/Privacy').then(({ Privacy }) => ({ default: Privacy })));
 const ApiDocs = lazy(() => import('@/pages/ApiDocs').then(({ ApiDocs }) => ({ default: ApiDocs })));
 const BulkSMS = lazy(() => import('@/pages/services/BulkSMS').then(({ BulkSMS }) => ({ default: BulkSMS })));
+const SmsApiKenya = lazy(() => import('@/pages/SmsApiKenya').then(({ SmsApiKenya }) => ({ default: SmsApiKenya })));
+const CommercialLanding = lazy(() => import('@/pages/CommercialLanding').then(({ WhatsappApiPricingKenya }) => ({ default: WhatsappApiPricingKenya })));
+const MpesaDarajaApiKenya = lazy(() => import('@/pages/CommercialLanding').then(({ MpesaDarajaApiKenya }) => ({ default: MpesaDarajaApiKenya })));
+const UssdPricingKenya = lazy(() => import('@/pages/CommercialLanding').then(({ UssdPricingKenya }) => ({ default: UssdPricingKenya })));
+const SaccoCommunicationKenya = lazy(() => import('@/pages/CommercialLanding').then(({ SaccoCommunicationKenya }) => ({ default: SaccoCommunicationKenya })));
+const SchoolCommunicationKenya = lazy(() => import('@/pages/CommercialLanding').then(({ SchoolCommunicationKenya }) => ({ default: SchoolCommunicationKenya })));
+const HealthcareCommunicationKenya = lazy(() => import('@/pages/CommercialLanding').then(({ HealthcareCommunicationKenya }) => ({ default: HealthcareCommunicationKenya })));
+const LogisticsCommunicationKenya = lazy(() => import('@/pages/CommercialLanding').then(({ LogisticsCommunicationKenya }) => ({ default: LogisticsCommunicationKenya })));
+const FintechCommunicationKenya = lazy(() => import('@/pages/CommercialLanding').then(({ FintechCommunicationKenya }) => ({ default: FintechCommunicationKenya })));
 const BulkEmail = lazy(() => import('@/pages/services/BulkEmail').then(({ BulkEmail }) => ({ default: BulkEmail })));
 const BulkWhatsApp = lazy(() => import('@/pages/services/BulkWhatsApp').then(({ BulkWhatsApp }) => ({ default: BulkWhatsApp })));
 const USSDCodes = lazy(() => import('@/pages/services/USSDCodes').then(({ USSDCodes }) => ({ default: USSDCodes })));
@@ -66,6 +75,15 @@ function App() {
             <Route path="/services" element={<HomeSectionRoute sectionId="services" />} />
             <Route path="/testimonials" element={<HomeSectionRoute sectionId="testimonials" />} />
             <Route path="/services/bulk-sms" element={<BulkSMS />} />
+            <Route path="/sms-api-kenya" element={<SmsApiKenya />} />
+            <Route path="/whatsapp-api-pricing-kenya" element={<CommercialLanding />} />
+            <Route path="/mpesa-daraja-api-kenya" element={<MpesaDarajaApiKenya />} />
+            <Route path="/ussd-pricing-kenya" element={<UssdPricingKenya />} />
+            <Route path="/industries/sacco-communication-kenya" element={<SaccoCommunicationKenya />} />
+            <Route path="/industries/school-communication-kenya" element={<SchoolCommunicationKenya />} />
+            <Route path="/industries/healthcare-communication-kenya" element={<HealthcareCommunicationKenya />} />
+            <Route path="/industries/logistics-communication-kenya" element={<LogisticsCommunicationKenya />} />
+            <Route path="/industries/fintech-communication-kenya" element={<FintechCommunicationKenya />} />
             <Route path="/services/bulk-email" element={<BulkEmail />} />
             <Route path="/services/bulk-whatsapp" element={<BulkWhatsApp />} />
             <Route path="/services/ussd-codes" element={<USSDCodes />} />

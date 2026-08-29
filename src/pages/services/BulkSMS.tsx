@@ -5,6 +5,7 @@ export function BulkSMS() {
   return (
     <ServicePageLayout
       title="Bulk SMS"
+      bannerTitle="Best Bulk SMS Provider in Kenya | MobiWave"
       subtitle="Reach every Kenyan customer in seconds"
       description="MobiWave is a Kenyan bulk SMS provider with direct interconnects to Safaricom, Airtel and Telkom. Send transactional alerts, OTPs, marketing campaigns and two-way customer conversations from one REST API and one dashboard — with 99.9% delivery, transparent KES pricing, and no grey-route surprises."
       icon={MessageSquare}
@@ -14,6 +15,7 @@ export function BulkSMS() {
         { value: '3', label: 'Kenya Networks' },
         { value: '0', label: 'Setup Fee' }
       ]}
+      relatedRoutes={[{ label: 'Read: Best Bulk SMS Provider in Kenya', href: '/guides/best-bulk-sms-kenya' }]}
       features={[
         'Direct interconnect with Safaricom, Airtel and Telkom — no grey routes',
         'Personalised sender ID on all three Kenyan networks',
@@ -248,6 +250,10 @@ export function BulkSMS() {
         }
       ]}
       faqs={[
+        {
+          question: 'How quickly can I get started?',
+          answer: 'After you submit your business registration and KRA PIN, MobiWave verifies and activates your account within one business day. Sender ID approval typically takes 1–3 business days, and you can test your integration in the sandbox while approval is in progress.'
+        },
         {
           question: 'How much does bulk SMS cost in Kenya in 2026?',
           answer: 'MobiWave charges from KES 0.20 to KES 0.35 per SMS depending on monthly volume. The Small Business tier (1–50,000 SMS/month) is KES 0.35, Medium (50,001–500,000) is KES 0.30, Large (500,001–2M) is KES 0.25, and Enterprise (2M+) is KES 0.20. Pricing is per-network and inclusive of sender ID registration. There are no setup fees and no admin fees.'

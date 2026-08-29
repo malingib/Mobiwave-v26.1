@@ -73,6 +73,7 @@ export function Contact() {
   const [submitError, setSubmitError] = useState('');
   const formRef = useRef<HTMLFormElement>(null);
   const infoRef = useRef<HTMLDivElement>(null);
+  const formStartedRef = useRef(false);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -121,8 +122,10 @@ export function Contact() {
     try {
       await submitContactForm(e.currentTarget);
       trackEvent('form_success', { form_location: 'contact_page' });
+      trackEvent('generate_lead', { form_location: 'contact_page', lead_type: 'contact_form' });
       setIsSubmitted(true);
     } catch {
+      trackEvent('form_error', { form_location: 'contact_page' });
       setSubmitError('We could not send your message. Please call +254 736 427 842 or email info@mobiwave.co.ke.');
     } finally {
       setIsSubmitting(false);
@@ -170,6 +173,11 @@ export function Contact() {
             {/* Contact Form */}
             <form
               ref={formRef}
+              onFocusCapture={() => {
+                if (formStartedRef.current) return;
+                formStartedRef.current = true;
+                trackEvent('form_start', { form_location: 'contact_page' });
+              }}
               onSubmit={handleSubmit}
               className="lg:col-span-2 border border-gray-200 p-6 sm:p-8"
             >

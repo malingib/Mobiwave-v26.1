@@ -6,6 +6,7 @@ export function MpesaStkPushGuide() {
       title="M-Pesa STK Push API in Kenya"
       subtitle="How Lipa Na M-Pesa STK Push works — the 2026 guide"
       description="STK Push (officially Lipa Na M-Pesa Online) is the pop-up a customer gets on their phone to enter their M-Pesa PIN and pay. This guide explains how the Daraja API STK Push flow works in Kenya, what you need to integrate it, typical use cases, and how MobiWave bundles it with SMS, USSD and WhatsApp on one account."
+      docsLink={{ label: 'Open API documentation', href: '/developers/docs' }}
       breadcrumbLabel="M-Pesa STK Push API"
       updated="August 2026"
       intro="STK Push is the single highest-conversion payment method for Kenyan businesses because the customer never leaves their phone or types a paybill number — the prompt appears, they enter their PIN, and you get a real-time callback. If you sell online, run a SACCO, or collect dues, this is the flow to implement first."

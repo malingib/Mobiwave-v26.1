@@ -1,4 +1,14 @@
 # Prerendered static HTML for clean URLs (first-match wins, keep specific rules above the SPA fallback)
+https://www.mobiwave.co.ke/* https://mobiwave.co.ke/:splat 301!
+/sms-api-kenya/  /sms-api-kenya  301
+/whatsapp-api-pricing-kenya/  /whatsapp-api-pricing-kenya  301
+/mpesa-daraja-api-kenya/  /mpesa-daraja-api-kenya  301
+/ussd-pricing-kenya/  /ussd-pricing-kenya  301
+/industries/sacco-communication-kenya/  /industries/sacco-communication-kenya  301
+/industries/school-communication-kenya/  /industries/school-communication-kenya  301
+/industries/healthcare-communication-kenya/  /industries/healthcare-communication-kenya  301
+/industries/logistics-communication-kenya/  /industries/logistics-communication-kenya  301
+/industries/fintech-communication-kenya/  /industries/fintech-communication-kenya  301
 /about/  /about  301
 /contact/  /contact  301
 /pricing/  /pricing  301
@@ -29,6 +39,15 @@
 /terms  /terms.html  200
 /privacy  /privacy.html  200
 /services/bulk-sms  /services/bulk-sms.html  200
+/sms-api-kenya  /sms-api-kenya.html  200
+/whatsapp-api-pricing-kenya  /whatsapp-api-pricing-kenya.html  200
+/mpesa-daraja-api-kenya  /mpesa-daraja-api-kenya.html  200
+/ussd-pricing-kenya  /ussd-pricing-kenya.html  200
+/industries/sacco-communication-kenya  /industries/sacco-communication-kenya.html  200
+/industries/school-communication-kenya  /industries/school-communication-kenya.html  200
+/industries/healthcare-communication-kenya  /industries/healthcare-communication-kenya.html  200
+/industries/logistics-communication-kenya  /industries/logistics-communication-kenya.html  200
+/industries/fintech-communication-kenya  /industries/fintech-communication-kenya.html  200
 /services/bulk-email  /services/bulk-email.html  200
 /services/bulk-whatsapp  /services/bulk-whatsapp.html  200
 /services/ussd-codes  /services/ussd-codes.html  200

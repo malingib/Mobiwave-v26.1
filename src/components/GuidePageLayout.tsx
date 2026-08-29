@@ -43,6 +43,7 @@ interface GuidePageLayoutProps {
   ctaTitle?: string;
   ctaDescription?: string;
   relatedRoutes?: { label: string; href: string }[];
+  docsLink?: { label: string; href: string };
 }
 
 function StepBlock({ steps }: { steps: GuideStep[] }) {
@@ -175,7 +176,8 @@ export function GuidePageLayout({
   faqs,
   ctaTitle,
   ctaDescription,
-  relatedRoutes
+  relatedRoutes,
+  docsLink,
 }: GuidePageLayoutProps) {
   const contentRef = useRef<HTMLDivElement>(null);
   const contactItems = [
@@ -233,6 +235,11 @@ export function GuidePageLayout({
               >
                 Talk to MobiWave <ArrowRight className="w-5 h-5" />
               </a>
+              {docsLink && (
+                <Link to={docsLink.href} className="ml-4 inline-flex items-center gap-2 text-sm font-bold text-[#0084ff] underline decoration-[#0084ff]/30 underline-offset-4 hover:decoration-[#0084ff]">
+                  {docsLink.label} <ArrowRight className="h-4 w-4" />
+                </Link>
+              )}
             </div>
           </div>
         </section>

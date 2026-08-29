@@ -36,6 +36,8 @@ interface ServicePageLayoutProps {
   };
   faqs?: { question: string; answer: string }[];
   stats?: { value: string; label: string }[];
+  bannerTitle?: string;
+  relatedRoutes?: { label: string; href: string }[];
 }
 
 export function FaqBlock({ faqs, title }: { faqs: { question: string; answer: string }[]; title: string }) {
@@ -98,7 +100,9 @@ export function ServicePageLayout({
   howItWorks,
   comparisonTable,
   faqs,
-  stats
+  stats,
+  bannerTitle,
+  relatedRoutes,
 }: ServicePageLayoutProps) {
   const contentRef = useRef<HTMLDivElement>(null);
   const contactItems = [
@@ -139,7 +143,7 @@ export function ServicePageLayout({
 
   return (
     <div className="min-h-screen bg-white">
-      <PageBanner title={title} subtitle={subtitle} />
+      <PageBanner title={title} heading={bannerTitle} subtitle={subtitle} />
       <Breadcrumbs items={[{ label: 'Services', href: '/services' }, { label: title }]} />
 
       <div ref={contentRef}>
@@ -169,6 +173,19 @@ export function ServicePageLayout({
             </div>
           </div>
         </section>
+
+        {relatedRoutes && relatedRoutes.length > 0 && (
+          <nav aria-label="Related resources" className="container-custom pb-12">
+            <p className="mb-3 text-sm font-semibold text-[#5b6b78]">Related resources</p>
+            <div className="flex flex-wrap gap-x-5 gap-y-2 text-sm font-bold text-[#0084ff]">
+              {relatedRoutes.map((route) => (
+                <a key={route.href} href={route.href} className="underline decoration-[#0084ff]/30 underline-offset-4 hover:decoration-[#0084ff]">
+                  {route.label}
+                </a>
+              ))}
+            </div>
+          </nav>
+        )}
 
         <section className="section-padding mw-section-surface">
           <div className="container-custom">

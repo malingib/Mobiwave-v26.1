@@ -152,7 +152,7 @@ export function BestBulkSmsGuide() {
         }
       ]}
       relatedRoutes={[
-        { label: 'Bulk SMS', href: '/services/bulk-sms' },
+        { label: 'Bulk SMS Kenya service', href: '/services/bulk-sms' },
         { label: 'Sender ID Registration', href: '/guides/sender-id-registration-kenya' },
         { label: 'M-Pesa STK Push API', href: '/guides/mpesa-stk-push-api-kenya' }
       ]}
