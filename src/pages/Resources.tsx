@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, FileText, CreditCard, MessageSquare, Smartphone, Mail, BarChart3 } from 'lucide-react';
+import { ArrowRight, FileText, CreditCard, MessageSquare, Smartphone, Mail, BarChart3, ShieldCheck, Webhook, Scale } from 'lucide-react';
 import { PageBanner } from '@/components/PageBanner';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 
@@ -46,7 +46,11 @@ const guides: GuideEntry[] = [
     title: 'SMS Surveys in Kenya',
     description: 'Run two-way SMS feedback: branching questions, response rates, real-time analytics and CAK/ODPC compliance.',
     href: '/guides/sms-survey-kenya'
-  }
+  },
+  { icon: MessageSquare, title: 'Transactional SMS in Kenya', description: 'Build reliable payment receipts, account alerts and event-driven customer notifications.', href: '/guides/transactional-sms-kenya' },
+  { icon: ShieldCheck, title: 'OTP SMS in Kenya', description: 'Design secure phone verification, authentication and account recovery flows.', href: '/guides/otp-sms-kenya' },
+  { icon: Webhook, title: 'M-Pesa Callback URL Guide', description: 'Handle STK Push results, payment callbacks and automated reconciliation.', href: '/guides/mpesa-callback-url-kenya' },
+  { icon: Scale, title: "MobiWave vs Africa's Talking", description: 'Compare communication APIs, support and connected Kenyan workflows.', href: '/guides/mobiwave-vs-africas-talking' },
 ];
 
 const popularServices = [
