@@ -36,8 +36,6 @@ https://www.mobiwave.co.ke/* https://mobiwave.co.ke/:splat 301!
 /innovations  /innovations.html  200
 /developers/docs  /developers/docs.html  200
 /resources  /resources.html  200
-/terms  /terms.html  200
-/privacy  /privacy.html  200
 /services/bulk-sms  /services/bulk-sms.html  200
 /sms-api-kenya  /sms-api-kenya.html  200
 /whatsapp-api-pricing-kenya  /whatsapp-api-pricing-kenya.html  200
@@ -63,5 +61,8 @@ https://www.mobiwave.co.ke/* https://mobiwave.co.ke/:splat 301!
 /guides/bulk-email-kenya  /guides/bulk-email-kenya.html  200
 /guides/sms-survey-kenya  /guides/sms-survey-kenya.html  200
 
+# Legal pages are prerendered assets and must not be served by the SPA fallback.
+/privacy  /privacy.html  200
+/terms  /terms.html  200
 # SPA fallback for all other client-side routes
 /*  /index.html  200
