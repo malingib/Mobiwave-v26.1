@@ -221,6 +221,10 @@ const ROUTE_SEO: Record<string, SeoConfig> = {
     path: '/guides/sms-survey-kenya',
     pageType: 'Article',
   },
+  '/guides/transactional-sms-kenya': { title: 'Transactional SMS Kenya | Receipts & Alerts | MobiWave', description: 'Guide to transactional SMS in Kenya for payment receipts, account alerts, reminders and webhook-triggered customer notifications.', path: '/guides/transactional-sms-kenya', pageType: 'Article' },
+  '/guides/otp-sms-kenya': { title: 'OTP SMS Kenya | Verification & Authentication | MobiWave', description: 'Learn how to build reliable OTP SMS flows in Kenya for login verification, account recovery and transaction confirmation.', path: '/guides/otp-sms-kenya', pageType: 'Article' },
+  '/guides/mpesa-callback-url-kenya': { title: 'M-Pesa Callback URL Kenya | Daraja Guide | MobiWave', description: 'Set up M-Pesa callbacks for STK Push results, reconciliation, payment status handling and automated customer receipts.', path: '/guides/mpesa-callback-url-kenya', pageType: 'Article' },
+  '/guides/mobiwave-vs-africas-talking': { title: "MobiWave vs Africa's Talking Kenya | Comparison", description: 'Compare Kenyan communication APIs, channels, integration options and implementation support for your business workflow.', path: '/guides/mobiwave-vs-africas-talking', pageType: 'Article' },
   '/services': {
     title: 'Business Communication Services | MobiWave',
     description: 'Explore MobiWave business communication services, including bulk SMS, WhatsApp, USSD, M-Pesa integrations, email, and customer support tools.',
