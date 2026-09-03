@@ -25,7 +25,7 @@ const REGION = 'KE-04';
 const LAT = -3.6305;
 const LNG = 39.8497;
 const POSTAL = 'Titanic Building, 1st Floor, Room 2';
-const LASTMOD = '2026-08-28';
+const LASTMOD = '2026-08-31';
 
 const ROUTE_SEO: Record<string, SeoConfig> = {
   '/': {
