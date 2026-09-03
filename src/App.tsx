@@ -38,6 +38,10 @@ const BestBulkSmsGuide = lazy(() => import('@/pages/guides/BestBulkSms').then(({
 const UssdCodeCostGuide = lazy(() => import('@/pages/guides/UssdCodeCost').then(({ UssdCodeCostGuide }) => ({ default: UssdCodeCostGuide })));
 const BulkEmailGuide = lazy(() => import('@/pages/guides/BulkEmail').then(({ BulkEmailGuide }) => ({ default: BulkEmailGuide })));
 const SmsSurveyGuide = lazy(() => import('@/pages/guides/SmsSurvey').then(({ SmsSurveyGuide }) => ({ default: SmsSurveyGuide })));
+const TransactionalSmsGuide = lazy(() => import('@/pages/guides/TransactionalSms').then(({ TransactionalSmsGuide }) => ({ default: TransactionalSmsGuide })));
+const OtpSmsGuide = lazy(() => import('@/pages/guides/OtpSms').then(({ OtpSmsGuide }) => ({ default: OtpSmsGuide })));
+const MpesaCallbackGuide = lazy(() => import('@/pages/guides/MpesaCallback').then(({ MpesaCallbackGuide }) => ({ default: MpesaCallbackGuide })));
+const MobiwaveVsAfricasTalkingGuide = lazy(() => import('@/pages/guides/MobiwaveVsAfricasTalking').then(({ MobiwaveVsAfricasTalkingGuide }) => ({ default: MobiwaveVsAfricasTalkingGuide })));
 
 function HomeSectionRoute({ sectionId }: { sectionId: string }) {
   useEffect(() => {
@@ -98,6 +102,10 @@ function App() {
             <Route path="/guides/ussd-code-cost-kenya" element={<UssdCodeCostGuide />} />
             <Route path="/guides/bulk-email-kenya" element={<BulkEmailGuide />} />
             <Route path="/guides/sms-survey-kenya" element={<SmsSurveyGuide />} />
+            <Route path="/guides/transactional-sms-kenya" element={<TransactionalSmsGuide />} />
+            <Route path="/guides/otp-sms-kenya" element={<OtpSmsGuide />} />
+            <Route path="/guides/mpesa-callback-url-kenya" element={<MpesaCallbackGuide />} />
+            <Route path="/guides/mobiwave-vs-africas-talking" element={<MobiwaveVsAfricasTalkingGuide />} />
             <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </Suspense>
