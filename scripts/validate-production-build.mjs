@@ -51,7 +51,7 @@ async function main() {
 
     if (canonical !== `${SITE_URL}${route}`) failures.push(`${route}: canonical is ${canonical || 'missing'}`)
     if (!robots.includes('noindex')) failures.push(`${route}: robots must include noindex`)
-    if (!title || title.startsWith('Bulk SMS, USSD')) failures.push(`${route}: page-specific title is missing`)
+    if (!title || title.startsWith('Bulk SMS, USSD')) failures.push(`${route}: page-specific title is missing`)\n    if (route === '/privacy' && !html.includes('Information We Collect')) failures.push('/privacy: expected privacy content is missing')\n    if (route === '/terms' && !html.includes('Service Usage')) failures.push('/terms: expected terms content is missing')
   }
 
   if (failures.length) {
