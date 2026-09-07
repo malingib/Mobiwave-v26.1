@@ -4,7 +4,10 @@ node_modules
 !.env.example
 .kilo/
 ISP-REMOVED/
+dist/
 dist/isp-images/
+public/sitemap.xml
+public/_redirects
 playwright.config.ts
 e2e/
 test-results/

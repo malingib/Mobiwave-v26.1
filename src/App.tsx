@@ -24,6 +24,12 @@ const SchoolCommunicationKenya = lazy(() => import('@/pages/CommercialLanding').
 const HealthcareCommunicationKenya = lazy(() => import('@/pages/CommercialLanding').then(({ HealthcareCommunicationKenya }) => ({ default: HealthcareCommunicationKenya })));
 const LogisticsCommunicationKenya = lazy(() => import('@/pages/CommercialLanding').then(({ LogisticsCommunicationKenya }) => ({ default: LogisticsCommunicationKenya })));
 const FintechCommunicationKenya = lazy(() => import('@/pages/CommercialLanding').then(({ FintechCommunicationKenya }) => ({ default: FintechCommunicationKenya })));
+const TransactionalSmsKenya = lazy(() => import('@/pages/SEOContentGuides').then(({ TransactionalSmsKenya }) => ({ default: TransactionalSmsKenya })));
+const OtpSmsKenya = lazy(() => import('@/pages/SEOContentGuides').then(({ OtpSmsKenya }) => ({ default: OtpSmsKenya })));
+const MpesaCallbackKenya = lazy(() => import('@/pages/SEOContentGuides').then(({ MpesaCallbackKenya }) => ({ default: MpesaCallbackKenya })));
+const UssdMpesaIntegrationKenya = lazy(() => import('@/pages/SEOContentGuides').then(({ UssdMpesaIntegrationKenya }) => ({ default: UssdMpesaIntegrationKenya })));
+const WhatsappTemplatesKenya = lazy(() => import('@/pages/SEOContentGuides').then(({ WhatsappTemplatesKenya }) => ({ default: WhatsappTemplatesKenya })));
+const MobiWaveVsAfricaTalking = lazy(() => import('@/pages/SEOContentGuides').then(({ MobiWaveVsAfricaTalking }) => ({ default: MobiWaveVsAfricaTalking })));
 const BulkEmail = lazy(() => import('@/pages/services/BulkEmail').then(({ BulkEmail }) => ({ default: BulkEmail })));
 const BulkWhatsApp = lazy(() => import('@/pages/services/BulkWhatsApp').then(({ BulkWhatsApp }) => ({ default: BulkWhatsApp })));
 const USSDCodes = lazy(() => import('@/pages/services/USSDCodes').then(({ USSDCodes }) => ({ default: USSDCodes })));
@@ -88,6 +94,12 @@ function App() {
             <Route path="/industries/healthcare-communication-kenya" element={<HealthcareCommunicationKenya />} />
             <Route path="/industries/logistics-communication-kenya" element={<LogisticsCommunicationKenya />} />
             <Route path="/industries/fintech-communication-kenya" element={<FintechCommunicationKenya />} />
+            <Route path="/guides/transactional-sms-kenya" element={<TransactionalSmsKenya />} />
+            <Route path="/guides/otp-sms-kenya" element={<OtpSmsKenya />} />
+            <Route path="/guides/mpesa-callback-kenya" element={<MpesaCallbackKenya />} />
+            <Route path="/guides/ussd-mpesa-integration-kenya" element={<UssdMpesaIntegrationKenya />} />
+            <Route path="/guides/whatsapp-template-approval-kenya" element={<WhatsappTemplatesKenya />} />
+            <Route path="/compare/mobiwave-vs-africas-talking" element={<MobiWaveVsAfricaTalking />} />
             <Route path="/services/bulk-email" element={<BulkEmail />} />
             <Route path="/services/bulk-whatsapp" element={<BulkWhatsApp />} />
             <Route path="/services/ussd-codes" element={<USSDCodes />} />
