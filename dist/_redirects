@@ -9,6 +9,12 @@ https://www.mobiwave.co.ke/* https://mobiwave.co.ke/:splat 301!
 /industries/healthcare-communication-kenya/  /industries/healthcare-communication-kenya  301
 /industries/logistics-communication-kenya/  /industries/logistics-communication-kenya  301
 /industries/fintech-communication-kenya/  /industries/fintech-communication-kenya  301
+/guides/transactional-sms-kenya/  /guides/transactional-sms-kenya  301
+/guides/otp-sms-kenya/  /guides/otp-sms-kenya  301
+/guides/mpesa-callback-kenya/  /guides/mpesa-callback-kenya  301
+/guides/ussd-mpesa-integration-kenya/  /guides/ussd-mpesa-integration-kenya  301
+/guides/whatsapp-template-approval-kenya/  /guides/whatsapp-template-approval-kenya  301
+/compare/mobiwave-vs-africas-talking/  /compare/mobiwave-vs-africas-talking  301
 /about/  /about  301
 /contact/  /contact  301
 /pricing/  /pricing  301
@@ -36,8 +42,6 @@ https://www.mobiwave.co.ke/* https://mobiwave.co.ke/:splat 301!
 /innovations  /innovations.html  200
 /developers/docs  /developers/docs.html  200
 /resources  /resources.html  200
-/terms  /terms.html  200
-/privacy  /privacy.html  200
 /services/bulk-sms  /services/bulk-sms.html  200
 /sms-api-kenya  /sms-api-kenya.html  200
 /whatsapp-api-pricing-kenya  /whatsapp-api-pricing-kenya.html  200
@@ -48,6 +52,12 @@ https://www.mobiwave.co.ke/* https://mobiwave.co.ke/:splat 301!
 /industries/healthcare-communication-kenya  /industries/healthcare-communication-kenya.html  200
 /industries/logistics-communication-kenya  /industries/logistics-communication-kenya.html  200
 /industries/fintech-communication-kenya  /industries/fintech-communication-kenya.html  200
+/guides/transactional-sms-kenya  /guides/transactional-sms-kenya.html  200
+/guides/otp-sms-kenya  /guides/otp-sms-kenya.html  200
+/guides/mpesa-callback-kenya  /guides/mpesa-callback-kenya.html  200
+/guides/ussd-mpesa-integration-kenya  /guides/ussd-mpesa-integration-kenya.html  200
+/guides/whatsapp-template-approval-kenya  /guides/whatsapp-template-approval-kenya.html  200
+/compare/mobiwave-vs-africas-talking  /compare/mobiwave-vs-africas-talking.html  200
 /services/bulk-email  /services/bulk-email.html  200
 /services/bulk-whatsapp  /services/bulk-whatsapp.html  200
 /services/ussd-codes  /services/ussd-codes.html  200
@@ -63,5 +73,8 @@ https://www.mobiwave.co.ke/* https://mobiwave.co.ke/:splat 301!
 /guides/bulk-email-kenya  /guides/bulk-email-kenya.html  200
 /guides/sms-survey-kenya  /guides/sms-survey-kenya.html  200
 
+# Legal pages are prerendered assets and must not be served by the SPA fallback.
+/privacy  /privacy.html  200
+/terms  /terms.html  200
 # SPA fallback for all other client-side routes
 /*  /index.html  200
