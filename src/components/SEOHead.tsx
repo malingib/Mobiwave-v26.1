@@ -25,7 +25,7 @@ const REGION = 'KE-04';
 const LAT = -3.6305;
 const LNG = 39.8497;
 const POSTAL = 'Titanic Building, 1st Floor, Room 2';
-const LASTMOD = '2026-09-11';
+const LASTMOD = '2026-09-07';
 
 const ROUTE_SEO: Record<string, SeoConfig> = {
   '/': {
@@ -88,7 +88,7 @@ const ROUTE_SEO: Record<string, SeoConfig> = {
     type: 'article',
   },
   '/services/bulk-sms': {
-    title: 'Bulk SMS Provider in Kenya | Pricing & API | MobiWave',
+    title: 'Best Bulk SMS Provider in Kenya | MobiWave',
     description:
       'Bulk SMS provider in Kenya with Safaricom, Airtel and Telkom coverage. From KES 0.20/SMS at volume, sender ID registration, delivery reports, REST API, sandbox and M-Pesa integration.',
     path: '/services/bulk-sms',
@@ -115,6 +115,12 @@ const ROUTE_SEO: Record<string, SeoConfig> = {
   '/industries/healthcare-communication-kenya': { title: 'Healthcare SMS and Patient Reminders Kenya | MobiWave', description: 'Healthcare communication tools for appointment reminders, patient updates, receipts and accessible messaging in Kenya.', path: '/industries/healthcare-communication-kenya', pageType: 'Service', serviceType: 'Healthcare communication' },
   '/industries/logistics-communication-kenya': { title: 'Logistics SMS and Delivery Notifications Kenya | MobiWave', description: 'Automate logistics delivery alerts, payment confirmations, collection instructions and customer support across Kenya.', path: '/industries/logistics-communication-kenya', pageType: 'Service', serviceType: 'Logistics communication' },
   '/industries/fintech-communication-kenya': { title: 'Fintech SMS, WhatsApp and M-Pesa APIs Kenya | MobiWave', description: 'Connect fintech OTPs, payment notifications, M-Pesa collections, disbursements and customer support through one Kenya-ready platform.', path: '/industries/fintech-communication-kenya', pageType: 'Service', serviceType: 'Fintech communication' },
+  '/guides/transactional-sms-kenya': { title: 'Transactional SMS API Kenya | Alerts and Receipts | MobiWave', description: 'A practical guide to transactional SMS API delivery in Kenya for OTPs, receipts, reminders, webhooks and customer notifications.', path: '/guides/transactional-sms-kenya', pageType: 'Article' },
+  '/guides/otp-sms-kenya': { title: 'OTP SMS API Kenya | One-Time Password Delivery | MobiWave', description: 'Build secure OTP SMS delivery in Kenya with expiry, rate limits, retry controls, delivery reports and SMS fallback.', path: '/guides/otp-sms-kenya', pageType: 'Article' },
+  '/guides/mpesa-callback-kenya': { title: 'M-Pesa Callback URL and Reconciliation Guide | Kenya', description: 'Handle Daraja callbacks, timeouts, duplicate events and payment reconciliation in a resilient Kenyan M-Pesa integration.', path: '/guides/mpesa-callback-kenya', pageType: 'Article' },
+  '/guides/ussd-mpesa-integration-kenya': { title: 'USSD and M-Pesa Integration Kenya | Feature-Phone Payments', description: 'Build an internet-free USSD and M-Pesa payment journey with session state, STK Push callbacks and receipts.', path: '/guides/ussd-mpesa-integration-kenya', pageType: 'Article' },
+  '/guides/whatsapp-template-approval-kenya': { title: 'WhatsApp Template Approval Kenya | Meta Messaging Guide', description: 'Learn how to structure WhatsApp utility, authentication and marketing templates, collect opt-in and reduce rejection risk.', path: '/guides/whatsapp-template-approval-kenya', pageType: 'Article' },
+  '/compare/mobiwave-vs-africas-talking': { title: 'MobiWave vs Africa’s Talking in Kenya | API Comparison', description: 'Compare MobiWave and Africa’s Talking on Kenya SMS, APIs, sender IDs, USSD, M-Pesa integration, support and rollout model.', path: '/compare/mobiwave-vs-africas-talking', pageType: 'Article' },
   '/services/bulk-email': {
     title: 'Bulk Email Marketing Platform Kenya | MobiWave',
     description:
@@ -221,6 +227,8 @@ const ROUTE_SEO: Record<string, SeoConfig> = {
     path: '/guides/sms-survey-kenya',
     pageType: 'Article',
   },
+  '/guides/mpesa-callback-url-kenya': { title: 'M-Pesa Callback URL Kenya | Daraja Guide | MobiWave', description: 'Set up M-Pesa callbacks for STK Push results, reconciliation, payment status handling and automated customer receipts.', path: '/guides/mpesa-callback-url-kenya', pageType: 'Article' },
+  '/guides/mobiwave-vs-africas-talking': { title: "MobiWave vs Africa's Talking Kenya | Comparison", description: 'Compare Kenyan communication APIs, channels, integration options and implementation support for your business workflow.', path: '/guides/mobiwave-vs-africas-talking', pageType: 'Article' },
   '/services': {
     title: 'Business Communication Services | MobiWave',
     description: 'Explore MobiWave business communication services, including bulk SMS, WhatsApp, USSD, M-Pesa integrations, email, and customer support tools.',
@@ -385,10 +393,10 @@ export function SEOHead() {
       graph.push({
         '@type': 'FAQPage',
         '@id': `${canonical}#faq`,
-        mainEntity: config.faqItems.map((item) => ({
+        mainEntity: config.faqItems.map((faq) => ({
           '@type': 'Question',
-          name: item.question,
-          acceptedAnswer: { '@type': 'Answer', text: item.answer },
+          name: faq.question,
+          acceptedAnswer: { '@type': 'Answer', text: faq.answer },
         })),
       });
     }
@@ -405,7 +413,22 @@ export function SEOHead() {
       });
     }
 
-    schema.textContent = JSON.stringify({ '@context': 'https://schema.org', '@graph': graph });
+    graph.push({
+      '@type': config.pageType ?? 'WebPage',
+      '@id': `${canonical}#webpage`,
+      url: canonical,
+      name: config.title,
+      description: config.description,
+      isPartOf: { '@id': websiteId },
+      about: { '@id': organizationId },
+      inLanguage: 'en-KE',
+      dateModified: LASTMOD,
+    });
+
+    schema.textContent = JSON.stringify({
+      '@context': 'https://schema.org',
+      '@graph': graph,
+    });
   }, [location.pathname]);
 
   return null;
