@@ -5,7 +5,7 @@ export function BulkSMS() {
   return (
     <ServicePageLayout
       title="Bulk SMS"
-      bannerTitle="Best Bulk SMS Provider in Kenya | MobiWave"
+      bannerTitle="Bulk SMS Provider in Kenya | Pricing & API | MobiWave"
       subtitle="Reach every Kenyan customer in seconds"
       description="MobiWave is a Kenyan bulk SMS provider with direct interconnects to Safaricom, Airtel and Telkom. Send transactional alerts, OTPs, marketing campaigns and two-way customer conversations from one REST API and one dashboard — with 99.9% delivery, transparent KES pricing, and no grey-route surprises."
       icon={MessageSquare}

@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.tsx'
 import { initializeAnalytics } from './lib/analytics'
+import { initializeCommercialTracking } from './lib/commercialTracking'
 
 const sentryDsn = import.meta.env.VITE_SENTRY_DSN
 
@@ -43,6 +44,7 @@ if (sentryDsn) {
 }
 
 initializeAnalytics()
+initializeCommercialTracking()
 
 // Defer the non-critical chat widget until the browser is idle.
 if (typeof window !== 'undefined') {
