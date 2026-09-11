@@ -25,7 +25,7 @@ const REGION = 'KE-04';
 const LAT = -3.6305;
 const LNG = 39.8497;
 const POSTAL = 'Titanic Building, 1st Floor, Room 2';
-const LASTMOD = '2026-08-28';
+const LASTMOD = '2026-09-11';
 
 const ROUTE_SEO: Record<string, SeoConfig> = {
   '/': {
@@ -88,7 +88,7 @@ const ROUTE_SEO: Record<string, SeoConfig> = {
     type: 'article',
   },
   '/services/bulk-sms': {
-    title: 'Best Bulk SMS Provider in Kenya | MobiWave',
+    title: 'Bulk SMS Provider in Kenya | Pricing & API | MobiWave',
     description:
       'Bulk SMS provider in Kenya with Safaricom, Airtel and Telkom coverage. From KES 0.20/SMS at volume, sender ID registration, delivery reports, REST API, sandbox and M-Pesa integration.',
     path: '/services/bulk-sms',
@@ -385,10 +385,10 @@ export function SEOHead() {
       graph.push({
         '@type': 'FAQPage',
         '@id': `${canonical}#faq`,
-        mainEntity: config.faqItems.map((faq) => ({
+        mainEntity: config.faqItems.map((item) => ({
           '@type': 'Question',
-          name: faq.question,
-          acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+          name: item.question,
+          acceptedAnswer: { '@type': 'Answer', text: item.answer },
         })),
       });
     }
@@ -405,22 +405,7 @@ export function SEOHead() {
       });
     }
 
-    graph.push({
-      '@type': config.pageType ?? 'WebPage',
-      '@id': `${canonical}#webpage`,
-      url: canonical,
-      name: config.title,
-      description: config.description,
-      isPartOf: { '@id': websiteId },
-      about: { '@id': organizationId },
-      inLanguage: 'en-KE',
-      dateModified: LASTMOD,
-    });
-
-    schema.textContent = JSON.stringify({
-      '@context': 'https://schema.org',
-      '@graph': graph,
-    });
+    schema.textContent = JSON.stringify({ '@context': 'https://schema.org', '@graph': graph });
   }, [location.pathname]);
 
   return null;
