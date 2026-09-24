@@ -14,6 +14,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { PageBanner } from '@/components/PageBanner';
+import { TurnstileWidget } from '@/components/TurnstileWidget';
 import { submitContactForm } from '@/lib/contact-form';
 import { trackEvent } from '@/lib/analytics';
 
@@ -71,6 +72,7 @@ export function Contact() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState('');
+  const [captchaError, setCaptchaError] = useState('');
   const formRef = useRef<HTMLFormElement>(null);
   const infoRef = useRef<HTMLDivElement>(null);
   const formStartedRef = useRef(false);
@@ -118,6 +120,7 @@ export function Contact() {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitError('');
+    setCaptchaError('');
 
     try {
       await submitContactForm(e.currentTarget);
@@ -285,6 +288,15 @@ export function Contact() {
                     />
                   </div>
 
+                  <div className="pt-2">
+                    <TurnstileWidget
+                      className="flex justify-center"
+                      onError={setCaptchaError}
+                      onSuccess={() => setCaptchaError('')}
+                    />
+                  </div>
+
+                  {captchaError && <p className="text-sm leading-5 text-red-600" role="alert">{captchaError}</p>}
                   {submitError && <p className="text-sm leading-5 text-red-600" role="alert">{submitError}</p>}
 
                   <Button

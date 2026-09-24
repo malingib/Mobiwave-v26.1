@@ -1,0 +1,142 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - banner [ref=e4]:
+      - generic [ref=e6]:
+        - generic [ref=e7]:
+          - link "+254 736 427 842" [ref=e8] [cursor=pointer]:
+            - /url: tel:+254736427842
+          - link "info@mobiwave.co.ke" [ref=e11] [cursor=pointer]:
+            - /url: mailto:info@mobiwave.co.ke
+        - generic [ref=e15]: Mon–Fri · 9am–5pm EAT
+      - navigation [ref=e17]:
+        - generic [ref=e18]:
+          - link [ref=e19] [cursor=pointer]:
+            - /url: /
+            - img "MobiWave Innovations" [ref=e20]
+          - button "Open menu" [ref=e21] [cursor=pointer]
+    - main [ref=e23]:
+      - generic [ref=e24]:
+        - generic [ref=e26]:
+          - heading "Contact Us" [level=1] [ref=e27]
+          - paragraph [ref=e28]: Have questions or need assistance? Our team is here to help. Reach out to us through any of the channels below.
+        - generic [ref=e30]:
+          - generic [ref=e31]:
+            - heading "Get In Touch" [level=2] [ref=e32]
+            - paragraph [ref=e33]: Have a question about our services? Need a custom solution? Fill out the form below and we'll get back to you as soon as possible.
+          - generic [ref=e34]:
+            - generic [ref=e35]:
+              - generic [ref=e40]:
+                - paragraph [ref=e41]: Phone
+                - link "+254 736 427 842" [ref=e42] [cursor=pointer]:
+                  - /url: tel:+254736427842
+              - generic [ref=e48]:
+                - paragraph [ref=e49]: Email
+                - link "info@mobiwave.co.ke" [ref=e50] [cursor=pointer]:
+                  - /url: mailto:info@mobiwave.co.ke
+              - generic [ref=e56]:
+                - paragraph [ref=e57]: Address
+                - paragraph [ref=e58]: Titanic Building, 1st Floor, Room 2, Biashara Street, Kilifi
+              - generic [ref=e64]:
+                - paragraph [ref=e65]: Office Hours
+                - paragraph [ref=e66]: Monday - Friday, 9am - 5pm
+            - generic [ref=e68]:
+              - generic [ref=e69]:
+                - generic [ref=e70]:
+                  - generic [ref=e71]: First Name *
+                  - textbox "First Name *" [ref=e72]:
+                    - /placeholder: Enter your first name
+                - generic [ref=e73]:
+                  - generic [ref=e74]: Last Name *
+                  - textbox "Last Name *" [ref=e75]:
+                    - /placeholder: Enter your last name
+              - generic [ref=e76]:
+                - generic [ref=e77]: Email Address *
+                - textbox "Email Address *" [ref=e78]:
+                  - /placeholder: Enter your email
+              - generic [ref=e79]:
+                - generic [ref=e80]: Phone Number
+                - textbox "Phone Number" [ref=e81]:
+                  - /placeholder: Enter your phone number
+              - generic [ref=e82]:
+                - generic [ref=e83]:
+                  - generic [ref=e84]: Subject *
+                  - combobox [ref=e85] [cursor=pointer]:
+                    - generic: Select a subject
+                  - combobox [aria-hidden] [ref=e86]
+                - generic [ref=e87]:
+                  - generic [ref=e88]: Inquiry Type *
+                  - combobox [ref=e89] [cursor=pointer]:
+                    - generic: Select inquiry type
+                  - combobox [aria-hidden] [ref=e90]
+              - generic [ref=e91]:
+                - generic [ref=e92]: Message *
+                - textbox "Message *" [ref=e93]:
+                  - /placeholder: Enter your message
+              - button "Send Message" [ref=e95] [cursor=pointer]
+    - contentinfo [ref=e96]:
+      - generic [ref=e97]:
+        - generic [ref=e98]:
+          - generic [ref=e99]:
+            - link [ref=e100] [cursor=pointer]:
+              - /url: /
+              - img "MobiWave" [ref=e101]
+            - paragraph [ref=e102]: Kilifi-based communication platform built for Kenyan organisations. Bulk SMS, email, WhatsApp, USSD, and M-Pesa integration.
+            - generic [ref=e103]:
+              - textbox "Email for product updates" [ref=e104]
+              - button "Subscribe" [ref=e105] [cursor=pointer]
+          - generic [ref=e107]:
+            - heading "Quick Links" [level=3] [ref=e108]
+            - list [ref=e110]:
+              - listitem [ref=e111]:
+                - link "Bulk SMS" [ref=e112] [cursor=pointer]:
+                  - /url: /services/bulk-sms
+              - listitem [ref=e113]:
+                - link "WhatsApp" [ref=e114] [cursor=pointer]:
+                  - /url: /services/bulk-whatsapp
+              - listitem [ref=e115]:
+                - link "USSD" [ref=e116] [cursor=pointer]:
+                  - /url: /services/ussd-codes
+              - listitem [ref=e117]:
+                - link "M-Pesa Integration" [ref=e118] [cursor=pointer]:
+                  - /url: /services/mpesa-integration
+              - listitem [ref=e119]:
+                - link "Sender ID Registration" [ref=e120] [cursor=pointer]:
+                  - /url: /guides/sender-id-registration-kenya
+              - listitem [ref=e121]:
+                - link "API Documentation" [ref=e122] [cursor=pointer]:
+                  - /url: /developers/docs
+          - generic [ref=e124]:
+            - heading "Company" [level=3] [ref=e125]
+            - list [ref=e127]:
+              - listitem [ref=e128]:
+                - link "Privacy Policy" [ref=e129] [cursor=pointer]:
+                  - /url: /privacy
+              - listitem [ref=e130]:
+                - link "Terms of Use" [ref=e131] [cursor=pointer]:
+                  - /url: /terms
+              - listitem [ref=e132]:
+                - link "FAQ" [ref=e133] [cursor=pointer]:
+                  - /url: "#faq"
+              - listitem [ref=e134]:
+                - link "Contact" [ref=e135] [cursor=pointer]:
+                  - /url: /contact
+              - listitem [ref=e136]:
+                - button "Full Sitemap" [ref=e137] [cursor=pointer]
+        - generic [ref=e138]:
+          - paragraph [ref=e139]:
+            - text: © 2026
+            - link "MobiWave Innovations Ltd" [ref=e140] [cursor=pointer]:
+              - /url: /
+            - text: — Kilifi, Kenya
+          - generic [ref=e141]:
+            - link "Twitter" [ref=e142] [cursor=pointer]:
+              - /url: https://x.com/mobiwave_ke
+            - link "LinkedIn" [ref=e145] [cursor=pointer]:
+              - /url: https://www.linkedin.com/company/mobiwave-kenya
+            - link "Facebook" [ref=e148] [cursor=pointer]:
+              - /url: https://www.facebook.com/p/MobiWave-Innovations-Ltd-61569833317922/
+            - link "Instagram" [ref=e151] [cursor=pointer]:
+              - /url: https://instagram.com/mobiwave_ke
+      - button "Back to top" [ref=e154] [cursor=pointer]
+  - button "Open chat" [ref=e157] [cursor=pointer]:
+    - img "Chat" [ref=e159]

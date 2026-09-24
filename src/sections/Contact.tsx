@@ -15,6 +15,7 @@ import { useInView } from '@/hooks/useInView';
 import { submitContactForm } from '@/lib/contact-form';
 import { trackEvent } from '@/lib/analytics';
 import { Textarea } from '@/components/ui/textarea';
+import { TurnstileWidget } from '@/components/TurnstileWidget';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -66,6 +67,7 @@ export function Contact({ embedded = false }: ContactProps) {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState('');
+  const [captchaError, setCaptchaError] = useState('');
   const contentRef = useRef<HTMLDivElement | null>(null);
   const formRef = useRef<HTMLFormElement | null>(null);
   const formStartedRef = useRef(false);
@@ -175,6 +177,7 @@ export function Contact({ embedded = false }: ContactProps) {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitError('');
+    setCaptchaError('');
 
     try {
       await submitContactForm(e.currentTarget);
@@ -239,6 +242,15 @@ export function Contact({ embedded = false }: ContactProps) {
               <Label htmlFor="emb-message" className="text-sm text-[#172333]">Message</Label>
               <Textarea id="emb-message" name="message" placeholder="Tell us what you need" rows={4} className="mt-1.5 border-[#172333]/15 bg-white text-[#172333] placeholder:text-[#586273]/55 focus:border-[#176fe8]" />
             </div>
+            <div className="pt-1">
+              <TurnstileWidget
+                className="flex justify-center"
+                onError={setCaptchaError}
+                onSuccess={() => setCaptchaError('')}
+              />
+            </div>
+
+            {captchaError && <p className="text-sm leading-5 text-red-300" role="alert">{captchaError}</p>}
             {submitError && <p className="text-sm leading-5 text-red-300" role="alert">{submitError}</p>}
             <button type="submit" disabled={isSubmitting} className="mw-btn-primary-solid w-full justify-center py-3.5 disabled:cursor-not-allowed disabled:opacity-60">
               <Send className="w-4 h-4" />
@@ -413,6 +425,15 @@ export function Contact({ embedded = false }: ContactProps) {
                   </Select>
                 </div>
 
+                <div className="pt-1">
+                  <TurnstileWidget
+                    className="flex justify-center"
+                    onError={setCaptchaError}
+                    onSuccess={() => setCaptchaError('')}
+                  />
+                </div>
+
+                {captchaError && <p className="text-sm leading-5 text-red-600" role="alert">{captchaError}</p>}
                 {submitError && <p className="text-sm leading-5 text-red-600" role="alert">{submitError}</p>}
 
                 <button

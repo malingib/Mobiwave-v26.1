@@ -95,11 +95,62 @@ function sendSmtp(string $host, int $port, string $username, string $password, s
     }
 }
 
+function verifyTurnstile(string $token): void
+{
+    $secret = trim((string) (getenv('TURNSTILE_SECRET_KEY') ?: getenv('CF_TURNSTILE_SECRET_KEY') ?: ''));
+
+    if ($secret === '') {
+        if (isset($_POST['cf-turnstile-response']) || getenv('VITE_TURNSTILE_SITE_KEY') !== false || getenv('CF_TURNSTILE_SITE_KEY') !== false) {
+            respond(500, ['ok' => false, 'error' => 'Captcha secret is not configured on the server.']);
+        }
+        return;
+    }
+
+    if ($token === '') {
+        respond(403, ['ok' => false, 'error' => 'Please complete the verification challenge.']);
+    }
+
+    if (!function_exists('curl_init')) {
+        respond(500, ['ok' => false, 'error' => 'Captcha verification is unavailable on this server.']);
+    }
+
+    $ch = curl_init('https://challenges.cloudflare.com/turnstile/v0/siteverify');
+    curl_setopt_array($ch, [
+        CURLOPT_POST => true,
+        CURLOPT_POSTFIELDS => http_build_query([
+            'secret' => $secret,
+            'response' => $token,
+            'remoteip' => $_SERVER['REMOTE_ADDR'] ?? '',
+        ]),
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_TIMEOUT => 10,
+        CURLOPT_CONNECTTIMEOUT => 10,
+        CURLOPT_HTTPHEADER => ['Accept: application/json'],
+    ]);
+
+    $payload = curl_exec($ch);
+    $curlError = curl_error($ch);
+    curl_close($ch);
+
+    if ($payload === false || $curlError !== '') {
+        error_log('Turnstile verification failed: ' . ($curlError !== '' ? $curlError : 'curl request failed'));
+        respond(500, ['ok' => false, 'error' => 'Captcha verification is currently unavailable.']);
+    }
+
+    $result = json_decode($payload, true);
+    if (!is_array($result) || empty($result['success'])) {
+        respond(403, ['ok' => false, 'error' => 'Please complete the verification challenge.']);
+    }
+}
+
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     respond(405, ['ok' => false, 'error' => 'Method not allowed']);
 }
 
 // Both the homepage form and the full contact page use this endpoint.
+$turnstileToken = trim((string) ($_POST['cf-turnstile-response'] ?? ''));
+verifyTurnstile($turnstileToken);
+
 $name = headerValue((string) ($_POST['name'] ?? ''));
 $firstName = headerValue((string) ($_POST['firstName'] ?? ''));
 $lastName = headerValue((string) ($_POST['lastName'] ?? ''));
