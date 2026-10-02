@@ -181,7 +181,7 @@ export function GuidePageLayout({
 }: GuidePageLayoutProps) {
   const contentRef = useRef<HTMLDivElement>(null);
   const contactItems = [
-    { icon: Phone, label: 'Phone', value: '+254 736 427 842', href: 'tel:+254****7842' },
+    { icon: Phone, label: 'Phone', value: '+254 736 427 842', href: 'tel:+254736427842' },
     { icon: Mail, label: 'Email', value: 'info@mobiwave.co.ke', href: 'mailto:info@mobiwave.co.ke' },
     { icon: Clock, label: 'Office Hours', value: 'Monday-Friday, 9am-5pm', href: null }
   ];
@@ -291,10 +291,10 @@ export function GuidePageLayout({
                   </div>
                   <div className="flex flex-col sm:flex-row gap-4 flex-shrink-0 w-full lg:w-auto">
                     <Button asChild size="lg" className="rounded-full bg-blue-600 hover:bg-blue-500 text-base">
-                      <a href="/contact">Send Message <ArrowRight data-icon="inline-end" /></a>
+                      <a href="/contact" onClick={() => trackEvent('guide_cta_click', { guide: title, location: 'footer' })}>Send Message <ArrowRight data-icon="inline-end" /></a>
                     </Button>
                     <Button asChild size="lg" variant="outline" className="rounded-full border-white/20 bg-transparent text-white hover:bg-white/10 hover:text-white">
-                      <a href="tel:+254****7842">Call Us Now</a>
+                      <a href="tel:+254736427842" onClick={() => trackEvent('guide_cta_click', { guide: title, location: 'footer_phone' })}>Call Us Now</a>
                     </Button>
                   </div>
                 </div>

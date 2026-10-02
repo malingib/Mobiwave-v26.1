@@ -49,9 +49,11 @@ export function initializeAnalytics() {
   document.addEventListener('click', (event) => {
     const target = event.target as HTMLElement | null;
     const link = target?.closest('a') as HTMLAnchorElement | null;
-    if (!link) return;
+    const button = target?.closest('button') as HTMLButtonElement | null;
+    if (!link && !button) return;
 
-    const href = link.getAttribute('href') || '';
+    const href = link?.getAttribute('href') || '';
+    const textValue = (link?.textContent || button?.textContent || '').trim().toLowerCase();
     const scheme = href.split(':', 1)[0].toLowerCase();
     const eventName = trackedLinkEvents[scheme];
 
@@ -78,6 +80,32 @@ export function initializeAnalytics() {
         link_text: (link.textContent || '').trim().slice(0, 100),
         page_path: window.location.pathname,
       });
+    }
+
+    // Capture commercial intent even when a CTA is implemented as a button
+    // rather than an anchor. Keep the event vocabulary small and actionable.
+    const ctaMatch =
+      textValue.includes('request a quote') ? 'request_quote' :
+      textValue.includes('get a quote') ? 'request_quote' :
+      textValue.includes('talk to sales') ? 'sales_contact' :
+      textValue.includes('talk to mobiwave') ? 'sales_contact' :
+      textValue.includes('request demo') ? 'demo_request' :
+      textValue.includes('book a demo') ? 'demo_request' :
+      textValue.includes('get started') ? 'get_started' :
+      textValue.includes('start free') ? 'get_started' :
+      textValue.includes('contact us') ? 'contact' :
+      textValue.includes('send message') ? 'contact' :
+      null;
+
+    if (ctaMatch) {
+      trackEvent('cta_click', {
+        cta_type: ctaMatch,
+        cta_text: (link?.textContent || button?.textContent || '').trim().slice(0, 100),
+        link_url: href,
+      });
+      if (ctaMatch === 'request_quote' || ctaMatch === 'demo_request') {
+        trackEvent(ctaMatch);
+      }
     }
   });
 }
