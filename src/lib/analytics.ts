@@ -49,9 +49,11 @@ export function initializeAnalytics() {
   document.addEventListener('click', (event) => {
     const target = event.target as HTMLElement | null;
     const link = target?.closest('a') as HTMLAnchorElement | null;
-    if (!link) return;
+    const button = target?.closest('button') as HTMLButtonElement | null;
+    if (!link && !button) return;
 
-    const href = link.getAttribute('href') || '';
+    const href = link?.getAttribute('href') || '';
+    const textValue = (link?.textContent || button?.textContent || '').trim().toLowerCase();
     const scheme = href.split(':', 1)[0].toLowerCase();
     const eventName = trackedLinkEvents[scheme];
 
@@ -82,7 +84,6 @@ export function initializeAnalytics() {
 
     // Capture commercial intent even when a CTA is implemented as a button
     // rather than an anchor. Keep the event vocabulary small and actionable.
-    const textValue = (link.textContent || '').trim().toLowerCase();
     const ctaMatch =
       textValue.includes('request a quote') ? 'request_quote' :
       textValue.includes('get a quote') ? 'request_quote' :
@@ -99,7 +100,7 @@ export function initializeAnalytics() {
     if (ctaMatch) {
       trackEvent('cta_click', {
         cta_type: ctaMatch,
-        cta_text: (link.textContent || '').trim().slice(0, 100),
+        cta_text: (link?.textContent || button?.textContent || '').trim().slice(0, 100),
         link_url: href,
       });
       if (ctaMatch === 'request_quote' || ctaMatch === 'demo_request') {
