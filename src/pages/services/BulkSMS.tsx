@@ -15,7 +15,13 @@ export function BulkSMS() {
         { value: '3', label: 'Kenya Networks' },
         { value: '0', label: 'Setup Fee' }
       ]}
-      relatedRoutes={[{ label: 'Read: Best Bulk SMS Provider in Kenya', href: '/guides/best-bulk-sms-kenya' }]}
+      relatedRoutes={[
+        { label: 'SMS API for Developers', href: '/sms-api-kenya' },
+        { label: 'Sender ID Registration Guide', href: '/guides/sender-id-registration-kenya' },
+        { label: 'M-Pesa Integration', href: '/services/mpesa-integration' },
+        { label: 'Bulk SMS Pricing', href: '/pricing' },
+        { label: 'Read: Best Bulk SMS Provider in Kenya', href: '/guides/best-bulk-sms-kenya' }
+      ]}
       features={[
         'Direct interconnect with Safaricom, Airtel and Telkom — no grey routes',
         'Personalised sender ID on all three Kenyan networks',
