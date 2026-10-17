@@ -1,630 +1,180 @@
-import { useEffect, useRef, useState } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { 
-  Building2, 
-  GraduationCap, 
-  Waves, 
-  Church, 
-  Vote, 
-  Cpu, 
-  Globe, 
-  Sparkles,
-  Check,
-  ArrowRight,
-  Stethoscope,
-  Users,
-  Calendar,
-  DollarSign,
-  Zap,
-  Shield,
-  Code2,
-  Database,
-  Cloud,
-  Smartphone,
-  Layers,
-  TrendingUp
+import {
+  ArrowUpRight, Bot, CreditCard, FileCheck2, Landmark, Network, RadioTower, ShieldCheck,
+  Workflow, Users,
 } from 'lucide-react';
-import { Dialog, DialogContent } from '@/components/ui/dialog';
-import { PageBanner } from '@/components/PageBanner';
+import { Link } from 'react-router-dom';
 
-gsap.registerPlugin(ScrollTrigger);
-
-const softwareProducts = [
+const platforms = [
   {
-    icon: Stethoscope,
-    name: 'Clinic Management System',
-    shortName: 'ClinicPro',
-    description: 'Complete healthcare management solution for clinics and medical practices. Streamline patient records, appointments, billing, and prescriptions.',
-    features: [
-      'Patient registration & records',
-      'Appointment scheduling',
-      'Electronic prescriptions',
-      'Billing & invoicing',
-      'Lab results management',
-      'SMS reminders'
-    ],
-    color: 'from-emerald-400 to-teal-500',
-    bgColor: 'bg-emerald-50',
-    borderColor: 'border-emerald-200',
-    textColor: 'text-emerald-600',
-    image: 'clinic'
+    name: 'MobiWave CNC',
+    category: 'Business operations',
+    description: 'Expense accountability and eTIMS evidence workflows for teams working across branches, regions and field locations.',
+    features: ['Expense allocations', 'Receipt and eTIMS evidence', 'Team accountability'],
+    href: 'https://mobiwavecnc.vercel.app',
+    action: 'Open platform',
+    icon: FileCheck2,
+    status: 'Platform',
   },
   {
-    icon: GraduationCap,
-    name: 'School Management System',
-    shortName: 'EduWave',
-    description: 'Comprehensive school administration platform for educational institutions of all sizes. Manage students, staff, and operations efficiently.',
-    features: [
-      'Student enrollment & records',
-      'Attendance tracking',
-      'Grade management',
-      'Fee collection',
-      'Parent portal',
-      'Report cards'
-    ],
-    color: 'from-blue-400 to-indigo-500',
-    bgColor: 'bg-blue-50',
-    borderColor: 'border-blue-200',
-    textColor: 'text-blue-600',
-    image: 'school'
+    name: 'MobiWave AI',
+    category: 'AI & customer experience',
+    description: 'AI-powered customer engagement experiences designed to help businesses respond faster and serve customers across digital channels.',
+    features: ['AI-assisted support', 'Customer conversations', 'Business integrations'],
+    href: 'https://mobiwaveai.co.ke',
+    action: 'Explore platform',
+    icon: Bot,
+    status: 'Platform',
   },
   {
-    icon: Waves,
-    name: 'Beach Management Unit',
-    shortName: 'BeachGuard',
-    description: 'Specialized solution for managing beach operations, safety, and visitor services with real-time monitoring.',
-    features: [
-      'Visitor registration',
-      'Safety incident tracking',
-      'Lifeguard scheduling',
-      'Revenue collection',
-      'Equipment management',
-      'Reporting & analytics'
-    ],
-    color: 'from-cyan-400 to-blue-500',
-    bgColor: 'bg-cyan-50',
-    borderColor: 'border-cyan-200',
-    textColor: 'text-cyan-600',
-    image: 'beach'
+    name: 'Invest Kilifi',
+    category: 'Investment & economic development',
+    description: 'A digital gateway for exploring Kilifi County’s investment opportunities, sectors and investor journey.',
+    features: ['Investment opportunities', 'Sector information', 'Investor journey'],
+    href: 'https://kic.mobiwave.co.ke',
+    action: 'Explore portal',
+    icon: Landmark,
+    status: 'Portal',
   },
   {
-    icon: Church,
-    name: 'Church Management System',
-    shortName: 'ChurchHub',
-    description: 'Digital solution for churches to manage members, events, donations, and communications effectively.',
-    features: [
-      'Member database',
-      'Event management',
-      'Donation tracking',
-      'Group management',
-      'SMS/email communications',
-      'Financial reports'
-    ],
-    color: 'from-purple-400 to-pink-500',
-    bgColor: 'bg-purple-50',
-    borderColor: 'border-purple-200',
-    textColor: 'text-purple-600',
-    image: 'church'
+    name: 'MobiWave Messaging',
+    category: 'Telecom & communications',
+    description: 'Communication services that help organisations reach customers through SMS, email, WhatsApp and USSD.',
+    features: ['Bulk messaging', 'USSD and shortcodes', 'APIs and delivery reports'],
+    href: '/services',
+    action: 'Explore services',
+    icon: RadioTower,
+    status: 'Services',
   },
   {
-    icon: Vote,
-    name: 'Political Campaign System',
-    shortName: 'CampaignPro',
-    description: 'Powerful tools for managing political campaigns, voter outreach, and volunteer coordination.',
-    features: [
-      'Voter database management',
-      'Campaign messaging',
-      'Volunteer coordination',
-      'Event planning',
-      'Donation tracking',
-      'Analytics & reporting'
-    ],
-    color: 'from-red-400 to-orange-500',
-    bgColor: 'bg-red-50',
-    borderColor: 'border-red-200',
-    textColor: 'text-red-600',
-    image: 'campaign'
-  }
+    name: 'MobiPay',
+    category: 'Payments & integrations',
+    description: 'Payment experiences built around business collection workflows, M-Pesa integrations and reconciliation needs.',
+    features: ['Payment collection flows', 'STK Push integrations', 'Payment operations'],
+    href: '/services/mpesa-integration',
+    action: 'Explore integrations',
+    icon: CreditCard,
+    status: 'Solutions',
+  },
+  {
+    name: 'Digital platforms for organisations',
+    category: 'Custom platforms',
+    description: 'Purpose-built digital systems for organisations that need their workflows, access and reporting to match how they operate.',
+    features: ['Role-based workflows', 'Operational dashboards', 'Custom integrations'],
+    href: '/contact',
+    action: 'Discuss a project',
+    icon: Workflow,
+    status: 'Custom',
+  },
 ];
 
-const enterpriseSolutions = [
-  {
-    icon: Cpu,
-    title: 'AI & Machine Learning',
-    description: 'Leverage the power of artificial intelligence to automate processes, gain insights, and make data-driven decisions.',
-    features: ['Chatbots', 'Predictive Analytics', 'Process Automation', 'Data Mining'],
-    gradient: 'from-violet-500 to-purple-600'
-  },
-  {
-    icon: Globe,
-    title: 'Web Development',
-    description: 'Custom websites and web applications built with modern technologies for optimal performance and user experience.',
-    features: ['Responsive Design', 'E-commerce', 'Web Apps', 'CMS Integration'],
-    gradient: 'from-blue-500 to-cyan-500'
-  },
-  {
-    icon: Building2,
-    title: 'Enterprise Software',
-    description: 'Tailored software solutions designed to meet the unique needs of your organization.',
-    features: ['ERP Systems', 'CRM Solutions', 'HR Management', 'Inventory Systems'],
-    gradient: 'from-emerald-500 to-teal-500'
-  },
-  {
-    icon: Sparkles,
-    title: 'Custom Solutions',
-    description: 'Bespoke software development to solve your specific business challenges.',
-    features: ['Requirements Analysis', 'UI/UX Design', 'Development', 'Support & Maintenance'],
-    gradient: 'from-orange-500 to-amber-500'
-  }
-];
-
-const whyChooseUs = [
-  {
-    icon: Users,
-    title: 'Expert Team',
-    description: 'Our team of experienced developers and designers deliver high-quality solutions tailored to your needs.',
-    stat: '25+ Experts'
-  },
-  {
-    icon: Calendar,
-    title: 'On-Time Delivery',
-    description: 'We understand the importance of deadlines and ensure timely project completion every time.',
-    stat: '98% On-Time'
-  },
-  {
-    icon: DollarSign,
-    title: 'Competitive Pricing',
-    description: 'Get enterprise-grade solutions at affordable prices with flexible payment options.',
-    stat: 'Save 30%'
-  },
-  {
-    icon: Shield,
-    title: 'Ongoing Support',
-    description: 'We provide continuous support and maintenance to keep your systems running smoothly.',
-    stat: '24/7 Support'
-  }
-];
-
-const techStack = [
-  { name: 'React', icon: Code2, color: 'text-blue-400' },
-  { name: 'Node.js', icon: Layers, color: 'text-green-500' },
-  { name: 'Python', icon: Database, color: 'text-yellow-400' },
-  { name: 'AI/ML', icon: Cpu, color: 'text-purple-400' },
-  { name: 'Cloud', icon: Cloud, color: 'text-cyan-400' },
-  { name: 'Mobile', icon: Smartphone, color: 'text-pink-400' },
-  { name: 'API', icon: Zap, color: 'text-orange-400' },
-  { name: 'Analytics', icon: TrendingUp, color: 'text-emerald-400' }
-];
-
-const stats = [
-  { value: '50+', label: 'Software Products', suffix: '' },
-  { value: '200+', label: 'Happy Clients', suffix: '' },
-  { value: '15+', label: 'Industries Served', suffix: '' },
-  { value: '9+', label: 'Years Experience', suffix: '' }
-];
-
-const liveProjects = [
-  { name: 'MobiWave CNC', href: 'https://mobiwavecnc.vercel.app', note: 'Expense management and eTIMS evidence' },
-  { name: 'Tewaw', href: 'https://tewaw.mobiwave.co.ke' },
-  { name: 'Malanga Welfare', href: 'https://malangawelfare.org' },
-  { name: 'RewardHub', href: 'https://mobiwavesrs.co.ke' },
-  { name: 'Voting System', href: 'https://mobipoll.co.ke' },
-  { name: 'JuaAfya', href: 'https://juaafya.co.ke' },
-  { name: 'BID Logistics', href: 'https://bidlogistics.co.ke' },
-  { name: 'Kilifi.go.ke', href: 'https://kilifi.go.ke', note: 'County Government of Kilifi' },
-  { name: 'MobiWaveAI', href: 'https://mobiwaveai.co.ke', note: 'AI customer support' }
-];
-
-const comingSoonProjects = [
-  { name: 'Imani CMS', note: 'Church management system' },
-  { name: 'eShule', note: 'School management system' }
+const capabilities = [
+  { icon: Network, title: 'Connected systems', description: 'Bring communications, payments and operational workflows together through practical integrations.' },
+  { icon: ShieldCheck, title: 'Designed around your operations', description: 'Build around real roles, permissions and processes rather than forcing teams into a generic workflow.' },
+  { icon: Users, title: 'Built with your team', description: 'Start with the problem, define a useful first release, and improve it with feedback from actual users.' },
 ];
 
 export function Products() {
-  const statsRef = useRef<HTMLDivElement>(null);
-  const [selectedProduct, setSelectedProduct] = useState<typeof softwareProducts[0] | null>(null);
-  const [animatedStats, setAnimatedStats] = useState(stats.map(() => 0));
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Stats counter animation
-      ScrollTrigger.create({
-        trigger: statsRef.current,
-        start: 'top 80%',
-        onEnter: () => {
-          stats.forEach((stat, index) => {
-            const numValue = parseInt(stat.value);
-            gsap.to({}, {
-              duration: 2,
-              ease: 'power2.out',
-              onUpdate: function() {
-                const progress = this.progress();
-                setAnimatedStats(prev => {
-                  const newStats = [...prev];
-                  newStats[index] = Math.floor(numValue * progress);
-                  return newStats;
-                });
-              }
-            });
-          });
-        },
-        once: true
-      });
-
-    });
-
-    return () => ctx.revert();
-  }, []);
-
   return (
-    <div className="min-h-screen bg-white overflow-x-hidden pt-28 sm:pt-32">
-      <PageBanner
-        title="Innovations"
-        subtitle="Industry-focused software products and custom digital solutions by MobiWave."
-      />
-
-      {/* Stats Section */}
-      <section ref={statsRef} className="py-16 bg-gray-50 border-y border-gray-100">
-        <div className="container-custom">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
-              <div key={stat.label} className="text-center">
-                <div className="text-4xl md:text-5xl font-bold text-gray-900 mb-2">
-                  {animatedStats[index]}{stat.suffix}+
-                </div>
-                <div className="text-gray-600">{stat.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Innovations Hub Section */}
-      <section ref={innovationsHubRef} className="section-padding bg-white">
-        <div className="container-custom">
-          <div className="text-center mb-10">
-            <span className="mb-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-[#0084ff]">
-              <span className="h-px w-8 bg-[#0084ff]" />
-              INNOVATIONS HUB
-              <span className="h-px w-8 bg-[#0084ff]" />
-            </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Use Cases, Live Projects, and What&apos;s Next
-            </h2>
-            <p className="text-gray-600 max-w-3xl mx-auto text-lg">
-              A clear view of our product use cases, currently active deployments, and projects in progress.
-            </p>
-          </div>
-
-          <div className="grid lg:grid-cols-3 gap-8">
-            <div className="innovation-card border-b border-gray-200 p-2 pb-7">
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Use Cases</h3>
-              <p className="text-sm text-gray-600 mb-5">Industry scenarios we build for.</p>
-              <ul className="space-y-3">
-                {softwareProducts.map((product) => (
-                  <li key={product.name} className="flex items-start gap-3 text-sm text-gray-700">
-                    <Check className={`w-4 h-4 mt-0.5 ${product.textColor} flex-shrink-0`} />
-                    <span>
-                      <span className="font-semibold text-gray-900">{product.name}</span>
-                      <span className="block text-gray-600">{product.shortName}</span>
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="innovation-card border-b border-gray-200 p-2 pb-7">
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Live Projects</h3>
-              <p className="text-sm text-gray-600 mb-5">Projects currently deployed and accessible.</p>
-              <ul className="space-y-3">
-                {liveProjects.map((project) => (
-                  <li key={project.name} className="text-sm">
-                    <a
-                      href={project.href}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="font-semibold text-emerald-700 hover:text-emerald-800 hover:underline"
-                    >
-                      {project.name}
-                    </a>
-                    {project.note && <p className="text-gray-600">{project.note}</p>}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="innovation-card border-b border-gray-200 p-2 pb-7">
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Coming Soon</h3>
-              <p className="text-sm text-gray-600 mb-5">Products in development and planned release.</p>
-              <ul className="space-y-3">
-                {comingSoonProjects.map((project) => (
-                  <li key={project.name} className="text-sm">
-                    <p className="font-semibold text-amber-700">{project.name}</p>
-                    <p className="text-gray-600">{project.note}</p>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Software Products Section */}
-      <section id="products" ref={productsRef} className="section-padding bg-gray-50">
-        <div className="container-custom">
-          <div className="text-center mb-10">
-            <span className="mb-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-[#0084ff]">
-              <span className="h-px w-8 bg-[#0084ff]" />
-              SOFTWARE PRODUCTS
-              <span className="h-px w-8 bg-[#0084ff]" />
-            </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Industry-Specific Solutions
-            </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto text-lg">
-              Ready-to-deploy software solutions designed for specific industries. 
-              Each product is built with deep understanding of industry needs.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {softwareProducts.map((product) => (
-              <div
-                key={product.name}
-                className="product-card group relative border-b border-gray-200 pb-6 transition-colors duration-300 hover:border-[#0084ff]/40"
-              >
-                {/* Card Content */}
-                <div className="pt-2 px-2">
-                  <div className="flex items-center gap-2 mb-2">
-                    <span className={`text-xs font-semibold px-2 py-1 rounded-full ${product.bgColor} ${product.textColor}`}>
-                      {product.shortName}
-                    </span>
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">{product.name}</h3>
-                  <p className="text-gray-600 text-sm mb-4 line-clamp-2">{product.description}</p>
-                  
-                  <ul className="space-y-2 mb-6">
-                    {product.features.slice(0, 4).map((feature, i) => (
-                      <li key={i} className="flex items-center gap-2 text-sm text-gray-600">
-                        <Check className={`w-4 h-4 ${product.textColor} flex-shrink-0`} />
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-
-                  <button
-                    onClick={() => setSelectedProduct(product)}
-                    className={`w-full py-3 rounded-xl font-semibold text-sm transition-all duration-300 ${product.bgColor} ${product.textColor} hover:opacity-80 flex items-center justify-center gap-2 group-hover:gap-3`}
-                  >
-                    Learn More <ArrowRight className="w-4 h-4" />
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Enterprise Solutions Section */}
-      <section ref={solutionsRef} className="section-padding bg-white">
-        <div className="container-custom">
-          <div className="text-center mb-16">
-            <span className="mb-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-purple-600">
-              <span className="h-px w-8 bg-purple-600" />
-              ENTERPRISE SOLUTIONS
-              <span className="h-px w-8 bg-purple-600" />
-            </span>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-              Custom Development Services
-            </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto text-lg">
-              Bespoke software solutions tailored to your unique business requirements. 
-              We turn your vision into reality.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            {enterpriseSolutions.map((solution) => (
-              <div
-                key={solution.title}
-                className="solution-card group relative border-b border-gray-200 p-2 pb-8 transition-colors duration-300 hover:border-[#0084ff]/40"
-              >
-                <div className="relative z-10">
-                  <div className="mb-5 text-[#0084ff]">
-                    <solution.icon className="h-8 w-8" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-3">{solution.title}</h3>
-                  <p className="text-gray-600 mb-6">{solution.description}</p>
-                  <div className="flex flex-wrap gap-2">
-                    {solution.features.map((feature, i) => (
-                      <span 
-                        key={i} 
-                        className="px-4 py-2 bg-gray-100 text-gray-700 text-sm rounded-full font-medium group-hover:bg-gray-200 transition-colors"
-                      >
-                        {feature}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Why Choose Us Section */}
-      <section ref={whyUsRef} className="section-padding bg-gray-50">
-        <div className="container-custom">
-          <div className="text-center mb-10">
-            <span className="mb-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-orange-600">
-              <span className="h-px w-8 bg-orange-600" />
-              WHY CHOOSE US
-              <span className="h-px w-8 bg-orange-600" />
-            </span>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-              The MobiWave Advantage
-            </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto text-lg">
-              We combine technical expertise with industry knowledge to deliver solutions that truly make a difference.
-            </p>
-          </div>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {whyChooseUs.map((item) => (
-              <div
-                key={item.title}
-                className="why-card group border-b border-gray-200 p-5 text-center transition-colors duration-300 hover:border-[#0084ff]/40"
-              >
-                <div className="mx-auto mb-5 text-[#0084ff]">
-                  <item.icon className="h-8 w-8" />
-                </div>
-                <div className="text-2xl font-bold text-[#0084ff] mb-2">{item.stat}</div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">{item.title}</h3>
-                <p className="text-gray-600">{item.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Tech Stack Section */}
-      <section ref={techRef} className="section-padding bg-gray-50">
-        <div className="container-custom">
-          <div className="text-center mb-10">
-            <span className="mb-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-[#0084ff]">
-              <span className="h-px w-8 bg-[#0084ff]" />
-              TECHNOLOGIES
-              <span className="h-px w-8 bg-[#0084ff]" />
-            </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Modern Tech Stack
-            </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto text-lg">
-              We use cutting-edge technologies to build scalable, secure, and performant solutions.
-            </p>
-          </div>
-
-          <div className="flex flex-wrap justify-center gap-6">
-            {techStack.map((tech) => (
-              <div
-                key={tech.name}
-                className="tech-item group flex min-w-[120px] flex-col items-center gap-4 border-b border-gray-200 p-5 transition-colors duration-300 hover:border-[#0084ff]/40"
-              >
-                <tech.icon className={`w-10 h-10 ${tech.color} group-hover:scale-110 transition-transform duration-300`} />
-                <span className="text-gray-900 font-medium">{tech.name}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Process Section */}
-      <section className="section-padding bg-white">
-        <div className="container-custom">
-          <div className="text-center mb-10">
-            <span className="mb-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-emerald-600">
-              <span className="h-px w-8 bg-emerald-600" />
-              OUR PROCESS
-              <span className="h-px w-8 bg-emerald-600" />
-            </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              How We Work
-            </h2>
-          </div>
-
-          <div className="grid md:grid-cols-4 gap-8">
-            {[
-              { step: '01', title: 'Discovery', desc: 'We understand your requirements and business goals' },
-              { step: '02', title: 'Design', desc: 'We create intuitive UI/UX designs for your solution' },
-              { step: '03', title: 'Development', desc: 'We build your solution using modern technologies' },
-              { step: '04', title: 'Deployment', desc: 'We launch and provide ongoing support' }
-            ].map((item, i) => (
-              <div key={item.step} className="relative text-center">
-                <div className="mx-auto mb-5 text-2xl font-bold text-[#0084ff]">
-                  {item.step}
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">{item.title}</h3>
-                <p className="text-gray-600">{item.desc}</p>
-                {i < 3 && (
-                  <div className="hidden md:block absolute top-10 left-[60%] w-full">
-                    <ArrowRight className="w-8 h-8 text-gray-300" />
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="bg-[#0a1a25] py-14">
-        <div className="container-custom text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Ready to Transform Your Business?
-          </h2>
-          <p className="text-white/80 mb-10 max-w-2xl mx-auto text-lg">
-            Let's discuss how our software solutions can help you achieve your business goals. 
-            Get a free consultation today.
+    <div className="min-h-screen overflow-x-hidden bg-white pt-28 sm:pt-32">
+      <section className="border-b border-[#e3e9f1] bg-[#f6f8fb]">
+        <div className="container-custom py-16 sm:py-20 lg:py-24">
+          <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#176fe8]">MobiWave Innovations</p>
+          <h1 className="mt-4 max-w-4xl text-4xl font-extrabold leading-tight tracking-[-0.045em] text-[#172333] sm:text-5xl lg:text-6xl" style={{ fontFamily: 'Outfit, sans-serif' }}>
+            Digital products built around real work.
+          </h1>
+          <p className="mt-6 max-w-3xl text-base leading-7 text-[#586273] sm:text-lg">
+            Explore MobiWave platforms, industry solutions and custom digital systems that help organisations communicate, manage operations and connect services.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="/contact"
-              className="inline-flex items-center justify-center gap-2 px-10 py-5 rounded-full bg-white text-[#0084ff] font-bold hover:bg-gray-100 transition-all duration-300 hover:scale-105 shadow-xl"
-            >
-              Get a Free Consultation <ArrowRight className="w-5 h-5" />
-            </a>
-            <a
-              href="tel:+254736427842"
-              className="inline-flex items-center justify-center gap-2 px-10 py-5 rounded-full border-2 border-white/30 text-white font-bold hover:bg-white/10 transition-all duration-300"
-            >
-              Call Us Now
-            </a>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Link to="/contact" className="inline-flex items-center gap-2 rounded-md bg-[#176fe8] px-5 py-3 text-sm font-bold text-white transition-colors hover:bg-[#105ac0]">
+              Discuss your project <ArrowUpRight className="h-4 w-4" />
+            </Link>
+            <Link to="/services" className="inline-flex items-center gap-2 rounded-md border border-[#d2dbe7] bg-white px-5 py-3 text-sm font-bold text-[#172333] transition-colors hover:border-[#176fe8] hover:text-[#176fe8]">
+              Explore all services
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* Product Detail Dialog */}
-      <Dialog open={!!selectedProduct} onOpenChange={() => setSelectedProduct(null)}>
-        <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
-          {selectedProduct && (
-            <div className="p-2">
-              <div className={`h-24 bg-gradient-to-br ${selectedProduct.color} rounded-2xl flex items-center justify-center mb-6`}>
-                <selectedProduct.icon className="w-12 h-12 text-white" />
-              </div>
-              <h2 className="text-2xl font-bold text-gray-900 mb-2">{selectedProduct.name}</h2>
-              <p className="text-gray-600 mb-6">{selectedProduct.description}</p>
-              
-              <h3 className="text-lg font-semibold text-gray-900 mb-3">Key Features</h3>
-              <ul className="space-y-3 mb-6">
-                {selectedProduct.features.map((feature, i) => (
-                  <li key={i} className="flex items-center gap-3 text-gray-600">
-                    <div className={`w-6 h-6 rounded-full ${selectedProduct.bgColor} flex items-center justify-center flex-shrink-0`}>
-                      <Check className={`w-4 h-4 ${selectedProduct.textColor}`} />
-                    </div>
-                    {feature}
-                  </li>
-                ))}
-              </ul>
+      <section className="container-custom py-14 sm:py-18 lg:py-20" aria-labelledby="innovation-platforms-heading">
+        <div className="max-w-3xl">
+          <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#176fe8]">Platforms & solutions</p>
+          <h2 id="innovation-platforms-heading" className="mt-3 text-3xl font-extrabold tracking-[-0.035em] text-[#172333] sm:text-4xl" style={{ fontFamily: 'Outfit, sans-serif' }}>
+            Find the right starting point.
+          </h2>
+          <p className="mt-4 text-base leading-7 text-[#586273]">
+            From existing platforms to tailored software, each solution is focused on a clear operational need.
+          </p>
+        </div>
+        <div className="mt-9 grid gap-x-8 gap-y-5 md:grid-cols-2 lg:grid-cols-3">
+          {platforms.map((item) => {
+            const Icon = item.icon;
+            const external = item.href.startsWith('http');
+            return (
+              <article key={item.name} className="flex h-full flex-col border-t border-[#dfe5ed] py-6">
+                <div className="flex items-start justify-between gap-3">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-[#edf4ff] text-[#176fe8]">
+                    <Icon className="h-5 w-5" aria-hidden="true" />
+                  </div>
+                  <span className="rounded-full bg-[#f1f4f8] px-3 py-1 text-xs font-semibold text-[#586273]">{item.status}</span>
+                </div>
+                <p className="mt-5 text-xs font-semibold uppercase tracking-[0.1em] text-[#6b7585]">{item.category}</p>
+                <h3 className="mt-2 text-xl font-bold text-[#172333]" style={{ fontFamily: 'Outfit, sans-serif' }}>{item.name}</h3>
+                <p className="mt-3 flex-1 text-sm leading-6 text-[#586273]">{item.description}</p>
+                <ul className="mt-4 space-y-2">
+                  {item.features.map((feature) => (
+                    <li key={feature} className="flex items-start gap-2 text-sm text-[#455163]">
+                      <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#176fe8]" />
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+                {external ? (
+                  <a href={item.href} target="_blank" rel="noreferrer" className="mt-6 inline-flex w-fit items-center gap-2 text-sm font-bold text-[#176fe8] hover:text-[#105ac0]">
+                    {item.action} <ArrowUpRight className="h-4 w-4" />
+                  </a>
+                ) : (
+                  <Link to={item.href} className="mt-6 inline-flex w-fit items-center gap-2 text-sm font-bold text-[#176fe8] hover:text-[#105ac0]">
+                    {item.action} <ArrowUpRight className="h-4 w-4" />
+                  </Link>
+                )}
+              </article>
+            );
+          })}
+        </div>
+      </section>
 
-              <div className="flex gap-3">
-                <a
-                  href="/contact"
-                  className={`flex-1 py-3 rounded-xl font-semibold text-center text-white bg-gradient-to-r ${selectedProduct.color} hover:opacity-90 transition-opacity`}
-                >
-                  Request Demo
-                </a>
-                <button
-                  onClick={() => setSelectedProduct(null)}
-                  className="px-6 py-3 rounded-xl border border-gray-200 text-gray-600 hover:bg-gray-50 transition-colors"
-                >
-                  Close
-                </button>
+      <section className="border-y border-[#e3e9f1] bg-[#f6f8fb]">
+        <div className="container-custom py-14 sm:py-16">
+          <div className="max-w-3xl">
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#176fe8]">How we build</p>
+            <h2 className="mt-3 text-3xl font-extrabold tracking-[-0.035em] text-[#172333] sm:text-4xl" style={{ fontFamily: 'Outfit, sans-serif' }}>
+              Useful technology, without unnecessary complexity.
+            </h2>
+          </div>
+          <div className="mt-8 grid gap-8 md:grid-cols-3">
+            {capabilities.map(({ icon: Icon, title, description }) => (
+              <div key={title} className="border-t border-[#d7e0eb] pt-5">
+                <Icon className="h-6 w-6 text-[#176fe8]" aria-hidden="true" />
+                <h3 className="mt-4 text-lg font-bold text-[#172333]">{title}</h3>
+                <p className="mt-2 text-sm leading-6 text-[#586273]">{description}</p>
               </div>
-            </div>
-          )}
-        </DialogContent>
-      </Dialog>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="container-custom py-14 sm:py-18 lg:py-20">
+        <div className="flex flex-col gap-6 rounded-xl bg-[#102337] px-6 py-9 sm:px-10 sm:py-12 md:flex-row md:items-center md:justify-between">
+          <div className="max-w-2xl">
+            <h2 className="text-2xl font-bold text-white sm:text-3xl" style={{ fontFamily: 'Outfit, sans-serif' }}>Have a challenge worth solving?</h2>
+            <p className="mt-3 text-sm leading-6 text-white/75 sm:text-base">Tell us about your organisation, users and workflow. We’ll help identify a practical solution and next step.</p>
+          </div>
+          <Link to="/contact" className="inline-flex shrink-0 items-center justify-center gap-2 rounded-md bg-white px-5 py-3 text-sm font-bold text-[#102337] transition-colors hover:bg-[#eaf1f8]">
+            Start a conversation <ArrowUpRight className="h-4 w-4" />
+          </Link>
+        </div>
+      </section>
     </div>
   );
 }
