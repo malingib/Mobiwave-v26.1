@@ -8,7 +8,7 @@ export function UssdCodeCostGuide() {
       description="USSD extension pricing in Kenya, prepaid and postpaid plans, setup and monthly fees, typical per-session charges, separately billed SMS, and the CAK allocation process."
       breadcrumbLabel="USSD Code Cost"
       updated="August 2026"
-      intro="USSD works on feature phones without mobile data. Budget separately for your extension setup fee, monthly subscription, USSD session charges and SMS usage. Session charges are typically paid by the subscriber to their mobile carrier; SMS usage is billed separately at the applicable rate."
+      intro="USSD works on feature phones without mobile data. Budget separately for your extension setup fee, monthly subscription, USSD session charges and SMS usage. Session charges are typically paid by the subscriber to their mobile carrier; SMS usage is billed separately at the applicable rate. Published prices exclude VAT. Dedicated codes are subject to the required approvals and mobile-network provisioning; availability and timelines are confirmed during quotation."
       checklist={[
         'Decision: shared (sub-keyword) or dedicated (own code)',
         'Registered Kenyan business + KRA PIN',
@@ -51,7 +51,7 @@ export function UssdCodeCostGuide() {
       ]}
       comparison={{
         headers: ['MobiWave', "Other USSD providers", 'Celcom Africa', 'Twilio'],
-        note: 'A KES 5,000 surcharge is included in fixed service fees. No surcharge applies to per-session charges. SMS usage is billed separately at the applicable rate.',
+        note: 'Published prices exclude VAT. A KES 5,000 MobiWave surcharge is included in fixed service fees where applicable; no surcharge applies to per-session charges. SMS usage is billed separately at the applicable rate. Dedicated codes are subject to required approvals and mobile-network provisioning; availability and timelines are confirmed during quotation.',
         rows: [
           {
             name: 'Prepaid extension (2 digits)',
