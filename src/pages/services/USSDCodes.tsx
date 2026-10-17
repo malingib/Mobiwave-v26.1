@@ -174,20 +174,19 @@ export function USSDCodes() {
       }}
       pricingTabs={[
         { label: 'Prepaid', pricing: [
-          { title: '2-digit extension', price: 'KES 8,000', unit: '/ month', features: ['Setup fee: KES 5,000', 'Prepaid billing', 'Session usage charged separately', 'SMS usage charged separately'] },
+          { title: '2-digit extension', price: 'KES 8,000', unit: '/ month', features: ['Setup fee: KES 5,000', 'Prepaid billing', 'USSD session charge typically KES 1–5, network-dependent', 'SMS usage billed separately'] },
           { title: '3-digit extension', price: 'KES 6,000', unit: '/ month', features: ['Setup fee: KES 5,000', 'Prepaid billing', 'Session usage charged separately', 'SMS usage charged separately'] },
           { title: '4-digit extension', price: 'KES 4,000', unit: '/ month', features: ['Setup fee: KES 5,000', 'Prepaid billing', 'Session usage charged separately', 'SMS usage charged separately'] }
         ]},
         { label: 'Postpaid', pricing: [
-          { title: '1-digit extension', price: 'KES 45,000', unit: '/ month', features: ['Setup fee: KES 10,000', 'Postpaid billing', 'Session usage charged separately', 'SMS usage charged separately'] },
-          { title: '2-digit extension', price: 'KES 35,000', unit: '/ month', features: ['Setup fee: KES 10,000', 'Postpaid billing', 'Session usage charged separately', 'SMS usage charged separately'] },
-          { title: '3- or 4-digit extension', price: 'Request a quote', unit: '', features: ['Postpaid pricing to be confirmed', 'Session usage charged separately', 'SMS usage charged separately'] }
+          { title: '1-digit extension', price: 'KES 45,000', unit: '/ month', features: ['Setup fee: KES 10,000', 'Postpaid billing', 'Session charges billed separately', 'SMS usage billed separately'] },
+          { title: '2-digit extension', price: 'KES 35,000', unit: '/ month', features: ['Setup fee: KES 10,000', 'Postpaid billing', 'Session charges billed separately', 'SMS usage billed separately'] }
         ]}
       ]}
       faqs={[
         {
           question: 'How much does a USSD code cost in Kenya in 2026?',
-          answer: 'Prepaid extensions cost KES 5,000 setup, then KES 8,000/month for a 2-digit extension, KES 6,000/month for 3 digits, or KES 4,000/month for 4 digits. Postpaid is KES 10,000 setup + KES 35,000/month for a 2-digit extension, or KES 10,000 setup + KES 45,000/month for a 1-digit extension. Session and SMS usage charges are billed separately. Confirm VAT and 3- or 4-digit postpaid pricing in your quotation.'
+          answer: 'Prepaid extensions cost KES 5,000 setup, then KES 8,000/month for a 2-digit extension, KES 6,000/month for 3 digits, or KES 4,000/month for 4 digits. Postpaid is available only for 1-digit extensions (KES 10,000 setup + KES 45,000/month) and 2-digit extensions (KES 10,000 setup + KES 35,000/month). USSD session charges are typically KES 1–5 per session depending on network and session length; SMS usage is billed separately. Confirm VAT and applicable usage rates in your quotation.'
         },
         {
           question: 'How do I apply for a USSD shortcode from the CAK?',
