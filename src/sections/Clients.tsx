@@ -11,7 +11,7 @@ const partners = [
   { name: 'Malanga Welfare', logo: '/images/clients/malanga.png' },
   { name: 'Jazafit Gyms', logo: '/images/clients/jazafit.png' },
   { name: 'Comfort Circle', logo: '/images/clients/comfortcircle.jpg' },
-  { name: 'Lake Oil', logo: 'https://images.seeklogo.com/logo-png/48/1/lake-oil-logo-png_seeklogo-480018.png' },
+  { name: 'Lake Oil', logo: '/images/clients/lake-oil.svg' },
   { name: 'VycePay', logo: '/images/clients/vycepay.svg' },
 ];
 
