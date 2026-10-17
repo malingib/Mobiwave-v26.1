@@ -12,6 +12,5 @@ interface PremiumRevealProps {
 }
 
 export function PremiumReveal({ children, className = '' }: PremiumRevealProps) {
-  // Keep reveal content in the normal document flow so it is visible immediately.
   return <div className={className}>{children}</div>;
 }
