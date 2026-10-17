@@ -1,5 +1,5 @@
 import {
-  ArrowUpRight, Bot, FileCheck2, Landmark, Network, RadioTower, ShieldCheck,
+  ArrowUpRight, Bot, CreditCard, FileCheck2, Landmark, Network, RadioTower, ShieldCheck,
   Workflow, Users,
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
