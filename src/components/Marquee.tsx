@@ -13,11 +13,11 @@ export function Marquee({ children, reverse = false, speed = 40, className = '' 
   return (
     <div className={`relative overflow-hidden mw-marquee-fade ${className}`}>
       <div
-        className="flex w-max gap-5"
+        className="flex w-max"
         style={{ animation: `${animationName} ${speed}s linear infinite` }}
       >
-        {children}
-        {children}
+        <div className="flex shrink-0">{children}</div>
+        <div className="flex shrink-0" aria-hidden="true">{children}</div>
       </div>
     </div>
   );
