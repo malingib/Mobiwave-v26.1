@@ -24,6 +24,10 @@ interface ServicePageLayoutProps {
   pricing?: { title: string; price: string; unit: string; features: string[] }[];
   pricingTabs?: { label: string; pricing: { title: string; price: string; unit: string; features: string[] }[] }[];
   ctaDescription?: string;
+  ctaPrimaryHref?: string;
+  ctaPrimaryLabel?: string;
+  ctaShowContactDetails?: boolean;
+  ctaShowSecondaryAction?: boolean;
   howItWorks?: { step: string; title: string; description: string }[];
   comparisonTable?: {
     headers: string[];
@@ -94,6 +98,10 @@ export function ServicePageLayout({
   pricing,
   pricingTabs,
   ctaDescription,
+  ctaPrimaryHref = '/contact',
+  ctaPrimaryLabel = 'Send Message',
+  ctaShowContactDetails = true,
+  ctaShowSecondaryAction = true,
   howItWorks,
   comparisonTable,
   faqs,
@@ -446,19 +454,21 @@ export function ServicePageLayout({
 
                   <div className="flex flex-col sm:flex-row gap-4 flex-shrink-0 w-full lg:w-auto">
                     <Button asChild size="lg" className="rounded-full bg-blue-600 hover:bg-blue-500 text-base">
-                      <a href="/contact">
-                        Send Message
+                      <a href={ctaPrimaryHref} target={ctaPrimaryHref.startsWith('http') ? '_blank' : undefined} rel={ctaPrimaryHref.startsWith('http') ? 'noopener noreferrer' : undefined}>
+                        {ctaPrimaryLabel}
                         <ArrowRight data-icon="inline-end" />
                       </a>
                     </Button>
-                    <Button asChild size="lg" variant="outline" className="rounded-full border-white/20 bg-transparent text-white hover:bg-white/10 hover:text-white">
-                      <a href="tel:+254736427842">Call Us Now</a>
-                    </Button>
+                    {ctaShowSecondaryAction && (
+                      <Button asChild size="lg" variant="outline" className="rounded-full border-white/20 bg-transparent text-white hover:bg-white/10 hover:text-white">
+                        <a href="tel:+254736427842">Call Us Now</a>
+                      </Button>
+                    )}
                   </div>
                 </div>
               </CardHeader>
 
-              <CardContent className="grid md:grid-cols-3 gap-4 p-6 sm:p-8 pt-0 md:px-12 md:pb-12">
+              {ctaShowContactDetails && <CardContent className="grid md:grid-cols-3 gap-4 p-6 sm:p-8 pt-0 md:px-12 md:pb-12">
                 {contactItems.map((item) => (
                   <div
                     key={item.label}
@@ -479,7 +489,7 @@ export function ServicePageLayout({
                     )}
                   </div>
                 ))}
-              </CardContent>
+              </CardContent>}
             </Card>
           </div>
         </section>
