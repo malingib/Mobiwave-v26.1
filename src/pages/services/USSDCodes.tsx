@@ -102,7 +102,7 @@ export function USSDCodes() {
       ]}
       comparisonTable={{
         headers: ['MobiWave', "Other USSD providers", 'Celcom Africa', 'Twilio'],
-        note: 'MobiWave extension pricing is separate from session and SMS usage charges. Confirm VAT treatment and postpaid extension pricing in your quotation.',
+        note: 'Fixed prices include the KES 5,000 MobiWave surcharge. The surcharge does not apply to session charges. SMS is billed separately; confirm VAT treatment in your quotation.',
         rows: [
           {
             name: 'Prepaid extension (2 digits)',
@@ -128,8 +128,10 @@ export function USSDCodes() {
           { name: 'Postpaid extension (2 digits)', cells: [{ text: 'KES 10,000 setup + KES 35,000/mo', highlight: true }, { text: 'Available (quote)' }, { text: 'Available' }, { text: 'Not supported' }] },
           { name: 'Dedicated code — Safaricom', cells: [{ text: 'KES 150,000 setup + KES 75,000/mo (*XXX#) or KES 63,000/mo (*XXX*X# and longer)', highlight: true }, { text: 'Quote' }, { text: 'Quote' }, { text: 'Quote' }] },
           { name: 'Dedicated code — Airtel', cells: [{ text: 'KES 121,000 setup + KES 51,400/mo', highlight: true }, { text: 'Quote' }, { text: 'Quote' }, { text: 'Quote' }] },
-          { name: 'Dedicated code — Telkom', cells: [{ text: 'KES 108,900 setup + KES 45,600/mo', highlight: true }, { text: 'Quote' }, { text: 'Quote' }, { text: 'Quote' }] },
+          { name: 'Dedicated code — Telkom', cells: [{ text: 'KES 108,900 setup + KES 45,600/mo; KES 28,500 one-off session deposit', highlight: true }, { text: 'Quote' }, { text: 'Quote' }, { text: 'Quote' }] },
           { name: 'Dedicated code — Equitel', cells: [{ text: 'KES 65,000 setup + KES 63,000/mo', highlight: true }, { text: 'Quote' }, { text: 'Quote' }, { text: 'Quote' }] },
+          { name: 'USSD session charge (prepaid)', cells: [{ text: 'KES 1 carrier charge to subscriber + KES 0.25 platform fee/session; no surcharge', highlight: true }, { text: 'Varies' }, { text: 'Varies' }, { text: 'N/A' }] },
+          { name: 'USSD session charge (postpaid)', cells: [{ text: 'Safaricom: KES 1.50 / 1.50 / 1.25 / 1.25; Airtel: KES 1.50 / 1.40 / 1.30 / 1.25 across usage tiers', highlight: true }, { text: 'Varies' }, { text: 'Varies' }, { text: 'N/A' }] },
           { name: 'Dedicated code test-bed (30 days)', cells: [{ text: 'Safaricom KES 22,400; Equitel KES 20,000; other networks on request', highlight: true }, { text: 'Quote' }, { text: 'Quote' }, { text: 'N/A' }] },
           {
             name: 'Test-bed / sandbox',
@@ -227,7 +229,7 @@ export function USSDCodes() {
           answer: 'Yes. Each menu step calls your REST endpoint (or webhook) with the session id and user input; you return the next screen. MobiWave manages session state, timeouts and analytics so your backend stays simple.'
         },
         {
-          question: 'How is MobiWave different from other USSD providers for USSD?',
+          question: 'What are the USSD session charges?',
           answer: 'Prepaid sessions comprise a KES 1 carrier charge paid by the subscriber and a KES 0.25 platform fee per session. Postpaid rates are charged to the code owner and vary by network and monthly usage tier. The KES 5,000 surcharge is not applied to session charges.'
         }
       ]}
