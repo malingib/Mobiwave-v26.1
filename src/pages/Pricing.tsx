@@ -176,11 +176,9 @@ const otherServices = [
     price: 'KES 2,000–20,000',
     unit: 'per month',
     features: [
-      'Starter: KES 2,000/month — 2 users',
-      'Basic: KES 4,000/month — 4 users',
-      'Pro: KES 8,000/month — 10 users',
-      'Enterprise: KES 20,000/month — unlimited users',
-      'Optional setup: KES 2,000–30,000',
+      'Four plans for teams of 2 to unlimited users',
+      'Optional one-time setup',
+      'Official WhatsApp Business API',
       'Meta message charges billed separately'
     ]
   },
