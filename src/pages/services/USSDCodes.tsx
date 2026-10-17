@@ -87,7 +87,7 @@ export function USSDCodes() {
         {
           step: '4',
           title: 'Build in the test-bed',
-          description: 'Use the 30-day Safaricom test-bed (KES 22,400) to develop menus, wire your API and validate session flows before real traffic reaches your systems. Other networks may have different test-bed availability and fees.'
+          description: 'Use the 30-day test-bed to develop menus, wire your API and validate session flows before real traffic reaches your systems. Safaricom costs KES 22,400 and Equitel KES 20,000; confirm availability and fees for other networks. Published fixed test-bed prices include the KES 5,000 MobiWave surcharge.'
         },
         {
           step: '5',
@@ -102,7 +102,7 @@ export function USSDCodes() {
       ]}
       comparisonTable={{
         headers: ['MobiWave', "Other USSD providers", 'Celcom Africa', 'Twilio'],
-        note: 'Fixed prices include the KES 5,000 MobiWave surcharge. The surcharge does not apply to session charges. SMS is billed separately; confirm VAT treatment in your quotation.',
+        note: 'This page contains the full USSD rate card: prepaid and postpaid extensions, dedicated-code setup and monthly fees, test-bed charges, network-specific session rates and separately billed SMS. Fixed service fees include the KES 5,000 MobiWave surcharge; per-session charges do not.',
         rows: [
           {
             name: 'Prepaid extension (2 digits)',

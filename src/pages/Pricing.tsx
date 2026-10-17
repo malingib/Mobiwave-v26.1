@@ -75,48 +75,49 @@ const bulkSMSPlans = [
 
 const ussdPlans = [
   {
-    name: 'Dedicated USSD',
-    description: 'Customers are charged to access code. Full control over your USSD service.',
+    name: 'Dedicated USSD Code',
+    description: 'An exclusive USSD code for your organisation. Setup and monthly maintenance depend on the network and code format.',
     pricing: [
-      { label: 'Cost', value: 'KES 110,000 +VAT' },
-      { label: 'Up-front Fee', value: 'KES 40,000 +VAT' },
-      { label: 'Monthly Fee', value: 'KES 40,000 +VAT' }
+      { label: 'Safaricom setup', value: 'KES 150,000' },
+      { label: 'Safaricom monthly', value: 'KES 75,000 (*XXX#) / KES 63,000 (*XXX*X# and longer)' },
+      { label: 'Airtel setup / monthly', value: 'KES 121,000 / KES 51,400' },
+      { label: 'Telkom setup / monthly', value: 'KES 108,900 / KES 45,600' },
+      { label: 'Equitel setup / monthly', value: 'KES 65,000 / KES 63,000' }
     ],
     features: [
-      'Dedicated USSD code',
-      'Full customization',
-      'Customer charged for access',
-      '24/7 support',
-      'API integration'
+      'Exclusive code, subject to approval and carrier provisioning',
+      'Fixed prices include the KES 5,000 MobiWave surcharge',
+      'Session and SMS usage billed separately',
+      'Contact MobiWave to confirm availability and VAT treatment'
     ]
   },
   {
-    name: 'Test-Bed Service',
-    description: 'Connection to test environment for 30 days. Perfect for development and testing.',
+    name: 'USSD Test-Bed',
+    description: 'A 30-day environment for developing menus, connecting APIs and validating sessions before launch.',
     pricing: [
-      { label: 'Cost', value: 'KES 32,000 +VAT' },
-      { label: 'Extension', value: 'KES 32,000 +VAT' }
+      { label: 'Safaricom (30 days)', value: 'KES 22,400' },
+      { label: 'Equitel (30 days)', value: 'KES 20,000' },
+      { label: 'Other networks', value: 'Confirm on request' }
     ],
     features: [
-      '30-day test environment',
-      'Development access',
-      'Testing capabilities',
-      'Extension available',
-      'Technical support'
+      '30-day development and test access',
+      'Validate menu flows and API integration',
+      'Test-bed fixed prices include the KES 5,000 MobiWave surcharge',
+      'No surcharge is applied to per-session charges'
     ]
   },
   {
-    name: 'Shared USSD',
-    description: 'Cost-effective solution for businesses sharing a USSD code.',
+    name: 'Shared USSD — 2-Digit Extension',
+    description: 'Use a shared shortcode with your own 2-digit extension. The extension is explicitly two digits.',
     pricing: [
-      { label: 'Setup Cost', value: 'KES 11,000 +VAT' },
-      { label: 'Monthly Fee', value: 'KES 8,000 +VAT' }
+      { label: 'Setup fee', value: 'KES 5,000' },
+      { label: 'Monthly fee', value: 'KES 8,000' }
     ],
     features: [
-      'Shared USSD code',
-      'Cost-effective',
-      'Monthly billing',
-      'Standard support'
+      'Shared shortcode with a 2-digit extension',
+      'Prepaid billing',
+      'Session and SMS usage billed separately',
+      'No KES 5,000 surcharge on session charges'
     ]
   }
 ];
