@@ -21,12 +21,8 @@ interface ServicePageLayoutProps {
   features: string[];
   benefits: string[];
   useCases: { title: string; description: string }[];
-  pricing?: {
-    title: string;
-    price: string;
-    unit: string;
-    features: string[];
-  }[];
+  pricing?: { title: string; price: string; unit: string; features: string[] }[];
+  pricingTabs?: { label: string; pricing: { title: string; price: string; unit: string; features: string[] }[] }[];
   ctaDescription?: string;
   howItWorks?: { step: string; title: string; description: string }[];
   comparisonTable?: {
@@ -96,6 +92,7 @@ export function ServicePageLayout({
   benefits,
   useCases,
   pricing,
+  pricingTabs,
   ctaDescription,
   howItWorks,
   comparisonTable,
@@ -105,6 +102,8 @@ export function ServicePageLayout({
   relatedRoutes,
 }: ServicePageLayoutProps) {
   const contentRef = useRef<HTMLDivElement>(null);
+  const [activePricingTab, setActivePricingTab] = useState(0);
+  const visiblePricing = pricingTabs?.length ? pricingTabs[activePricingTab]?.pricing : pricing;
   const contactItems = [
     { icon: Phone, label: 'Phone', value: '+254 736 427 842', href: 'tel:+254736427842' },
     { icon: Mail, label: 'Email', value: 'info@mobiwave.co.ke', href: 'mailto:info@mobiwave.co.ke' },
@@ -375,18 +374,27 @@ export function ServicePageLayout({
           </section>
         )}
 
-        {pricing && pricing.length > 0 && (
+        {visiblePricing && visiblePricing.length > 0 && (
           <section className="section-padding">
             <div className="container-custom">
               <div className="text-center mb-12 animate-section">
                 <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Pricing</h2>
                 <p className="text-gray-600 max-w-2xl mx-auto">
-                  Choose the plan that best fits your business needs.
+                  Choose prepaid for upfront control or postpaid for monthly billing. Session and SMS usage are charged separately.
                 </p>
+                {pricingTabs && pricingTabs.length > 1 && (
+                  <div className="mt-6 inline-flex rounded-lg border border-gray-200 p-1" role="tablist" aria-label="USSD billing model">
+                    {pricingTabs.map((tab, index) => (
+                      <button key={tab.label} type="button" role="tab" aria-selected={activePricingTab === index} onClick={() => setActivePricingTab(index)} className={`rounded-md px-5 py-2.5 text-sm font-semibold transition-colors ${activePricingTab === index ? 'bg-[#0084ff] text-white' : 'text-gray-700 hover:bg-gray-100'}`}>
+                        {tab.label}{index === 0 ? ' · Default' : ''}
+                      </button>
+                    ))}
+                  </div>
+                )}
               </div>
 
               <div className={`grid ${pricing.length === 1 ? 'max-w-md mx-auto' : pricing.length === 2 ? 'md:grid-cols-2 max-w-3xl mx-auto' : 'md:grid-cols-3'} gap-4 md:gap-6 animate-section`}>
-                {pricing.map((plan, index) => (
+                {visiblePricing.map((plan, index) => (
                   <div
                     key={index}
                     className="animate-item bg-white rounded-xl p-5 sm:p-6 shadow-md border border-gray-100 min-h-[360px] flex flex-col"
