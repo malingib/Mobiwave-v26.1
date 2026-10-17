@@ -1,6 +1,7 @@
 import { Hero } from '@/sections/Hero';
 import { Clients } from '@/sections/Clients';
 import { About } from '@/sections/About';
+import { Innovations } from '@/sections/Innovations';
 import { Services } from '@/sections/Services';
 import { Pricing } from '@/sections/Pricing';
 import { WhyChooseUs } from '@/sections/WhyChooseUs';
@@ -14,6 +15,7 @@ export function Home() {
       <Hero />
       <Clients />
       <About />
+      <Innovations />
       <Services />
       <Pricing />
       <WhyChooseUs />
