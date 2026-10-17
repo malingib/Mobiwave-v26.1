@@ -71,7 +71,6 @@ export function WhatsAppRateCard() {
       <div className="rounded-xl border border-slate-200 p-5 sm:p-6">
         <p className="font-bold text-[#0a1a25]">MOBIWAVE INNOVATIONS LTD</p>
         <p className="mt-1 text-sm text-[#5b6b78]">Empowering Communications, One Wave at a Time</p>
-        <p className="mt-3 text-sm text-[#0a1a25]">Paybill: <strong>4184791</strong> — MOBIWAVE INNOVATIONS LTD</p>
       </div>
     </div>
   </section>;
