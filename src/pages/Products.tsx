@@ -1,6 +1,5 @@
 import {
-  ArrowUpRight, Bot, Building2, CreditCard, FileCheck2, Globe2, HeartPulse,
-  Landmark, MessageSquare, Network, RadioTower, School, ShieldCheck, Vote,
+  ArrowUpRight, Bot, FileCheck2, Landmark, Network, RadioTower, ShieldCheck,
   Workflow, Users,
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
