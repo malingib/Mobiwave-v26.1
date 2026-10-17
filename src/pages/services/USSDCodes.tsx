@@ -82,7 +82,7 @@ export function USSDCodes() {
         {
           step: '3',
           title: 'Carrier provisioning',
-          description: 'Safaricom, Airtel and Telkom provision the code on their signalling infrastructure. Shared codes can be live within days; dedicated codes follow CAK approval, which typically takes several weeks.'
+          description: 'Dedicated codes are subject to the required approvals and mobile-network provisioning. Availability and timelines are confirmed during quotation; shared-code activation depends on the selected extension and network.'
         },
         {
           step: '4',
@@ -102,7 +102,7 @@ export function USSDCodes() {
       ]}
       comparisonTable={{
         headers: ['MobiWave', "Other USSD providers", 'Celcom Africa', 'Twilio'],
-        note: 'This page contains the full USSD rate card: prepaid and postpaid extensions, dedicated-code setup and monthly fees, test-bed charges, network-specific session rates and separately billed SMS. Fixed service fees include the KES 5,000 MobiWave surcharge; per-session charges do not.',
+        note: 'This page contains the full USSD rate card: prepaid and postpaid extensions, dedicated-code setup and monthly fees, test-bed charges, network-specific session rates and separately billed SMS. Published prices exclude VAT. Fixed prices include the KES 5,000 MobiWave surcharge where applicable; it is not added to per-session charges. Dedicated codes are subject to required approvals and mobile-network provisioning; availability and timelines are confirmed during quotation.',
         rows: [
           {
             name: 'Prepaid extension (2 digits)',
