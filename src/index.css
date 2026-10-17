@@ -277,7 +277,8 @@
   }
 
   .mw-marquee-fade {
-    mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+    mask-image: none;
+    -webkit-mask-image: none;
   }
 }
 
