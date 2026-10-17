@@ -43,7 +43,7 @@ export function WhatsAppRateCard() {
             <thead className="bg-slate-50"><tr><th className="p-3">Feature</th>{plans.map(p => <th key={p.name} className="p-3">{p.name}</th>)}</tr></thead>
             <tbody>{features.map(([label, key]) => <tr key={key} className="border-t border-slate-200">
               <th className="p-3 font-semibold text-slate-800">{label}</th>
-              {plans.map(p => { const value = key === 'official' ? true : key === 'api' ? p.name !== 'Starter' : p[key]; const bool = typeof value === 'boolean'; return <td key={p.name} className="p-3 text-slate-700">{bool ? (value ? <Check aria-label="Yes" className="h-4 w-4 text-emerald-600" /> : <X aria-label="No" className="h-4 w-4 text-slate-400" />) : value === 'official' || value === 'api' ? (key === 'official' || (key === 'api' && p.name !== 'Starter') ? <Check aria-label="Yes" className="h-4 w-4 text-emerald-600" /> : <X aria-label="No" className="h-4 w-4 text-slate-400" />) : value}</td>; })}
+              {plans.map(p => { const value = key === 'official' ? true : key === 'api' ? true : p[key]; const bool = typeof value === 'boolean'; return <td key={p.name} className="p-3 text-slate-700">{bool ? (value ? <Check aria-label="Yes" className="h-4 w-4 text-emerald-600" /> : <X aria-label="No" className="h-4 w-4 text-slate-400" />) : value === 'official' || value === 'api' ? (key === 'official' || (key === 'api' && p.name !== 'Starter') ? <Check aria-label="Yes" className="h-4 w-4 text-emerald-600" /> : <X aria-label="No" className="h-4 w-4 text-slate-400" />) : value}</td>; })}
             </tr>)}</tbody>
           </table>
         </div>
@@ -68,6 +68,10 @@ export function WhatsAppRateCard() {
           </table>
         </div>
         <p className="mt-3 text-sm leading-6 text-[#5b6b78]">Marketing messages are shown at a flat rate without volume tiers. Actual billed KES amounts may vary with Meta’s exchange rate and applicable taxes. Rates and regional classification should be verified against Meta’s current rate card.</p>
+      </div>
+      <div className="rounded-xl border border-slate-200 p-5 sm:p-6">
+        <h3 className="font-bold text-[#0a1a25]">4. Optional custom chatbot development</h3>
+        <p className="mt-2 text-sm leading-6 text-[#5b6b78]">Custom chatbot development is KES 50,000, scoped separately from the subscription. Pro and Enterprise include chatbot automation capabilities; Flow Builder is not included in any plan.</p>
       </div>
       <div className="rounded-xl border border-slate-200 p-5 sm:p-6">
         <p className="font-bold text-[#0a1a25]">MOBIWAVE INNOVATIONS LTD</p>

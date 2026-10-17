@@ -172,14 +172,16 @@ const otherServices = [
   {
     icon: MessageCircle,
     name: 'Bulk WhatsApp',
-    description: 'Reach customers on their favorite messaging app',
-    price: 'Custom',
-    unit: 'pricing',
+    description: 'Official WhatsApp Business API subscriptions for teams of every size',
+    price: 'KES 2,000–20,000',
+    unit: 'per month',
     features: [
-      'Rich media messages',
-      'Two-way communication',
-      'Message templates',
-      'Delivery tracking'
+      'Starter: KES 2,000/month — 2 users',
+      'Basic: KES 4,000/month — 4 users',
+      'Pro: KES 8,000/month — 10 users',
+      'Enterprise: KES 20,000/month — unlimited users',
+      'Optional setup: KES 2,000–30,000',
+      'Meta message charges billed separately'
     ]
   },
   {
@@ -465,9 +467,15 @@ export function Pricing() {
                     </li>
                   ))}
                 </ul>
-                <Button variant="outline" className="w-full border-[#0084ff] text-[#0084ff] hover:bg-[#0084ff] hover:text-white">
-                  Get Quote
-                </Button>
+                {service.name === 'Bulk WhatsApp' ? (
+                  <a href="/services/bulk-whatsapp" className="flex w-full items-center justify-center gap-2 rounded-md border border-[#0084ff] px-4 py-2 text-sm font-medium text-[#0084ff] transition-colors hover:bg-[#0084ff] hover:text-white">
+                    View WhatsApp pricing <ArrowRight className="h-4 w-4" />
+                  </a>
+                ) : (
+                  <Button variant="outline" className="w-full border-[#0084ff] text-[#0084ff] hover:bg-[#0084ff] hover:text-white">
+                    Get Quote
+                  </Button>
+                )}
               </div>
             ))}
           </div>
