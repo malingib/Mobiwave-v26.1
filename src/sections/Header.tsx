@@ -16,6 +16,7 @@ const services = [
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [brandLogoFailed, setBrandLogoFailed] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
@@ -130,13 +131,18 @@ export function Header() {
           }}
         >
           <Link to="/" className={`flex items-center gap-2.5 pr-2 group ${useLightNav ? 'rounded-md bg-white px-1.5 py-1' : ''}`}>
-            <img
-              src="/branding/mw-logo.svg"
-              alt="MobiWave Innovations"
-              className="h-8 w-auto transition-transform duration-300 group-hover:scale-[1.02]"
-              loading="eager"
-              decoding="async"
-            />
+            {brandLogoFailed ? (
+              <span className="text-lg font-extrabold tracking-tight text-[#172333]">MOBIWAVE</span>
+            ) : (
+              <img
+                src="/branding/mw-logo.svg"
+                alt="MobiWave Innovations"
+                className="h-8 w-auto"
+                loading="eager"
+                decoding="async"
+                onError={() => setBrandLogoFailed(true)}
+              />
+            )}
           </Link>
 
           <div className="hidden lg:flex items-center gap-5 px-1.5">

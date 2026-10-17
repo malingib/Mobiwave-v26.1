@@ -59,6 +59,7 @@ export function Footer() {
   const location = useLocation();
   const isActive = (path: string) => location.pathname === path;
   const [email, setEmail] = useState('');
+  const [footerLogoFailed, setFooterLogoFailed] = useState(false);
   const [sitemapOpen, setSitemapOpen] = useState(false);
 
   useEffect(() => {
@@ -91,7 +92,18 @@ export function Footer() {
         <div className="grid grid-cols-1 gap-8 border-b border-[#172333]/10 pb-10 md:grid-cols-12">
           <div className="md:col-span-5">
             <Link to="/" className="inline-flex items-center gap-3 mb-4">
-              <img src="/branding/mw-logo.svg" alt="MobiWave" className="h-9 w-auto" loading="lazy" />
+              {footerLogoFailed ? (
+                <span className="text-lg font-extrabold tracking-tight text-[#172333]">MOBIWAVE</span>
+              ) : (
+                <img
+                  src="/branding/mw-logo.svg"
+                  alt="MobiWave"
+                  className="h-9 w-auto"
+                  loading="eager"
+                  decoding="async"
+                  onError={() => setFooterLogoFailed(true)}
+                />
+              )}
             </Link>
             <p className="mb-5 max-w-sm text-sm leading-relaxed text-[#586273]">
               Kilifi-based communication platform built for Kenyan organisations.
