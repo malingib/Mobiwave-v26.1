@@ -11,6 +11,8 @@ const partners = [
   { name: 'Malanga Welfare', logo: '/images/clients/malanga.png' },
   { name: 'Jazafit Gyms', logo: '/images/clients/jazafit.png' },
   { name: 'Comfort Circle', logo: '/images/clients/comfortcircle.jpg' },
+  { name: 'Lake Oil', logo: 'https://images.seeklogo.com/logo-png/48/1/lake-oil-logo-png_seeklogo-480018.png' },
+  { name: 'VycePay', logo: '/images/clients/vycepay.svg' },
 ];
 
 function Partner({ name, logo }: (typeof partners)[number]) {
@@ -19,12 +21,12 @@ function Partner({ name, logo }: (typeof partners)[number]) {
       <img
         src={logo}
         alt={`${name} logo`}
-        className="h-9 w-9 rounded-lg object-contain grayscale opacity-45 transition-opacity duration-300"
+        className="h-10 w-auto max-w-[132px] object-contain transition-opacity duration-300 hover:opacity-80"
         loading="lazy"
         width={32}
         height={32}
       />
-      <span className="whitespace-nowrap text-sm font-semibold text-[#172333]/45">{name}</span>
+      <span className="whitespace-nowrap text-sm font-semibold text-[#172333]/70">{name}</span>
     </div>
   );
 }
