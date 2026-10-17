@@ -1,15 +1,16 @@
 import { Check, X } from 'lucide-react';
 
 const plans = [
-  { name: 'Basic', contacts: '5,000', campaigns: '5', messages: '500', users: '2', ai: false, webhooks: false, chatbot: false, flow: false, setup: 'KES 5,000', monthly: 'KES 5,000', development: '—' },
-  { name: 'Pro', contacts: '10,000', campaigns: '30', messages: '5,000', users: '10', ai: true, webhooks: true, chatbot: true, flow: false, setup: 'KES 10,000', monthly: 'KES 10,000', development: 'KES 50,000' },
-  { name: 'Enterprise', contacts: 'Unlimited', campaigns: 'Unlimited', messages: 'Unlimited', users: 'Unlimited', ai: true, webhooks: true, chatbot: true, flow: true, setup: 'KES 20,000', monthly: 'KES 30,000', development: 'KES 50,000' },
+  { name: 'Starter', contacts: 'Unlimited', campaigns: 'Unlimited', messages: 'Unlimited', users: '2', ai: false, webhooks: false, chatbot: false, setup: 'Optional — KES 2,000', monthly: 'KES 2,000' },
+  { name: 'Basic', contacts: 'Unlimited', campaigns: 'Unlimited', messages: 'Unlimited', users: '4', ai: false, webhooks: true, chatbot: false, setup: 'Optional — KES 4,000', monthly: 'KES 4,000' },
+  { name: 'Pro', contacts: 'Unlimited', campaigns: 'Unlimited', messages: 'Unlimited', users: '10', ai: true, webhooks: true, chatbot: true, setup: 'Optional — KES 8,000', monthly: 'KES 8,000' },
+  { name: 'Enterprise', contacts: 'Unlimited', campaigns: 'Unlimited', messages: 'Unlimited', users: 'Unlimited', ai: true, webhooks: true, chatbot: true, setup: 'Optional — KES 30,000', monthly: 'KES 20,000' },
 ];
 const features = [
   ['Official WhatsApp Business API', 'official'], ['Contacts', 'contacts'], ['Campaigns', 'campaigns'],
-  ['Messages per month', 'messages'], ['Users', 'users'], ['API access', 'official'],
-  ['AI assistant', 'ai'], ['Webhooks', 'webhooks'], ['Chatbot', 'chatbot'], ['Flow builder', 'flow'],
-  ['Optional one-time setup fee', 'setup'], ['Monthly subscription', 'monthly'], ['One-time chatbot development', 'development'],
+  ['Messages per month', 'messages'], ['Users', 'users'], ['API access', 'api'],
+  ['AI assistant', 'ai'], ['Webhooks', 'webhooks'], ['Chatbot automation', 'chatbot'],
+  ['Optional one-time setup', 'setup'], ['Monthly subscription', 'monthly'],
 ] as const;
 const messageRates = [
   ['Marketing', '$0.0225', 'KES 2.91'],
@@ -38,15 +39,15 @@ export function WhatsAppRateCard() {
       <div>
         <h3 className="mb-4 text-2xl font-bold text-[#0a1a25]">1. Subscription plans</h3>
         <div className="overflow-x-auto rounded-xl border border-slate-200">
-          <table className="w-full min-w-[760px] border-collapse text-left text-sm">
+          <table className="w-full min-w-[900px] border-collapse text-left text-sm">
             <thead className="bg-slate-50"><tr><th className="p-3">Feature</th>{plans.map(p => <th key={p.name} className="p-3">{p.name}</th>)}</tr></thead>
             <tbody>{features.map(([label, key]) => <tr key={key} className="border-t border-slate-200">
               <th className="p-3 font-semibold text-slate-800">{label}</th>
-              {plans.map(p => { const value = key === 'official' ? true : p[key]; const bool = typeof value === 'boolean'; return <td key={p.name} className="p-3 text-slate-700">{bool ? (value ? <Check aria-label="Included" className="h-4 w-4 text-emerald-600" /> : <X aria-label="Not included" className="h-4 w-4 text-slate-400" />) : value === 'official' ? <Check aria-label="Included" className="h-4 w-4 text-emerald-600" /> : value}</td>; })}
+              {plans.map(p => { const value = key === 'official' ? true : p[key]; const bool = typeof value === 'boolean'; return <td key={p.name} className="p-3 text-slate-700">{bool ? (value ? <Check aria-label="Yes" className="h-4 w-4 text-emerald-600" /> : <X aria-label="No" className="h-4 w-4 text-slate-400" />) : value === 'official' || value === 'api' ? (key === 'official' || (key === 'api' && p.name !== 'Starter') ? <Check aria-label="Yes" className="h-4 w-4 text-emerald-600" /> : <X aria-label="No" className="h-4 w-4 text-slate-400" />) : value}</td>; })}
             </tr>)}</tbody>
           </table>
         </div>
-        <p className="mt-3 text-sm text-[#5b6b78]">Chatbot development is a one-time build fee, separate from the monthly subscription. Setup fees are optional. Monthly message and campaign allowances apply by plan.</p>
+        <p className="mt-3 text-sm text-[#5b6b78]">Setup is optional on every plan. Contacts, campaigns and platform messaging have no fixed plan caps. Meta’s own WhatsApp message charges are billed separately; fair-use and platform safeguards still apply.</p>
       </div>
       <div>
         <h3 className="mb-4 text-2xl font-bold text-[#0a1a25]">2. WhatsApp message rates — Kenya</h3>
