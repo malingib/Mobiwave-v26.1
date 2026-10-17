@@ -101,8 +101,8 @@ const ussdPlans = [
     features: [
       '30-day development and test access',
       'Validate menu flows and API integration',
-      'Test-bed fixed prices include the KES 5,000 MobiWave surcharge',
-      'No surcharge is applied to per-session charges'
+      '30-day development and test access',
+      'Session charges are billed separately'
     ]
   },
   {
@@ -116,7 +116,7 @@ const ussdPlans = [
       'Shared shortcode with a 2-digit extension',
       'Prepaid billing',
       'Session and SMS usage billed separately',
-      'No KES 5,000 surcharge on session charges'
+      'Session and SMS usage billed separately'
     ]
   }
 ];
