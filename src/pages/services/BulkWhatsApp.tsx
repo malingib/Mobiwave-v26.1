@@ -23,7 +23,7 @@ export function BulkWhatsApp() {
         'Two-way conversational support in one thread',
         'Delivery and read receipts with tracking',
         'REST API + webhook integration',
-        'AI assistant and chatbot automation on Pro and Enterprise plans',
+        'AI assistant and chatbot automation on Pro and Enterprise plans; no Flow Builder on any plan',
         'Analytics dashboard with funnel and drop-off',
         'Opt-in ledger for consent and ODPC compliance',
         'Bundled with SMS, USSD and M-Pesa on one account'
@@ -174,7 +174,7 @@ export function BulkWhatsApp() {
             'Standard inbox and delivery reporting',
             'AI assistant: ✕',
             'Chatbot automation: ✕',
-            'Optional setup: KES 2,000'
+            'Optional one-time setup: KES 2,000'
           ]
         },
         {
@@ -188,7 +188,7 @@ export function BulkWhatsApp() {
             'API access and customer webhooks',
             'AI assistant: ✕',
             'Chatbot automation: ✕',
-            'Optional setup: KES 4,000'
+            'Optional one-time setup: KES 4,000'
           ]
         },
         {
@@ -202,7 +202,7 @@ export function BulkWhatsApp() {
             'API access and webhooks',
             'AI assistant: ✓',
             'Chatbot automation: ✓',
-            'Optional setup: KES 8,000'
+            'Optional one-time setup: KES 8,000'
           ]
         },
         {
@@ -216,7 +216,7 @@ export function BulkWhatsApp() {
             'API access, webhooks and integrations',
             'AI assistant: ✓',
             'Chatbot automation: ✓',
-            'Optional setup: KES 30,000',
+            'Optional one-time setup: KES 30,000',
             'Dedicated support and custom service arrangements'
           ]
         }
@@ -224,7 +224,11 @@ export function BulkWhatsApp() {
       faqs={[
         {
           question: 'What are MobiWave WhatsApp subscription prices?',
-          answer: 'Starter is KES 2,000 per month, Basic is KES 4,000 per month, Pro is KES 8,000 per month and Enterprise is KES 20,000 per month. Optional setup is KES 2,000 for Starter, KES 4,000 for Basic, KES 8,000 for Pro and KES 30,000 for Enterprise. Contacts, campaigns and platform messaging have no fixed plan caps. Meta message charges are billed separately.'
+          answer: 'Starter is KES 2,000 per month, Basic is KES 4,000 per month, Pro is KES 8,000 per month and Enterprise is KES 20,000 per month. Optional one-time setup is KES 2,000 for Starter, KES 4,000 for Basic, KES 8,000 for Pro and KES 30,000 for Enterprise. Contacts, campaigns and platform messaging have no fixed plan caps. Meta message charges are billed separately.'
+        },
+        {
+          question: 'How much does custom chatbot development cost?',
+          answer: 'Custom chatbot development is available as a separately scoped service at KES 50,000. Pro and Enterprise subscriptions include chatbot automation capabilities; custom development scope and integrations are confirmed before work starts.'
         },
         {
           question: 'What is the difference between WhatsApp Business App and the API?',
