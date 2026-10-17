@@ -205,6 +205,7 @@ const stats = [
 ];
 
 const liveProjects = [
+  { name: 'MobiWave CNC', href: 'https://mobiwavecnc.vercel.app', note: 'Expense management and eTIMS evidence' },
   { name: 'Tewaw', href: 'https://tewaw.mobiwave.co.ke' },
   { name: 'Malanga Welfare', href: 'https://malangawelfare.org' },
   { name: 'RewardHub', href: 'https://mobiwavesrs.co.ke' },
