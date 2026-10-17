@@ -12,6 +12,5 @@ export function AnimatedText({
   className = '',
   as: Component = 'span',
 }: AnimatedTextProps) {
-  // Render copy immediately; no clipped or transparent initial state.
   return <Component className={className}>{children}</Component>;
 }
