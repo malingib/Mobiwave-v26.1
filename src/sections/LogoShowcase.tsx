@@ -1,8 +1,4 @@
-import { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
+import { useRef } from 'react';
 
 const logos = [
   'Safaricom', 'Airtel', 'Telkom', 'KCB', 'Equity Bank',
@@ -13,26 +9,7 @@ const logos = [
 export default function LogoShowcase() {
   const sectionRef = useRef<HTMLElement>(null);
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        '.logo-title',
-        { y: 30, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.6,
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top 80%',
-            toggleActions: 'play none none reverse',
-          },
-        }
-      );
-    }, sectionRef);
 
-    return () => ctx.revert();
-  }, []);
 
   return (
     <section
@@ -40,7 +17,7 @@ export default function LogoShowcase() {
       className="py-20 bg-background overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
-        <p className="logo-title text-center text-muted-foreground text-sm uppercase tracking-wider">
+        <p className="text-center text-muted-foreground text-sm uppercase tracking-wider">
           Trusted by Industry Leaders Across Africa
         </p>
       </div>
