@@ -9,10 +9,10 @@ export function USSDCodes() {
       description="Build interactive USSD menus that run on any mobile phone — no internet, no smartphone, no app. MobiWave provisions shared and dedicated USSD shortcodes through the Communications Authority of Kenya (CAK), wires them to your REST API, and lets you trigger M-Pesa STK Push from any menu step. Perfect for banking, payments, surveys and customer self-service in areas with limited connectivity."
       icon={Smartphone}
       stats={[
-        { value: 'KES 11,000', label: 'Shared Setup +VAT' },
-        { value: 'KES 40,000', label: 'Dedicated / Month +VAT' },
-        { value: 'All phones', label: 'No Internet Needed' },
-        { value: '24/7', label: 'Nairobi Support' }
+        { value: 'KES 5,000', label: 'Prepaid setup for 2–4 digit extensions' },
+        { value: 'KES 4,000+', label: 'Monthly prepaid from' },
+        { value: 'Prepaid & postpaid', label: 'Billing options' },
+        { value: 'All phones', label: 'No Internet Needed' }
       ]}
       features={[
         'Works on every GSM phone — feature phones included, no data or app',
@@ -72,7 +72,7 @@ export function USSDCodes() {
         {
           step: '1',
           title: 'Choose shared or dedicated',
-          description: 'Shared USSD is KES 11,000 setup + KES 8,000/month +VAT and goes live fast on a sub-keyword. Dedicated is your own code at KES 40,000 up-front + KES 40,000/month +VAT for full branding and control.'
+          description: 'Choose prepaid or postpaid billing for your USSD extension. Prepaid extensions of 2–4 digits have a KES 5,000 setup fee; monthly fees are KES 8,000 for 2 digits, KES 6,000 for 3 digits, and KES 4,000 for 4 digits. Postpaid rates depend on extension length. Session and SMS usage are billed separately.'
         },
         {
           step: '2',
@@ -102,26 +102,29 @@ export function USSDCodes() {
       ]}
       comparisonTable={{
         headers: ['MobiWave', "Africa's Talking", 'Celcom Africa', 'Twilio'],
-        note: 'MobiWave figures are published rates (VAT extra). Competitor USSD models are typically quote-based — confirm before contract. Twilio has no native Kenya USSD shortcode product.',
+        note: 'MobiWave extension pricing is separate from session and SMS usage charges. Confirm VAT treatment and postpaid extension pricing in your quotation.',
         rows: [
           {
-            name: 'Shared USSD code',
+            name: 'Prepaid extension (2 digits)',
             cells: [
-              { text: 'KES 11,000 setup + KES 8,000/mo', highlight: true },
+              { text: 'KES 5,000 setup + KES 8,000/mo', highlight: true },
               { text: 'Available (quote)' },
               { text: 'Available' },
               { text: 'Not supported' }
             ]
           },
           {
-            name: 'Dedicated USSD code',
+            name: 'Prepaid extension (3 digits)',
             cells: [
-              { text: 'KES 40,000 setup + KES 40,000/mo', highlight: true },
+              { text: 'KES 5,000 setup + KES 6,000/mo', highlight: true },
               { text: 'Available (quote)' },
               { text: 'Available' },
               { text: 'Not supported' }
             ]
           },
+          {
+            name: 'Prepaid extension (4 digits)', cells: [{ text: 'KES 5,000 setup + KES 4,000/mo', highlight: true }, { text: 'Available (quote)' }, { text: 'Available' }, { text: 'Not supported' }] },
+          { name: 'Postpaid extension (2 digits)', cells: [{ text: 'KES 10,000 setup + KES 35,000/mo', highlight: true }, { text: 'Available (quote)' }, { text: 'Available' }, { text: 'Not supported' }] },
           {
             name: 'Test-bed / sandbox',
             cells: [
@@ -169,49 +172,22 @@ export function USSDCodes() {
           }
         ]
       }}
-      pricing={[
-        {
-          title: 'Dedicated USSD',
-          price: 'KES 110,000',
-          unit: ' +VAT',
-          features: [
-            'Up-front fee: KES 40,000 +VAT',
-            'Monthly fee: KES 40,000 +VAT',
-            'Dedicated USSD code',
-            'Full customization',
-            'Customer charged for access',
-            '24/7 support',
-            'API integration'
-          ]
-        },
-        {
-          title: 'Test-Bed Service',
-          price: 'KES 32,000',
-          unit: ' +VAT',
-          features: [
-            '30-day test environment',
-            'Development access',
-            'Testing capabilities',
-            'Extension: KES 32,000 +VAT',
-            'Technical support'
-          ]
-        },
-        {
-          title: 'Shared USSD',
-          price: 'KES 11,000',
-          unit: ' setup +VAT',
-          features: [
-            'Shared USSD code',
-            'Monthly fee: KES 8,000 +VAT',
-            'Cost-effective',
-            'Standard support'
-          ]
-        }
+      pricingTabs={[
+        { label: 'Prepaid', pricing: [
+          { title: '2-digit extension', price: 'KES 8,000', unit: '/ month', features: ['Setup fee: KES 5,000', 'Prepaid billing', 'Session usage charged separately', 'SMS usage charged separately'] },
+          { title: '3-digit extension', price: 'KES 6,000', unit: '/ month', features: ['Setup fee: KES 5,000', 'Prepaid billing', 'Session usage charged separately', 'SMS usage charged separately'] },
+          { title: '4-digit extension', price: 'KES 4,000', unit: '/ month', features: ['Setup fee: KES 5,000', 'Prepaid billing', 'Session usage charged separately', 'SMS usage charged separately'] }
+        ]},
+        { label: 'Postpaid', pricing: [
+          { title: '1-digit extension', price: 'KES 45,000', unit: '/ month', features: ['Setup fee: KES 10,000', 'Postpaid billing', 'Session usage charged separately', 'SMS usage charged separately'] },
+          { title: '2-digit extension', price: 'KES 35,000', unit: '/ month', features: ['Setup fee: KES 10,000', 'Postpaid billing', 'Session usage charged separately', 'SMS usage charged separately'] },
+          { title: '3- or 4-digit extension', price: 'Request a quote', unit: '', features: ['Postpaid pricing to be confirmed', 'Session usage charged separately', 'SMS usage charged separately'] }
+        ]}
       ]}
       faqs={[
         {
           question: 'How much does a USSD code cost in Kenya in 2026?',
-          answer: 'MobiWave offers three options. Shared USSD is KES 11,000 setup + KES 8,000/month (+VAT). Dedicated USSD is KES 110,000 total — KES 40,000 up-front + KES 40,000/month (+VAT) — for your own branded code. A 30-day test-bed for development is KES 32,000 (+VAT). All prices are exclusive of VAT; end-user per-session charges from the carrier are billed to your customers, not to you.'
+          answer: 'Prepaid extensions cost KES 5,000 setup, then KES 8,000/month for a 2-digit extension, KES 6,000/month for 3 digits, or KES 4,000/month for 4 digits. Postpaid is KES 10,000 setup + KES 35,000/month for a 2-digit extension, or KES 10,000 setup + KES 45,000/month for a 1-digit extension. Session and SMS usage charges are billed separately. Confirm VAT and 3- or 4-digit postpaid pricing in your quotation.'
         },
         {
           question: 'How do I apply for a USSD shortcode from the CAK?',
