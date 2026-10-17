@@ -393,7 +393,7 @@ export function ServicePageLayout({
                 )}
               </div>
 
-              <div className={`grid ${pricing.length === 1 ? 'max-w-md mx-auto' : pricing.length === 2 ? 'md:grid-cols-2 max-w-3xl mx-auto' : 'md:grid-cols-3'} gap-4 md:gap-6 animate-section`}>
+              <div className={`grid ${pricing.length === 1 ? 'max-w-md mx-auto' : pricing.length === 2 ? 'md:grid-cols-2 max-w-3xl mx-auto' : pricing.length === 4 ? 'sm:grid-cols-2 xl:grid-cols-4' : 'md:grid-cols-3'} gap-4 md:gap-6 animate-section`}>
                 {visiblePricing.map((plan, index) => (
                   <div
                     key={index}
