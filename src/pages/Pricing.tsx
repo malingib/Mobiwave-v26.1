@@ -85,10 +85,9 @@ const ussdPlans = [
       { label: 'Equitel setup / monthly', value: 'KES 65,000 / KES 63,000' }
     ],
     features: [
-      'Exclusive code, subject to approval and carrier provisioning',
-      'Fixed prices include the KES 5,000 MobiWave surcharge',
-      'Session and SMS usage billed separately',
-      'Contact MobiWave to confirm availability and VAT treatment'
+      'Dedicated codes are subject to the required approvals and mobile-network provisioning',
+      'USSD session charges and SMS usage are billed separately at the applicable rates',
+      'Published prices exclude VAT. Code availability and provisioning timelines are confirmed during quotation.'
     ]
   },
   {
@@ -362,7 +361,7 @@ export function Pricing() {
 
           <div className="mt-8 text-center">
             <p className="text-sm text-gray-500 mb-2">
-              USSD services require approval from the Communication Authority of Kenya and mobile network operators.
+              USSD codes are subject to the required approvals and mobile-network provisioning. Published prices exclude VAT; session charges and SMS usage are billed separately.
             </p>
             <a href="/contact" className="inline-flex items-center gap-2 text-[#0084ff] hover:underline">
               Contact us for custom USSD solutions <ArrowRight className="w-4 h-4" />
