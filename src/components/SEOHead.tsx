@@ -156,7 +156,7 @@ const ROUTE_SEO: Record<string, SeoConfig> = {
   '/services/mpesa-integration': {
     title: 'M-Pesa API Integration Kenya | STK Push & Daraja | MobiWave',
     description:
-      'Integrate Safaricom Daraja for STK Push, C2B, B2C and B2B payments in Kenya. Local support, auto-reconciliation and SMS, USSD and WhatsApp integrations.',
+      'Integrate M-Pesa STK Push and Safaricom Daraja APIs for C2B, B2C and B2B payments in Kenya. Add SMS transaction alerts, sender ID, callbacks and automatic reconciliation with local support.',
     path: '/services/mpesa-integration',
     pageType: 'Service',
     serviceType: 'M-Pesa API integration',

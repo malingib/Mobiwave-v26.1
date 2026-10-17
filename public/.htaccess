@@ -1,3 +1,6 @@
+# Return the static 404 page for unknown/legacy spam paths.
+ErrorDocument 404 /404.html
+
 # Long-cache static assets (hashed filenames from Vite are immutable).
 <IfModule mod_expires.c>
   ExpiresActive On
@@ -20,6 +23,9 @@
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
+
+  # Render real 404 responses for legacy spam URL families reported by Search Console.
+  RewriteRule ^(shopdetail|corner|pn|special|calendar|guide)(/|$) - [R=404,L,NC]
 
   # Canonical host: HTTPS + non-www in one redirect.
   RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC,OR]
