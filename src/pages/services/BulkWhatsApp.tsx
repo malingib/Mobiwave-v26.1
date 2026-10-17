@@ -88,7 +88,11 @@ export function BulkWhatsApp() {
             answer: 'Messages sent outside the 24-hour customer service window generally require a Meta-approved template. Customers must also have opted in to receive messages.'
           }
         ]}
-        ctaDescription="Want to compare plans or start onboarding? Open MobiWave WA, or contact our team if you need help choosing a package."
+        ctaDescription="Compare plans and continue onboarding on MobiWave WA."
+        ctaPrimaryHref="https://wap.mobiwave.co.ke"
+        ctaPrimaryLabel="Open MobiWave WA"
+        ctaShowContactDetails={false}
+        ctaShowSecondaryAction={false}
     />
   );
 }
