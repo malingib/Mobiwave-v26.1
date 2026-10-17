@@ -4,11 +4,11 @@ export function UssdCodeCostGuide() {
   return (
     <GuidePageLayout
       title="USSD Code Cost in Kenya (2026)"
-      subtitle="Shared vs dedicated USSD pricing — a buyer's guide"
-      description="How much does a USSD code cost in Kenya? This guide breaks down shared and dedicated USSD shortcode pricing, the CAK allocation process, per-session end-user charges, and what to budget for a USSD service — using MobiWave's published rates."
+      subtitle="Extension pricing, session charges and usage costs"
+      description="USSD extension pricing in Kenya, prepaid and postpaid plans, setup and monthly fees, typical per-session charges, separately billed SMS, and the CAK allocation process."
       breadcrumbLabel="USSD Code Cost"
       updated="August 2026"
-      intro="USSD is the most inclusive channel in Kenya — it runs on every feature phone with no internet. But pricing is easy to misjudge because the business pays a service fee while the subscriber pays a per-session carrier charge. This guide separates the two so you can budget accurately."
+      intro="USSD works on feature phones without mobile data. Budget separately for your extension setup fee, monthly subscription, USSD session charges and SMS usage. Session charges are typically paid by the subscriber to their mobile carrier; SMS usage is billed separately at the applicable rate."
       checklist={[
         'Decision: shared (sub-keyword) or dedicated (own code)',
         'Registered Kenyan business + KRA PIN',
@@ -21,12 +21,12 @@ export function UssdCodeCostGuide() {
         {
           step: '1',
           title: 'Pick shared or dedicated',
-          description: 'Shared USSD runs on MobiWave’s allocated code as a sub-keyword — cheapest and fastest. Dedicated is your own branded code (e.g. *123#) for full control and recall.'
+          description: 'Choose the extension length and billing model that fits your service. Prepaid is available for 2-, 3- and 4-digit extensions; postpaid is available for 1- and 2-digit extensions.'
         },
         {
           step: '2',
           title: 'Budget the service fee',
-          description: 'Shared: KES 11,000 setup + KES 8,000/month (+VAT). Dedicated: KES 40,000 up-front + KES 40,000/month (+VAT). Test-bed: KES 32,000 for 30 days (+VAT).'
+          description: 'Prepaid setup is KES 5,000 for 2–4 digit extensions. Monthly fees: KES 8,000 (2 digits), KES 6,000 (3 digits), and KES 4,000 (4 digits). Postpaid setup is KES 10,000 for 1- or 2-digit extensions; monthly fees are KES 45,000 (1 digit) and KES 35,000 (2 digits).'
         },
         {
           step: '3',
@@ -36,12 +36,12 @@ export function UssdCodeCostGuide() {
         {
           step: '4',
           title: 'Account for end-user cost',
-          description: 'The carrier bills your customer a per-session charge (typically KES 1–5 depending on network and session length) on their airtime. Your business does not absorb this.'
+          description: 'USSD sessions typically cost KES 1–5 per session, depending on network and session length. The carrier generally charges this to the subscriber. SMS usage is billed separately at the applicable SMS rate; neither usage charge is included in the setup or monthly subscription.'
         },
         {
           step: '5',
           title: 'Build in the test-bed',
-          description: 'Use the 30-day test-bed (KES 32,000 +VAT) to develop menus and validate sessions before real traffic hits your systems.'
+          description: 'Use a test environment to develop menus and validate sessions before real traffic reaches your systems. Confirm any test-bed fee and VAT treatment in your quotation.'
         },
         {
           step: '6',
@@ -51,26 +51,29 @@ export function UssdCodeCostGuide() {
       ]}
       comparison={{
         headers: ['MobiWave', "Africa's Talking", 'Celcom Africa', 'Twilio'],
-        note: 'MobiWave figures are published rates (VAT extra). Competitor USSD is typically quote-based. Twilio has no native Kenya USSD shortcode product.',
+        note: 'Extension setup and monthly fees exclude usage. USSD session charges are typically KES 1–5 per session depending on network and session length; SMS usage is billed separately. Confirm VAT and the applicable SMS rate in your quotation.',
         rows: [
           {
-            name: 'Shared USSD',
+            name: 'Prepaid extension (2 digits)',
             cells: [
-              { text: 'KES 11,000 setup + KES 8,000/mo', highlight: true },
+              { text: 'KES 5,000 setup + KES 8,000/mo', highlight: true },
               { text: 'Available (quote)' },
               { text: 'Available' },
               { text: 'Not supported' }
             ]
           },
           {
-            name: 'Dedicated USSD',
+            name: 'Prepaid extension (3 digits)',
             cells: [
-              { text: 'KES 40,000 + KES 40,000/mo', highlight: true },
+              { text: 'KES 5,000 setup + KES 6,000/mo', highlight: true },
               { text: 'Available (quote)' },
               { text: 'Available' },
               { text: 'Not supported' }
             ]
           },
+          { name: 'Prepaid extension (4 digits)', cells: [{ text: 'KES 5,000 setup + KES 4,000/mo', highlight: true }, { text: 'Available (quote)' }, { text: 'Available' }, { text: 'Not supported' }] },
+          { name: 'Postpaid extension (1 digit)', cells: [{ text: 'KES 10,000 setup + KES 45,000/mo', highlight: true }, { text: 'Available (quote)' }, { text: 'Available' }, { text: 'Not supported' }] },
+          { name: 'Postpaid extension (2 digits)', cells: [{ text: 'KES 10,000 setup + KES 35,000/mo', highlight: true }, { text: 'Available (quote)' }, { text: 'Available' }, { text: 'Not supported' }] },
           {
             name: 'Test-bed',
             cells: [
@@ -81,9 +84,9 @@ export function UssdCodeCostGuide() {
             ]
           },
           {
-            name: 'End-user per-session charge',
+            name: 'USSD session charge (per session)',
             cells: [
-              { text: 'Billed to subscriber', highlight: true },
+              { text: 'Typically KES 1–5; billed to subscriber', highlight: true },
               { text: 'Billed to subscriber' },
               { text: 'Billed to subscriber' },
               { text: 'N/A' }
@@ -111,16 +114,16 @@ export function UssdCodeCostGuide() {
       }}
       faqs={[
         {
-          question: 'How much does a USSD code cost in Kenya in 2026?',
-          answer: 'Shared USSD is KES 11,000 setup + KES 8,000/month (+VAT). Dedicated is KES 40,000 up-front + KES 40,000/month (+VAT). A 30-day test-bed is KES 32,000 (+VAT). All prices are exclusive of VAT.'
+          question: 'How much does a USSD extension cost in Kenya?',
+          answer: 'Prepaid: KES 5,000 setup for 2–4 digit extensions, then KES 8,000/month (2 digits), KES 6,000/month (3 digits), or KES 4,000/month (4 digits). Postpaid: KES 10,000 setup plus KES 45,000/month for 1 digit or KES 35,000/month for 2 digits. Postpaid is not offered for 3- or 4-digit extensions. Confirm VAT treatment in your quotation.'
         },
         {
           question: 'Who pays the per-session charge?',
-          answer: 'The end user. The carrier bills your customer a per-session charge (typically KES 1–5) on their airtime. Your business pays only the MobiWave service fee.'
+          answer: 'USSD sessions typically cost KES 1–5 per session, depending on the mobile network and session length, and are generally charged by the carrier to the subscriber. This is separate from the extension setup and monthly subscription. SMS usage is billed separately at the applicable SMS rate.'
         },
         {
           question: 'Is shared or dedicated cheaper?',
-          answer: 'Shared is far cheaper (KES 11,000 setup vs KES 40,000) and goes live faster. Choose dedicated only when you need your own branded code and full keyword control.'
+          answer: 'Compare the extension length and billing model. Prepaid supports 2-, 3- and 4-digit extensions; postpaid supports 1- and 2-digit extensions only. Session and SMS usage are separate charges.'
         },
         {
           question: 'How long does it take to get a code?',
