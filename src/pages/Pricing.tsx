@@ -166,14 +166,14 @@ const otherServices = [
   {
     icon: CreditCard,
     name: 'M-Pesa Integration',
-    description: 'Seamless mobile money transactions',
-    price: 'Custom',
-    unit: 'pricing',
+    description: 'Integrate M-Pesa payments with SMS transaction alerts.',
+    price: 'KES 8,000',
+    unit: 'one-time setup',
     features: [
-      'C2B payments',
-      'B2C disbursements',
-      'B2B transfers',
-      'Real-time notifications'
+      'C2B payment integration',
+      'SMS transaction alerts',
+      'Sender ID for SMS alerts',
+      'Real-time payment notifications'
     ]
   },
   {
