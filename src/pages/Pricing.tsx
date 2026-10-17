@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Check, ArrowRight, HelpCircle, Mail, MessageCircle, CreditCard, BarChart3, Gift, Headphones } from 'lucide-react';
+import { Check, ArrowRight, HelpCircle, Mail, CreditCard, Gift, Headphones } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { PageBanner } from '@/components/PageBanner';
 import { TiltCard } from '@/components/TiltCard';
@@ -92,8 +92,6 @@ const ussdPlans = [
     description: 'A 30-day environment for developing menus, connecting APIs and validating sessions before launch.',
     pricing: [
       { label: 'Safaricom (30 days)', value: 'KES 22,400' },
-      { label: 'Equitel (30 days)', value: 'KES 20,000' },
-      { label: 'Other networks', value: 'Confirm on request' }
     ],
     features: [
       '30-day development and test access',
@@ -166,19 +164,6 @@ const otherServices = [
     ]
   },
   {
-    icon: MessageCircle,
-    name: 'Bulk WhatsApp',
-    description: 'Official WhatsApp Business API subscriptions for teams of every size',
-    price: 'KES 2,000–20,000',
-    unit: 'per month',
-    features: [
-      'Four plans for teams of 2 to unlimited users',
-      'Optional one-time setup',
-      'Official WhatsApp Business API',
-      'Meta message charges billed separately'
-    ]
-  },
-  {
     icon: CreditCard,
     name: 'M-Pesa Integration',
     description: 'Seamless mobile money transactions',
@@ -189,19 +174,6 @@ const otherServices = [
       'B2C disbursements',
       'B2B transfers',
       'Real-time notifications'
-    ]
-  },
-  {
-    icon: BarChart3,
-    name: 'SMS Surveys',
-    description: 'Collect feedback via SMS',
-    price: 'Custom',
-    unit: 'pricing',
-    features: [
-      'Easy survey creation',
-      'Real-time responses',
-      'Response analytics',
-      'Export to Excel/CSV'
     ]
   },
   {
@@ -230,6 +202,13 @@ const otherServices = [
       'Performance analytics'
     ]
   }
+];
+
+const whatsappPlans = [
+  { name: 'Starter', price: 'KES 2,000', setup: 'Optional setup: KES 2,000', features: ['2 users', 'Official WhatsApp Business API', 'Standard inbox and delivery reporting'] },
+  { name: 'Basic', price: 'KES 4,000', setup: 'Optional setup: KES 4,000', features: ['4 users', 'Official WhatsApp Business API', 'API access and webhooks'] },
+  { name: 'Pro', price: 'KES 8,000', setup: 'Optional setup: KES 8,000', features: ['10 users', 'API access and webhooks', 'AI assistant and chatbot automation'] },
+  { name: 'Enterprise', price: 'KES 20,000', setup: 'Optional setup: KES 30,000', features: ['Unlimited users', 'API access and integrations', 'AI assistant and chatbot automation', 'Dedicated support arrangements'] }
 ];
 
 export function Pricing() {
@@ -429,8 +408,80 @@ export function Pricing() {
         </div>
       </section>
 
+      {/* SMS Surveys Section */}
+      <section ref={(el) => { sectionRefs.current[3] = el; }} className="section-padding">
+        <div className="container-custom">
+          <div className="text-center mb-12">
+            <span className="mb-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-[#1d8c89]">
+              <span className="h-px w-8 bg-[#1d8c89]" />
+              SMS SURVEYS
+              <span className="h-px w-8 bg-[#1d8c89]" />
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">SMS Survey Pricing</h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">Run two-way SMS surveys using a shared short code.</p>
+          </div>
+          <div className="max-w-xl mx-auto pricing-card border-b border-gray-200 p-6">
+            <h3 className="text-xl font-bold text-gray-900 mb-4">SMS Surveys — Shared Short Code</h3>
+            <div className="space-y-2 mb-4">
+              {[{ label: 'Setup fee', value: 'KES 5,000' }, { label: 'Monthly fee', value: 'KES 5,000' }].map((item) => (
+                <div key={item.label} className="flex justify-between items-center py-2 border-b border-gray-100">
+                  <span className="text-sm text-gray-600">{item.label}</span>
+                  <span className="font-semibold text-gray-900">{item.value}</span>
+                </div>
+              ))}
+            </div>
+            <p className="text-sm text-gray-600 mb-6">SMS usage is charged at the standard MobiWave bulk SMS rates.</p>
+            <a href="/services/sms-surveys" className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-[#0084ff] px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-[#0068d6]">
+              Explore SMS Surveys <ArrowRight className="h-4 w-4" />
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Bulk WhatsApp Section */}
+      <section ref={(el) => { sectionRefs.current[4] = el; }} className="section-padding bg-gray-50">
+        <div className="container-custom">
+          <div className="text-center mb-12">
+            <span className="mb-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-[#0084ff]">
+              <span className="h-px w-8 bg-[#0084ff]" />
+              BULK WHATSAPP
+              <span className="h-px w-8 bg-[#0084ff]" />
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Bulk WhatsApp Plans</h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">Official WhatsApp Business API subscriptions. Meta message charges are billed separately.</p>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {whatsappPlans.map((plan) => (
+              <div key={plan.name} className="pricing-card border-b border-gray-200 p-6">
+                <h3 className="text-xl font-bold text-gray-900 mb-2">{plan.name}</h3>
+                <div className="flex items-baseline gap-1 mb-4">
+                  <span className="text-2xl font-bold text-[#0084ff]">{plan.price}</span>
+                  <span className="text-sm text-gray-500">/ month</span>
+                </div>
+                <ul className="space-y-2 mb-4">
+                  {plan.features.map((feature) => (
+                    <li key={feature} className="flex items-center gap-2 text-sm text-gray-600">
+                      <Check className="w-4 h-4 text-[#1d8c89] flex-shrink-0" />
+                      {feature}
+                    </li>
+                  ))}
+                  <li className="flex items-center gap-2 text-sm text-gray-600">
+                    <Check className="w-4 h-4 text-[#1d8c89] flex-shrink-0" />
+                    {plan.setup}
+                  </li>
+                </ul>
+                <a href="https://wap.mobiwave.co.ke" target="_blank" rel="noopener noreferrer" className="flex w-full items-center justify-center gap-2 rounded-md bg-[#0084ff] px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-[#0068d6]">
+                  Choose plan <ArrowRight className="h-4 w-4" />
+                </a>
+              </div>
+            ))}
+          </div>
+          <p className="text-sm text-gray-500 text-center mt-6">Meta WhatsApp message charges are billed separately.</p>
+        </div>
+      </section>
+
       {/* Other Services Section */}
-      <section ref={(el) => { sectionRefs.current[3] = el; }} className="section-padding bg-gray-50">
+      <section ref={(el) => { sectionRefs.current[5] = el; }} className="section-padding bg-gray-50">
         <div className="container-custom">
           <div className="text-center mb-12">
             <span className="mb-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-[#1d8c89]">
