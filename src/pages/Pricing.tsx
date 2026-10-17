@@ -80,7 +80,8 @@ const ussdPlans = [
     pricing: [
       { label: 'Safaricom setup', value: 'KES 150,000' },
       { label: 'Safaricom monthly', value: 'KES 75,000 (*XXX#) / KES 63,000 (*XXX*X# and longer)' },
-      { label: 'Equitel setup / monthly', value: 'KES 65,000 / KES 63,000' }
+      { label: 'Equitel setup', value: 'KES 65,000' },
+      { label: 'Equitel monthly', value: 'KES 63,000' }
     ],
     features: [
       'Dedicated codes are subject to the required approvals and mobile-network provisioning',
