@@ -42,7 +42,7 @@ export function WhatsAppRateCard() {
             <thead className="bg-slate-50"><tr><th className="p-3">Feature</th>{plans.map(p => <th key={p.name} className="p-3">{p.name}</th>)}</tr></thead>
             <tbody>{features.map(([label, key]) => <tr key={key} className="border-t border-slate-200">
               <th className="p-3 font-semibold text-slate-800">{label}</th>
-              {plans.map(p => { const value = p[key]; const bool = typeof value === 'boolean'; return <td key={p.name} className="p-3 text-slate-700">{bool ? (value ? <Check aria-label="Included" className="h-4 w-4 text-emerald-600" /> : <X aria-label="Not included" className="h-4 w-4 text-slate-400" />) : value === 'official' ? <Check aria-label="Included" className="h-4 w-4 text-emerald-600" /> : value}</td>; })}
+              {plans.map(p => { const value = key === 'official' ? true : p[key]; const bool = typeof value === 'boolean'; return <td key={p.name} className="p-3 text-slate-700">{bool ? (value ? <Check aria-label="Included" className="h-4 w-4 text-emerald-600" /> : <X aria-label="Not included" className="h-4 w-4 text-slate-400" />) : value === 'official' ? <Check aria-label="Included" className="h-4 w-4 text-emerald-600" /> : value}</td>; })}
             </tr>)}</tbody>
           </table>
         </div>
