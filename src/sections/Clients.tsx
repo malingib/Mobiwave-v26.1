@@ -1,6 +1,4 @@
-import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
-import { fadeUp } from '@/lib/motion';
+import { useState } from 'react';
 import { Marquee } from '@/components/Marquee';
 
 const partners = [
@@ -16,41 +14,46 @@ const partners = [
 ];
 
 function Partner({ name, logo }: (typeof partners)[number]) {
+  const [imageFailed, setImageFailed] = useState(false);
+  const initials = name.split(/\\s+/).map((part) => part[0]).join('').slice(0, 3).toUpperCase();
+
   return (
-    <div className="flex shrink-0 items-center gap-3 px-5 sm:px-8">
-      <img
-        src={logo}
-        alt={`${name} logo`}
-        className="h-10 w-auto max-w-[132px] object-contain transition-opacity duration-300 hover:opacity-80"
-        loading="lazy"
-        width={32}
-        height={32}
-      />
-      <span className="whitespace-nowrap text-sm font-semibold text-[#172333]/70">{name}</span>
+    <div className="flex min-h-14 shrink-0 items-center gap-3 px-5 sm:px-8">
+      {imageFailed ? (
+        <span
+          aria-label={`${name} logo unavailable; showing text mark`}
+          className="flex h-10 min-w-10 items-center justify-center rounded-md border border-[#176fe8]/20 bg-white px-2 text-xs font-extrabold tracking-wide text-[#176fe8]"
+        >
+          {initials}
+        </span>
+      ) : (
+        <img
+          src={logo}
+          alt={`${name} logo`}
+          className="block h-10 w-auto max-w-[132px] object-contain"
+          loading="eager"
+          decoding="async"
+          width={132}
+          height={44}
+          onError={() => setImageFailed(true)}
+        />
+      )}
+      <span className="whitespace-nowrap text-sm font-semibold text-[#172333]">{name}</span>
     </div>
   );
 }
 
 export function Clients() {
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, amount: 0.3 });
-
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-white via-[#fbfaff] to-white pb-6 pt-6 lg:pb-8 lg:pt-8" aria-label="MobiWave clients">
+    <section className="relative overflow-hidden bg-white pb-6 pt-6 lg:pb-8 lg:pt-8" aria-label="MobiWave clients">
       <div className="container-custom text-center">
-        <motion.div
-          ref={ref}
-          initial="hidden"
-          animate={isInView ? 'visible' : 'hidden'}
-          variants={fadeUp}
-          className="mx-auto mb-5 max-w-2xl"
-        >
+        <div className="mx-auto mb-5 max-w-2xl">
           <p className="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-[#6651c9]">Trusted by organisations across Kenya</p>
-        </motion.div>
+        </div>
       </div>
-      <div className="bg-white/20 py-3">
+      <div className="bg-white py-3">
         <Marquee speed={42} className="-mx-4 sm:mx-0">
-        {partners.map((partner) => <Partner key={partner.name} {...partner} />)}
+          {partners.map((partner) => <Partner key={partner.name} {...partner} />)}
         </Marquee>
       </div>
     </section>
