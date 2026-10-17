@@ -1,8 +1,10 @@
 import { MessageCircle } from 'lucide-react';
 import { ServicePageLayout } from '@/components/ServicePageLayout';
+import { WhatsAppRateCard } from '@/components/WhatsAppRateCard';
 
 export function BulkWhatsApp() {
   return (
+    <>
     <ServicePageLayout
       title="Bulk WhatsApp"
       subtitle="Reach Customers on Kenya's Most-Used Messaging App"
@@ -241,5 +243,7 @@ export function BulkWhatsApp() {
         }
       ]}
     />
+    <WhatsAppRateCard />
+    </>
   );
 }
