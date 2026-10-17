@@ -15,7 +15,7 @@ const partners = [
 
 function Partner({ name, logo }: (typeof partners)[number]) {
   const [imageFailed, setImageFailed] = useState(false);
-  const initials = name.split(/\\s+/).map((part) => part[0]).join('').slice(0, 3).toUpperCase();
+  const initials = name.split(/\s+/).map((part) => part[0]).join('').slice(0, 3).toUpperCase();
 
   return (
     <div className="flex min-h-14 shrink-0 items-center gap-3 px-5 sm:px-8">
