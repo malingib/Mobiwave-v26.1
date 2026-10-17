@@ -72,7 +72,7 @@ export function USSDCodes() {
         {
           step: '1',
           title: 'Choose shared or dedicated',
-          description: 'Choose prepaid or postpaid billing for your USSD extension. Prepaid extensions of 2–4 digits have a KES 5,000 setup fee; monthly fees are KES 8,000 for 2 digits, KES 6,000 for 3 digits, and KES 4,000 for 4 digits. Postpaid rates depend on extension length. Session and SMS usage are billed separately.'
+          description: 'Choose prepaid or postpaid billing for your USSD extension. Prepaid extensions of 2–4 digits have a KES 5,000 setup fee; monthly fees are KES 8,000 for 2 digits, KES 6,000 for 3 digits, and KES 4,000 for 4 digits. Postpaid rates depend on extension length. For postpaid sessions, Safaricom is KES 1.50 (monthly usage KES 0–19,999), KES 1.50 (KES 20,000–99,999), KES 1.25 (KES 100,000–399,999) and KES 1.25 (KES 400,000+); Airtel is KES 1.50, KES 1.40, KES 1.30 and KES 1.25 across those tiers. Session and SMS usage are billed separately.'
         },
         {
           step: '2',
@@ -87,7 +87,7 @@ export function USSDCodes() {
         {
           step: '4',
           title: 'Build in the test-bed',
-          description: 'Use the 30-day test-bed environment (KES 32,000 +VAT) to develop menus, wire your API and validate session flows before real traffic reaches your systems.'
+          description: 'Use the 30-day Safaricom test-bed (KES 22,400) to develop menus, wire your API and validate session flows before real traffic reaches your systems. Other networks may have different test-bed availability and fees.'
         },
         {
           step: '5',
@@ -101,7 +101,7 @@ export function USSDCodes() {
         }
       ]}
       comparisonTable={{
-        headers: ['MobiWave', "Africa's Talking", 'Celcom Africa', 'Twilio'],
+        headers: ['MobiWave', "Other USSD providers", 'Celcom Africa', 'Twilio'],
         note: 'MobiWave extension pricing is separate from session and SMS usage charges. Confirm VAT treatment and postpaid extension pricing in your quotation.',
         rows: [
           {
@@ -124,11 +124,17 @@ export function USSDCodes() {
           },
           {
             name: 'Prepaid extension (4 digits)', cells: [{ text: 'KES 5,000 setup + KES 4,000/mo', highlight: true }, { text: 'Available (quote)' }, { text: 'Available' }, { text: 'Not supported' }] },
+          { name: 'Postpaid extension (1 digit)', cells: [{ text: 'KES 10,000 setup + KES 45,000/mo', highlight: true }, { text: 'Available (quote)' }, { text: 'Available' }, { text: 'Not supported' }] },
           { name: 'Postpaid extension (2 digits)', cells: [{ text: 'KES 10,000 setup + KES 35,000/mo', highlight: true }, { text: 'Available (quote)' }, { text: 'Available' }, { text: 'Not supported' }] },
+          { name: 'Dedicated code — Safaricom', cells: [{ text: 'KES 150,000 setup + KES 75,000/mo (*XXX#) or KES 63,000/mo (*XXX*X# and longer)', highlight: true }, { text: 'Quote' }, { text: 'Quote' }, { text: 'Quote' }] },
+          { name: 'Dedicated code — Airtel', cells: [{ text: 'KES 121,000 setup + KES 51,400/mo', highlight: true }, { text: 'Quote' }, { text: 'Quote' }, { text: 'Quote' }] },
+          { name: 'Dedicated code — Telkom', cells: [{ text: 'KES 108,900 setup + KES 45,600/mo', highlight: true }, { text: 'Quote' }, { text: 'Quote' }, { text: 'Quote' }] },
+          { name: 'Dedicated code — Equitel', cells: [{ text: 'KES 65,000 setup + KES 63,000/mo', highlight: true }, { text: 'Quote' }, { text: 'Quote' }, { text: 'Quote' }] },
+          { name: 'Dedicated code test-bed (30 days)', cells: [{ text: 'Safaricom KES 22,400; Equitel KES 20,000; other networks on request', highlight: true }, { text: 'Quote' }, { text: 'Quote' }, { text: 'N/A' }] },
           {
             name: 'Test-bed / sandbox',
             cells: [
-              { text: 'KES 32,000 / 30 days', highlight: true },
+              { text: 'KES 22,400 / 30 days (Safaricom)', highlight: true },
               { text: 'Yes' },
               { text: 'Yes' },
               { text: 'N/A' }
@@ -174,7 +180,7 @@ export function USSDCodes() {
       }}
       pricingTabs={[
         { label: 'Prepaid', pricing: [
-          { title: '2-digit extension', price: 'KES 8,000', unit: '/ month', features: ['Setup fee: KES 5,000', 'Prepaid billing', 'USSD session charge typically KES 1–5, network-dependent', 'SMS usage billed separately'] },
+          { title: '2-digit extension', price: 'KES 8,000', unit: '/ month', features: ['Setup fee: KES 5,000', 'Prepaid billing', 'Carrier charge KES 1/session paid by subscriber + KES 0.25 platform session fee; no fixed-fee surcharge applies', 'SMS usage billed separately'] },
           { title: '3-digit extension', price: 'KES 6,000', unit: '/ month', features: ['Setup fee: KES 5,000', 'Prepaid billing', 'Session usage charged separately', 'SMS usage charged separately'] },
           { title: '4-digit extension', price: 'KES 4,000', unit: '/ month', features: ['Setup fee: KES 5,000', 'Prepaid billing', 'Session usage charged separately', 'SMS usage charged separately'] }
         ]},
@@ -186,7 +192,7 @@ export function USSDCodes() {
       faqs={[
         {
           question: 'How much does a USSD code cost in Kenya in 2026?',
-          answer: 'Prepaid extensions cost KES 5,000 setup, then KES 8,000/month for a 2-digit extension, KES 6,000/month for 3 digits, or KES 4,000/month for 4 digits. Postpaid is available only for 1-digit extensions (KES 10,000 setup + KES 45,000/month) and 2-digit extensions (KES 10,000 setup + KES 35,000/month). USSD session charges are typically KES 1–5 per session depending on network and session length; SMS usage is billed separately. Confirm VAT and applicable usage rates in your quotation.'
+          answer: 'Prepaid extensions cost KES 5,000 setup, then KES 8,000/month for a 2-digit extension, KES 6,000/month for 3 digits, or KES 4,000/month for 4 digits. Postpaid is available only for 1-digit extensions (KES 10,000 setup + KES 45,000/month) and 2-digit extensions (KES 10,000 setup + KES 35,000/month). Prepaid sessions: KES 1 carrier charge paid by the subscriber plus KES 0.25 platform fee per session. Postpaid session rates depend on network and monthly usage tier. SMS is billed separately. Fixed service fees include a KES 5,000 MobiWave surcharge; no surcharge is added to per-session charges.'
         },
         {
           question: 'How do I apply for a USSD shortcode from the CAK?',
@@ -202,7 +208,7 @@ export function USSDCodes() {
         },
         {
           question: 'Do my customers pay to use the USSD menu?',
-          answer: 'Yes. The carrier bills the end user a per-session charge (typically KES 1–5 depending on the network and session length) directly on their airtime. Your business pays only the MobiWave service fee — you never absorb the subscriber’s connectivity cost.'
+          answer: 'For prepaid sessions, the carrier charges the subscriber KES 1 per session directly on airtime, plus a KES 0.25 platform fee per session. For postpaid, your business pays the applicable network session rate based on usage tier. The KES 5,000 surcharge applies only to fixed fees, never to session charges.'
         },
         {
           question: 'Can I collect M-Pesa payments inside a USSD menu?',
@@ -221,8 +227,8 @@ export function USSDCodes() {
           answer: 'Yes. Each menu step calls your REST endpoint (or webhook) with the session id and user input; you return the next screen. MobiWave manages session state, timeouts and analytics so your backend stays simple.'
         },
         {
-          question: 'How is MobiWave different from Africa’s Talking for USSD?',
-          answer: 'Both provide USSD infra, but MobiWave bundles M-Pesa STK Push, bulk SMS, WhatsApp and airtime rewards on one Kenyan account with managed CAK onboarding and 24/7 local phone/WhatsApp support. Africa’s Talking is strong for self-service developer APIs; MobiWave adds the managed, non-developer onboarding and the payments bundle in one billing line.'
+          question: 'How is MobiWave different from other USSD providers for USSD?',
+          answer: 'Prepaid sessions comprise a KES 1 carrier charge paid by the subscriber and a KES 0.25 platform fee per session. Postpaid rates are charged to the code owner and vary by network and monthly usage tier. The KES 5,000 surcharge is not applied to session charges.'
         }
       ]}
     />
