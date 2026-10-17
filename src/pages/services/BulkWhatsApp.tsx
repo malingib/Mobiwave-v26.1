@@ -164,46 +164,67 @@ export function BulkWhatsApp() {
       }}
       pricing={[
         {
-          title: 'Basic',
-          price: 'KES 5,000',
-          unit: '',
+          title: 'Starter',
+          price: 'KES 2,000',
+          unit: '/ month',
           features: [
             'Official WhatsApp Business API',
-            'Template submission & approval',
-            'Rich media + two-way chat',
-            'Per Meta conversation rate applies',
-            'Standard support'
+            '2 users',
+            'Unlimited contacts, campaigns and platform messages',
+            'Standard inbox and delivery reporting',
+            'AI assistant: ✕',
+            'Chatbot automation: ✕',
+            'Optional setup: KES 2,000'
+          ]
+        },
+        {
+          title: 'Basic',
+          price: 'KES 4,000',
+          unit: '/ month',
+          features: [
+            'Official WhatsApp Business API',
+            '4 users',
+            'Unlimited contacts, campaigns and platform messages',
+            'API access and customer webhooks',
+            'AI assistant: ✕',
+            'Chatbot automation: ✕',
+            'Optional setup: KES 4,000'
           ]
         },
         {
           title: 'Pro',
-          price: 'KES 10,000',
-          unit: '',
+          price: 'KES 8,000',
+          unit: '/ month',
           features: [
-            'Everything in Starter',
-            'Automation & quick replies',
-            'Analytics dashboard',
-            'Opt-in ledger & compliance',
-            '24/7 support'
+            'Official WhatsApp Business API',
+            '10 users',
+            'Unlimited contacts, campaigns and platform messages',
+            'API access and webhooks',
+            'AI assistant: ✓',
+            'Chatbot automation: ✓',
+            'Optional setup: KES 8,000'
           ]
         },
         {
           title: 'Enterprise',
-          price: 'KES 30,000',
-          unit: '',
+          price: 'KES 20,000',
+          unit: '/ month',
           features: [
-            'High-volume throughput',
-            'Green tick verification support',
-            'Custom SLAs and escalation',
-            'CRM / helpdesk integrations',
-            'Dedicated account manager'
+            'Official WhatsApp Business API',
+            'Unlimited users',
+            'Unlimited contacts, campaigns and platform messages',
+            'API access, webhooks and integrations',
+            'AI assistant: ✓',
+            'Chatbot automation: ✓',
+            'Optional setup: KES 30,000',
+            'Dedicated support and custom service arrangements'
           ]
         }
       ]}
       faqs={[
         {
           question: 'What are MobiWave WhatsApp subscription prices?',
-          answer: 'Basic is KES 5,000 per month, Pro is KES 10,000 per month and Enterprise is KES 30,000 per month. Optional one-time setup fees are KES 5,000, KES 10,000 and KES 20,000 respectively. Pro and Enterprise chatbot development is a separate one-time KES 50,000 fee. Meta message charges are billed separately.'
+          answer: 'Starter is KES 2,000 per month, Basic is KES 4,000 per month, Pro is KES 8,000 per month and Enterprise is KES 20,000 per month. Optional setup is KES 2,000 for Starter, KES 4,000 for Basic, KES 8,000 for Pro and KES 30,000 for Enterprise. Contacts, campaigns and platform messaging have no fixed plan caps. Meta message charges are billed separately.'
         },
         {
           question: 'What is the difference between WhatsApp Business App and the API?',
