@@ -11,6 +11,7 @@ const Contact = lazy(() => import('@/pages/Contact').then(({ Contact }) => ({ de
 const About = lazy(() => import('@/pages/About').then(({ About }) => ({ default: About })));
 const Products = lazy(() => import('@/pages/Products').then(({ Products }) => ({ default: Products })));
 const Resources = lazy(() => import('@/pages/Resources').then(({ Resources }) => ({ default: Resources })));
+const ServicesHub = lazy(() => import('@/pages/ServicesHub').then(({ ServicesHub }) => ({ default: ServicesHub })));
 const Terms = lazy(() => import('@/pages/Terms').then(({ Terms }) => ({ default: Terms })));
 const Privacy = lazy(() => import('@/pages/Privacy').then(({ Privacy }) => ({ default: Privacy })));
 const ApiDocs = lazy(() => import('@/pages/ApiDocs').then(({ ApiDocs }) => ({ default: ApiDocs })));
@@ -82,7 +83,7 @@ function App() {
             <Route path="/developers/docs" element={<ApiDocs />} />
             <Route path="/products" element={<Navigate to="/innovations" replace />} />
             <Route path="/resources" element={<Resources />} />
-            <Route path="/services" element={<HomeSectionRoute sectionId="services" />} />
+            <Route path="/services" element={<ServicesHub />} />
             <Route path="/testimonials" element={<HomeSectionRoute sectionId="testimonials" />} />
             <Route path="/services/bulk-sms" element={<BulkSMS />} />
             <Route path="/sms-api-kenya" element={<SmsApiKenya />} />
