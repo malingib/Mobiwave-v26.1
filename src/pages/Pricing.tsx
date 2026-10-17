@@ -101,7 +101,7 @@ const ussdPlans = [
     features: [
       '30-day development and test access',
       'Validate menu flows and API integration',
-      '30-day development and test access',
+      'Session and SMS usage billed separately',
       'Session charges are billed separately'
     ]
   },
@@ -116,7 +116,7 @@ const ussdPlans = [
       'Shared shortcode with a 2-digit extension',
       'Prepaid billing',
       'Session and SMS usage billed separately',
-      'Session and SMS usage billed separately'
+      'Suitable for services using a shared shortcode'
     ]
   }
 ];
