@@ -23,7 +23,7 @@ export function BulkWhatsApp() {
         'Two-way conversational support in one thread',
         'Delivery and read receipts with tracking',
         'REST API + webhook integration',
-        'Automated replies and quick-reply menus',
+        'AI assistant and chatbot automation on Pro and Enterprise plans',
         'Analytics dashboard with funnel and drop-off',
         'Opt-in ledger for consent and ODPC compliance',
         'Bundled with SMS, USSD and M-Pesa on one account'
