@@ -268,6 +268,15 @@ export function BulkWhatsApp() {
         }
       ]}
     />
+    <section className="border-y border-slate-200 bg-slate-50 py-12">
+      <div className="container-custom mx-auto flex max-w-4xl flex-col items-center gap-4 px-4 text-center">
+        <h2 className="text-2xl font-bold text-slate-900">Ready to use MobiWave WA?</h2>
+        <p className="max-w-2xl text-slate-600">Open the MobiWave WA platform to get started with WhatsApp Business messaging and customer conversations.</p>
+        <a href="https://wap.mobiwave.co.ke" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-md bg-[#0084ff] px-6 py-3 font-semibold text-white transition-colors hover:bg-[#0068d6]">
+          Launch MobiWave WA <MessageCircle className="h-4 w-4" />
+        </a>
+      </div>
+    </section>
     <WhatsAppRateCard />
     </>
   );

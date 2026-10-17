@@ -468,9 +468,14 @@ export function Pricing() {
                   ))}
                 </ul>
                 {service.name === 'Bulk WhatsApp' ? (
-                  <a href="/services/bulk-whatsapp" className="flex w-full items-center justify-center gap-2 rounded-md border border-[#0084ff] px-4 py-2 text-sm font-medium text-[#0084ff] transition-colors hover:bg-[#0084ff] hover:text-white">
-                    View WhatsApp pricing <ArrowRight className="h-4 w-4" />
-                  </a>
+                  <div className="space-y-2">
+                    <a href="https://wap.mobiwave.co.ke" target="_blank" rel="noopener noreferrer" className="flex w-full items-center justify-center gap-2 rounded-md bg-[#0084ff] px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-[#0068d6]">
+                      Get started with MobiWave WA <ArrowRight className="h-4 w-4" />
+                    </a>
+                    <a href="/services/bulk-whatsapp" className="flex w-full items-center justify-center gap-2 rounded-md border border-[#0084ff] px-4 py-2 text-sm font-medium text-[#0084ff] transition-colors hover:bg-[#0084ff] hover:text-white">
+                      View detailed pricing
+                    </a>
+                  </div>
                 ) : (
                   <Button variant="outline" className="w-full border-[#0084ff] text-[#0084ff] hover:bg-[#0084ff] hover:text-white">
                     Get Quote
