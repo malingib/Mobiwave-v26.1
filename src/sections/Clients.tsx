@@ -18,41 +18,48 @@ function Partner({ name, logo }: (typeof partners)[number]) {
   const initials = name.split(/\s+/).map((part) => part[0]).join('').slice(0, 3).toUpperCase();
 
   return (
-    <div className="flex min-h-14 shrink-0 items-center gap-3 px-5 sm:px-8">
-      {imageFailed ? (
-        <span
-          aria-label={`${name} logo unavailable; showing text mark`}
-          className="flex h-10 min-w-10 items-center justify-center rounded-md border border-[#176fe8]/20 bg-white px-2 text-xs font-extrabold tracking-wide text-[#176fe8]"
-        >
-          {initials}
-        </span>
-      ) : (
-        <img
-          src={logo}
-          alt={`${name} logo`}
-          className="block h-10 w-auto max-w-[132px] object-contain"
-          loading="eager"
-          decoding="async"
-          width={132}
-          height={44}
-          onError={() => setImageFailed(true)}
-        />
-      )}
-      <span className="whitespace-nowrap text-sm font-semibold text-[#172333]">{name}</span>
+    <div className="flex w-44 shrink-0 flex-col items-center justify-center px-4 py-3 sm:w-48 sm:px-5">
+      <div className="flex h-14 w-full items-center justify-center">
+        {imageFailed ? (
+          <span
+            aria-hidden="true"
+            className="flex h-10 min-w-10 items-center justify-center rounded-md border border-[#176fe8]/20 bg-white px-2 text-xs font-extrabold tracking-wide text-[#176fe8]"
+          >
+            {initials}
+          </span>
+        ) : (
+          <img
+            src={logo}
+            alt=""
+            className="block max-h-11 w-auto max-w-[144px] object-contain"
+            loading="lazy"
+            decoding="async"
+            width={144}
+            height={44}
+            onError={() => setImageFailed(true)}
+          />
+        )}
+      </div>
+      <span className="mt-2 text-center text-xs font-medium leading-5 text-[#526171] sm:text-sm">
+        {name}
+      </span>
     </div>
   );
 }
 
 export function Clients() {
   return (
-    <section className="relative overflow-hidden bg-white pb-6 pt-6 lg:pb-8 lg:pt-8" aria-label="MobiWave clients">
-      <div className="container-custom text-center">
-        <div className="mx-auto mb-5 max-w-2xl">
-          <p className="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-[#6651c9]">Trusted by organisations across Kenya</p>
-        </div>
+    <section className="bg-white py-8 sm:py-10" aria-labelledby="client-logos-heading">
+      <div className="container-custom mb-5 text-center sm:mb-6">
+        <p className="mb-2 text-xs font-bold uppercase tracking-[0.16em] text-[#176fe8]">
+          Our network
+        </p>
+        <h2 id="client-logos-heading" className="text-xl font-semibold tracking-tight text-[#0a1a25] sm:text-2xl">
+          Organisations we work with
+        </h2>
       </div>
-      <div className="bg-white py-3">
-        <Marquee speed={42} className="-mx-4 sm:mx-0">
+      <div className="border-y border-[#e8edf2] bg-white">
+        <Marquee speed={48} className="py-1">
           {partners.map((partner) => <Partner key={partner.name} {...partner} />)}
         </Marquee>
       </div>
