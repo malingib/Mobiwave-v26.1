@@ -1,10 +1,9 @@
-import { ArrowRight, MessageCircle } from 'lucide-react';
+import { MessageCircle } from 'lucide-react';
 import { ServicePageLayout } from '@/components/ServicePageLayout';
 
 export function BulkWhatsApp() {
   return (
-    <>
-      <ServicePageLayout
+    <ServicePageLayout
         title="Bulk WhatsApp"
         subtitle="Official WhatsApp messaging for your business"
         description="Send customer updates, campaigns and support messages through the official WhatsApp Business API. MobiWave helps with onboarding, templates and local support, with optional links to SMS, USSD and M-Pesa."
@@ -90,16 +89,6 @@ export function BulkWhatsApp() {
           }
         ]}
         ctaDescription="Want to compare plans or start onboarding? Open MobiWave WA, or contact our team if you need help choosing a package."
-      />
-      <section className="border-t border-slate-200 bg-slate-50 py-12">
-        <div className="container-custom mx-auto flex max-w-4xl flex-col items-center gap-4 px-4 text-center">
-          <h2 className="text-2xl font-bold text-slate-900">Ready to get started?</h2>
-          <p className="max-w-2xl text-slate-600">Continue to MobiWave WA for onboarding and platform details. Detailed Meta message rates and volume discounts are available in the platform.</p>
-          <a href="https://wap.mobiwave.co.ke" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-md bg-[#0084ff] px-6 py-3 font-semibold text-white transition-colors hover:bg-[#0068d6]">
-            Open MobiWave WA <ArrowRight className="h-4 w-4" />
-          </a>
-        </div>
-      </section>
-    </>
+    />
   );
 }
