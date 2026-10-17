@@ -257,33 +257,7 @@ export function Products() {
         once: true
       });
 
-      // Section animations
-      const sections = [
-        { ref: innovationsHubRef, selector: '.innovation-card' },
-        { ref: productsRef, selector: '.product-card' },
-        { ref: solutionsRef, selector: '.solution-card' },
-        { ref: whyUsRef, selector: '.why-card' },
-        { ref: techRef, selector: '.tech-item' }
-      ];
 
-      sections.forEach(({ ref, selector }) => {
-        if (ref.current) {
-          gsap.fromTo(selector,
-            { y: 50, opacity: 0 },
-            {
-              y: 0,
-              opacity: 1,
-              duration: 0.6,
-              stagger: 0.1,
-              ease: 'power3.out',
-              scrollTrigger: {
-                trigger: ref.current,
-                start: 'top 75%'
-              }
-            }
-          );
-        }
-      });
     });
 
     return () => ctx.revert();
