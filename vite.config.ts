@@ -9,6 +9,16 @@ export default defineConfig(({ command }) => ({
   // Keep source-location attributes available while developing, but never
   // ship them in production HTML where they add DOM weight and expose paths.
   plugins: [command === 'serve' && inspectAttr(), react()],
+  server: {
+    host: '0.0.0.0',
+    port: 5173,
+    proxy: {
+      '/contact.php': {
+        target: 'http://127.0.0.1:8000',
+        changeOrigin: true,
+      },
+    },
+  },
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
