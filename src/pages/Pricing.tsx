@@ -76,12 +76,10 @@ const bulkSMSPlans = [
 const ussdPlans = [
   {
     name: 'Dedicated USSD Code',
-    description: 'An exclusive USSD code for your organisation. Setup and monthly maintenance depend on the network and code format.',
+    description: 'A dedicated USSD code for your organisation. Setup and monthly charges depend on the network and code format. See the USSD service page for the full network rate card.',
     pricing: [
       { label: 'Safaricom setup', value: 'KES 150,000' },
       { label: 'Safaricom monthly', value: 'KES 75,000 (*XXX#) / KES 63,000 (*XXX*X# and longer)' },
-      { label: 'Airtel setup / monthly', value: 'KES 121,000 / KES 51,400' },
-      { label: 'Telkom setup / monthly', value: 'KES 108,900 / KES 45,600' },
       { label: 'Equitel setup / monthly', value: 'KES 65,000 / KES 63,000' }
     ],
     features: [
