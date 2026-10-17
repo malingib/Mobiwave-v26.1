@@ -162,8 +162,8 @@ export function BulkWhatsApp() {
       }}
       pricing={[
         {
-          title: 'Starter',
-          price: 'Usage-based',
+          title: 'Basic',
+          price: 'KES 5,000',
           unit: '',
           features: [
             'Official WhatsApp Business API',
@@ -174,8 +174,8 @@ export function BulkWhatsApp() {
           ]
         },
         {
-          title: 'Growth',
-          price: 'Usage-based',
+          title: 'Pro',
+          price: 'KES 10,000',
           unit: '',
           features: [
             'Everything in Starter',
@@ -187,7 +187,7 @@ export function BulkWhatsApp() {
         },
         {
           title: 'Enterprise',
-          price: 'Custom',
+          price: 'KES 30,000',
           unit: '',
           features: [
             'High-volume throughput',
@@ -200,8 +200,8 @@ export function BulkWhatsApp() {
       ]}
       faqs={[
         {
-          question: 'How much does the WhatsApp Business API cost in Kenya?',
-          answer: 'WhatsApp itself charges per 24-hour conversation according to Meta’s published rate — there is no flat monthly list price. MobiWave’s integration and support are usage-based or custom for enterprise volumes. The exact per-conversation cost depends on the conversation type (marketing, utility, authentication, service) and the customer’s country; contact us for current rates.'
+          question: 'What are MobiWave WhatsApp subscription prices?',
+          answer: 'Basic is KES 5,000 per month, Pro is KES 10,000 per month and Enterprise is KES 30,000 per month. Optional one-time setup fees are KES 5,000, KES 10,000 and KES 20,000 respectively. Pro and Enterprise chatbot development is a separate one-time KES 50,000 fee. Meta message charges are billed separately.'
         },
         {
           question: 'What is the difference between WhatsApp Business App and the API?',
