@@ -5,32 +5,32 @@ export const EASE_SPRING = { type: 'spring', stiffness: 100, damping: 20 } as co
 export const EASE_SMOOTH: Transition = { duration: 0.6, ease: EASE_OUT_EXPO };
 
 export const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 40 },
+  hidden: { opacity: 1, y: 0 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: EASE_OUT_EXPO } },
 };
 
 export const fadeDown: Variants = {
-  hidden: { opacity: 0, y: -30 },
+  hidden: { opacity: 1, y: 0 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE_OUT_EXPO } },
 };
 
 export const fadeIn: Variants = {
-  hidden: { opacity: 0 },
+  hidden: { opacity: 1 },
   visible: { opacity: 1, transition: { duration: 0.7 } },
 };
 
 export const scaleIn: Variants = {
-  hidden: { opacity: 0, scale: 0.85 },
+  hidden: { opacity: 1, scale: 1 },
   visible: { opacity: 1, scale: 1, transition: { duration: 0.6, ease: EASE_OUT_EXPO } },
 };
 
 export const slideInLeft: Variants = {
-  hidden: { opacity: 0, x: -50 },
+  hidden: { opacity: 1, x: 0 },
   visible: { opacity: 1, x: 0, transition: { duration: 0.7, ease: EASE_OUT_EXPO } },
 };
 
 export const slideInRight: Variants = {
-  hidden: { opacity: 0, x: 50 },
+  hidden: { opacity: 1, x: 0 },
   visible: { opacity: 1, x: 0, transition: { duration: 0.7, ease: EASE_OUT_EXPO } },
 };
 
@@ -54,7 +54,7 @@ export const staggerFast: Variants = {
 };
 
 export const popIn: Variants = {
-  hidden: { opacity: 0, scale: 0.6, y: 20 },
+  hidden: { opacity: 1, scale: 1, y: 0 },
   visible: {
     opacity: 1,
     scale: 1,
@@ -64,7 +64,7 @@ export const popIn: Variants = {
 };
 
 export const heroLine: Variants = {
-  hidden: { opacity: 0, x: -40, filter: 'blur(8px)' },
+  hidden: { opacity: 1, x: 0, filter: 'blur(0px)' },
   visible: {
     opacity: 1,
     x: 0,
@@ -74,7 +74,7 @@ export const heroLine: Variants = {
 };
 
 export const heroButton: Variants = {
-  hidden: { opacity: 0, scale: 0.8 },
+  hidden: { opacity: 1, scale: 1 },
   visible: {
     opacity: 1,
     scale: 1,
@@ -83,7 +83,7 @@ export const heroButton: Variants = {
 };
 
 export const heroStat: Variants = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 1, y: 0 },
   visible: {
     opacity: 1,
     y: 0,
