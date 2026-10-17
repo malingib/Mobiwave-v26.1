@@ -223,11 +223,6 @@ const comingSoonProjects = [
 
 export function Products() {
   const statsRef = useRef<HTMLDivElement>(null);
-  const innovationsHubRef = useRef<HTMLDivElement>(null);
-  const productsRef = useRef<HTMLDivElement>(null);
-  const solutionsRef = useRef<HTMLDivElement>(null);
-  const whyUsRef = useRef<HTMLDivElement>(null);
-  const techRef = useRef<HTMLDivElement>(null);
   const [selectedProduct, setSelectedProduct] = useState<typeof softwareProducts[0] | null>(null);
   const [animatedStats, setAnimatedStats] = useState(stats.map(() => 0));
 
@@ -256,7 +251,6 @@ export function Products() {
         },
         once: true
       });
-
 
     });
 
