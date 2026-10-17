@@ -7,6 +7,11 @@ import { MotionItem } from '@/components/MotionSection';
 
 const services = [
   {
+    title: 'MobiWave CNC',
+    description: 'Manage business expenses, allocations and eTIMS receipt evidence with a clear, accountable workflow.',
+    href: '/innovations',
+  },
+  {
     title: 'Bulk SMS',
     description: 'Reach customers at scale with smart routing and live delivery reports.',
     href: '/services/bulk-sms',
