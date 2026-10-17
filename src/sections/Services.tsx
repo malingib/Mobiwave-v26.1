@@ -90,8 +90,8 @@ export function Services() {
           </div>
 
           <MotionItem className="mt-10 text-center">
-            <Link to="/innovations" className="group inline-flex items-center gap-2 border-b border-[#172333]/25 pb-2 text-sm font-bold text-[#172333] transition-colors hover:border-[#176fe8] hover:text-[#176fe8]">
-              See the full platform <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+            <Link to="/services" className="group inline-flex items-center gap-2 border-b border-[#172333]/25 pb-2 text-sm font-bold text-[#172333] transition-colors hover:border-[#176fe8] hover:text-[#176fe8]">
+              Explore all services <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
             </Link>
           </MotionItem>
         </motion.div>
