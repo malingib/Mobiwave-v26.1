@@ -95,6 +95,57 @@ function sendSmtp(string $host, int $port, string $username, string $password, s
     }
 }
 
+function sendBrevo(string $apiKey, string $from, string $to, string $replyTo, string $subject, string $body): void
+{
+    if (!function_exists('curl_init')) {
+        throw new RuntimeException('The cURL extension is not available');
+    }
+
+    $escapedBody = nl2br(htmlspecialchars($body, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'));
+    $payload = [
+        'sender' => ['name' => 'MobiWave Website', 'email' => $from],
+        'to' => [['email' => $to, 'name' => 'MobiWave Enquiries']],
+        'replyTo' => ['email' => $replyTo],
+        'subject' => $subject,
+        'textContent' => $body,
+        'htmlContent' => '<div style="font-family:Arial,sans-serif;line-height:1.6">' . $escapedBody . '</div>',
+    ];
+
+    $json = json_encode($payload, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+    if ($json === false) {
+        throw new RuntimeException('Could not encode the email payload');
+    }
+
+    $ch = curl_init('https://api.brevo.com/v3/smtp/email');
+    curl_setopt_array($ch, [
+        CURLOPT_POST => true,
+        CURLOPT_POSTFIELDS => $json,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_CONNECTTIMEOUT => 10,
+        CURLOPT_TIMEOUT => 20,
+        CURLOPT_HTTPHEADER => [
+            'accept: application/json',
+            'api-key: ' . $apiKey,
+            'content-type: application/json',
+        ],
+    ]);
+
+    $response = curl_exec($ch);
+    $curlError = curl_error($ch);
+    $status = (int) curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    curl_close($ch);
+
+    if ($response === false || $curlError !== '') {
+        error_log('MobiWave Brevo request failed: ' . ($curlError !== '' ? $curlError : 'request failed'));
+        throw new RuntimeException('Brevo email request failed');
+    }
+
+    if ($status < 200 || $status >= 300) {
+        error_log('MobiWave Brevo rejected contact email with HTTP status ' . $status);
+        throw new RuntimeException('Brevo rejected the email');
+    }
+}
+
 function verifyTurnstile(string $token): void
 {
     $secret = trim((string) (getenv('TURNSTILE_SECRET_KEY') ?: getenv('CF_TURNSTILE_SECRET_KEY') ?: ''));
@@ -175,8 +226,8 @@ if (strlen($message) > 10000) {
     respond(422, ['ok' => false, 'error' => 'Message is too long']);
 }
 
-$mailTo = setting('CONTACT_MAIL_TO', 'sales@mobiwave.co.ke');
-$mailFrom = setting('CONTACT_MAIL_FROM', 'no-reply@mobiwave.co.ke');
+$mailTo = setting('CONTACT_MAIL_TO') ?: 'info@mobiwave.co.ke';
+$mailFrom = setting('CONTACT_MAIL_FROM') ?: 'no-reply@mobiwave.co.ke';
 $mailSubject = '[MobiWave website] ' . ($subject !== '' ? $subject : ($service !== '' ? $service : 'Website enquiry'));
 $mailBody = implode("\n", array_filter([
     "Form: {$formType}",
@@ -192,20 +243,18 @@ $mailBody = implode("\n", array_filter([
 ]));
 
 try {
-    $smtpHost = setting('SMTP_HOST', 'mail.mobiwave.co.ke');
-    $smtpUsername = setting('SMTP_USERNAME', 'mobiwaveinno');
-    $smtpPassword = setting('SMTP_PASSWORD');
-    if ($smtpHost !== '' && $smtpUsername !== '' && $smtpPassword !== '') {
-        sendSmtp($smtpHost, (int) setting('SMTP_PORT', '587'), $smtpUsername, $smtpPassword, $mailFrom, $email, $mailTo, $mailSubject, $mailBody);
+    $brevoApiKey = setting('BREVO_API_KEY');
+    if ($brevoApiKey !== '') {
+        sendBrevo($brevoApiKey, $mailFrom, $mailTo, $email, $mailSubject, $mailBody);
     } else {
-        $headers = implode("\r\n", [
-            "From: MobiWave Website <{$mailFrom}>",
-            "Reply-To: {$email}",
-            'Content-Type: text/plain; charset=UTF-8',
-        ]);
-        if (!mail($mailTo, $mailSubject, $mailBody, $headers)) {
-            throw new RuntimeException('PHP mail() failed');
+        // Keep existing SMTP delivery until BREVO_API_KEY is configured on the host.
+        $smtpHost = setting('SMTP_HOST', 'mail.mobiwave.co.ke');
+        $smtpUsername = setting('SMTP_USERNAME', 'mobiwaveinno');
+        $smtpPassword = setting('SMTP_PASSWORD');
+        if ($smtpHost === '' || $smtpUsername === '' || $smtpPassword === '') {
+            throw new RuntimeException('Brevo API key or SMTP configuration is missing');
         }
+        sendSmtp($smtpHost, (int) (setting('SMTP_PORT') ?: '587'), $smtpUsername, $smtpPassword, $mailFrom, $email, $mailTo, $mailSubject, $mailBody);
     }
 } catch (Throwable $error) {
     error_log('MobiWave contact form: ' . $error->getMessage());
