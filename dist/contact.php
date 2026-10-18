@@ -10,10 +10,65 @@ function respond(int $status, array $body): never
     exit;
 }
 
-function setting(string $name, string $default = ''): string
+function loadDotEnvFile(): void
+{
+    $candidates = [
+        dirname(__DIR__) . '/.env',
+        dirname(__DIR__, 2) . '/.env',
+    ];
+
+    foreach ($candidates as $candidate) {
+        if (!is_file($candidate)) {
+            continue;
+        }
+
+        $lines = file($candidate, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+        if ($lines === false) {
+            continue;
+        }
+
+        foreach ($lines as $line) {
+            $trimmed = trim($line);
+            if ($trimmed === '' || str_starts_with($trimmed, '#')) {
+                continue;
+            }
+
+            $separatorPosition = strpos($trimmed, '=');
+            if ($separatorPosition === false) {
+                continue;
+            }
+
+            $name = trim(substr($trimmed, 0, $separatorPosition));
+            $value = trim(substr($trimmed, $separatorPosition + 1));
+
+            if ($name === '') {
+                continue;
+            }
+
+            if (strlen($value) >= 2 && (($value[0] === '"' && $value[strlen($value) - 1] === '"') || ($value[0] === '\'' && $value[strlen($value) - 1] === '\''))) {
+                $value = substr($value, 1, -1);
+            }
+
+            $value = preg_replace('/\s+#.*$/', '', $value) ?? $value;
+
+            if (getenv($name) === false) {
+                putenv("{$name}={$value}");
+            }
+
+            $_ENV[$name] = $value;
+            $_SERVER[$name] = $value;
+        }
+
+        return;
+    }
+}
+
+loadDotEnvFile();
+
+function setting(string $name): string
 {
     $value = getenv($name);
-    return $value === false ? $default : trim($value);
+    return $value === false ? '' : trim($value);
 }
 
 function headerValue(string $value, int $maxLength = 160): string
@@ -248,8 +303,8 @@ try {
         sendBrevo($brevoApiKey, $mailFrom, $mailTo, $email, $mailSubject, $mailBody);
     } else {
         // Keep existing SMTP delivery until BREVO_API_KEY is configured on the host.
-        $smtpHost = setting('SMTP_HOST', 'mail.mobiwave.co.ke');
-        $smtpUsername = setting('SMTP_USERNAME', 'mobiwaveinno');
+        $smtpHost = setting('SMTP_HOST');
+        $smtpUsername = setting('SMTP_USERNAME');
         $smtpPassword = setting('SMTP_PASSWORD');
         if ($smtpHost === '' || $smtpUsername === '' || $smtpPassword === '') {
             throw new RuntimeException('Brevo API key or SMTP configuration is missing');
