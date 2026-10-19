@@ -112,6 +112,7 @@ export function ServicePageLayout({
   const contentRef = useRef<HTMLDivElement>(null);
   const [activePricingTab, setActivePricingTab] = useState(0);
   const visiblePricing = pricingTabs?.length ? pricingTabs[activePricingTab]?.pricing : pricing;
+  const pricingCount = visiblePricing?.length ?? 0;
   const contactItems = [
     { icon: Phone, label: 'Phone', value: '+254 736 427 842', href: 'tel:+254736427842' },
     { icon: Mail, label: 'Email', value: 'info@mobiwave.co.ke', href: 'mailto:info@mobiwave.co.ke' },
@@ -401,7 +402,7 @@ export function ServicePageLayout({
                 )}
               </div>
 
-              <div className={`grid ${pricing.length === 1 ? 'max-w-md mx-auto' : pricing.length === 2 ? 'md:grid-cols-2 max-w-3xl mx-auto' : pricing.length === 4 ? 'sm:grid-cols-2 xl:grid-cols-4' : 'md:grid-cols-3'} gap-4 md:gap-6 animate-section`}>
+              <div className={`grid ${pricingCount === 1 ? 'max-w-md mx-auto' : pricingCount === 2 ? 'md:grid-cols-2 max-w-3xl mx-auto' : pricingCount === 4 ? 'sm:grid-cols-2 xl:grid-cols-4' : 'md:grid-cols-3'} gap-4 md:gap-6 animate-section`}>
                 {visiblePricing.map((plan, index) => (
                   <div
                     key={index}
