@@ -2,8 +2,9 @@
 declare(strict_types=1);
 
 header('Content-Type: application/json; charset=utf-8');
+header('X-Content-Type-Options: nosniff');
 
-function respond(int $status, array $body): never
+function respond(int $status, array $body): void
 {
     http_response_code($status);
     echo json_encode($body, JSON_UNESCAPED_SLASHES);
@@ -29,7 +30,7 @@ function loadDotEnvFile(): void
 
         foreach ($lines as $line) {
             $trimmed = trim($line);
-            if ($trimmed === '' || str_starts_with($trimmed, '#')) {
+            if ($trimmed === '' || $trimmed[0] === '#') {
                 continue;
             }
 
@@ -68,7 +69,10 @@ loadDotEnvFile();
 function setting(string $name): string
 {
     $value = getenv($name);
-    return $value === false ? '' : trim($value);
+    if ($value === false || $value === '') {
+        $value = isset($_ENV[$name]) ? $_ENV[$name] : (isset($_SERVER[$name]) ? $_SERVER[$name] : '');
+    }
+    return trim((string) $value);
 }
 
 function headerValue(string $value, int $maxLength = 160): string
@@ -123,17 +127,21 @@ function sendBrevo(string $apiKey, string $from, string $to, string $replyTo, st
     }
 
     if ($status < 200 || $status >= 300) {
-        error_log('MobiWave Brevo rejected contact email with HTTP status ' . $status);
+        $responsePreview = trim(preg_replace('/\s+/', ' ', (string) $response));
+        if (strlen($responsePreview) > 500) {
+            $responsePreview = substr($responsePreview, 0, 500);
+        }
+        error_log('MobiWave Brevo rejected contact email with HTTP status ' . $status . ': ' . $responsePreview);
         throw new RuntimeException('Brevo rejected the email');
     }
 }
 
 function verifyTurnstile(string $token): void
 {
-    $secret = trim((string) (getenv('TURNSTILE_SECRET_KEY') ?: getenv('CF_TURNSTILE_SECRET_KEY') ?: ''));
+    $secret = setting('TURNSTILE_SECRET_KEY') ?: setting('CF_TURNSTILE_SECRET_KEY');
 
     if ($secret === '') {
-        if (isset($_POST['cf-turnstile-response']) || getenv('VITE_TURNSTILE_SITE_KEY') !== false || getenv('CF_TURNSTILE_SITE_KEY') !== false) {
+        if (isset($_POST['cf-turnstile-response']) || setting('VITE_TURNSTILE_SITE_KEY') !== '' || setting('CF_TURNSTILE_SITE_KEY') !== '') {
             respond(500, ['ok' => false, 'error' => 'Captcha secret is not configured on the server.']);
         }
         return;
