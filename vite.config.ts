@@ -3,6 +3,20 @@ import react from "@vitejs/plugin-react"
 import { defineConfig } from "vite"
 import { inspectAttr } from 'kimi-plugin-inspect-react'
 
+// Hostnames this app may be reached through. Vite's dev and preview servers
+// reject any request whose `Host` header is not listed here (an SSRF /
+// DNS-rebinding guard), so a reverse proxy that forwards the public hostname
+// must have it allowed or every request gets a 403:
+//   Blocked request. This host ("mobiwave.co.ke") is not allowed.
+// Override for staging or tunnels:
+//   VITE_ALLOWED_HOSTS="staging.example.com,.ngrok-free.app" npm run preview
+const allowedHosts = (
+  process.env.VITE_ALLOWED_HOSTS ?? 'mobiwave.co.ke,www.mobiwave.co.ke,.mobiwave.co.ke'
+)
+  .split(',')
+  .map((host) => host.trim())
+  .filter(Boolean)
+
 // https://vite.dev/config/
 export default defineConfig(({ command }) => ({
   base: '/',
@@ -12,12 +26,21 @@ export default defineConfig(({ command }) => ({
   server: {
     host: '0.0.0.0',
     port: 5173,
+    allowedHosts,
     proxy: {
       '/contact.php': {
         target: 'http://127.0.0.1:8000',
         changeOrigin: true,
       },
     },
+  },
+  // The preview server is for local verification of `npm run build` output.
+  // Production must serve the static `dist/` directory from nginx instead —
+  // see deploy/nginx/mobiwave.co.ke.conf and deploy/README.md.
+  preview: {
+    host: '0.0.0.0',
+    port: 4173,
+    allowedHosts,
   },
   resolve: {
     alias: {

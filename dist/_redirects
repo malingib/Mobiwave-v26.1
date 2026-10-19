@@ -76,5 +76,15 @@ https://www.mobiwave.co.ke/* https://mobiwave.co.ke/:splat 301!
 # Legal pages are prerendered assets and must not be served by the SPA fallback.
 /privacy  /privacy.html  200
 /terms  /terms.html  200
+# Return 404 for legacy spam/irrelevant URL families seen in Search Console.
+/shopdetail/* /404.html 404
+/corner/* /404.html 404
+/pn/* /404.html 404
+/special/* /404.html 404
+/calendar/* /404.html 404
+/calendar /404.html 404
+/guide/* /404.html 404
+/guide /404.html 404
+
 # SPA fallback for all other client-side routes
 /*  /index.html  200
