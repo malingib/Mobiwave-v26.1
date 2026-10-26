@@ -14,7 +14,6 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { PageBanner } from '@/components/PageBanner';
-import { TurnstileWidget } from '@/components/TurnstileWidget';
 import { submitContactForm } from '@/lib/contact-form';
 import { trackEvent } from '@/lib/analytics';
 
@@ -72,7 +71,6 @@ export function Contact() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState('');
-  const [captchaError, setCaptchaError] = useState('');
   const formRef = useRef<HTMLFormElement>(null);
   const infoRef = useRef<HTMLDivElement>(null);
   const formStartedRef = useRef(false);
@@ -120,16 +118,16 @@ export function Contact() {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitError('');
-    setCaptchaError('');
 
     try {
       await submitContactForm(e.currentTarget);
       trackEvent('form_success', { form_location: 'contact_page' });
       trackEvent('generate_lead', { form_location: 'contact_page', lead_type: 'contact_form' });
       setIsSubmitted(true);
-    } catch {
+    } catch (error) {
       trackEvent('form_error', { form_location: 'contact_page' });
-      setSubmitError('We could not send your message. Please call +254 736 427 842 or email info@mobiwave.co.ke.');
+      const message = error instanceof Error ? error.message : 'We could not send your message. Please call +254 736 427 842 or email info@mobiwave.co.ke.';
+      setSubmitError(message);
     } finally {
       setIsSubmitting(false);
     }
@@ -185,6 +183,7 @@ export function Contact() {
               className="lg:col-span-2 border border-gray-200 p-6 sm:p-8"
             >
               <input type="hidden" name="formType" value="contact-page" />
+              <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" className="absolute -left-[10000px] h-px w-px overflow-hidden" />
               {isSubmitted ? (
                 <div className="flex flex-col items-center justify-center py-16">
                   <div className="w-16 h-16 rounded-full bg-[#1d8c89]/20 flex items-center justify-center mb-4">
@@ -288,15 +287,6 @@ export function Contact() {
                     />
                   </div>
 
-                  <div className="pt-2">
-                    <TurnstileWidget
-                      className="flex justify-center"
-                      onError={setCaptchaError}
-                      onSuccess={() => setCaptchaError('')}
-                    />
-                  </div>
-
-                  {captchaError && <p className="text-sm leading-5 text-red-600" role="alert">{captchaError}</p>}
                   {submitError && <p className="text-sm leading-5 text-red-600" role="alert">{submitError}</p>}
 
                   <Button
