@@ -7,7 +7,7 @@ export async function submitContactForm(form: HTMLFormElement): Promise<void> {
     throw new Error('Please complete the verification challenge.');
   }
 
-  const endpoint = import.meta.env.VITE_CONTACT_FORM_ENDPOINT || '/api/contact';
+  const endpoint = '/api/contact';
   const payload: Record<string, string> = {};
   formData.forEach((value, key) => {
     if (typeof value === 'string' && key !== 'cf-turnstile-response') {
