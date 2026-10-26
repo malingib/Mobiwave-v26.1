@@ -7,15 +7,26 @@ export async function submitContactForm(form: HTMLFormElement): Promise<void> {
     throw new Error('Please complete the verification challenge.');
   }
 
-  const endpoint = import.meta.env.VITE_CONTACT_FORM_ENDPOINT || '/contact.php';
+  const endpoint = import.meta.env.VITE_CONTACT_FORM_ENDPOINT || '/api/contact';
+  const payload: Record<string, string> = {};
+  formData.forEach((value, key) => {
+    if (typeof value === 'string' && key !== 'cf-turnstile-response') {
+      payload[key] = value;
+    }
+  });
+  payload.turnstileToken = turnstileToken;
+
   const response = await fetch(endpoint, {
     method: 'POST',
-    body: formData,
-    headers: { Accept: 'application/json' },
+    body: JSON.stringify(payload),
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
   });
 
-  if (!response.ok) {
-    const payload = await response.json().catch(() => null) as { error?: string } | null;
-    throw new Error(payload?.error || 'The contact form endpoint returned an error.');
+  const result = await response.json().catch(() => null) as { ok?: boolean; error?: string } | null;
+  if (!response.ok || result?.ok !== true) {
+    throw new Error(result?.error || 'The contact form endpoint did not confirm email delivery.');
   }
 }
