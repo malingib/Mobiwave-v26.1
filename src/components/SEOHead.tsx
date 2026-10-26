@@ -88,9 +88,9 @@ const ROUTE_SEO: Record<string, SeoConfig> = {
     type: 'article',
   },
   '/services/bulk-sms': {
-    title: 'Best Bulk SMS Provider in Kenya | MobiWave',
+    title: 'Bulk SMS Kenya | Bulk SMS Provider & Pricing | MobiWave',
     description:
-      'Bulk SMS provider in Kenya with Safaricom, Airtel and Telkom coverage. From KES 0.20/SMS at volume, sender ID registration, delivery reports, REST API, sandbox and M-Pesa integration.',
+      'Compare bulk SMS options for Kenyan businesses. Send customer alerts, OTPs, reminders and campaigns across Safaricom, Airtel and Telkom, with REST API access, delivery reports, sender ID support and transparent KES pricing.',
     path: '/services/bulk-sms',
     pageType: 'Service',
     serviceType: 'Bulk SMS and SMS API',
@@ -130,9 +130,9 @@ const ROUTE_SEO: Record<string, SeoConfig> = {
     serviceType: 'Bulk email marketing',
   },
   '/services/bulk-whatsapp': {
-    title: 'WhatsApp Business API Kenya for Customer Messaging | MobiWave',
+    title: 'Bulk WhatsApp Messaging for Kenyan Businesses | MobiWave',
     description:
-      'Engage customers with WhatsApp business messaging for support, reminders, notifications, and rich media communication at scale.',
+      'Explore WhatsApp messaging for customer support, reminders, notifications and campaigns. For the dedicated MobiWave WA platform using Meta’s official WhatsApp Cloud API, visit wap.mobiwave.co.ke.',
     path: '/services/bulk-whatsapp',
     pageType: 'Service',
     serviceType: 'WhatsApp Business API',
@@ -193,9 +193,9 @@ const ROUTE_SEO: Record<string, SeoConfig> = {
     pageType: 'Article',
   },
   '/guides/mpesa-stk-push-api-kenya': {
-    title: 'M-Pesa STK Push API Kenya | Daraja Integration Guide | MobiWave',
+    title: 'M-Pesa STK Push Meaning & API Integration Kenya | MobiWave',
     description:
-      'M-Pesa STK Push API and Daraja integration guide for Kenya, with code examples, requirements, callbacks, costs, and SMS, USSD and WhatsApp integrations.',
+      'Learn what M-Pesa STK Push means, how Lipa Na M-Pesa Online works, and what Kenyan businesses need for Daraja API setup, callbacks, payment confirmation and reconciliation.',
     path: '/guides/mpesa-stk-push-api-kenya',
     pageType: 'Article',
   },
