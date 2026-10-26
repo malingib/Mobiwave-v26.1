@@ -4,10 +4,10 @@ import { ServicePageLayout } from '@/components/ServicePageLayout';
 export function BulkSMS() {
   return (
     <ServicePageLayout
-      title="Bulk SMS"
+      title="Bulk SMS in Kenya"
       bannerTitle="Best Bulk SMS Provider in Kenya | MobiWave"
-      subtitle="Reach every Kenyan customer in seconds"
-      description="MobiWave is a Kenyan bulk SMS provider with direct interconnects to Safaricom, Airtel and Telkom. Send transactional alerts, OTPs, marketing campaigns and two-way customer conversations from one REST API and one dashboard — with 99.9% delivery, transparent KES pricing, and no grey-route surprises."
+      subtitle="Bulk SMS in Kenya for alerts, OTPs, reminders and campaigns"
+      description="MobiWave helps Kenyan businesses send bulk SMS for transactional alerts, OTPs, reminders, marketing campaigns and two-way customer conversations. Manage messaging from one dashboard or integrate through a REST API, with delivery reports, sender ID support and transparent KES pricing."
       icon={MessageSquare}
       stats={[
         { value: '99.9%', label: 'Delivery Rate' },
