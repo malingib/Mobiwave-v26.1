@@ -1,4 +1,6 @@
 export async function submitContactForm(form: HTMLFormElement): Promise<void> {
+  // cPanel serves the PHP endpoint as a real server-side script.
+  // Keep FormData so PHP receives the same fields, including Turnstile's token.
   const formData = new FormData(form);
   const hasTurnstileKey = Boolean(import.meta.env.VITE_TURNSTILE_SITE_KEY);
   const turnstileToken = String(formData.get('cf-turnstile-response') ?? '').trim();
@@ -7,26 +9,14 @@ export async function submitContactForm(form: HTMLFormElement): Promise<void> {
     throw new Error('Please complete the verification challenge.');
   }
 
-  const endpoint = '/api/contact';
-  const payload: Record<string, string> = {};
-  formData.forEach((value, key) => {
-    if (typeof value === 'string' && key !== 'cf-turnstile-response') {
-      payload[key] = value;
-    }
-  });
-  payload.turnstileToken = turnstileToken;
-
-  const response = await fetch(endpoint, {
+  const response = await fetch('/contact.php', {
     method: 'POST',
-    body: JSON.stringify(payload),
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
+    body: formData,
+    headers: { Accept: 'application/json' },
   });
 
   const result = await response.json().catch(() => null) as { ok?: boolean; error?: string } | null;
   if (!response.ok || result?.ok !== true) {
-    throw new Error(result?.error || 'The contact form endpoint did not confirm email delivery.');
+    throw new Error(result?.error || 'Your message could not be sent. Please try again or email info@mobiwave.co.ke.');
   }
 }
