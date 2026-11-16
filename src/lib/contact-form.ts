@@ -1,8 +1,7 @@
 export async function submitContactForm(form: HTMLFormElement): Promise<void> {
-  // cPanel serves the PHP endpoint as a real server-side script.
   const formData = new FormData(form);
+  const endpoint = String(import.meta.env.VITE_CONTACT_FORM_ENDPOINT || '/api/contact').trim();
 
-  const endpoint = String(import.meta.env.VITE_CONTACT_FORM_ENDPOINT || '/contact.php').trim();
   const response = await fetch(endpoint, {
     method: 'POST',
     body: formData,

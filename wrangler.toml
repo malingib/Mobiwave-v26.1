@@ -1,0 +1,14 @@
+name = "mobiwave-contact"
+main = "workers/contact.js"
+compatibility_date = "2026-11-16"
+
+[vars]
+CONTACT_MAIL_TO = "sales@mobiwave.co.ke"
+CONTACT_MAIL_FROM = "no-reply@mobiwave.co.ke"
+
+# set the secret in Cloudflare with:
+#   wrangler secret put BREVO_API_KEY
+
+[[routes]]
+pattern = "mobiwave.co.ke/api/contact"
+zone_name = "mobiwave.co.ke"
