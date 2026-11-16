@@ -32,8 +32,8 @@ export function CTABanner() {
                   Tell us what you are trying to reach, collect, or build. We will help you find the simplest way to make it work.
                 </p>
                 <div className="mt-10 space-y-4 border-t border-[#172333]/10 pt-6">
-                  <a href="tel:+254736427842" className="flex items-center gap-3 text-sm font-semibold text-[#172333] transition-colors hover:text-[#176fe8]"><Phone className="h-4 w-4 text-[#176fe8]" />+254 736 427 842</a>
-                  <a href="mailto:info@mobiwave.co.ke" className="flex items-center gap-3 text-sm font-semibold text-[#172333] transition-colors hover:text-[#176fe8]"><Mail className="h-4 w-4 text-[#6255b7]" />info@mobiwave.co.ke</a>
+                  <a href="tel:+254736427842" className="flex items-center gap-3 text-sm font-semibold text-[#172333] transition-colors hover:text-[#5955d1]"><Phone className="h-4 w-4 text-[#5955d1]" />+254 736 427 842</a>
+                  <a href="mailto:info@mobiwave.co.ke" className="flex items-center gap-3 text-sm font-semibold text-[#172333] transition-colors hover:text-[#5955d1]"><Mail className="h-4 w-4 text-[#6255b7]" />info@mobiwave.co.ke</a>
                 </div>
               </div>
             </div>

@@ -82,11 +82,11 @@ export function Header() {
   const navLink = (href: string, label: string) => (
     <Link
       to={href}
-      className={`relative text-sm font-medium transition-colors ${useLightNav ? 'text-[#273243] hover:text-[#176fe8]' : 'text-white hover:text-white'}`}
+      className={`relative text-sm font-medium transition-colors ${useLightNav ? 'text-[#273243] hover:text-[#5955d1]' : 'text-white hover:text-white'}`}
     >
       {label}
       {isActive(href) && (
-        <span className={`absolute -bottom-1 left-0 h-px w-full rounded-full ${useLightNav ? 'bg-[#176fe8]' : 'bg-white/55'}`} />
+        <span className={`absolute -bottom-1 left-0 h-px w-full rounded-full ${useLightNav ? 'bg-[#5955d1]' : 'bg-white/55'}`} />
       )}
     </Link>
   );
@@ -166,7 +166,7 @@ export function Header() {
                 }}
                 aria-expanded={isServicesOpen}
                 aria-haspopup="menu"
-                className={`flex items-center gap-1 text-sm font-medium transition-colors ${useLightNav ? 'text-[#273243] hover:text-[#176fe8]' : 'text-white hover:text-white'}`}
+                className={`flex items-center gap-1 text-sm font-medium transition-colors ${useLightNav ? 'text-[#273243] hover:text-[#5955d1]' : 'text-white hover:text-white'}`}
               >
                 Services
                 <ChevronDown className={`w-4 h-4 transition-transform ${isServicesOpen ? 'rotate-180' : ''}`} />
@@ -203,7 +203,7 @@ export function Header() {
               href="https://sms.mobiwave.co.ke/login"
               target="_blank"
               rel="noopener noreferrer"
-              className={`rounded-full border px-4 py-2 text-sm font-semibold transition-all duration-200 ${useLightNav ? 'border-[#176fe8] bg-[#176fe8] text-white hover:bg-[#0f5ec9]' : 'text-white hover:bg-white/8'}`}
+              className={`rounded-full border px-4 py-2 text-sm font-semibold transition-all duration-200 ${useLightNav ? 'border-[#5955d1] bg-[#5955d1] text-white hover:bg-[#4a46c4]' : 'text-white hover:bg-white/8'}`}
               style={useLightNav ? undefined : { borderColor: 'rgba(255,255,255,0.12)' }}
               onMouseEnter={e => {
                 if (!useLightNav) {
@@ -223,7 +223,7 @@ export function Header() {
           </div>
 
           <button
-            className={`rounded-full p-2 transition-colors lg:hidden ${useLightNav ? 'text-[#273243] hover:bg-[#ebe8fa] hover:text-[#176fe8]' : 'text-white/90 hover:bg-white/10 hover:text-white'}`}
+            className={`rounded-full p-2 transition-colors lg:hidden ${useLightNav ? 'text-[#273243] hover:bg-[#ebe8fa] hover:text-[#5955d1]' : 'text-white/90 hover:bg-white/10 hover:text-white'}`}
             onClick={() => setIsMobileOpen(!isMobileOpen)}
             aria-label={isMobileOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={isMobileOpen}

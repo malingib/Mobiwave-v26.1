@@ -62,10 +62,10 @@ export function Services() {
           className="mx-auto max-w-6xl"
         >
           <MotionItem className="text-center">
-            <div className="mb-5 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-[#176fe8]">
-              <span className="h-px w-8 bg-[#176fe8]" />
+            <div className="mb-5 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-[#5955d1]">
+              <span className="h-px w-8 bg-[#5955d1]" />
               What we do
-              <span className="h-px w-8 bg-[#176fe8]" />
+              <span className="h-px w-8 bg-[#5955d1]" />
             </div>
             <h2 id="services-heading" className="mx-auto max-w-3xl text-4xl font-extrabold leading-[1.04] tracking-[-0.04em] text-[#172333] sm:text-5xl lg:text-6xl" style={{ fontFamily: 'Outfit, sans-serif' }}>
               The channels that keep business moving.
@@ -80,9 +80,9 @@ export function Services() {
               return (
                 <MotionItem key={service.title}>
                   <Link to={service.href} className="group block h-full p-2 text-left transition-transform duration-300 hover:-translate-y-1">
-                    <h3 className="text-xl font-bold text-[#172333] transition-colors group-hover:text-[#176fe8]" style={{ fontFamily: 'Outfit, sans-serif' }}>{service.title}</h3>
+                    <h3 className="text-xl font-bold text-[#172333] transition-colors group-hover:text-[#5955d1]" style={{ fontFamily: 'Outfit, sans-serif' }}>{service.title}</h3>
                     <p className="mt-3 text-sm leading-6 text-[#586273]">{service.description}</p>
-                    <span className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-[#176fe8]">Explore service <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" /></span>
+                    <span className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-[#5955d1]">Explore service <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" /></span>
                   </Link>
                 </MotionItem>
               );
@@ -90,7 +90,7 @@ export function Services() {
           </div>
 
           <MotionItem className="mt-10 text-center">
-            <Link to="/services" className="group inline-flex items-center gap-2 border-b border-[#172333]/25 pb-2 text-sm font-bold text-[#172333] transition-colors hover:border-[#176fe8] hover:text-[#176fe8]">
+            <Link to="/services" className="group inline-flex items-center gap-2 border-b border-[#172333]/25 pb-2 text-sm font-bold text-[#172333] transition-colors hover:border-[#5955d1] hover:text-[#5955d1]">
               Explore all services <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
             </Link>
           </MotionItem>

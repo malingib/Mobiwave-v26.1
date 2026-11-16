@@ -154,13 +154,13 @@ export function Contact() {
             <div ref={infoRef} className="space-y-4">
               {contactInfo.map((item, index) => (
                 <div key={index} className="info-card flex items-start gap-4 border-b border-gray-200 py-4">
-                  <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center text-[#0084ff]">
+                  <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center text-[#5955d1]">
                     <item.icon className="h-5 w-5" />
                   </div>
                   <div>
                     <p className="text-sm text-gray-500">{item.label}</p>
                     {item.href ? (
-                      <a href={item.href} className="font-medium text-gray-900 hover:text-[#0084ff] transition-colors">
+                      <a href={item.href} className="font-medium text-gray-900 hover:text-[#5955d1] transition-colors">
                         {item.value}
                       </a>
                     ) : (
@@ -292,7 +292,7 @@ export function Contact() {
                   <Button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-[#0084ff] text-white hover:bg-[#0068d6] py-6"
+                    className="w-full bg-[#5955d1] text-white hover:bg-[#4a46c4] py-6"
                   >
                     <Send className="w-5 h-5 mr-2" />
                     {isSubmitting ? 'Sending...' : 'Send Message'}

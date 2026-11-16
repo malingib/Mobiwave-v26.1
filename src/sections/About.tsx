@@ -15,7 +15,7 @@ const features = [
     icon: ShieldCheck,
     title: 'Built for Kenya',
     text: 'Tools shaped around the way local organisations collect, communicate, and grow.',
-    tone: 'bg-[#e1f1ff] text-[#176fe8]',
+    tone: 'bg-[#e1f1ff] text-[#5955d1]',
   },
   {
     icon: BarChart3,

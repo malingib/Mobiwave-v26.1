@@ -247,10 +247,10 @@ export function Pricing() {
       <section ref={(el) => { sectionRefs.current[0] = el; }} className="section-padding">
         <div className="container-custom">
           <div className="text-center mb-12">
-            <span className="mb-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-[#0084ff]">
-              <span className="h-px w-8 bg-[#0084ff]" />
+            <span className="mb-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-[#5955d1]">
+              <span className="h-px w-8 bg-[#5955d1]" />
               BULK SMS
-              <span className="h-px w-8 bg-[#0084ff]" />
+              <span className="h-px w-8 bg-[#5955d1]" />
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Bulk SMS Packages</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
@@ -282,7 +282,7 @@ export function Pricing() {
                       </li>
                     ))}
                   </ul>
-                  <Button className="w-full bg-[#0084ff] text-white hover:bg-[#0068d6]">
+                  <Button className="w-full bg-[#5955d1] text-white hover:bg-[#4a46c4]">
                     Get Started
                   </Button>
                 </div>
@@ -328,7 +328,7 @@ export function Pricing() {
                     </li>
                   ))}
                 </ul>
-                <Button className="w-full bg-[#0084ff] text-white hover:bg-[#0068d6]">
+                <Button className="w-full bg-[#5955d1] text-white hover:bg-[#4a46c4]">
                   Get Started
                 </Button>
               </div>
@@ -339,7 +339,7 @@ export function Pricing() {
             <p className="text-sm text-gray-500 mb-2">
               USSD codes are subject to the required approvals and mobile-network provisioning. Published prices exclude VAT; session charges and SMS usage are billed separately.
             </p>
-            <a href="/contact" className="inline-flex items-center gap-2 text-[#0084ff] hover:underline">
+            <a href="/contact" className="inline-flex items-center gap-2 text-[#5955d1] hover:underline">
               Contact us for custom USSD solutions <ArrowRight className="w-4 h-4" />
             </a>
           </div>
@@ -390,7 +390,7 @@ export function Pricing() {
                     ))}
                   </ul>
                 </div>
-                <Button className="w-full bg-[#0084ff] text-white hover:bg-[#0068d6]">
+                <Button className="w-full bg-[#5955d1] text-white hover:bg-[#4a46c4]">
                   Get Started
                 </Button>
               </div>
@@ -401,7 +401,7 @@ export function Pricing() {
             <p className="text-sm text-gray-500 mb-2">
               All shortcodes require approval from the Communication Authority of Kenya.
             </p>
-            <a href="/contact" className="inline-flex items-center gap-2 text-[#0084ff] hover:underline">
+            <a href="/contact" className="inline-flex items-center gap-2 text-[#5955d1] hover:underline">
               Contact us for more information <ArrowRight className="w-4 h-4" />
             </a>
           </div>
@@ -431,7 +431,7 @@ export function Pricing() {
               ))}
             </div>
             <p className="text-sm text-gray-600 mb-6">SMS usage is charged at the standard MobiWave bulk SMS rates.</p>
-            <a href="/services/sms-surveys" className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-[#0084ff] px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-[#0068d6]">
+            <a href="/services/sms-surveys" className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-[#5955d1] px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-[#4a46c4]">
               Explore SMS Surveys <ArrowRight className="h-4 w-4" />
             </a>
           </div>
@@ -442,10 +442,10 @@ export function Pricing() {
       <section ref={(el) => { sectionRefs.current[4] = el; }} className="section-padding bg-gray-50">
         <div className="container-custom">
           <div className="text-center mb-12">
-            <span className="mb-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-[#0084ff]">
-              <span className="h-px w-8 bg-[#0084ff]" />
+            <span className="mb-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-[#5955d1]">
+              <span className="h-px w-8 bg-[#5955d1]" />
               BULK WHATSAPP
-              <span className="h-px w-8 bg-[#0084ff]" />
+              <span className="h-px w-8 bg-[#5955d1]" />
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Bulk WhatsApp Plans</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">Official WhatsApp Business API subscriptions. Meta message charges are billed separately.</p>
@@ -455,7 +455,7 @@ export function Pricing() {
               <div key={plan.name} className="pricing-card border-b border-gray-200 p-6">
                 <h3 className="text-xl font-bold text-gray-900 mb-2">{plan.name}</h3>
                 <div className="flex items-baseline gap-1 mb-4">
-                  <span className="text-2xl font-bold text-[#0084ff]">{plan.price}</span>
+                  <span className="text-2xl font-bold text-[#5955d1]">{plan.price}</span>
                   <span className="text-sm text-gray-500">/ month</span>
                 </div>
                 <ul className="space-y-2 mb-4">
@@ -470,7 +470,7 @@ export function Pricing() {
                     {plan.setup}
                   </li>
                 </ul>
-                <a href="https://wap.mobiwave.co.ke" target="_blank" rel="noopener noreferrer" className="flex w-full items-center justify-center gap-2 rounded-md bg-[#0084ff] px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-[#0068d6]">
+                <a href="https://wap.mobiwave.co.ke" target="_blank" rel="noopener noreferrer" className="flex w-full items-center justify-center gap-2 rounded-md bg-[#5955d1] px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-[#4a46c4]">
                   Choose plan <ArrowRight className="h-4 w-4" />
                 </a>
               </div>
@@ -497,11 +497,11 @@ export function Pricing() {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {otherServices.map((service) => (
-              <div key={service.name} className="pricing-card border-b border-gray-200 p-6 transition-colors hover:border-[#0084ff]/40">
+              <div key={service.name} className="pricing-card border-b border-gray-200 p-6 transition-colors hover:border-[#5955d1]/40">
                 <h3 className="text-lg font-bold text-gray-900 mb-2">{service.name}</h3>
                 <p className="text-sm text-gray-500 mb-4">{service.description}</p>
                 <div className="flex items-baseline gap-1 mb-4">
-                  <span className="text-xl font-bold text-[#0084ff]">{service.price}</span>
+                  <span className="text-xl font-bold text-[#5955d1]">{service.price}</span>
                   <span className="text-sm text-gray-500">{service.unit}</span>
                 </div>
                 <ul className="space-y-2 mb-6">
@@ -514,15 +514,15 @@ export function Pricing() {
                 </ul>
                 {service.name === 'Bulk WhatsApp' ? (
                   <div className="space-y-2">
-                    <a href="https://wap.mobiwave.co.ke" target="_blank" rel="noopener noreferrer" className="flex w-full items-center justify-center gap-2 rounded-md bg-[#0084ff] px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-[#0068d6]">
+                    <a href="https://wap.mobiwave.co.ke" target="_blank" rel="noopener noreferrer" className="flex w-full items-center justify-center gap-2 rounded-md bg-[#5955d1] px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-[#4a46c4]">
                       Get started with MobiWave WA <ArrowRight className="h-4 w-4" />
                     </a>
-                    <a href="/services/bulk-whatsapp" className="flex w-full items-center justify-center gap-2 rounded-md border border-[#0084ff] px-4 py-2 text-sm font-medium text-[#0084ff] transition-colors hover:bg-[#0084ff] hover:text-white">
+                    <a href="/services/bulk-whatsapp" className="flex w-full items-center justify-center gap-2 rounded-md border border-[#5955d1] px-4 py-2 text-sm font-medium text-[#5955d1] transition-colors hover:bg-[#5955d1] hover:text-white">
                       View detailed pricing
                     </a>
                   </div>
                 ) : (
-                  <Button variant="outline" className="w-full border-[#0084ff] text-[#0084ff] hover:bg-[#0084ff] hover:text-white">
+                  <Button variant="outline" className="w-full border-[#5955d1] text-[#5955d1] hover:bg-[#5955d1] hover:text-white">
                     Get Quote
                   </Button>
                 )}
@@ -543,7 +543,7 @@ export function Pricing() {
           </p>
           <a
             href="/contact"
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-white text-[#0084ff] font-semibold hover:bg-gray-100 transition-colors"
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-white text-[#5955d1] font-semibold hover:bg-gray-100 transition-colors"
           >
             Contact us for custom pricing <ArrowRight className="w-5 h-5" />
           </a>

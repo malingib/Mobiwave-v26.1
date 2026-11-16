@@ -33,7 +33,7 @@ export function SectionHeader({
           <div className={`w-7 h-0.5 rounded-full bg-[#1d8c89] ${dashClass}`} />
           <span
             className={`text-xs font-bold uppercase tracking-[0.18em] ${
-              isDark ? 'text-[#36b8ff]' : 'text-[#7c3aed]'
+              isDark ? 'text-[#8b87e8]' : 'text-[#7c3aed]'
             }`}
           >
             {label}

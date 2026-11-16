@@ -132,10 +132,10 @@ export function About() {
         <div className="container-custom">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <span className="mb-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-[#176fe8]">
-                <span className="h-px w-8 bg-[#176fe8]" />
+              <span className="mb-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-[#5955d1]">
+                <span className="h-px w-8 bg-[#5955d1]" />
                 OUR MISSION
-                <span className="h-px w-8 bg-[#176fe8]" />
+                <span className="h-px w-8 bg-[#5955d1]" />
               </span>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
                 Bridging Communication Gaps with Innovative Solutions
@@ -202,7 +202,7 @@ export function About() {
                 key={index}
                 className="timeline-item border-b border-gray-200 py-5"
               >
-                <span className="inline-flex px-2.5 py-1 rounded-full bg-[#0084ff]/10 text-[#0084ff] font-semibold text-sm">
+                <span className="inline-flex px-2.5 py-1 rounded-full bg-[#5955d1]/10 text-[#5955d1] font-semibold text-sm">
                   {milestone.year}
                 </span>
                 <h3 className="text-lg font-bold text-gray-900 mt-3 mb-2">{milestone.title}</h3>
@@ -232,9 +232,9 @@ export function About() {
             {values.map((value, index) => (
               <div
                 key={index}
-                className="value-card border-b border-gray-200 py-5 transition-colors hover:border-[#0084ff]/40"
+                className="value-card border-b border-gray-200 py-5 transition-colors hover:border-[#5955d1]/40"
               >
-                <div className="mb-4 text-[#0084ff]">
+                <div className="mb-4 text-[#5955d1]">
                   <value.icon className="h-7 w-7" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-2">{value.title}</h3>

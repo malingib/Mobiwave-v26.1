@@ -47,8 +47,8 @@ export function FaqBlock({ faqs, title }: { faqs: { question: string; answer: st
       <div className="container-custom">
         <div className="grid items-start gap-10 lg:grid-cols-[0.6fr_1.4fr] lg:gap-16">
           <div>
-            <div className="mb-5 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-[#0084ff]">
-              <span className="h-px w-8 bg-[#0084ff]" />
+            <div className="mb-5 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-[#5955d1]">
+              <span className="h-px w-8 bg-[#5955d1]" />
               Frequently Asked Questions
             </div>
             <h2 id={`${title}-faq`} className="text-3xl md:text-4xl font-extrabold leading-[1.05] tracking-[-0.04em] text-[#0a1a25] sm:text-5xl" style={{ fontFamily: 'Outfit, sans-serif' }}>
@@ -57,7 +57,7 @@ export function FaqBlock({ faqs, title }: { faqs: { question: string; answer: st
             <p className="mt-6 max-w-sm text-base leading-7 text-[#5b6b78]">
               The practical questions Kenyan organisations ask about {title.toLowerCase()}, with straight answers and KES pricing where it applies.
             </p>
-            <a href="/contact" className="mt-8 inline-flex text-sm font-bold text-[#0084ff] hover:text-[#0068d6]">Still have a question? Talk to us <span className="ml-2">&rarr;</span></a>
+            <a href="/contact" className="mt-8 inline-flex text-sm font-bold text-[#5955d1] hover:text-[#4a46c4]">Still have a question? Talk to us <span className="ml-2">&rarr;</span></a>
           </div>
 
           <div className="border-t border-[#0a1a25]/15">
@@ -67,8 +67,8 @@ export function FaqBlock({ faqs, title }: { faqs: { question: string; answer: st
                 <div key={faq.question} className="border-b border-[#0a1a25]/15">
                   <h3>
                     <button onClick={() => setOpenIndex(isOpen ? -1 : index)} className="group flex w-full items-center justify-between gap-6 py-5 text-left sm:py-6" aria-expanded={isOpen}>
-                      <span className="text-base sm:text-lg font-bold text-[#0a1a25] transition-colors group-hover:text-[#0084ff]" style={{ fontFamily: 'Outfit, sans-serif' }}>{faq.question}</span>
-                      <span className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#0a1a25]/15 transition-all ${isOpen ? 'rotate-180 border-[#0084ff] bg-[#0084ff] text-white' : 'text-[#5b6b78]'}`} aria-hidden="true"><ChevronDown className="h-4 w-4" /></span>
+                      <span className="text-base sm:text-lg font-bold text-[#0a1a25] transition-colors group-hover:text-[#5955d1]" style={{ fontFamily: 'Outfit, sans-serif' }}>{faq.question}</span>
+                      <span className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#0a1a25]/15 transition-all ${isOpen ? 'rotate-180 border-[#5955d1] bg-[#5955d1] text-white' : 'text-[#5b6b78]'}`} aria-hidden="true"><ChevronDown className="h-4 w-4" /></span>
                     </button>
                   </h3>
                   <AnimatePresence initial={false}>
@@ -185,9 +185,9 @@ export function ServicePageLayout({
         {relatedRoutes && relatedRoutes.length > 0 && (
           <nav aria-label="Related resources" className="container-custom pb-12">
             <p className="mb-3 text-sm font-semibold text-[#5b6b78]">Related resources</p>
-            <div className="flex flex-wrap gap-x-5 gap-y-2 text-sm font-bold text-[#0084ff]">
+            <div className="flex flex-wrap gap-x-5 gap-y-2 text-sm font-bold text-[#5955d1]">
               {relatedRoutes.map((route) => (
-                <a key={route.href} href={route.href} className="underline decoration-[#0084ff]/30 underline-offset-4 hover:decoration-[#0084ff]">
+                <a key={route.href} href={route.href} className="underline decoration-[#5955d1]/30 underline-offset-4 hover:decoration-[#5955d1]">
                   {route.label}
                 </a>
               ))}
@@ -256,7 +256,7 @@ export function ServicePageLayout({
                     </a>
                     <a
                       href="/pricing"
-                      className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full border-2 border-[#0084ff] text-[#0084ff] font-semibold hover:bg-[#0084ff] hover:text-white transition-colors"
+                      className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full border-2 border-[#5955d1] text-[#5955d1] font-semibold hover:bg-[#5955d1] hover:text-white transition-colors"
                     >
                       View Pricing
                     </a>
@@ -323,7 +323,7 @@ export function ServicePageLayout({
               <ol className="grid md:grid-cols-2 gap-4 animate-section max-w-5xl mx-auto">
                 {howItWorks.map((item) => (
                   <li key={item.step} className="animate-item mw-card p-5 flex gap-4">
-                    <span className="pt-1 text-sm font-bold text-[#0084ff]" aria-hidden="true">{item.step}</span>
+                    <span className="pt-1 text-sm font-bold text-[#5955d1]" aria-hidden="true">{item.step}</span>
                     <div>
                       <h3 className="text-lg font-bold text-[#0a1a25] mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>{item.title}</h3>
                       <p className="text-[#5b6b78] text-sm leading-relaxed">{item.description}</p>
@@ -354,7 +354,7 @@ export function ServicePageLayout({
                     <TableRow>
                       <TableHead className="min-w-[200px]">Capability</TableHead>
                       {comparisonTable.headers.map((h) => (
-                        <TableHead key={h} className={h === 'MobiWave' ? 'bg-[#0084ff]/5 text-[#0084ff]' : ''}>{h}</TableHead>
+                        <TableHead key={h} className={h === 'MobiWave' ? 'bg-[#5955d1]/5 text-[#5955d1]' : ''}>{h}</TableHead>
                       ))}
                     </TableRow>
                   </TableHeader>
@@ -366,7 +366,7 @@ export function ServicePageLayout({
                           const text = typeof cell === 'string' ? cell : cell.text;
                           const highlight = typeof cell === 'string' ? false : cell.highlight;
                           return (
-                            <TableCell key={i} className={highlight ? 'bg-[#0084ff]/5 font-semibold text-[#0a1a25]' : 'text-[#5b6b78]'}>
+                            <TableCell key={i} className={highlight ? 'bg-[#5955d1]/5 font-semibold text-[#0a1a25]' : 'text-[#5b6b78]'}>
                               {text}
                             </TableCell>
                           );
@@ -394,7 +394,7 @@ export function ServicePageLayout({
                 {pricingTabs && pricingTabs.length > 1 && (
                   <div className="mt-6 inline-flex rounded-lg border border-gray-200 p-1" role="tablist" aria-label="USSD billing model">
                     {pricingTabs.map((tab, index) => (
-                      <button key={tab.label} type="button" role="tab" aria-selected={activePricingTab === index} onClick={() => setActivePricingTab(index)} className={`rounded-md px-5 py-2.5 text-sm font-semibold transition-colors ${activePricingTab === index ? 'bg-[#0084ff] text-white' : 'text-gray-700 hover:bg-gray-100'}`}>
+                      <button key={tab.label} type="button" role="tab" aria-selected={activePricingTab === index} onClick={() => setActivePricingTab(index)} className={`rounded-md px-5 py-2.5 text-sm font-semibold transition-colors ${activePricingTab === index ? 'bg-[#5955d1] text-white' : 'text-gray-700 hover:bg-gray-100'}`}>
                         {tab.label}{index === 0 ? ' · Default' : ''}
                       </button>
                     ))}
@@ -421,7 +421,7 @@ export function ServicePageLayout({
                         </li>
                       ))}
                     </ul>
-                    <Button className="w-full bg-gradient-to-r from-[#0084ff] to-[#031522] text-white hover:shadow-lg mt-auto">
+                    <Button className="w-full bg-gradient-to-r from-[#5955d1] to-[#031522] text-white hover:shadow-lg mt-auto">
                       Get Started
                     </Button>
                   </div>
@@ -446,7 +446,7 @@ export function ServicePageLayout({
                       Ready to Transform?
                     </Badge>
                     <CardTitle className="section-heading-white mb-4">
-                      Ready to Transform Your <span style={{ color: '#0084ff' }}>{title} Strategy?</span>
+                      Ready to Transform Your <span style={{ color: '#5955d1' }}>{title} Strategy?</span>
                     </CardTitle>
                     <p className="text-white/60 text-lg">
                       {ctaDescription ?? 'Get in touch with our team today to discuss how MobiWave can help your business communicate more effectively.'}

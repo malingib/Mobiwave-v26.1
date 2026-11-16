@@ -37,7 +37,7 @@ export function Innovations() {
       <div className="container-custom">
         <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
           <div className="max-w-3xl">
-            <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#176fe8]">MobiWave Innovations</p>
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#5955d1]">MobiWave Innovations</p>
             <h2 id="home-innovations-heading" className="mt-3 text-3xl font-extrabold leading-tight tracking-[-0.04em] text-[#172333] sm:text-4xl lg:text-5xl" style={{ fontFamily: 'Outfit, sans-serif' }}>
               Digital solutions designed for real-world work.
             </h2>
@@ -45,7 +45,7 @@ export function Innovations() {
               Explore selected MobiWave platforms for business operations, customer engagement and investment information.
             </p>
           </div>
-          <Link to="/innovations" className="inline-flex w-fit shrink-0 items-center gap-2 border-b border-[#172333]/25 pb-2 text-sm font-bold text-[#172333] transition-colors hover:border-[#176fe8] hover:text-[#176fe8]">
+          <Link to="/innovations" className="inline-flex w-fit shrink-0 items-center gap-2 border-b border-[#172333]/25 pb-2 text-sm font-bold text-[#172333] transition-colors hover:border-[#5955d1] hover:text-[#5955d1]">
             Explore all innovations <ArrowUpRight className="h-4 w-4" />
           </Link>
         </div>
@@ -53,13 +53,13 @@ export function Innovations() {
         <div className="mt-8 grid gap-x-8 gap-y-5 md:grid-cols-3">
           {featuredInnovations.map(({ name, label, description, href, action, icon: Icon, external }) => (
             <article key={name} className="flex h-full flex-col border-t border-[#dce4ee] py-6">
-              <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-white text-[#176fe8] shadow-sm">
+              <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-white text-[#5955d1] shadow-sm">
                 <Icon className="h-5 w-5" aria-hidden="true" />
               </div>
               <p className="mt-5 text-xs font-semibold uppercase tracking-[0.1em] text-[#6b7585]">{label}</p>
               <h3 className="mt-2 text-xl font-bold text-[#172333]" style={{ fontFamily: 'Outfit, sans-serif' }}>{name}</h3>
               <p className="mt-3 flex-1 text-sm leading-6 text-[#586273]">{description}</p>
-              <a href={href} target={external ? '_blank' : undefined} rel={external ? 'noreferrer' : undefined} className="mt-5 inline-flex w-fit items-center gap-2 text-sm font-bold text-[#176fe8] hover:text-[#105ac0]">
+              <a href={href} target={external ? '_blank' : undefined} rel={external ? 'noreferrer' : undefined} className="mt-5 inline-flex w-fit items-center gap-2 text-sm font-bold text-[#5955d1] hover:text-[#105ac0]">
                 {action} <ArrowUpRight className="h-4 w-4" />
               </a>
             </article>

@@ -23,8 +23,8 @@ export function FAQ() {
       <div className="container-custom">
         <motion.div ref={ref} initial="hidden" animate={isInView ? 'visible' : 'hidden'} variants={staggerContainer} className="grid items-start gap-12 lg:grid-cols-[0.75fr_1.25fr] lg:gap-24">
           <MotionItem className="lg:sticky lg:top-32">
-            <div className="mb-5 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-[#0084ff]">
-              <span className="h-px w-8 bg-[#0084ff]" />
+            <div className="mb-5 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-[#5955d1]">
+              <span className="h-px w-8 bg-[#5955d1]" />
               FAQ
             </div>
             <h2 id="faq-heading" className="max-w-md text-4xl font-extrabold leading-[1.05] tracking-[-0.04em] text-[#0a1a25] sm:text-5xl" style={{ fontFamily: 'Outfit, sans-serif' }}>
@@ -33,7 +33,7 @@ export function FAQ() {
             <p className="mt-6 max-w-sm text-base leading-7 text-[#5b6b78]">
               The practical questions Kenyan organisations ask before they switch providers.
             </p>
-            <a href="#contact" className="mt-8 inline-flex text-sm font-bold text-[#0084ff] hover:text-[#0068d6]">Still have a question? Talk to us <span className="ml-2">&rarr;</span></a>
+            <a href="#contact" className="mt-8 inline-flex text-sm font-bold text-[#5955d1] hover:text-[#4a46c4]">Still have a question? Talk to us <span className="ml-2">&rarr;</span></a>
           </MotionItem>
 
           <MotionItem>
@@ -43,8 +43,8 @@ export function FAQ() {
                 return (
                   <div key={faq.question} className="border-b border-[#0a1a25]/15">
                     <button onClick={() => setOpenIndex(isOpen ? -1 : index)} className="group flex w-full items-center justify-between gap-6 py-6 text-left sm:py-7" aria-expanded={isOpen}>
-                      <span className="text-lg font-bold text-[#0a1a25] transition-colors group-hover:text-[#0084ff] sm:text-xl" style={{ fontFamily: 'Outfit, sans-serif' }}>{faq.question}</span>
-                      <span className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#0a1a25]/15 transition-all ${isOpen ? 'rotate-180 border-[#0084ff] bg-[#0084ff] text-white' : 'text-[#5b6b78]'}`}><ChevronDown className="h-4 w-4" /></span>
+                      <span className="text-lg font-bold text-[#0a1a25] transition-colors group-hover:text-[#5955d1] sm:text-xl" style={{ fontFamily: 'Outfit, sans-serif' }}>{faq.question}</span>
+                      <span className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#0a1a25]/15 transition-all ${isOpen ? 'rotate-180 border-[#5955d1] bg-[#5955d1] text-white' : 'text-[#5b6b78]'}`}><ChevronDown className="h-4 w-4" /></span>
                     </button>
                     <AnimatePresence initial={false}>
                       {isOpen && (

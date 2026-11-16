@@ -56,7 +56,7 @@ export function Testimonials() {
                   <blockquote className="mt-6 flex-1 text-lg font-semibold leading-8 text-[#172333]" style={{ fontFamily: 'Outfit, sans-serif' }}>&ldquo;{story.quote}&rdquo;</blockquote>
                   <div className="mt-8 flex items-end justify-between gap-4 border-t border-[#172333]/10 pt-5">
                     <div><p className="text-sm font-bold text-[#172333]">{story.name}</p><p className="mt-1 text-xs text-[#586273]">{story.role}</p></div>
-                    <div className="text-right"><p className="text-lg font-extrabold text-[#176fe8]" style={{ fontFamily: 'Outfit, sans-serif' }}>{story.result}</p><p className="text-[10px] text-[#586273]">{story.resultLabel}</p></div>
+                    <div className="text-right"><p className="text-lg font-extrabold text-[#5955d1]" style={{ fontFamily: 'Outfit, sans-serif' }}>{story.result}</p><p className="text-[10px] text-[#586273]">{story.resultLabel}</p></div>
                   </div>
                 </article>
               </MotionItem>
@@ -64,7 +64,7 @@ export function Testimonials() {
           </div>
 
           <MotionItem className="mt-10 text-center">
-            <a href="#contact" className="group inline-flex items-center gap-2 border-b border-[#172333]/25 pb-2 text-sm font-bold text-[#172333] transition-colors hover:border-[#176fe8] hover:text-[#176fe8]">Start a conversation <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" /></a>
+            <a href="#contact" className="group inline-flex items-center gap-2 border-b border-[#172333]/25 pb-2 text-sm font-bold text-[#172333] transition-colors hover:border-[#5955d1] hover:text-[#5955d1]">Start a conversation <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" /></a>
           </MotionItem>
         </motion.div>
       </div>

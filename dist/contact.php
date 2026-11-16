@@ -2,8 +2,9 @@
 declare(strict_types=1);
 
 header('Content-Type: application/json; charset=utf-8');
+header('X-Content-Type-Options: nosniff');
 
-function respond(int $status, array $body): never
+function respond(int $status, array $body): void
 {
     http_response_code($status);
     echo json_encode($body, JSON_UNESCAPED_SLASHES);
@@ -29,7 +30,7 @@ function loadDotEnvFile(): void
 
         foreach ($lines as $line) {
             $trimmed = trim($line);
-            if ($trimmed === '' || str_starts_with($trimmed, '#')) {
+            if ($trimmed === '' || $trimmed[0] === '#') {
                 continue;
             }
 
@@ -68,7 +69,10 @@ loadDotEnvFile();
 function setting(string $name): string
 {
     $value = getenv($name);
-    return $value === false ? '' : trim($value);
+    if ($value === false || $value === '') {
+        $value = isset($_ENV[$name]) ? $_ENV[$name] : (isset($_SERVER[$name]) ? $_SERVER[$name] : '');
+    }
+    return trim((string) $value);
 }
 
 function headerValue(string $value, int $maxLength = 160): string
@@ -77,40 +81,72 @@ function headerValue(string $value, int $maxLength = 160): string
     return function_exists('mb_substr') ? mb_substr($value, 0, $maxLength) : substr($value, 0, $maxLength);
 }
 
-function sendBrevo(string $apiKey, string $from, string $to, string $replyTo, string $subject, string $body): void
+function sendSmtp(string $from, string $to, string $replyTo, string $subject, string $body): void
 {
     if (!function_exists('curl_init')) {
         throw new RuntimeException('The cURL extension is not available');
     }
 
-    $escapedBody = nl2br(htmlspecialchars($body, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'));
-    $payload = [
-        'sender' => ['name' => 'MobiWave Website', 'email' => $from],
-        'to' => [['email' => $to, 'name' => 'MobiWave Enquiries']],
-        'replyTo' => ['email' => $replyTo],
-        'subject' => $subject,
-        'textContent' => $body,
-        'htmlContent' => '<div style="font-family:Arial,sans-serif;line-height:1.6">' . $escapedBody . '</div>',
-    ];
+    $host = setting('SMTP_HOST');
+    $port = (int) (setting('SMTP_PORT') ?: '587');
+    $encryption = strtolower(setting('SMTP_ENCRYPTION') ?: 'tls');
+    $username = setting('SMTP_USERNAME');
+    $password = setting('SMTP_PASSWORD');
 
-    $json = json_encode($payload, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
-    if ($json === false) {
-        throw new RuntimeException('Could not encode the email payload');
+    if ($host === '' || !preg_match('/^[a-z0-9.-]+$/i', $host) || $port < 1 || $port > 65535) {
+        throw new RuntimeException('SMTP server settings are invalid');
     }
 
-    $ch = curl_init('https://api.brevo.com/v3/smtp/email');
+    if (!in_array($encryption, ['tls', 'ssl', 'smtps', 'none'], true)) {
+        throw new RuntimeException('SMTP encryption setting is invalid');
+    }
+
+    if (!filter_var($from, FILTER_VALIDATE_EMAIL) || !filter_var($to, FILTER_VALIDATE_EMAIL) || !filter_var($replyTo, FILTER_VALIDATE_EMAIL)) {
+        throw new RuntimeException('SMTP email address is invalid');
+    }
+
+    $scheme = in_array($encryption, ['ssl', 'smtps'], true) ? 'smtps' : 'smtp';
+    $message = implode("\r\n", [
+        'Date: ' . date(DATE_RFC2822),
+        'From: "MobiWave Website" <' . $from . '>',
+        'To: <' . $to . '>',
+        'Reply-To: <' . $replyTo . '>',
+        'Subject: =?UTF-8?B?' . base64_encode($subject) . '?=',
+        'MIME-Version: 1.0',
+        'Content-Type: text/plain; charset=UTF-8',
+        'Content-Transfer-Encoding: base64',
+        '',
+        rtrim(chunk_split(base64_encode($body), 76, "\r\n")),
+        '',
+    ]);
+    $offset = 0;
+
+    $ch = curl_init($scheme . '://' . $host . ':' . $port);
     curl_setopt_array($ch, [
-        CURLOPT_POST => true,
-        CURLOPT_POSTFIELDS => $json,
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_CONNECTTIMEOUT => 10,
-        CURLOPT_TIMEOUT => 20,
-        CURLOPT_HTTPHEADER => [
-            'accept: application/json',
-            'api-key: ' . $apiKey,
-            'content-type: application/json',
-        ],
+        CURLOPT_TIMEOUT => 30,
+        CURLOPT_MAIL_FROM => '<' . $from . '>',
+        CURLOPT_MAIL_RCPT => ['<' . $to . '>'],
+        CURLOPT_UPLOAD => true,
+        CURLOPT_INFILESIZE => strlen($message),
+        CURLOPT_READFUNCTION => static function ($handle, $input, int $length) use (&$offset, $message): string {
+            $chunk = substr($message, $offset, $length);
+            $offset += strlen($chunk);
+            return $chunk;
+        },
     ]);
+
+    if ($encryption === 'tls') {
+        curl_setopt($ch, CURLOPT_USE_SSL, CURLUSESSL_ALL);
+    } elseif ($encryption === 'none') {
+        curl_setopt($ch, CURLOPT_USE_SSL, CURLUSESSL_NONE);
+    }
+
+    if ($username !== '' || $password !== '') {
+        curl_setopt($ch, CURLOPT_USERNAME, $username);
+        curl_setopt($ch, CURLOPT_PASSWORD, $password);
+    }
 
     $response = curl_exec($ch);
     $curlError = curl_error($ch);
@@ -118,61 +154,55 @@ function sendBrevo(string $apiKey, string $from, string $to, string $replyTo, st
     curl_close($ch);
 
     if ($response === false || $curlError !== '') {
-        error_log('MobiWave Brevo request failed: ' . ($curlError !== '' ? $curlError : 'request failed'));
-        throw new RuntimeException('Brevo email request failed');
+        error_log('MobiWave SMTP request failed: ' . ($curlError !== '' ? $curlError : 'request failed'));
+        throw new RuntimeException('SMTP email request failed');
     }
 
     if ($status < 200 || $status >= 300) {
-        error_log('MobiWave Brevo rejected contact email with HTTP status ' . $status);
-        throw new RuntimeException('Brevo rejected the email');
+        error_log('MobiWave SMTP server rejected contact email with status ' . $status);
+        throw new RuntimeException('SMTP server rejected the email');
     }
 }
 
-function verifyTurnstile(string $token): void
+function sendMailFallback(string $from, string $to, string $replyTo, string $subject, string $body): void
 {
-    $secret = trim((string) (getenv('TURNSTILE_SECRET_KEY') ?: getenv('CF_TURNSTILE_SECRET_KEY') ?: ''));
+    if (!function_exists('mail')) {
+        throw new RuntimeException('The PHP mail() function is not available');
+    }
 
-    if ($secret === '') {
-        if (isset($_POST['cf-turnstile-response']) || getenv('VITE_TURNSTILE_SITE_KEY') !== false || getenv('CF_TURNSTILE_SITE_KEY') !== false) {
-            respond(500, ['ok' => false, 'error' => 'Captcha secret is not configured on the server.']);
+    $headers = [
+        'From: ' . $from,
+        'Reply-To: ' . $replyTo,
+        'MIME-Version: 1.0',
+        'Content-Type: text/plain; charset=UTF-8',
+        'X-Mailer: MobiWave Contact Form',
+    ];
+
+    if (!mail($to, $subject, $body, implode("\r\n", $headers))) {
+        throw new RuntimeException('Fallback mail delivery failed');
+    }
+}
+
+function sendContactEmail(string $from, string $to, string $replyTo, string $subject, string $body): void
+{
+    $smtpHost = setting('SMTP_HOST');
+    $hasSmtpConfig = $smtpHost !== '' && filter_var($from, FILTER_VALIDATE_EMAIL) && filter_var($to, FILTER_VALIDATE_EMAIL);
+
+    if ($hasSmtpConfig) {
+        try {
+            sendSmtp($from, $to, $replyTo, $subject, $body);
+            return;
+        } catch (Throwable $error) {
+            error_log('MobiWave SMTP requested but failed: ' . $error->getMessage());
         }
+    }
+
+    try {
+        sendMailFallback($from, $to, $replyTo, $subject, $body);
         return;
-    }
-
-    if ($token === '') {
-        respond(403, ['ok' => false, 'error' => 'Please complete the verification challenge.']);
-    }
-
-    if (!function_exists('curl_init')) {
-        respond(500, ['ok' => false, 'error' => 'Captcha verification is unavailable on this server.']);
-    }
-
-    $ch = curl_init('https://challenges.cloudflare.com/turnstile/v0/siteverify');
-    curl_setopt_array($ch, [
-        CURLOPT_POST => true,
-        CURLOPT_POSTFIELDS => http_build_query([
-            'secret' => $secret,
-            'response' => $token,
-            'remoteip' => $_SERVER['REMOTE_ADDR'] ?? '',
-        ]),
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_TIMEOUT => 10,
-        CURLOPT_CONNECTTIMEOUT => 10,
-        CURLOPT_HTTPHEADER => ['Accept: application/json'],
-    ]);
-
-    $payload = curl_exec($ch);
-    $curlError = curl_error($ch);
-    curl_close($ch);
-
-    if ($payload === false || $curlError !== '') {
-        error_log('Turnstile verification failed: ' . ($curlError !== '' ? $curlError : 'curl request failed'));
-        respond(500, ['ok' => false, 'error' => 'Captcha verification is currently unavailable.']);
-    }
-
-    $result = json_decode($payload, true);
-    if (!is_array($result) || empty($result['success'])) {
-        respond(403, ['ok' => false, 'error' => 'Please complete the verification challenge.']);
+    } catch (Throwable $error) {
+        error_log('MobiWave fallback mail delivery failed: ' . $error->getMessage());
+        throw $error;
     }
 }
 
@@ -180,9 +210,10 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     respond(405, ['ok' => false, 'error' => 'Method not allowed']);
 }
 
-// Both the homepage form and the full contact page use this endpoint.
-$turnstileToken = trim((string) ($_POST['cf-turnstile-response'] ?? ''));
-verifyTurnstile($turnstileToken);
+// Discard likely bot submissions without exposing the honeypot to automated clients.
+if (trim((string) ($_POST['website'] ?? '')) !== '') {
+    respond(200, ['ok' => true]);
+}
 
 $name = headerValue((string) ($_POST['name'] ?? ''));
 $firstName = headerValue((string) ($_POST['firstName'] ?? ''));
@@ -225,14 +256,10 @@ $mailBody = implode("\n", array_filter([
 ]));
 
 try {
-    $brevoApiKey = setting('BREVO_API_KEY');
-    if ($brevoApiKey === '') {
-        throw new RuntimeException('Brevo API key is missing');
-    }
-    sendBrevo($brevoApiKey, $mailFrom, $mailTo, $email, $mailSubject, $mailBody);
+    sendContactEmail($mailFrom, $mailTo, $email, $mailSubject, $mailBody);
 } catch (Throwable $error) {
     error_log('MobiWave contact form: ' . $error->getMessage());
-    respond(500, ['ok' => false, 'error' => 'The server could not send the message']);
+    respond(503, ['ok' => false, 'error' => 'The mail server is currently unavailable. Please email sales@mobiwave.co.ke directly.']);
 }
 
 respond(200, ['ok' => true]);

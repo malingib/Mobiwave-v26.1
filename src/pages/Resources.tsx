@@ -90,11 +90,11 @@ export function Resources() {
               <Link
                 key={g.href}
                 to={g.href}
-                className="animate-item mw-card flex flex-col gap-4 p-2 pb-6 hover:border-[#0084ff]/40 transition-colors group"
+                className="animate-item mw-card flex flex-col gap-4 p-2 pb-6 hover:border-[#5955d1]/40 transition-colors group"
               >
                 <h3 className="text-lg font-bold text-[#0a1a25]" style={{ fontFamily: 'Outfit, sans-serif' }}>{g.title}</h3>
                 <p className="text-sm text-[#5b6b78] leading-relaxed flex-1">{g.description}</p>
-                <span className="inline-flex items-center gap-2 text-sm font-bold text-[#0084ff] group-hover:gap-3 transition-all">
+                <span className="inline-flex items-center gap-2 text-sm font-bold text-[#5955d1] group-hover:gap-3 transition-all">
                   Read guide <ArrowRight className="w-4 h-4" />
                 </span>
               </Link>
@@ -118,10 +118,10 @@ export function Resources() {
               <Link
                 key={s.href}
                 to={s.href}
-                className="animate-item mw-card p-5 flex items-center justify-between gap-3 hover:border-[#0084ff]/40 transition-colors"
+                className="animate-item mw-card p-5 flex items-center justify-between gap-3 hover:border-[#5955d1]/40 transition-colors"
               >
                 <span className="font-bold text-[#0a1a25]">{s.label}</span>
-                <ArrowRight className="w-4 h-4 text-[#0084ff]" />
+                <ArrowRight className="w-4 h-4 text-[#5955d1]" />
               </Link>
             ))}
           </div>

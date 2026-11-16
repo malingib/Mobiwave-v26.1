@@ -214,15 +214,15 @@ export function Contact({ embedded = false }: ContactProps) {
           <div className="space-y-4">
             <div className="form-field">
               <Label htmlFor="emb-name" className="text-sm text-[#172333]">Name <span className="text-red-500">*</span></Label>
-              <Input id="emb-name" name="name" placeholder="Your name" required className="mt-1.5 border-[#172333]/15 bg-white text-[#172333] placeholder:text-[#586273]/55 focus:border-[#176fe8]" />
+              <Input id="emb-name" name="name" placeholder="Your name" required className="mt-1.5 border-[#172333]/15 bg-white text-[#172333] placeholder:text-[#586273]/55 focus:border-[#5955d1]" />
             </div>
             <div className="form-field">
               <Label htmlFor="emb-email" className="text-sm text-[#172333]">Email <span className="text-red-500">*</span></Label>
-              <Input id="emb-email" name="email" type="email" placeholder="you@company.co.ke" required className="mt-1.5 border-[#172333]/15 bg-white text-[#172333] placeholder:text-[#586273]/55 focus:border-[#176fe8]" />
+              <Input id="emb-email" name="email" type="email" placeholder="you@company.co.ke" required className="mt-1.5 border-[#172333]/15 bg-white text-[#172333] placeholder:text-[#586273]/55 focus:border-[#5955d1]" />
             </div>
             <div className="form-field">
               <Label htmlFor="emb-phone" className="text-sm text-[#172333]">Phone</Label>
-              <Input id="emb-phone" name="phone" type="tel" placeholder="+254 7XX XXX XXX" className="mt-1.5 border-[#172333]/15 bg-white text-[#172333] placeholder:text-[#586273]/55 focus:border-[#176fe8]" />
+              <Input id="emb-phone" name="phone" type="tel" placeholder="+254 7XX XXX XXX" className="mt-1.5 border-[#172333]/15 bg-white text-[#172333] placeholder:text-[#586273]/55 focus:border-[#5955d1]" />
             </div>
             <div className="form-field">
               <Label htmlFor="emb-service" className="text-sm text-[#172333]">Service <span className="text-red-500">*</span></Label>
@@ -239,7 +239,7 @@ export function Contact({ embedded = false }: ContactProps) {
             </div>
             <div className="form-field">
               <Label htmlFor="emb-message" className="text-sm text-[#172333]">Message</Label>
-              <Textarea id="emb-message" name="message" placeholder="Tell us what you need" rows={4} className="mt-1.5 border-[#172333]/15 bg-white text-[#172333] placeholder:text-[#586273]/55 focus:border-[#176fe8]" />
+              <Textarea id="emb-message" name="message" placeholder="Tell us what you need" rows={4} className="mt-1.5 border-[#172333]/15 bg-white text-[#172333] placeholder:text-[#586273]/55 focus:border-[#5955d1]" />
             </div>
             {submitError && <p className="text-sm leading-5 text-red-300" role="alert">{submitError}</p>}
             <button type="submit" disabled={isSubmitting} className="mw-btn-primary-solid w-full justify-center py-3.5 disabled:cursor-not-allowed disabled:opacity-60">
@@ -294,7 +294,7 @@ export function Contact({ embedded = false }: ContactProps) {
                   }`}
                 >
                   <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 transition-transform group-hover:scale-105" style={{ background: embedded ? 'rgba(96,165,250,0.16)' : 'rgba(0,132,255,0.08)' }}>
-                    <item.icon className="w-5 h-5" style={{ color: '#0084ff' }} />
+                    <item.icon className="w-5 h-5" style={{ color: '#5955d1' }} />
                   </div>
                   <div>
                     <div className={`text-xs font-semibold uppercase tracking-wider mb-0.5 ${embedded ? 'text-white/50' : 'text-gray-400'}`}>{item.label}</div>
@@ -349,7 +349,7 @@ export function Contact({ embedded = false }: ContactProps) {
                     name="name"
                     placeholder="Your name"
                     required
-                    className={`mt-1.5 focus:border-[#0084ff] focus:ring-[#0084ff]/20 ${embedded ? 'border-white/15 bg-white/10 text-white placeholder:text-white/45' : 'border-gray-200'}`}
+                    className={`mt-1.5 focus:border-[#5955d1] focus:ring-[#5955d1]/20 ${embedded ? 'border-white/15 bg-white/10 text-white placeholder:text-white/45' : 'border-gray-200'}`}
                   />
                 </div>
 
@@ -363,7 +363,7 @@ export function Contact({ embedded = false }: ContactProps) {
                     type="email"
                     placeholder="Your email"
                     required
-                    className={`mt-1.5 focus:border-[#0084ff] focus:ring-[#0084ff]/20 ${embedded ? 'border-white/15 bg-white/10 text-white placeholder:text-white/45' : 'border-gray-200'}`}
+                    className={`mt-1.5 focus:border-[#5955d1] focus:ring-[#5955d1]/20 ${embedded ? 'border-white/15 bg-white/10 text-white placeholder:text-white/45' : 'border-gray-200'}`}
                   />
                 </div>
 
@@ -376,7 +376,7 @@ export function Contact({ embedded = false }: ContactProps) {
                     name="phone"
                     type="tel"
                     placeholder="Your phone number"
-                    className={`mt-1.5 focus:border-[#0084ff] focus:ring-[#0084ff]/20 ${embedded ? 'border-white/15 bg-white/10 text-white placeholder:text-white/45' : 'border-gray-200'}`}
+                    className={`mt-1.5 focus:border-[#5955d1] focus:ring-[#5955d1]/20 ${embedded ? 'border-white/15 bg-white/10 text-white placeholder:text-white/45' : 'border-gray-200'}`}
                   />
                 </div>
 
@@ -385,7 +385,7 @@ export function Contact({ embedded = false }: ContactProps) {
                     Service <span className="text-red-500">*</span>
                   </Label>
                   <Select name="service" required>
-                    <SelectTrigger className={`mt-1.5 focus:border-[#0084ff] focus:ring-[#0084ff]/20 ${embedded ? 'border-white/15 bg-white/10 text-white' : 'border-gray-200'}`}>
+                    <SelectTrigger className={`mt-1.5 focus:border-[#5955d1] focus:ring-[#5955d1]/20 ${embedded ? 'border-white/15 bg-white/10 text-white' : 'border-gray-200'}`}>
                       <SelectValue placeholder="Select a service" />
                     </SelectTrigger>
                     <SelectContent>
@@ -403,7 +403,7 @@ export function Contact({ embedded = false }: ContactProps) {
                     Product <span className="text-red-500">*</span>
                   </Label>
                   <Select name="product" required>
-                    <SelectTrigger className={`mt-1.5 focus:border-[#0084ff] focus:ring-[#0084ff]/20 ${embedded ? 'border-white/15 bg-white/10 text-white' : 'border-gray-200'}`}>
+                    <SelectTrigger className={`mt-1.5 focus:border-[#5955d1] focus:ring-[#5955d1]/20 ${embedded ? 'border-white/15 bg-white/10 text-white' : 'border-gray-200'}`}>
                       <SelectValue placeholder="Select a product" />
                     </SelectTrigger>
                     <SelectContent>
@@ -422,9 +422,9 @@ export function Contact({ embedded = false }: ContactProps) {
                   type="submit"
                   disabled={isSubmitting}
                   className="w-full py-3.5 rounded-xl text-white font-semibold text-base transition-all duration-300 flex items-center justify-center gap-2"
-                  style={{ background: '#0084ff' }}
-                  onMouseEnter={e => ((e.currentTarget as HTMLElement).style.background = '#0068d6')}
-                  onMouseLeave={e => ((e.currentTarget as HTMLElement).style.background = '#0084ff')}
+                  style={{ background: '#5955d1' }}
+                  onMouseEnter={e => ((e.currentTarget as HTMLElement).style.background = '#4a46c4')}
+                  onMouseLeave={e => ((e.currentTarget as HTMLElement).style.background = '#5955d1')}
                 >
                   <Send className="w-4 h-4" />
                   {isSubmitting ? 'Sending...' : 'Send Message'}

@@ -81,12 +81,42 @@ function headerValue(string $value, int $maxLength = 160): string
     return function_exists('mb_substr') ? mb_substr($value, 0, $maxLength) : substr($value, 0, $maxLength);
 }
 
-function sendSmtp(string $from, string $to, string $replyTo, string $subject, string $body): void
+function smtpReadResponse($socket): string
 {
-    if (!function_exists('curl_init')) {
-        throw new RuntimeException('The cURL extension is not available');
+    $response = '';
+
+    while (!feof($socket)) {
+        $line = fgets($socket, 4096);
+        if ($line === false) {
+            break;
+        }
+
+        $response .= $line;
+
+        if (preg_match('/^[0-9]{3} /', $line) === 1) {
+            break;
+        }
     }
 
+    return trim($response);
+}
+
+function smtpCommand($socket, string $command): string
+{
+    if (fwrite($socket, $command . "\r\n") === false) {
+        throw new RuntimeException('SMTP command write failed');
+    }
+
+    $response = smtpReadResponse($socket);
+    if ($response === '') {
+        throw new RuntimeException('SMTP server returned an empty response');
+    }
+
+    return $response;
+}
+
+function sendSmtp(string $from, string $to, string $replyTo, string $subject, string $body): void
+{
     $host = setting('SMTP_HOST');
     $port = (int) (setting('SMTP_PORT') ?: '587');
     $encryption = strtolower(setting('SMTP_ENCRYPTION') ?: 'tls');
@@ -105,63 +135,108 @@ function sendSmtp(string $from, string $to, string $replyTo, string $subject, st
         throw new RuntimeException('SMTP email address is invalid');
     }
 
-    $scheme = in_array($encryption, ['ssl', 'smtps'], true) ? 'smtps' : 'smtp';
-    $message = implode("\r\n", [
-        'Date: ' . date(DATE_RFC2822),
-        'From: "MobiWave Website" <' . $from . '>',
-        'To: <' . $to . '>',
-        'Reply-To: <' . $replyTo . '>',
-        'Subject: =?UTF-8?B?' . base64_encode($subject) . '?=',
-        'MIME-Version: 1.0',
-        'Content-Type: text/plain; charset=UTF-8',
-        'Content-Transfer-Encoding: base64',
-        '',
-        rtrim(chunk_split(base64_encode($body), 76, "\r\n")),
-        '',
-    ]);
-    $offset = 0;
+    $connection = 'tcp://' . $host . ':' . $port;
+    if (in_array($encryption, ['ssl', 'smtps'], true)) {
+        $connection = 'ssl://' . $host . ':' . $port;
+    }
 
-    $ch = curl_init($scheme . '://' . $host . ':' . $port);
-    curl_setopt_array($ch, [
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_CONNECTTIMEOUT => 10,
-        CURLOPT_TIMEOUT => 30,
-        CURLOPT_MAIL_FROM => '<' . $from . '>',
-        CURLOPT_MAIL_RCPT => ['<' . $to . '>'],
-        CURLOPT_UPLOAD => true,
-        CURLOPT_INFILESIZE => strlen($message),
-        CURLOPT_READFUNCTION => static function ($handle, $input, int $length) use (&$offset, $message): string {
-            $chunk = substr($message, $offset, $length);
-            $offset += strlen($chunk);
-            return $chunk;
-        },
-    ]);
+    $socket = @stream_socket_client($connection, $errno, $errstr, 15, STREAM_CLIENT_CONNECT);
+    if ($socket === false) {
+        throw new RuntimeException('SMTP connection failed: ' . $errstr);
+    }
+
+    stream_set_timeout($socket, 15);
+
+    $banner = smtpReadResponse($socket);
+    if (!preg_match('/^220\b/', $banner)) {
+        fclose($socket);
+        throw new RuntimeException('SMTP banner rejected the connection');
+    }
 
     if ($encryption === 'tls') {
-        curl_setopt($ch, CURLOPT_USE_SSL, CURLUSESSL_ALL);
-    } elseif ($encryption === 'none') {
-        curl_setopt($ch, CURLOPT_USE_SSL, CURLUSESSL_NONE);
+        $startTlsResponse = smtpCommand($socket, 'STARTTLS');
+        if (!preg_match('/^220\b/', $startTlsResponse)) {
+            fclose($socket);
+            throw new RuntimeException('SMTP server did not accept STARTTLS');
+        }
+
+        $cryptoEnabled = @stream_socket_enable_crypto($socket, true, STREAM_CRYPTO_METHOD_TLS_CLIENT);
+        if ($cryptoEnabled !== true) {
+            fclose($socket);
+            throw new RuntimeException('STARTTLS negotiation failed');
+        }
+    }
+
+    $ehloResponse = smtpCommand($socket, 'EHLO localhost');
+    if (!preg_match('/^250\b/', $ehloResponse)) {
+        fclose($socket);
+        throw new RuntimeException('SMTP EHLO handshake failed');
     }
 
     if ($username !== '' || $password !== '') {
-        curl_setopt($ch, CURLOPT_USERNAME, $username);
-        curl_setopt($ch, CURLOPT_PASSWORD, $password);
+        $authResponse = smtpCommand($socket, 'AUTH LOGIN');
+        if (!preg_match('/^334\b/', $authResponse)) {
+            fclose($socket);
+            throw new RuntimeException('SMTP AUTH LOGIN is not supported by the server');
+        }
+
+        $usernameResponse = smtpCommand($socket, base64_encode($username));
+        if (!preg_match('/^334\b/', $usernameResponse)) {
+            fclose($socket);
+            throw new RuntimeException('SMTP username was rejected');
+        }
+
+        $passwordResponse = smtpCommand($socket, base64_encode($password));
+        if (!preg_match('/^235\b/', $passwordResponse)) {
+            fclose($socket);
+            throw new RuntimeException('SMTP authentication failed');
+        }
     }
 
-    $response = curl_exec($ch);
-    $curlError = curl_error($ch);
-    $status = (int) curl_getinfo($ch, CURLINFO_HTTP_CODE);
-    curl_close($ch);
-
-    if ($response === false || $curlError !== '') {
-        error_log('MobiWave SMTP request failed: ' . ($curlError !== '' ? $curlError : 'request failed'));
-        throw new RuntimeException('SMTP email request failed');
+    $mailFromResponse = smtpCommand($socket, 'MAIL FROM:<' . $from . '>');
+    if (!preg_match('/^250\b/', $mailFromResponse)) {
+        fclose($socket);
+        throw new RuntimeException('SMTP MAIL FROM rejected the sender address');
     }
 
-    if ($status < 200 || $status >= 300) {
-        error_log('MobiWave SMTP server rejected contact email with status ' . $status);
-        throw new RuntimeException('SMTP server rejected the email');
+    $rcptResponse = smtpCommand($socket, 'RCPT TO:<' . $to . '>');
+    if (!preg_match('/^25[0-9]\b/', $rcptResponse)) {
+        fclose($socket);
+        throw new RuntimeException('SMTP RCPT TO rejected the recipient address');
     }
+
+    $dataResponse = smtpCommand($socket, 'DATA');
+    if (!preg_match('/^354\b/', $dataResponse)) {
+        fclose($socket);
+        throw new RuntimeException('SMTP DATA command was rejected');
+    }
+
+    $mailHeaders = implode("\r\n", [
+        'From: "MobiWave Website" <' . $from . '>',
+        'To: <' . $to . '>',
+        'Reply-To: <' . $replyTo . '>',
+        'Subject: ' . $subject,
+        'MIME-Version: 1.0',
+        'Content-Type: text/plain; charset=UTF-8',
+        'Date: ' . date(DATE_RFC2822),
+        '',
+        $body,
+        '',
+    ]);
+
+    if (fwrite($socket, $mailHeaders . "\r\n.\r\n") === false) {
+        fclose($socket);
+        throw new RuntimeException('SMTP message body could not be written');
+    }
+
+    $dataResult = smtpReadResponse($socket);
+    if (!preg_match('/^250\b/', $dataResult)) {
+        fclose($socket);
+        throw new RuntimeException('SMTP message delivery failed');
+    }
+
+    smtpCommand($socket, 'QUIT');
+    fclose($socket);
 }
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -217,7 +292,7 @@ try {
     sendSmtp($mailFrom, $mailTo, $email, $mailSubject, $mailBody);
 } catch (Throwable $error) {
     error_log('MobiWave contact form: ' . $error->getMessage());
-    respond(500, ['ok' => false, 'error' => 'The server could not send the message']);
+    respond(503, ['ok' => false, 'error' => 'The mail server is currently unavailable. Please email sales@mobiwave.co.ke directly.']);
 }
 
 respond(200, ['ok' => true]);

@@ -23,7 +23,7 @@ function Partner({ name, logo }: (typeof partners)[number]) {
         {imageFailed ? (
           <span
             aria-hidden="true"
-            className="flex h-10 min-w-10 items-center justify-center rounded-md border border-[#176fe8]/20 bg-white px-2 text-xs font-extrabold tracking-wide text-[#176fe8]"
+            className="flex h-10 min-w-10 items-center justify-center rounded-md border border-[#5955d1]/20 bg-white px-2 text-xs font-extrabold tracking-wide text-[#5955d1]"
           >
             {initials}
           </span>
@@ -51,7 +51,7 @@ export function Clients() {
   return (
     <section className="bg-white py-8 sm:py-10" aria-labelledby="client-logos-heading">
       <div className="container-custom mb-5 text-center sm:mb-6">
-        <p className="mb-2 text-xs font-bold uppercase tracking-[0.16em] text-[#176fe8]">
+        <p className="mb-2 text-xs font-bold uppercase tracking-[0.16em] text-[#5955d1]">
           Our network
         </p>
         <h2 id="client-logos-heading" className="text-xl font-semibold tracking-tight text-[#0a1a25] sm:text-2xl">

@@ -283,7 +283,7 @@ export function SEOHead() {
 
     upsertMeta('meta[name="description"]', { name: 'description', content: config.description });
     upsertMeta('meta[name="robots"]', { name: 'robots', content: config.robots ?? 'index,follow' });
-    upsertMeta('meta[name="theme-color"]', { name: 'theme-color', content: '#0084ff' });
+    upsertMeta('meta[name="theme-color"]', { name: 'theme-color', content: '#5955d1' });
 
     // Geographic / local SEO signals
     upsertMeta('meta[name="geo.region"]', { name: 'geo.region', content: REGION });

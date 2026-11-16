@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:contact": "node scripts/dev-with-contact.mjs",
     "build": "tsc && vite build",
     "build:deploy": "npm run build && npm run prerender && npm run validate:production",
     "prerender": "node scripts/prerender.mjs",

@@ -78,7 +78,7 @@ export function Products() {
     <div className="min-h-screen overflow-x-hidden bg-white pt-28 sm:pt-32">
       <section className="border-b border-[#e3e9f1] bg-[#f6f8fb]">
         <div className="container-custom py-16 sm:py-20 lg:py-24">
-          <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#176fe8]">MobiWave Innovations</p>
+          <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#5955d1]">MobiWave Innovations</p>
           <h1 className="mt-4 max-w-4xl text-4xl font-extrabold leading-tight tracking-[-0.045em] text-[#172333] sm:text-5xl lg:text-6xl" style={{ fontFamily: 'Outfit, sans-serif' }}>
             Digital products built around real work.
           </h1>
@@ -86,10 +86,10 @@ export function Products() {
             Explore MobiWave platforms, industry solutions and custom digital systems that help organisations communicate, manage operations and connect services.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <Link to="/contact" className="inline-flex items-center gap-2 rounded-md bg-[#176fe8] px-5 py-3 text-sm font-bold text-white transition-colors hover:bg-[#105ac0]">
+            <Link to="/contact" className="inline-flex items-center gap-2 rounded-md bg-[#5955d1] px-5 py-3 text-sm font-bold text-white transition-colors hover:bg-[#105ac0]">
               Discuss your project <ArrowUpRight className="h-4 w-4" />
             </Link>
-            <Link to="/services" className="inline-flex items-center gap-2 rounded-md border border-[#d2dbe7] bg-white px-5 py-3 text-sm font-bold text-[#172333] transition-colors hover:border-[#176fe8] hover:text-[#176fe8]">
+            <Link to="/services" className="inline-flex items-center gap-2 rounded-md border border-[#d2dbe7] bg-white px-5 py-3 text-sm font-bold text-[#172333] transition-colors hover:border-[#5955d1] hover:text-[#5955d1]">
               Explore all services
             </Link>
           </div>
@@ -98,7 +98,7 @@ export function Products() {
 
       <section className="container-custom py-14 sm:py-18 lg:py-20" aria-labelledby="innovation-platforms-heading">
         <div className="max-w-3xl">
-          <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#176fe8]">Platforms & solutions</p>
+          <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#5955d1]">Platforms & solutions</p>
           <h2 id="innovation-platforms-heading" className="mt-3 text-3xl font-extrabold tracking-[-0.035em] text-[#172333] sm:text-4xl" style={{ fontFamily: 'Outfit, sans-serif' }}>
             Find the right starting point.
           </h2>
@@ -113,7 +113,7 @@ export function Products() {
             return (
               <article key={item.name} className="flex h-full flex-col border-t border-[#dfe5ed] py-6">
                 <div className="flex items-start justify-between gap-3">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-[#edf4ff] text-[#176fe8]">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-[#edf4ff] text-[#5955d1]">
                     <Icon className="h-5 w-5" aria-hidden="true" />
                   </div>
                   <span className="rounded-full bg-[#f1f4f8] px-3 py-1 text-xs font-semibold text-[#586273]">{item.status}</span>
@@ -124,17 +124,17 @@ export function Products() {
                 <ul className="mt-4 space-y-2">
                   {item.features.map((feature) => (
                     <li key={feature} className="flex items-start gap-2 text-sm text-[#455163]">
-                      <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#176fe8]" />
+                      <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#5955d1]" />
                       {feature}
                     </li>
                   ))}
                 </ul>
                 {external ? (
-                  <a href={item.href} target="_blank" rel="noreferrer" className="mt-6 inline-flex w-fit items-center gap-2 text-sm font-bold text-[#176fe8] hover:text-[#105ac0]">
+                  <a href={item.href} target="_blank" rel="noreferrer" className="mt-6 inline-flex w-fit items-center gap-2 text-sm font-bold text-[#5955d1] hover:text-[#105ac0]">
                     {item.action} <ArrowUpRight className="h-4 w-4" />
                   </a>
                 ) : (
-                  <Link to={item.href} className="mt-6 inline-flex w-fit items-center gap-2 text-sm font-bold text-[#176fe8] hover:text-[#105ac0]">
+                  <Link to={item.href} className="mt-6 inline-flex w-fit items-center gap-2 text-sm font-bold text-[#5955d1] hover:text-[#105ac0]">
                     {item.action} <ArrowUpRight className="h-4 w-4" />
                   </Link>
                 )}
@@ -147,7 +147,7 @@ export function Products() {
       <section className="border-y border-[#e3e9f1] bg-[#f6f8fb]">
         <div className="container-custom py-14 sm:py-16">
           <div className="max-w-3xl">
-            <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#176fe8]">How we build</p>
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#5955d1]">How we build</p>
             <h2 className="mt-3 text-3xl font-extrabold tracking-[-0.035em] text-[#172333] sm:text-4xl" style={{ fontFamily: 'Outfit, sans-serif' }}>
               Useful technology, without unnecessary complexity.
             </h2>
@@ -155,7 +155,7 @@ export function Products() {
           <div className="mt-8 grid gap-8 md:grid-cols-3">
             {capabilities.map(({ icon: Icon, title, description }) => (
               <div key={title} className="border-t border-[#d7e0eb] pt-5">
-                <Icon className="h-6 w-6 text-[#176fe8]" aria-hidden="true" />
+                <Icon className="h-6 w-6 text-[#5955d1]" aria-hidden="true" />
                 <h3 className="mt-4 text-lg font-bold text-[#172333]">{title}</h3>
                 <p className="mt-2 text-sm leading-6 text-[#586273]">{description}</p>
               </div>

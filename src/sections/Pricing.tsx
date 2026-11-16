@@ -25,8 +25,8 @@ export function Pricing() {
         <motion.div ref={ref} initial="hidden" animate={isInView ? 'visible' : 'hidden'} variants={staggerContainer}>
           <MotionItem className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-end lg:gap-24">
             <div>
-              <div className="mb-5 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-[#0084ff]">
-                <span className="h-px w-8 bg-[#0084ff]" />
+              <div className="mb-5 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-[#5955d1]">
+                <span className="h-px w-8 bg-[#5955d1]" />
                 Beyond messaging
               </div>
               <h2 id="projects-heading" className="max-w-lg text-4xl font-extrabold leading-[1.05] tracking-[-0.04em] text-[#0a1a25] sm:text-5xl" style={{ fontFamily: 'Outfit, sans-serif' }}>
@@ -45,12 +45,12 @@ export function Pricing() {
                   <span className="w-7 font-mono text-xs text-[#5b6b78]/60">{String(index + 1).padStart(2, '0')}</span>
                   <span className="min-w-0 flex-1">
                     <span className="flex items-center gap-3">
-                      <span className="text-lg font-bold text-[#0a1a25] transition-colors group-hover:text-[#0084ff]" style={{ fontFamily: 'Outfit, sans-serif' }}>{project.name}</span>
-                      <span className="rounded-full bg-[#0084ff]/10 px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-[#0084ff]">{project.tag}</span>
+                      <span className="text-lg font-bold text-[#0a1a25] transition-colors group-hover:text-[#5955d1]" style={{ fontFamily: 'Outfit, sans-serif' }}>{project.name}</span>
+                      <span className="rounded-full bg-[#5955d1]/10 px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-[#5955d1]">{project.tag}</span>
                     </span>
                     <span className="mt-1 block text-sm text-[#5b6b78]">{project.desc}</span>
                   </span>
-                  <ExternalLink className="h-4 w-4 shrink-0 text-[#5b6b78]/40 transition-colors group-hover:text-[#0084ff]" />
+                  <ExternalLink className="h-4 w-4 shrink-0 text-[#5b6b78]/40 transition-colors group-hover:text-[#5955d1]" />
                 </a>
               </MotionItem>
             ))}
@@ -59,13 +59,13 @@ export function Pricing() {
           <MotionItem className="mt-12 rounded-[26px] bg-[#0a1a25] p-7 text-white sm:p-9">
             <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
               <div>
-                <p className="mb-2 text-xs font-bold uppercase tracking-[0.18em] text-[#36b8ff]">What we can build</p>
+                <p className="mb-2 text-xs font-bold uppercase tracking-[0.18em] text-[#8b87e8]">What we can build</p>
                 <p className="max-w-xl text-xl font-bold leading-8" style={{ fontFamily: 'Outfit, sans-serif' }}>From the first technical conversation to the system your team relies on every day.</p>
               </div>
               <div className="flex flex-col gap-3 text-sm text-white/65 sm:min-w-[280px]">
                 {capabilities.map((capability) => <span key={capability} className="flex items-center gap-3"><span className="h-1.5 w-1.5 rounded-full bg-[#1d8c89]" />{capability}</span>)}
               </div>
-              <a href="#contact" className="group inline-flex shrink-0 items-center gap-2 text-sm font-bold text-white transition-colors hover:text-[#36b8ff]">Talk to our team <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" /></a>
+              <a href="#contact" className="group inline-flex shrink-0 items-center gap-2 text-sm font-bold text-white transition-colors hover:text-[#8b87e8]">Talk to our team <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" /></a>
             </div>
           </MotionItem>
         </motion.div>

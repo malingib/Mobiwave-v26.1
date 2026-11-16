@@ -116,7 +116,7 @@ export function Footer() {
                 placeholder="Email for product updates"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="min-w-0 flex-1 rounded-xl border border-[#172333]/15 bg-white px-4 py-2.5 text-sm text-[#172333] placeholder:text-[#586273]/60 transition-colors focus:border-[#176fe8] focus:outline-none focus:ring-1 focus:ring-[#176fe8]/20"
+                className="min-w-0 flex-1 rounded-xl border border-[#172333]/15 bg-white px-4 py-2.5 text-sm text-[#172333] placeholder:text-[#586273]/60 transition-colors focus:border-[#5955d1] focus:outline-none focus:ring-1 focus:ring-[#5955d1]/20"
               />
               <button type="submit" className="mw-btn-primary-solid shrink-0">
                 Subscribe
@@ -131,8 +131,8 @@ export function Footer() {
                   <li key={l.href}>
                     <Link
                       to={l.href}
-                      className={`text-sm transition-colors duration-200 hover:text-[#36b8ff] ${
-                        isActive(l.href) ? 'font-medium text-[#176fe8]' : 'text-[#586273]'
+                      className={`text-sm transition-colors duration-200 hover:text-[#8b87e8] ${
+                        isActive(l.href) ? 'font-medium text-[#5955d1]' : 'text-[#586273]'
                       }`}
                     >
                       {l.label}
@@ -150,7 +150,7 @@ export function Footer() {
                   <li key={l.label}>
                     <a
                       href={l.href}
-                      className="text-sm text-[#586273] transition-colors duration-200 hover:text-[#176fe8]"
+                      className="text-sm text-[#586273] transition-colors duration-200 hover:text-[#5955d1]"
                     >
                       {l.label}
                     </a>
@@ -160,7 +160,7 @@ export function Footer() {
                   <button
                     type="button"
                     onClick={() => setSitemapOpen(true)}
-                    className="text-sm text-[#586273] transition-colors duration-200 hover:text-[#176fe8]"
+                    className="text-sm text-[#586273] transition-colors duration-200 hover:text-[#5955d1]"
                   >
                     Full Sitemap
                   </button>
@@ -173,7 +173,7 @@ export function Footer() {
         <div className="flex flex-col items-center gap-4 pt-6 text-center text-sm text-[#586273] md:flex-row md:justify-between md:text-left">
           <p>
             &copy; {new Date().getFullYear()}{' '}
-            <Link to="/" className="text-[#172333] transition-colors hover:text-[#176fe8]">
+            <Link to="/" className="text-[#172333] transition-colors hover:text-[#5955d1]">
               MobiWave Innovations Ltd
             </Link>
             {' '}— Kilifi, Kenya
@@ -185,7 +185,7 @@ export function Footer() {
                 href={s.href}
                 target="_blank"
                 rel="noreferrer"
-                className="flex h-9 w-9 items-center justify-center rounded-full border border-[#172333]/10 bg-[#f7f7fc] text-[#586273] transition-all duration-300 hover:border-[#176fe8] hover:bg-[#176fe8] hover:text-white"
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-[#172333]/10 bg-[#f7f7fc] text-[#586273] transition-all duration-300 hover:border-[#5955d1] hover:bg-[#5955d1] hover:text-white"
                 aria-label={s.label}
               >
                 <svg className="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 24 24">
@@ -199,7 +199,7 @@ export function Footer() {
 
       <button
         onClick={scrollToTop}
-        className="fixed bottom-6 right-6 z-40 flex h-11 w-11 items-center justify-center rounded-full bg-[#176fe8] text-white shadow-lg transition-all hover:-translate-y-0.5 hover:bg-[#0f5ec9]"
+        className="fixed bottom-6 right-6 z-40 flex h-11 w-11 items-center justify-center rounded-full bg-[#5955d1] text-white shadow-lg transition-all hover:-translate-y-0.5 hover:bg-[#4a46c4]"
         style={{ boxShadow: '0 4px 20px rgba(0,132,255,0.35)' }}
         aria-label="Back to top"
       >
@@ -251,7 +251,7 @@ export function Footer() {
                       <li key={item.label}>
                         <Link
                           to={item.href}
-                          className="text-sm text-[#586273] transition-colors hover:text-[#176fe8]"
+                          className="text-sm text-[#586273] transition-colors hover:text-[#5955d1]"
                         >
                           {item.label}
                         </Link>

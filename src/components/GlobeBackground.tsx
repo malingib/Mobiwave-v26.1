@@ -9,12 +9,12 @@ interface City {
 }
 
 const CITIES: City[] = [
-  { name: 'Kilifi', lat: -3.63, lng: 39.85, color: '#0084ff' },
-  { name: 'London', lat: 51.51, lng: -0.13, color: '#0084ff' },
+  { name: 'Kilifi', lat: -3.63, lng: 39.85, color: '#5955d1' },
+  { name: 'London', lat: 51.51, lng: -0.13, color: '#5955d1' },
   { name: 'Dubai', lat: 25.2, lng: 55.27, color: '#1d8c89' },
   { name: 'Johannesburg', lat: -26.2, lng: 28.04, color: '#1ea6ff' },
   { name: 'Mumbai', lat: 19.08, lng: 72.88, color: '#1d8c89' },
-  { name: 'Cairo', lat: 30.04, lng: 31.24, color: '#0084ff' },
+  { name: 'Cairo', lat: 30.04, lng: 31.24, color: '#5955d1' },
   { name: 'New York', lat: 40.71, lng: -74.01, color: '#1ea6ff' },
   { name: 'Singapore', lat: 1.35, lng: 103.82, color: '#1d8c89' },
 ];

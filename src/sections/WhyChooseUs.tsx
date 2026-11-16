@@ -44,7 +44,7 @@ export function WhyChooseUs() {
                 You should not need a sales deck to get a communication service working. We keep the path from conversation to launch short.
               </p>
               <div className="mt-9 inline-flex items-center gap-2 text-sm font-bold text-[#273243]">
-                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#176fe8] text-white"><Check className="h-4 w-4" /></span>
+                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#5955d1] text-white"><Check className="h-4 w-4" /></span>
                 Human support included
               </div>
             </div>
@@ -58,7 +58,7 @@ export function WhyChooseUs() {
                       <h3 className="text-xl font-bold sm:text-2xl" style={{ fontFamily: 'Outfit, sans-serif' }}>{step.title}</h3>
                       <p className="mt-2 max-w-xl text-sm leading-6 text-[#586273] sm:text-base">{step.text}</p>
                     </div>
-                    <ArrowRight className="mt-1 hidden h-5 w-5 text-[#586273]/50 transition-transform group-hover:translate-x-1 group-hover:text-[#176fe8] sm:block" />
+                    <ArrowRight className="mt-1 hidden h-5 w-5 text-[#586273]/50 transition-transform group-hover:translate-x-1 group-hover:text-[#5955d1] sm:block" />
                   </div>
                 </MotionItem>
               ))}

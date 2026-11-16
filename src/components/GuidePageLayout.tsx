@@ -67,7 +67,7 @@ function StepBlock({ steps }: { steps: GuideStep[] }) {
         <ol className="grid md:grid-cols-2 gap-4 animate-section max-w-5xl mx-auto">
           {steps.map((item) => (
             <li key={item.step} className="animate-item mw-card p-5 flex gap-4">
-              <span className="pt-1 text-sm font-bold text-[#0084ff]" aria-hidden="true">{item.step}</span>
+              <span className="pt-1 text-sm font-bold text-[#5955d1]" aria-hidden="true">{item.step}</span>
               <div>
                 <h3 className="text-lg font-bold text-[#0a1a25] mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>{item.title}</h3>
                 <p className="text-[#5b6b78] text-sm leading-relaxed">{item.description}</p>
@@ -133,7 +133,7 @@ function ComparisonBlock({ comparison }: { comparison: NonNullable<GuidePageLayo
               <TableRow>
                 <TableHead className="min-w-[200px]">Factor</TableHead>
                 {comparison.headers.map((h) => (
-                  <TableHead key={h} className={h === 'MobiWave' ? 'bg-[#0084ff]/5 text-[#0084ff]' : ''}>{h}</TableHead>
+                  <TableHead key={h} className={h === 'MobiWave' ? 'bg-[#5955d1]/5 text-[#5955d1]' : ''}>{h}</TableHead>
                 ))}
               </TableRow>
             </TableHeader>
@@ -145,7 +145,7 @@ function ComparisonBlock({ comparison }: { comparison: NonNullable<GuidePageLayo
                     const text = typeof cell === 'string' ? cell : cell.text;
                     const highlight = typeof cell === 'string' ? false : cell.highlight;
                     return (
-                      <TableCell key={i} className={highlight ? 'bg-[#0084ff]/5 font-semibold text-[#0a1a25]' : 'text-[#5b6b78]'}>
+                      <TableCell key={i} className={highlight ? 'bg-[#5955d1]/5 font-semibold text-[#0a1a25]' : 'text-[#5b6b78]'}>
                         {text}
                       </TableCell>
                     );
@@ -236,7 +236,7 @@ export function GuidePageLayout({
                 Talk to MobiWave <ArrowRight className="w-5 h-5" />
               </a>
               {docsLink && (
-                <Link to={docsLink.href} className="ml-4 inline-flex items-center gap-2 text-sm font-bold text-[#0084ff] underline decoration-[#0084ff]/30 underline-offset-4 hover:decoration-[#0084ff]">
+                <Link to={docsLink.href} className="ml-4 inline-flex items-center gap-2 text-sm font-bold text-[#5955d1] underline decoration-[#5955d1]/30 underline-offset-4 hover:decoration-[#5955d1]">
                   {docsLink.label} <ArrowRight className="h-4 w-4" />
                 </Link>
               )}
@@ -263,10 +263,10 @@ export function GuidePageLayout({
                   <Link
                     key={r.href}
                     to={r.href}
-                    className="animate-item mw-card p-5 flex items-center justify-between gap-3 hover:border-[#0084ff]/40 transition-colors"
+                    className="animate-item mw-card p-5 flex items-center justify-between gap-3 hover:border-[#5955d1]/40 transition-colors"
                   >
                     <span className="font-bold text-[#0a1a25]">{r.label}</span>
-                    <ArrowRight className="w-4 h-4 text-[#0084ff]" />
+                    <ArrowRight className="w-4 h-4 text-[#5955d1]" />
                   </Link>
                 ))}
               </div>
@@ -277,7 +277,7 @@ export function GuidePageLayout({
         <section className="py-20 bg-white">
           <div className="container-custom">
             <Card className="relative overflow-hidden rounded-3xl border-0 p-0 gap-0" style={{ background: '#0a1a25' }}>
-              <div className="absolute top-0 right-0 w-72 h-72 rounded-full opacity-10 pointer-events-none" style={{ background: 'radial-gradient(circle, #0084ff, transparent)', transform: 'translate(30%, -30%)' }} />
+              <div className="absolute top-0 right-0 w-72 h-72 rounded-full opacity-10 pointer-events-none" style={{ background: 'radial-gradient(circle, #5955d1, transparent)', transform: 'translate(30%, -30%)' }} />
               <CardHeader className="relative z-10 p-6 sm:p-8 md:p-12 pb-0">
                 <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 mb-10">
                   <div className="max-w-xl">

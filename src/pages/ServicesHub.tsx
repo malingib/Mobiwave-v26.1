@@ -23,7 +23,7 @@ export function ServicesHub() {
     <div className="bg-white pt-28 sm:pt-32">
       <section className="border-b border-[#e7ebf0] bg-[#f7f9fc]">
         <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-20 lg:px-10">
-          <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#176fe8]">MobiWave services</p>
+          <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#5955d1]">MobiWave services</p>
           <h1 className="mt-4 max-w-4xl text-4xl font-extrabold leading-tight tracking-[-0.04em] text-[#172333] sm:text-5xl lg:text-6xl" style={{ fontFamily: 'Outfit, sans-serif' }}>
             The services your business needs to connect, transact and grow.
           </h1>
@@ -31,26 +31,26 @@ export function ServicesHub() {
             Explore MobiWave’s communication, payments and business workflow services in one place. Choose a service to see how it works, available options and next steps.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <Link to="/contact" className="inline-flex items-center gap-2 rounded-md bg-[#176fe8] px-5 py-3 text-sm font-bold text-white transition-colors hover:bg-[#105ac0]">Talk to our team <ArrowRight className="h-4 w-4" /></Link>
-            <Link to="/developers/docs" className="inline-flex items-center gap-2 rounded-md border border-[#d4dce7] bg-white px-5 py-3 text-sm font-bold text-[#172333] transition-colors hover:border-[#176fe8] hover:text-[#176fe8]">Developer documentation</Link>
+            <Link to="/contact" className="inline-flex items-center gap-2 rounded-md bg-[#5955d1] px-5 py-3 text-sm font-bold text-white transition-colors hover:bg-[#105ac0]">Talk to our team <ArrowRight className="h-4 w-4" /></Link>
+            <Link to="/developers/docs" className="inline-flex items-center gap-2 rounded-md border border-[#d4dce7] bg-white px-5 py-3 text-sm font-bold text-[#172333] transition-colors hover:border-[#5955d1] hover:text-[#5955d1]">Developer documentation</Link>
           </div>
         </div>
       </section>
       <section className="mx-auto max-w-7xl px-5 py-14 sm:px-8 sm:py-18 lg:px-10 lg:py-20" aria-labelledby="all-services-heading">
         <div className="max-w-2xl">
-          <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#176fe8]">Explore our services</p>
+          <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#5955d1]">Explore our services</p>
           <h2 id="all-services-heading" className="mt-3 text-3xl font-extrabold tracking-[-0.035em] text-[#172333] sm:text-4xl" style={{ fontFamily: 'Outfit, sans-serif' }}>One place to find the right solution.</h2>
           <p className="mt-4 text-base leading-7 text-[#586273]">From reaching customers to collecting payments and managing operations, start with the service that fits your needs.</p>
         </div>
         <div className="mt-9 grid gap-x-8 gap-y-5 sm:grid-cols-2 lg:grid-cols-3">
           {services.map(({ title, description, href, icon: Icon }) => (
             <article key={title} className="flex h-full flex-col border-t border-[#dfe5ed] py-6">
-              <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-[#edf4ff] text-[#176fe8]">
+              <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-[#edf4ff] text-[#5955d1]">
                 <Icon className="h-5 w-5" aria-hidden="true" />
               </div>
               <h3 className="mt-5 text-xl font-bold text-[#172333]" style={{ fontFamily: 'Outfit, sans-serif' }}>{title}</h3>
               <p className="mt-3 flex-1 text-sm leading-6 text-[#586273]">{description}</p>
-              <Link to={href} className="mt-5 inline-flex w-fit items-center gap-2 text-sm font-bold text-[#176fe8] hover:text-[#105ac0] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#176fe8]">
+              <Link to={href} className="mt-5 inline-flex w-fit items-center gap-2 text-sm font-bold text-[#5955d1] hover:text-[#105ac0] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#5955d1]">
                 Explore service <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
             </article>
@@ -63,7 +63,7 @@ export function ServicesHub() {
             <h2 className="text-2xl font-extrabold tracking-tight text-[#172333]" style={{ fontFamily: 'Outfit, sans-serif' }}>Not sure which service is right for you?</h2>
             <p className="mt-2 max-w-2xl text-sm leading-6 text-[#586273]">Tell us what you’re trying to achieve and our team can help you choose a practical starting point.</p>
           </div>
-          <Link to="/contact" className="inline-flex shrink-0 items-center justify-center gap-2 rounded-md bg-[#176fe8] px-5 py-3 text-sm font-bold text-white hover:bg-[#105ac0]">Contact MobiWave <ArrowRight className="h-4 w-4" /></Link>
+          <Link to="/contact" className="inline-flex shrink-0 items-center justify-center gap-2 rounded-md bg-[#5955d1] px-5 py-3 text-sm font-bold text-white hover:bg-[#105ac0]">Contact MobiWave <ArrowRight className="h-4 w-4" /></Link>
         </div>
       </section>
     </div>

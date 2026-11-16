@@ -32,7 +32,7 @@ export function WhatsAppRateCard() {
   return <section className="section-padding" id="whatsapp-rate-card">
     <div className="container-custom space-y-12">
       <header className="mx-auto max-w-3xl text-center">
-        <p className="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-[#0084ff]">Effective July 2026</p>
+        <p className="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-[#5955d1]">Effective July 2026</p>
         <h2 className="text-3xl font-extrabold tracking-tight text-[#0a1a25] sm:text-4xl">WhatsApp Business API — Subscription Rate Card</h2>
         <p className="mt-4 text-[#5b6b78]">Subscription charges are separate from Meta message charges. All subscription prices are in Kenya Shillings (KES).</p>
       </header>

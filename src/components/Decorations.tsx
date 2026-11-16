@@ -37,27 +37,27 @@ export function HeroWaves() {
           {/* Back: carries the hero's lavender tone into the transition. */}
           <linearGradient id="wgA" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stopColor="#c9c0ed" stopOpacity="0.9" />
-            <stop offset="100%" stopColor="#b8c9e8" stopOpacity="0.86" />
+            <stop offset="100%" stopColor="#c7c9ec" stopOpacity="0.86" />
           </linearGradient>
 
           {/* Mid: a cool blue bridge between the hero and client logos. */}
           <linearGradient id="wgB" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stopColor="#aaa2d5" stopOpacity="0.86" />
-            <stop offset="42%" stopColor="#91b6df" stopOpacity="0.7" />
-            <stop offset="100%" stopColor="#c9dced" stopOpacity="0.42" />
+            <stop offset="42%" stopColor="#a8a6e0" stopOpacity="0.7" />
+            <stop offset="100%" stopColor="#d8d8ef" stopOpacity="0.42" />
           </linearGradient>
 
           {/* Front: soft blue into the Clients section's white surface. */}
           <linearGradient id="wgC" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#b6d0ea" stopOpacity="0.3" />
-            <stop offset="30%" stopColor="#d0e0f0" stopOpacity="0.54" />
-            <stop offset="68%" stopColor="#e9eff8" stopOpacity="0.92" />
+            <stop offset="0%" stopColor="#c9c9ea" stopOpacity="0.3" />
+            <stop offset="30%" stopColor="#dedcf2" stopOpacity="0.54" />
+            <stop offset="68%" stopColor="#eeedf8" stopOpacity="0.92" />
             <stop offset="100%" stopColor="#ffffff" stopOpacity="1" />
           </linearGradient>
         </defs>
       </svg>
 
-      <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-[#f6f4ff]/0 via-white/40 to-white" />
+      <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-[#f7f5ff]/0 via-white/40 to-white" />
 
       {/* Back — slowest, deep undulation */}
       <div className="hero-wave hero-wave-3">
