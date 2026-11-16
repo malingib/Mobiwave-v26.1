@@ -1,6 +1,6 @@
 export async function submitContactForm(form: HTMLFormElement): Promise<void> {
   const formData = new FormData(form);
-  const endpoint = String(import.meta.env.VITE_CONTACT_FORM_ENDPOINT || '/api/contact').trim();
+  const endpoint = String(import.meta.env.VITE_CONTACT_FORM_ENDPOINT || '/api/contact.php').trim();
 
   const response = await fetch(endpoint, {
     method: 'POST',
