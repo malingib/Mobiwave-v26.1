@@ -1,4 +1,4 @@
-const DEFAULT_ENDPOINT = 'https://mobiwave-contact-dwaynes-projects-c48061a4.vercel.app/api/contact';
+const DEFAULT_ENDPOINT = 'https://mobiwave-contact.vercel.app/api/contact';
 
 const REQUEST_TIMEOUT_MS = 20000;
 
@@ -28,7 +28,9 @@ function resolveEndpoint(): string {
   const configured = String(import.meta.env.VITE_CONTACT_FORM_ENDPOINT ?? '').trim();
   // Only an absolute URL may override the default. A relative value baked in by
   // a stale .env on the build machine would silently break the form.
-  return /^https?:\\/\\//i.test(configured) ? configured : DEFAULT_ENDPOINT;
+  return configured.startsWith('https://') || configured.startsWith('http://')
+    ? configured
+    : DEFAULT_ENDPOINT;
 }
 
 export async function submitContactForm(form: HTMLFormElement): Promise<void> {
