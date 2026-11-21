@@ -81,9 +81,29 @@ Checklist before reloading:
 
 - `root /var/www/mobiwave/dist;` points at the deployed `dist/` directory.
 - Certificates exist at `/etc/letsencrypt/live/mobiwave.co.ke/`.
-- `contact.php` upstream (port `8000`) is running, or drop that `location`.
 - Any process running `vite preview`/`vite dev` in production is stopped and
   disabled so it cannot come back after a reboot.
+
+## Contact form
+
+The contact form does not need a runtime on this server. The browser posts
+straight to a hosted function that relays the submission to Brevo:
+
+```
+browser ──POST multipart──▶ https://mobiwave-contact.vercel.app/api/contact
+                                │ Vercel Edge Function (contact-api/ in this repo)
+                                ▼
+                     https://api.brevo.com/v3/smtp/email
+```
+
+`contact-api/` is deployed as its own Vercel project (root directory
+`contact-api`). The Brevo API key lives in that project's environment
+variables, never in this repository. See `contact-api/README.md` for the setup
+steps and the Brevo sender-verification requirement.
+
+There is no PHP endpoint in the build any more and none is needed on the
+server: no `fastcgi_pass`, no `location = /contact.php`, no PHP process on
+port 8000.
 
 ## Deploy-time gotchas
 
@@ -94,9 +114,9 @@ Checklist before reloading:
   `4174 + pid % 1000`. A stale preview process on that port can serve old HTML
   with hashes from a previous build, which is how the committed `dist/` became
   inconsistent.
-- `dist/contact.php` reads `.env` from `dirname(__DIR__)` and
-  `dirname(__DIR__, 2)`, so the deployed tree must keep that layout with a
-  populated `.env`.
+- The contact form endpoint is a compile-time constant
+  (`DEFAULT_ENDPOINT` in `src/lib/contact-form.ts`), not a build-time env var.
+  A stale `.env` on the build machine therefore cannot break the form.
 
 ## Verify after deploy
 

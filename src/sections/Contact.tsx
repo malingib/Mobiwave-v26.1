@@ -12,7 +12,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { useInView } from '@/hooks/useInView';
-import { submitContactForm } from '@/lib/contact-form';
+import { submitContactForm, findMissingChoice } from '@/lib/contact-form';
 import { trackEvent } from '@/lib/analytics';
 import { Textarea } from '@/components/ui/textarea';
 
@@ -176,6 +176,13 @@ export function Contact({ embedded = false }: ContactProps) {
     setIsSubmitting(true);
     setSubmitError('');
 
+    const missingChoice = findMissingChoice(e.currentTarget);
+    if (missingChoice) {
+      setSubmitError(missingChoice);
+      setIsSubmitting(false);
+      return;
+    }
+
     try {
       await submitContactForm(e.currentTarget);
       trackEvent('form_success', { form_location: embedded ? 'homepage' : 'contact_page' });
@@ -226,7 +233,7 @@ export function Contact({ embedded = false }: ContactProps) {
             </div>
             <div className="form-field">
               <Label htmlFor="emb-service" className="text-sm text-[#172333]">Service <span className="text-red-500">*</span></Label>
-              <Select name="service" required>
+              <Select name="service">
                 <SelectTrigger id="emb-service" className="mt-1.5 border-[#172333]/15 bg-white text-[#172333]">
                   <SelectValue placeholder="Select a service" />
                 </SelectTrigger>
@@ -384,7 +391,7 @@ export function Contact({ embedded = false }: ContactProps) {
                   <Label htmlFor="service" className={embedded ? 'text-white/80' : 'text-gray-700'}>
                     Service <span className="text-red-500">*</span>
                   </Label>
-                  <Select name="service" required>
+                  <Select name="service">
                     <SelectTrigger className={`mt-1.5 focus:border-[#5955d1] focus:ring-[#5955d1]/20 ${embedded ? 'border-white/15 bg-white/10 text-white' : 'border-gray-200'}`}>
                       <SelectValue placeholder="Select a service" />
                     </SelectTrigger>
@@ -402,7 +409,7 @@ export function Contact({ embedded = false }: ContactProps) {
                   <Label htmlFor="product" className={embedded ? 'text-white/80' : 'text-gray-700'}>
                     Product <span className="text-red-500">*</span>
                   </Label>
-                  <Select name="product" required>
+                  <Select name="product">
                     <SelectTrigger className={`mt-1.5 focus:border-[#5955d1] focus:ring-[#5955d1]/20 ${embedded ? 'border-white/15 bg-white/10 text-white' : 'border-gray-200'}`}>
                       <SelectValue placeholder="Select a product" />
                     </SelectTrigger>

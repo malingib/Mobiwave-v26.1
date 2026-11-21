@@ -17,6 +17,12 @@ const SITE_URL = 'https://mobiwave.co.ke'
 // noindex utility content, but must still have crawlable, route-specific HTML.
 const EXTRA_PRERENDER_ROUTES = ['/privacy', '/terms']
 
+// A route that renders the React error boundary is a broken page. Publishing
+// it as a static snapshot would ship the error to every visitor, so the build
+// has to fail instead.
+const ERROR_MARKERS = ['Something went wrong.']
+const MIN_PAGE_BYTES = 2000
+
 const BLOCKED_HOSTS = [
   'googletagmanager.com',
   'google-analytics.com',
@@ -107,6 +113,13 @@ async function main() {
         await scrollThroughPage(page)
 
         const html = await page.content()
+        const errorMarker = ERROR_MARKERS.find((marker) => html.includes(marker))
+        if (errorMarker) {
+          throw new Error(`page rendered the app error boundary ("${errorMarker}") — refusing to publish`)
+        }
+        if (html.length < MIN_PAGE_BYTES) {
+          throw new Error(`page rendered only ${html.length} bytes — refusing to publish`)
+        }
         await writeFile(file, html)
         const kb = (Buffer.byteLength(html, 'utf8') / 1024).toFixed(1)
         console.log(`  ${route} -> ${file} (${kb} kB)`)

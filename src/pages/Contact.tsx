@@ -14,7 +14,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { PageBanner } from '@/components/PageBanner';
-import { submitContactForm } from '@/lib/contact-form';
+import { submitContactForm, findMissingChoice, CONTACT_CHOICE_MESSAGES } from '@/lib/contact-form';
 import { trackEvent } from '@/lib/analytics';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -118,6 +118,16 @@ export function Contact() {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitError('');
+
+    const missingChoice = findMissingChoice(e.currentTarget, {
+      subject: CONTACT_CHOICE_MESSAGES.subject,
+      inquiryType: CONTACT_CHOICE_MESSAGES.inquiryType,
+    });
+    if (missingChoice) {
+      setSubmitError(missingChoice);
+      setIsSubmitting(false);
+      return;
+    }
 
     try {
       await submitContactForm(e.currentTarget);
@@ -245,7 +255,7 @@ export function Contact() {
                   <div className="grid sm:grid-cols-2 gap-6">
                     <div>
                       <Label htmlFor="subject">Subject *</Label>
-                        <Select name="subject" required>
+                        <Select name="subject">
                         <SelectTrigger className="mt-2">
                           <SelectValue placeholder="Select a subject" />
                         </SelectTrigger>
@@ -260,7 +270,7 @@ export function Contact() {
                     </div>
                     <div>
                       <Label htmlFor="inquiryType">Inquiry Type *</Label>
-                        <Select name="inquiryType" required>
+                        <Select name="inquiryType">
                         <SelectTrigger className="mt-2">
                           <SelectValue placeholder="Select inquiry type" />
                         </SelectTrigger>

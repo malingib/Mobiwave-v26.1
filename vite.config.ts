@@ -7,20 +7,16 @@ export default defineConfig(({ command }) => ({
   base: '/',
   plugins: [command === 'serve' && inspectAttr(), react()],
 
-  // Allow your domain on the development server
+  // Allow your domain on the development server.
+  // The contact form posts straight to the hosted contact API (see
+  // src/lib/contact-form.ts), so there is nothing to proxy here.
   server: {
     allowedHosts: ['mobiwave.co.ke'],
-    proxy: {
-      '/contact.php': 'http://127.0.0.1:8000',
-    },
   },
 
   // Allow your domain on the preview server
   preview: {
     allowedHosts: ['mobiwave.co.ke'],
-    proxy: {
-      '/contact.php': 'http://127.0.0.1:8000',
-    },
   },
 
   resolve: {

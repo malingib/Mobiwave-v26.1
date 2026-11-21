@@ -1,0 +1,1 @@
+- Hosting constraints for the website project: the domain is **not** in Cloudflare and the hosting server runs **no PHP**, so server-side form/email handling must be a hosted serverless function (Vercel Edge Function) calling a transactional email API (Brevo or Resend) — Cloudflare Worker zone routes and PHP endpoints are ruled out. Confidence: 0.9
